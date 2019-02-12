@@ -110,6 +110,17 @@
 	                  	</div>
 		            </div>
 		            
+		            
+<!-- 달력 test -->      
+		            <div class="form-group">
+		                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
+		              </div>
+		              <div class="form-group">
+		                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
+		              </div>
+<!-- 달력 test --> 
+
+		            
 					<!-- 여행기간 -->
 		        	<div class="form-group">
 		            	<div class="range-slider">
