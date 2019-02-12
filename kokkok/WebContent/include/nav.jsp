@@ -48,12 +48,12 @@
 		          <li><a href="#" class="dropdown-item">여행 꿀팁</a></li>	          
 		        </ul>
 	      </li>         
-	         <!--    
+	          
           <li class="nav-item cta"><a href="contact.jsp" class="nav-link"><span>로그인</span></a></li>&nbsp;&nbsp;      
           <li class="nav-item cta"><a href="contact.jsp" class="nav-link"><span>회원가입</span></a></li>
-           -->  
+          
           <!-- 로그인 -->
-       
+         <!-- 
           <li class="nav-item cta dropdown">
           	<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span>마이페이지</span></a>
    		        <ul class="dropdown-menu">
@@ -64,7 +64,7 @@
 		        </ul>
           </li>&nbsp;&nbsp;
           <li class="nav-item cta"><a href="" class="nav-link"><span>로그아웃</span></a></li>
-                  
+              -->       
            
         </ul>
       </div>
