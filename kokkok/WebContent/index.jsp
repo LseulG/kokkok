@@ -11,7 +11,7 @@
   <body>
   <%@ include file="/include/nav.jsp"%>
     <!-- 대문 -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('<%=root%>/resources/images/bg_1.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}}/resources/images/bg_1.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -65,7 +65,7 @@
     					<div class="item">    					
 		    				<div class="destination blog-entry">
 		    				<!-- 여행정보 이미지링크 -->
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-1.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -87,7 +87,7 @@
 	    				
 	    				<div class="item">
 		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-2.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-2.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -101,7 +101,7 @@
 	    				
 	    				<div class="item">
 		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-6.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-6.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -136,7 +136,7 @@
     					<div class="item">    					
 		    				<div class="destination blog-entry">
 		    				<!-- 여행후기 이미지링크 -->
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-1.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -156,7 +156,7 @@
 	    				
 	    				<div class="item">
 		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-2.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-2.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -170,7 +170,7 @@
 	    				
 	    				<div class="item">
 		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-6.jpg);">
+		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-6.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
 		    							<span class="icon-search2"></span>
 		    						</div>
@@ -190,7 +190,7 @@
     
   
 <!-- 통계 섹션 -->
-    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(<%=root%>/resources/images/bg_1.jpg);">
+    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(${root}/resources/images/bg_1.jpg);">
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
@@ -259,7 +259,7 @@
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination blog-entry">
     			<!-- 리뷰 이미지링크 -->
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-5.jpg);">
+    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-5.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -290,7 +290,7 @@
     			
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination blog-entry">    			
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(<%=root%>/resources/images/destination-5.jpg);">
+    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-5.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -336,7 +336,7 @@
           <div class="col-md-3 ftco-animate">
             <div class="blog-entry align-self-stretch">
             <!-- 꿀팁 이미지링크 -->
-              <a href="blog-single.jsp" class="block-20" style="background-image: url('<%=root%>/resources/images/image_1.jpg');">
+              <a href="blog-single.jsp" class="block-20" style="background-image: url('${root}/resources/images/image_1.jpg');">
               </a>
               <div class="text p-4">
               <!-- 꿀팁 카테고리 -->   
@@ -355,7 +355,7 @@
 
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.jsp" class="block-20" style="background-image: url('<%=root%>/resources/images/image_3.jpg');">
+              <a href="blog-single.jsp" class="block-20" style="background-image: url('${root}/resources/images/image_3.jpg');">
               </a>
               <div class="text p-4">
               	<span class="tag">Tips, Travel</span>

@@ -478,7 +478,7 @@ pre {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto; }	  
 
 .row {
   display: -webkit-box;
@@ -506,8 +506,8 @@ pre {
   position: relative;
   width: 100%;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px; }
+  padding-right: 8px;
+  padding-left: 8px; }
 
 .col {
   -ms-flex-preferred-size: 0;
@@ -2521,7 +2521,7 @@ input[type="button"].btn-block {
   font-size: 1rem;
   color: #212529;
   text-align: left;
-  list-style: none;  
+  list-style: none;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -6327,7 +6327,9 @@ button.bg-dark:focus {
 
 .ml-auto,
 .mx-auto {
-  margin-left: auto !important; }
+  margin-left: auto !important; 
+  color: skyblue;}
+ /*추가추가*/
 
 @media (min-width: 576px) {
   .m-sm-0 {
@@ -7451,7 +7453,7 @@ h1, h2, h3, h4, h5,
 
 .hero-wrap {
   width: 100%;
-  height: 100%;
+  height: 50%;
   position: inherit; }
   .hero-wrap .overlay {
     position: absolute;
@@ -7778,7 +7780,7 @@ h1, h2, h3, h4, h5,
     opacity: 1; }
   .destination .text {
     border: 1px solid #e6e6e6;
-    border-top: 1px solid transparent;
+    /* border-top: 1px solid transparent; 추가추가추가 */
     background: #fff; }
     .destination .text h3 {
       font-size: 18px; }
@@ -7806,6 +7808,11 @@ h1, h2, h3, h4, h5,
         line-height: 1.4; }
         .destination .text .two .per-price small {
           font-size: 12px; }
+   /*추가추가*/
+    .destination .text .days {
+      margin: 0px;
+    } 
+      /*추가추가*/     
     .destination .text .days span {
       font-size: 13px;
       color: black; }
@@ -8294,6 +8301,7 @@ textarea.form-control {
   padding-top: 120px;
   padding-bottom: 120px; }
 
+/*** 구글지도
 #map {
   height: 400px;
   width: 100%; }
@@ -8322,6 +8330,7 @@ textarea.form-control {
     -moz-box-shadow: 0 0 0 0 rgba(248, 89, 89, 0);
     -webkit-box-shadow: 0 0 0 0 rgba(248, 89, 89, 0);
     box-shadow: 0 0 0 0 rgba(248, 89, 89, 0); } }
+***/
 
 .heading-section .subheading {
   font-size: 14px;
@@ -8933,6 +8942,21 @@ textarea.form-control {
   color: #000000;
   border: 1px solid #ccc;
   font-size: 11px; }
+ 
+ /* 추가추가 */
+	.tagcloud a.location {
+	color: #cd2c6c;
+	border: 1px solid #cd2c6c;
+	}
+	.tagcloud a.season {
+	color: #108292;
+	border: 1px solid #108292;
+	}
+	.tagcloud a.thema {
+	color: #332679;
+	border: 1px solid #332679;
+	}
+ /* 추가추가 */
   
   .tagcloud a:hover {
     border: 1px solid #000; }
@@ -8950,11 +8974,12 @@ textarea.form-control {
     width: 100%; }
   .comment-list li {
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 15px 0;
     float: left;
     width: 100%;
     clear: both;
     list-style: none; }
+ /* 추가추가삭제
     .comment-list li .vcard {
       width: 80px;
       float: left; }
@@ -8964,19 +8989,29 @@ textarea.form-control {
     .comment-list li .comment-body {
       float: right;
       width: calc(100% - 80px); }
+이 밑에도 추가했드앙*/
       .comment-list li .comment-body h3 {
-        font-size: 20px; }
+        font-size: 15px; 
+        margin-right: 8px;
+        margin-bottom: 0px;}
+        
+      .comment-list li .comment-body .row {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 5px 0px;}
+
       .comment-list li .comment-body .meta {
         text-transform: uppercase;
+        margin-right: 8px;
         font-size: 13px;
         letter-spacing: .1em;
         color: #ccc; }
       .comment-list li .comment-body .reply {
-        padding: 5px 10px;
-        background: #e6e6e6;
-        color: #000000;
+        padding: 0px 10px;
+        /*background: #e6e6e6;*/
+        color: skyblue;
         text-transform: uppercase;
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: .1em;
         font-weight: 400;
         border-radius: 4px; }

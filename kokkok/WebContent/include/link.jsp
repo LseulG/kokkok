@@ -19,3 +19,6 @@
     <link rel="stylesheet" href="${root}/resources/css/flaticon.css">
     <link rel="stylesheet" href="${root}/resources/css/icomoon.css">
     <link rel="stylesheet" href="${root}/resources/css/style.css">
+    
+    <!-- 개인 css 추가 -->
+    <link rel="stylesheet" href="${root}/resources/css/schedule.css">
