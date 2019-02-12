@@ -61,7 +61,7 @@
 										doloremque quia officia optio deserunt molestiae
 										voluptates soluta architecto tempora.</p>
 									<p>
-										<img src="images/image_7.jpg" alt="" class="img-fluid">
+										<img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid">
 									</p>
 									<p>Molestiae cupiditate inventore animi, maxime
 										sapiente optio, illo est nemo veritatis repellat sunt
@@ -81,7 +81,7 @@
 										officiis reiciendis incidunt hic non? Debitis commodi
 										aut, adipisci.</p>
 									<p>
-										<img src="images/image_8.jpg" alt="" class="img-fluid">
+										<img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid">
 									</p>
 									<p>Quisquam esse aliquam fuga distinctio, quidem
 										delectus veritatis reiciendis. Nihil explicabo quod, est
