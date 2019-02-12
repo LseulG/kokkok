@@ -30,7 +30,8 @@
 	<link rel="stylesheet" href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
 	
 	<!-- 이동호 -->
-	
+	<link rel="stylesheet" href="${root}/resources/css/community.css">
+		
 	<!-- 오상재 -->
 	
 	<!-- 권혁성 -->
