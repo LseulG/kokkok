@@ -11,7 +11,7 @@
   <body>
   <%@ include file="/include/nav.jsp"%>
     <!-- 대문 -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}}/resources/images/bg_1.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}}/resources/images/bg_1.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -371,8 +371,8 @@
         </div>
       </div>
     </section>               
-	<%@ include file="include/footer.jsp"%>
-	<%@ include file="include/loader.jsp"%>    
-	<%@ include file="include/arrowup.jsp"%>
+	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/include/loader.jsp"%>    
+	<%@ include file="/include/arrowup.jsp"%>
   </body>
 </html>
