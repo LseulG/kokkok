@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.ml-auto,
+.mx-auto {
+  margin-left: auto !important; 
+  color: skyblue;}
+  
+  .destination .text {
+    border: 1px solid #e6e6e6;
+    /* border-top: 1px solid transparent; 추가추가추가 */
+    background: #fff; }
+    /*추가추가*/
+    .destination .text .days {
+      margin: 0px;
+    } 
+      /*추가추가*/     
+    .destination .text .days span {
+      font-size: 13px;
+      color: black; }
+      
+       /* 추가추가 */
+	.tagcloud a.location {
+	color: #cd2c6c;
+	border: 1px solid #cd2c6c;
+	}
+	.tagcloud a.season {
+	color: #108292;
+	border: 1px solid #108292;
+	}
+	.tagcloud a.thema {
+	color: #332679;
+	border: 1px solid #332679;
+	}
+ /* 추가추가 */
+ 
+ 
