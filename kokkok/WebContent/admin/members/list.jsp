@@ -5,7 +5,8 @@
 <html>
   <head>
     <title>회원관리</title>
-    <%@ include file="/include/link.jsp"%>    
+    <%@ include file="/include/link.jsp"%> 
+    <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  
   </head>
   <body>
   	<%@ include file="/include/nav.jsp"%>    

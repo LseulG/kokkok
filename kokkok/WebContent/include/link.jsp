@@ -19,17 +19,3 @@
     <link rel="stylesheet" href="${root}/resources/css/icomoon.css">
     <link rel="stylesheet" href="${root}/resources/css/style.css">
     
-    <!----- 개인 css 각자꺼에 넣고 여기에서 삭제해주세요~ ----->
-    
-
-    <!-- 한재국 -->
-    <link rel="stylesheet" href="${root}/resources/css/login.css">
-	<link rel="stylesheet" href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
-	
-	<!-- 이동호 -->
-	<link rel="stylesheet" href="${root}/resources/css/community.css">
-		
-	<!-- 오상재 -->
-	<!-- <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  -->
-	
-	<!-- 권혁성 -->

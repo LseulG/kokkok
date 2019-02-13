@@ -5,6 +5,7 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<link rel="stylesheet" href="${root}/resources/css/community.css">
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
