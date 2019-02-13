@@ -10,12 +10,12 @@
 <body>
 <%@ include file="/include/nav.jsp"%>
 
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_4.jpg')">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">내정보 확인/수정</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">계정수정</h1>
           </div>
         </div>
       </div>
@@ -24,16 +24,19 @@
 	<div class="container">
 
 		<div class="row">
-	       	<div class="col-lg-2 sidebar" id="myside">
-		        <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">내 정보관리!!</a></li>
-		        	<li><a href="#" class="py-2 d-block">내가 작성한 목록</a></li>
-	                <li><a href="#" class="py-2 d-block">내가 찜한 목록</a></li>
-	
-	            </ul>	
+	       	<div class="col-lg-3 sidebar" id="myside">
+			        <ul class="list-unstyled">			        
+				        <div class="sidebar-box ftco-animate">
+							<div class="categories">
+								<li><a href="#">내가 작성한 목록<span>(22)</span></a></li>
+								<li><a href="#">내가 찜한 목록 <span>(37)</span></a></li>
+								<li><a href="#">내 정보관리 </a></li>
+							</div>
+						</div>
+		            </ul>	
 			</div>
-          <div class="col-lg-10" align="left">
-				<div class="container-login100">
+          <div class="col-lg-9" align="center">
+				
 					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 						<form class="login100-form validate-form">
 							<span class="login100-form-title p-b-49">
@@ -84,12 +87,12 @@
 						    	</div>			    
 							</div>				
 								
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
           </div>
 		</div>        	
-	</div>
+	
 	
     </section> <!-- .section -->
 

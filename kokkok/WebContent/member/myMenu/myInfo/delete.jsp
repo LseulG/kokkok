@@ -9,7 +9,76 @@
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
+ 
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
+          
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">계정삭제</h1>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  <section class="ftco-section ftco-degree-bg">
+	<div class="container">
 
+		<div class="row">
+	       	<div class="col-lg-3 sidebar" id="myside">
+			        <ul class="list-unstyled">			        
+				        <div class="sidebar-box ftco-animate">
+							<div class="categories">
+								<li><a href="#">내가 작성한 목록 11<span>(22)</span></a></li>
+								<li><a href="#">내가 찜한 목록 <span>(37)</span></a></li>
+								<li><a href="#">내 정보관리 </a></li>
+							</div>
+						</div>
+		            </ul>		
+			</div>
+          <div class="col-lg-9" align="center">
+				
+					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+						<form class="login100-form validate-form">
+							<span class="login100-form-title p-b-49">
+								계정삭제
+							</span>
+							<br><br>
+							<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
+								<span class="label-input100">아이디</span>
+									<input class="input100" type="text" name="username" value="Test" readonly="readonly">
+								<span class="focus-input100" data-symbol="&#xf206;"></span>
+							</div>
+
+							<br>
+							<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
+								<span class="label-input100">비밀번호</span>
+								<input class="input100" type="password" name="pass" placeholder="비밀번호입력">
+								<span class="focus-input100" data-symbol="&#xf190;"></span>
+							</div>
+
+							
+							
+							
+							<br><br>
+							<div class="d-flex justify-content-center mb-3">
+						    	<div class="p-2">
+						    		<input type="submit" value="삭제" class="btn btn-primary py-3 px-4">
+						    		<input type="submit" value="취소" class="btn btn-primary py-3 px-4">
+						    	</div>			    
+							</div>				
+								
+							</form>
+						</div>
+					</div>
+          </div>
+		</div>        	
+	
+	
+    </section> <!-- .section -->
 
 
 
@@ -19,3 +88,46 @@
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+						<form class="login100-form validate-form">
+							<span class="login100-form-title p-b-49">
+								ID/PW CHECK!!
+							</span>
+							<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
+								<span class="label-input100">ID</span>
+								<input class="input100" type="text" name="username" placeholder="Type your username">
+								<span class="focus-input100" data-symbol="&#xf206;"></span>
+							</div>
+							<br>
+							<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
+								<span class="label-input100">Password</span>
+								<input class="input100" type="password" name="pass" placeholder="Type your password">
+								<span class="focus-input100" data-symbol="&#xf190;"></span>
+							</div>
+		
+							<div class="d-flex justify-content-center mb-3">
+						    	<div class="p-2">
+						    		<input type="submit" value="삭제" class="btn btn-primary py-3 px-4">
+						    	</div>			    
+							</div>				
+								
+							</form>
+						</div>

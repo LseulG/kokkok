@@ -10,7 +10,7 @@
 <%@ include file="/include/nav.jsp"%>
 
 
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_4.jpg')">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -24,19 +24,22 @@
 	<div class="container">
 
 		<div class="row">
-	       	<div class="col-lg-2 sidebar" id="myside">
-		        <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">내 정보관리</a></li>
-		        	<li><a href="#" class="py-2 d-block">내가 작성한 목록</a></li>
-	                <li><a href="#" class="py-2 d-block">내가 찜한 목록</a></li>
-	
-	            </ul>	
+	       	<div class="col-lg-3 sidebar" id="myside">
+			        <ul class="list-unstyled">			        
+				        <div class="sidebar-box ftco-animate">
+							<div class="categories">
+								<li><a href="#">내가 작성한 목록 <span>(22)</span></a></li>
+								<li><a href="#">내가 찜한 목록 <span>(37)</span></a></li>
+								<li><a href="#">내 정보관리 </a></li>
+							</div>
+						</div>
+		            </ul>	
 			</div>
-          <div class="col-lg-10">
+          <div class="col-lg-9">
           	<div class="row">
           		<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-1.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-1.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -69,7 +72,7 @@
 		    			</div>
 		    			<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-2.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-2.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -102,7 +105,7 @@
 		    			</div>
 		    			<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-3.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-3.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -135,7 +138,7 @@
 		    			</div>
 		    			<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-4.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-4.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -168,7 +171,7 @@
 		    			</div>
 		    			<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-5.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-5.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
@@ -201,7 +204,7 @@
 		    			</div>
 		    			<div class="col-md-4 ftco-animate">
 		    				<div class="destination">
-		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/hotel-6.jpg);">
+		    					<a href="hotel-single.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/hotel-6.jpg);">
 		    						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
