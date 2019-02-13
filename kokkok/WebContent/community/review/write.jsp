@@ -47,7 +47,8 @@
 						<div class="container-table1000">
 							<div class="wrap-table100">
 							<h2>글쓰기</h2>
-																
+												<br>
+												<br>				
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="제목입력">
 									</div>

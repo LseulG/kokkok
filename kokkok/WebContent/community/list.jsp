@@ -45,14 +45,97 @@
 
 				<div class="col-lg-9">
 					<div class="row">
-						<div class="container-table100">
+						<div class="container-table1000">
 							<div class="wrap-table100">
-							<h2>게시판</h2>
-								<br>
-								<br>
-
-
+							<h2>리뷰게시판</h2>
+						
+							
+		        			  <div class="col-lg-9">
+          						<div class="row">
+          							<div class="col-md-4 ftco-animate">
+		    							<div class="destination">
+		    							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
+		    								<div class="icon d-flex justify-content-center align-items-center">
+    										<span class="icon-search2"></span>
+    										</div>
+		    							</a>
+					    					<div class="text p-3">
+					    						<div class="d-flex">
+		    									<h3><a href="#">엄마랑 제주도여행 리뷰</a></h3>
+				    					 		</div>
+		    									<p>첫째날 공항부터 어쩌구</p>
+		    									<p class="days"><span>1박2일</span></p>
+		    			<hr>
+		    									<p class="bottom-area d-flex">
+		    									<span>찜하기 랭킹</span>
+		    									<p class="rate">
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star-o"></i>
+				    							</p> 
+		    								</div>
+		    							</div>
+		    						</div>
+		    						<div class="col-md-4 ftco-animate">
+		    							<div class="destination">
+		    							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
+		    								<div class="icon d-flex justify-content-center align-items-center">
+    										<span class="icon-search2"></span>
+    										</div>
+		    							</a>
+					    					<div class="text p-3">
+					    						<div class="d-flex">
+		    									<h3><a href="#">엄마랑 제주도여행 리뷰</a></h3>
+				    					 		</div>
+		    									<p>첫째날 공항부터 어쩌구</p>
+		    									<p class="days"><span>1박2일</span></p>
+		    			<hr>
+		    									<p class="bottom-area d-flex">
+		    									<span>찜하기 랭킹</span>
+		    									<p class="rate">
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star-o"></i>
+				    							</p> 
+		    								</div>
+		    							</div>
+		    						</div>
+		    						<div class="col-md-4 ftco-animate">
+		    							<div class="destination">
+		    							<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
+		    								<div class="icon d-flex justify-content-center align-items-center">
+    										<span class="icon-search2"></span>
+    										</div>
+		    							</a>
+					    					<div class="text p-3">
+					    						<div class="d-flex">
+		    									<h3><a href="#">엄마랑 제주도여행 리뷰</a></h3>
+				    					 		</div>
+		    									<p>첫째날 공항부터 어쩌구</p>
+		    									<p class="days"><span>1박2일</span></p>
+		    			<hr>
+		    									<p class="bottom-area d-flex">
+		    									<span>찜하기 랭킹</span>
+		    									<p class="rate">
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star"></i>
+					    							<i class="icon-star-o"></i>
+				    							</p> 
+		    								</div>
+		    							</div>
+		    						</div>
+		    						
+		    							<hr>    						
+								<h2>꿀팁게시판</h2>	
+									
 								<div class="table100">
+								
 									<table>
 										<thead>
 											<tr class="table100-head" align="center">
@@ -121,93 +204,19 @@
 												<td class="column5">1</td>
 												<td class="column6">$2199.00</td>
 											</tr>
-											<tr>
-												<td class="column1">2017-09-21 05:57</td>
-												<td class="column2">200388</td>
-												<td class="column3">Game Console Controller</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-19 05:57</td>
-												<td class="column2">200387</td>
-												<td class="column3">iPhone X 64Gb Grey</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-18 05:57</td>
-												<td class="column2">200386</td>
-												<td class="column3">iPhone X 64Gb Grey</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-22 05:57</td>
-												<td class="column2">200389</td>
-												<td class="column3">Macbook Pro Retina 2017</td>
-												<td class="column4">$2199.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$2199.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-21 05:57</td>
-												<td class="column2">200388</td>
-												<td class="column3">Game Console Controller</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-19 05:57</td>
-												<td class="column2">200387</td>
-												<td class="column3">iPhone X 64Gb Grey</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
-											<tr>
-												<td class="column1">2017-09-18 05:57</td>
-												<td class="column2">200386</td>
-												<td class="column3">iPhone X 64Gb Grey</td>
-												<td class="column4">$999.00</td>
-												<td class="column5">1</td>
-												<td class="column6">$999.00</td>
-											</tr>
+																		
 										</tbody>
 									</table>
+									<hr>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row mt-5">
-						<div class="col text-center">
-							<div class="block-27">
-								<ul>
-									<li><a href="#">&lt;</a></li>
-									<li class="active"><span>1</span></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&gt;</a></li>
-								</ul>
-							</div>
-						</div>
 					</div>
-					<form action="#">
-									<div class="row d-flex justify-content-end mb-3">
-										<div class="p-2">
-											<input type="text" class="form-control" placeholder="검색입력">&nbsp;
-										</div>
-										<div class="p-2">
-											<input type="submit" value="검색" class="btn btn-primary py-3 px-4">
-										</div>
-									</div>
-								</form>
+					</div>
+					
+				
+					
 				</div>
 				<!-- .col-md-8 -->
 			</div>

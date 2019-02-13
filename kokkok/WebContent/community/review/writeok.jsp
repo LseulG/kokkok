@@ -59,9 +59,9 @@
 							<div class="col-md-9 ftco-animate text-center"
 								data-scrollax=" properties: { translateY: '70%' }">
 								<!-- <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.jsp">Home</a></span> <span>Blog</span></p> -->
-								<h1 class="mb-3 bread"
+								<h3 class="mb-3 bread"
 									data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-									글 삭제가 완료되었습니다.</h1>
+									글 작성이 완료되었습니다. 3초뒤 목록으로 이동합니다. [바로이동] </h3>
 							</div>
 						</div>
 					</div>

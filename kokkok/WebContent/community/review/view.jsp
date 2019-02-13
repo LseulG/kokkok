@@ -49,9 +49,10 @@
 						<div class="container-table1000">
 							<div class="wrap-table100">
 								<h2>글읽기</h2>
-						
+								<br>
+								<br>
 							
-									<h2 class="mb-3">10 Tips For The Traveler</h2>
+									<h2 class="mb-3">글 제목</h2>
 									<p>Lorem ipsum dolor sit amet, consectetur
 										adipisicing elit. Reiciendis, eius mollitia suscipit,
 										quisquam doloremque distinctio perferendis et doloribus
