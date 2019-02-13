@@ -5,6 +5,7 @@
   <head>
     <title>KokKok</title>
   	<%@ include file="/include/link.jsp"%>
+  	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   </head>
   <body>
    <%@ include file="/include/nav.jsp"%>

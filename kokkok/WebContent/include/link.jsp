@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    	 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">
     <link rel="stylesheet" href="${root}/resources/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="${root}/resources/css/animate.css">    
     <link rel="stylesheet" href="${root}/resources/css/owl.carousel.min.css">
@@ -20,11 +19,9 @@
     <link rel="stylesheet" href="${root}/resources/css/icomoon.css">
     <link rel="stylesheet" href="${root}/resources/css/style.css">
     
-    <!----- 개인 css 추가 ----->
+    <!----- 개인 css 각자꺼에 넣고 여기에서 삭제해주세요~ ----->
     
-    <!-- 임슬기 -->
-    <link rel="stylesheet" href="${root}/resources/css/schedule.css">
-    
+
     <!-- 한재국 -->
     <link rel="stylesheet" href="${root}/resources/css/login.css">
 	<link rel="stylesheet" href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
@@ -33,5 +30,6 @@
 	<link rel="stylesheet" href="${root}/resources/css/community.css">
 		
 	<!-- 오상재 -->
+	<!-- <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  -->
 	
 	<!-- 권혁성 -->
