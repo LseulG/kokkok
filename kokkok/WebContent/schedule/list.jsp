@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KokKok</title>
+    <title>방방콕콕 - 여행 일정</title>
   	<%@ include file="/include/link.jsp"%>
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   </head>
@@ -33,6 +33,78 @@
 			<h3 class="heading mb-4">검색 옵션</h3>
         	<form action="#">
         	<div class="fields">
+        	
+ 		         <div class="row">
+		         	<div class="col-md-12">
+						<!-- 일정(계획/후기) -->
+	        			<div class="form-group">
+			            	<div class="select-wrap one-third">
+			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                    	<option value="">모든 일정</option>
+			                    	<option value="">여행 계획</option>
+			                    	<option value="">여행 후기</option>
+			                    </select>
+		                  	</div>
+	        			</div>
+        			</div>
+		         </div>       	
+        	
+				<div class="row">
+		         	<div class="col-md-6">
+        			<!-- 지역1 -->
+			        	<div class="form-group">
+			                <div class="select-wrap one-third">
+			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                      	<option value="">전국1</option>
+			                      	<option value="">서울</option>
+			                      	<option value="">경기</option>
+			                      	<option value="">강원도</option>
+			                      	<option value="">경상도</option>
+			                      	<option value="">전라도</option>
+			                    </select>
+		                  	</div>
+			            </div>
+					</div>
+					<div class="col-md-6">
+        			<!-- 지역2 -->
+			        	<div class="form-group">
+			                <div class="select-wrap one-third">
+			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                      	<option value="">전국2</option>
+			                      	<option value="">부천</option>
+			                      	<option value="">안산</option>
+			                      	<option value="">여기</option>
+			                      	<option value="">저기</option>
+			                      	<option value="">조기</option>
+			                    </select>
+		                  	</div>
+			            </div>
+					</div>
+				</div>        	
+
+				<div class="row">
+		         	<div class="col-md-12">		            
+			            <!-- 테마 -->
+			            <div class="form-group">
+			                <div class="select-wrap one-third">
+			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                    	<option value="">테마 전체</option>
+			                    	<option value="">나혼자</option>
+			                    	<option value="">친구랑</option>
+			                    	<option value="">가족과</option>
+			                    	<option value="">단체</option>
+			                      	<option value="">패키지</option>
+			                      	<option value="">커플</option>
+			                    </select>
+		                  	</div>
+			            </div>
+			         </div>
+			     </div>
+
         		<div class="row">
 	        		<div class="col-md-6">
 	        			<!-- 정렬 -->
@@ -64,64 +136,7 @@
 						
 			         </div> 
 		         </div> 
-		         <div class="row">
-		         	<div class="col-md-12">
-						<!-- 일정(계획/후기) -->
-	        			<div class="form-group">
-			            	<div class="select-wrap one-third">
-			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                    	<option value="">모든 일정</option>
-			                    	<option value="">여행 계획</option>
-			                    	<option value="">여행 후기</option>
-			                    </select>
-		                  	</div>
-	        			</div>
-        			</div>
-		         </div>
-        			
-        			<!-- 지역1 -->
-			        	<div class="form-group">
-			                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                      	<option value="">전국g</option>
-			                      	<option value="">서울</option>
-			                      	<option value="">경기</option>
-			                      	<option value="">강원도</option>
-			                      	<option value="">경상도</option>
-			                      	<option value="">전라도</option>
-			                    </select>
-		                  	</div>
-			            </div>
-		            
-		            <!-- 테마 -->
-		            <div class="form-group">
-		                <div class="select-wrap one-third">
-		                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                    <select name="" id="" class="form-control" placeholder="Keyword search">
-		                    	<option value="">테마 전체</option>
-		                    	<option value="">나혼자</option>
-		                    	<option value="">친구랑</option>
-		                    	<option value="">가족과</option>
-		                    	<option value="">단체</option>
-		                      	<option value="">패키지</option>
-		                      	<option value="">커플</option>
-		                    </select>
-	                  	</div>
-		            </div>
-		            
-		            
-<!-- 달력 test -->      
-		            <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-		              </div>
-		              <div class="form-group">
-		                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-		              </div>
-<!-- 달력 test --> 
-
-		            
+		         
 					<!-- 여행기간 -->
 		        	<div class="form-group">
 		            	<div class="range-slider">
@@ -136,6 +151,18 @@
 							</p>
 						</div>
 		        	</div>
+<!-- 기간 test -->		        	
+		        	<div class="form-group">
+		              	<div class="range-slider">
+		              		<span>
+										    <input type="number" value="25000" min="0" max="120000"/>	-
+										    <input type="number" value="50000" min="0" max="120000"/>
+										  </span>
+										  <input value="1000" min="0" max="120000" step="500" type="range"/>
+										  <input value="50000" min="0" max="120000" step="500" type="range"/>
+										</div>
+		              </div>
+<!-- 기간 test -->		        	
 		        	
 		        	<!-- 검색 칸 -->
 		        	<div class="form-group">

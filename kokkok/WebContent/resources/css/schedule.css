@@ -5,32 +5,74 @@
   margin-left: auto !important; 
   color: skyblue;}
   
-  .destination .text {
-    border: 1px solid #e6e6e6;
-    /* border-top: 1px solid transparent; 추가추가추가 */
-    background: #fff; }
-    /*추가추가*/
-    .destination .text .days {
-      margin: 0px;
-    } 
-      /*추가추가*/     
-    .destination .text .days span {
-      font-size: 13px;
-      color: black; }
+  
+  /* border-top: 1px solid transparent; 추가추가추가 */
+  background: #fff; } 
+.destination .text {
+  border: 1px solid #e6e6e6;
+  /* border-top: 1px solid transparent; 추가추가추가 */
+  background: #fff; }
+  /*추가추가*/
+  .destination .text .days {
+  margin: 0px;
+} 
+.destination .sl-loc {
+  background: #fff; 
+  padding: 10px 15px;}
+ .destination .sl-loc-cont {
+  border: 1px solid #e6e6e6; /*#108292*/
+  background: #fff; 
+  margin-left: 25px;
+  margin-bottom: 25px;}
+
+
+  
+.destination .text .days span {
+  font-size: 13px;
+  color: black; }
       
-       /* 추가추가 */
-	.tagcloud a.location {
+     /* 추가추가 */
+.tagcloud a.location {
 	color: #cd2c6c;
 	border: 1px solid #cd2c6c;
-	}
-	.tagcloud a.season {
+}
+.tagcloud a.season {
 	color: #108292;
 	border: 1px solid #108292;
-	}
-	.tagcloud a.thema {
+}
+.tagcloud a.thema {
 	color: #332679;
 	border: 1px solid #332679;
-	}
- /* 추가추가 */
+}
  
  
+.comment-list .slchild {
+    padding: 20px 0 0 20px;
+    margin: 0;
+    float: left;
+    width: 100%; }
+	
+}
+
+.slday-title {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+  font-size: 5px;
+}
+
+/*
+ .destination .text .days p{
+ 	display: inline-block;
+ 	line-height: 16px;
+ 	padding: 0 10px;
+ 	margin: 0;
+ 	color: #999;
+	border-left: 1px solid #ccc;
+ 	}
+  .destination .text .days p:first-child{
+  	border-left: none;
+ 	padding: 0 10px 0 0;
+  }
+  */
