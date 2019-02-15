@@ -37,11 +37,21 @@
 			$("div.infoStay").show();
 			$("h3.infoItemsTitle").text("숙박 검색");
 		});
+		
+		$(".datepicker").datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true
+		});
+		
+		$("#location_range").click(function() {
+			$("#location_number").text("1");
+		})
 	});
 	</script>
 </head>
 <body>
-<%@ include file="/include/nav.jsp"%>
+
+<%@ include file="/include/nav.jsp"%>	
     
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
       <div class="overlay"></div>
@@ -61,21 +71,23 @@
 				<div class="col-lg-12 sidebar ftco-animate">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">관광 정보</h3>
-						<div class="row form-group">
-						<div class="col-lg-2">
-							<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea">
-						</div>
-						<div class="col-lg-2">
-						<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
-						</div>
-						<div class="col-lg-2">
-						<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
-						</div>
-						<div class="col-lg-2">
-						<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
-						</div>
-						<div class="col-lg-2">
-						<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
+						<div class="form-group">
+						<div class="icon d-flex justify-content-center align-items-center">						
+							<div class="col-lg-2">
+								<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea">
+							</div>
+							<div class="col-lg-2">
+							<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
+							</div>
+							<div class="col-lg-2">
+							<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
+							</div>
+							<div class="col-lg-2">
+							<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
+							</div>
+							<div class="col-lg-2">
+							<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
+							</div>
 						</div>
 						</div>
 					</div>
@@ -127,25 +139,30 @@
 								</div>
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" class="form-control" placeholder="Map X">
+								<input type="text" class="form-control" readonly="readonly" placeholder="Map X">
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" class="form-control" placeholder="Map Y">
+								<input type="text" class="form-control" readonly="readonly" placeholder="Map Y">
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="submit" value="지 도" class="btn btn-secondary py-3 px-5">
-							</div>
+								<input type="button" value="지 도" class="btn btn-secondary py-3 px-5">
+							</div>							
 							<div class="form-group infoitems infoLocation">
-								<input type="text" class="form-control" placeholder="거리(m)">
+								<div class="range-slider">
+									<span>
+										<input type="range" id="location_range" value="1" min="1" max="20" step="1"/>
+										반경 <input type="number" id="loaction_number" value="" min="1" max="20"/>km
+									</span>									
+								</div>
 							</div>
 							<div class="form-group infoitems infoKeyword">
 								<input type="text" class="form-control" placeholder="검색어">
 							</div>
 							<div class="form-group infoitems infoFestival">
-								<input type="text" id="checkin_date" class="form-control" placeholder="시작날짜">
+								<input type="text" id="" class="form-control datepicker" readonly="readonly" placeholder="시작날짜">
 							</div>
 							<div class="form-group infoitems infoFestival">
-								<input type="text" id="checkin_date" class="form-control" placeholder="끝날짜">
+								<input type="text" id="" class="form-control datepicker" readonly="readonly" placeholder="끝날짜">
 							</div>
 						</div>
 						<div class="form-group">
