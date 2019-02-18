@@ -6,48 +6,10 @@
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-	$(document).ready(function() {		
-		$("div.infoitems").hide();
-		$("div.infoArea").show();
-		$("h3.infoItemsTitle").text("지역별 관광정보");
-		
-		$("#infoArea").click(function(){
-			$("div.infoitems").hide();
-			$("div.infoArea").show();
-			$("h3.infoItemsTitle").text("지역별 관광정보");
-		});
-		$("#infoLocation").click(function(){
-			$("div.infoitems").hide();
-			$("div.infoLocation").show();
-			$("h3.infoItemsTitle").text("내주변 관광정보");
-		});
-		$("#infoKeyword").click(function(){
-			$("div.infoitems").hide();
-			$("div.infoKeyword").show();
-			$("h3.infoItemsTitle").text("통합 검색");
-		});
-		$("#infoFestival").click(function(){
-			$("div.infoitems").hide();
-			$("div.infoFestival").show();
-			$("h3.infoItemsTitle").text("행사 검색");
-		});
-		$("#infoStay").click(function(){
-			$("div.infoitems").hide();
-			$("div.infoStay").show();
-			$("h3.infoItemsTitle").text("숙박 검색");
-		});
-		
-		$(".datepicker").datepicker({
-			format: "yyyy-mm-dd",
-			autoclose: true
-		});
-		
-		$("#location_range").click(function() {
-			$("#location_number").text("1");
-		})
-	});
+	<script type="text/javascript">
+	var contextPath='<%=request.getContextPath()%>';
 	</script>
+    <script src="${root}/resources/js/information_list.js"></script>
 </head>
 <body>
 
@@ -72,23 +34,23 @@
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">관광 정보</h3>
 						<div class="form-group">
-						<div class="icon d-flex justify-content-center align-items-center">						
-							<div class="col-lg-2">
-								<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea">
+							<div class="icon d-flex justify-content-center align-items-center">						
+								<div class="col-lg-2">
+									<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea" style="background-color: #f8f9fa; color: #dc3545">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
+								</div>
+								<div class="col-lg-2">
+									<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
+								</div>
 							</div>
-							<div class="col-lg-2">
-							<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
-							</div>
-							<div class="col-lg-2">
-							<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
-							</div>
-							<div class="col-lg-2">
-							<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
-							</div>
-							<div class="col-lg-2">
-							<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
-							</div>
-						</div>
 						</div>
 					</div>
 				</div>
@@ -103,46 +65,38 @@
 							<div class="form-group infoitems infoArea infoLocation">
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
+									<select name="" id="contentTypeIdList" class="form-control">
 										<option value="">타입선택</option>
-										<option value="">관광지</option>
-										<option value="">문화시설</option>
-										<option value="">축제공연행사</option>
-										<option value="">여행코스</option>
-										<option value="">레포츠</option>
-										<option value="">숙박</option>
-										<option value="">쇼핑</option>
-										<option value="">음식점</option>		
+										<option value="12">관광지</option>
+										<option value="14">문화시설</option>
+										<option value="15">축제공연행사</option>
+										<option value="25">여행코스</option>
+										<option value="28">레포츠</option>
+										<option value="32">숙박</option>
+										<option value="38">쇼핑</option>
+										<option value="39">음식점</option>		
 									</select>
 								</div>
 							</div>
 							<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
-										<option value="">지역선택</option>
-										<option value="">서울</option>
-										<option value="">경기</option>
-										<option value="">인천</option>										
+									<select name="" id="areaCodeList" class="form-control">																				
 									</select>
 								</div>
 							</div>
 							<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
-										<option value="">시군구선택</option>
-										<option value="">종로구</option>
-										<option value="">마포구</option>
-										<option value="">노원구</option>										
+									<select name="" id="sigunguCodeList" class="form-control">																				
 									</select>
 								</div>
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" class="form-control" readonly="readonly" placeholder="Map X">
+								<input type="text" id="mapX" class="form-control" value="126.981106" readonly="readonly" placeholder="Map X">
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" class="form-control" readonly="readonly" placeholder="Map Y">
+								<input type="text" id="mapY" class="form-control" value="37.568477" readonly="readonly" placeholder="Map Y">
 							</div>
 							<div class="form-group infoitems infoLocation">
 								<input type="button" value="지 도" class="btn btn-secondary py-3 px-5">
@@ -150,8 +104,8 @@
 							<div class="form-group infoitems infoLocation">
 								<div class="range-slider">
 									<span>
-										<input type="range" id="location_range" value="1" min="1" max="20" step="1"/>
-										반경 <input type="number" id="loaction_number" value="" min="1" max="20"/>km
+										<input type="range" id="location_range" value="1000" min="1000" max="20000" step="1000"/>
+										반경 <input type="number" id="location_number" value="1000" min="1000" max="20000"/>km
 									</span>									
 								</div>
 							</div>
@@ -166,94 +120,15 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="button" value="검 색" class="btn btn-primary py-3 px-5">
+							<input type="button" id="getInfoList" value="검 색" class="btn btn-primary py-3 px-5">
 						</div>
 						</form>
 					</div>					
 				</div>
           
 				<div class="col-lg-9">
-					<div class="row">
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-2.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-3.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-4.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-5.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 ftco-animate">
-							<div class="destination">
-								<a href="${root}/information/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-6.jpg);">
-								<div class="icon d-flex justify-content-center align-items-center">
-									<span class="icon-search2"></span>
-								</div>
-								</a>
-								<div class="text p-3">									
-									<h3><a href="${root}/information/view.jsp">관광지 제목</a></h3>
-									<p>관광지 요약 설명</p>									
-								</div>
-							</div>
-						</div>
-					</div>
-					
+					<div class="row informationItemList">					
+					</div>					
 					<div class="row mt-5">
 						<div class="col text-center">
 							<div class="block-27">
