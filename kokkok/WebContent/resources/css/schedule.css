@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
-.ml-auto,
+.ml-auto,readystate http status
 .mx-auto {
   margin-left: auto !important; 
-  color: skyblue;}
+  color: #f85959;
+  font-weight: bold;}
   
   
   /* border-top: 1px solid transparent; 추가추가추가 */
@@ -16,14 +17,8 @@
   .destination .text .days {
   margin: 0px;
 } 
-.destination .sl-loc {
-  background: #fff; 
-  padding: 10px 15px;}
- .destination .sl-loc-cont {
-  border: 1px solid #e6e6e6; /*#108292*/
-  background: #fff; 
-  margin-left: 25px;
-  margin-bottom: 25px;}
+
+
 
 
   
@@ -62,17 +57,55 @@
   font-size: 5px;
 }
 
-/*
- .destination .text .days p{
- 	display: inline-block;
- 	line-height: 16px;
- 	padding: 0 10px;
- 	margin: 0;
- 	color: #999;
-	border-left: 1px solid #ccc;
- 	}
-  .destination .text .days p:first-child{
-  	border-left: none;
- 	padding: 0 10px 0 0;
-  }
-  */
+.sl-day {
+	margin-bottom: 1rem;
+	margin-top: 0;
+	line-height: 1.5;
+	color: #000000;
+	font-weight: 400;
+	font-size: 2rem;
+	font-family: inherit;
+}
+.day-updown a {
+	font-size: 1rem;
+      color: #f85959;
+      text-align: center;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 50%;
+      border: 2px solid #fdd3d3; }
+      
+.sl-loc {
+	margin-bottom: 0.5rem;
+	margin-top: 0;
+	line-height: 1.5;
+	color: #000000;
+	font-weight: 400;
+	font-size: 1.25rem;
+	font-family: inherit;
+}
+.loc-updown a {
+	font-size: 1rem;
+      color: #f85959;
+      text-align: center;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 50%;
+      border: 2px solid #fdd3d3; }
+.sl-loc-cont {
+	padding: 0 0 1rem 1rem;	
+}
+.loc-updown a {
+	font-size: 0.5rem;
+      color: #000000;
+      text-align: center;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      border-radius: 50%;
+      border: 1px solid #6c757d; }

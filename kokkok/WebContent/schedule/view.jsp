@@ -6,6 +6,19 @@
 <title>방방콕콕 - 여행 일정 상세</title>
 <%@ include file="/include/link.jsp"%>
 <link rel="stylesheet" href="${root}/resources/css/schedule.css">
+<script type="text/javascript">
+$(document).ready(function() {	
+	$(".seul2").hide();
+	$(".seul3").hide();
+
+	$(".seul1").click(function(){
+		$(".seul2").slideDown();
+	});
+	$(".seul2").click(function(){
+		$(".seul3").slideDown();
+	});
+});
+</script>
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
@@ -27,107 +40,53 @@
 	<section class="ftco-section ftco-degree-bg">
 	<div class="container">
 	<div class="row">
-<!-- 왼쪽 -->
-		<div class="col-lg-3 sidebar ftco-animate">
-        	<div class="sidebar-box ftco-animate">
 
-            	<div id="daumMap" style="width:100%;height:400px;"></div>
+<!-- 헤드 -->	
+		<div class="col-md-12 ftco-animate destination">
+			<div class="text p-3 row">			
+				<div class="col-md-4 ftco-animate destination">
+		    		<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');"></a>
+				</div>
+				<div class="col-md-8">
+					<h3 class="mb-3">제목 입니다a.</h3>
+					<p>여행 내용을 간략히 소개하는 부분 입니다.<br>지도는 왼쪽에서 스크롤해도 따라다니게 하면 좋을것 같다.<br>n일차 부분을 div, a, span, p 등으로 class 지정해주고 n일차(n) ^ 아이콘<br>밑에 부분 글씨 더 연하게</p>
+					<hr>
+					<p class="days">
+						<span>
+							<i class="icon-person"></i> 작성자id &nbsp;|&nbsp; <i class="icon-bookmark-o"></i> 북마크 : 18 &nbsp;|&nbsp; <i class="icon-thumbs-o-up"></i> 추천 : 18<br>
+							<i class="icon-today"></i> 여행기간 : 18.08.18 - 18.09.18 (30일)<br>
+							<i class="icon-pencil"></i> 게시일 : 18.08.18 수요일 &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : 18.08.18 수요일<br>
+						</span>
+					</p><br>
+					<p class="tagcloud">
+						<a href="#" class="tag-cloud-link">전라남도</a>
+		                <a href="#" class="tag-cloud-link">여수</a>
+		                <a href="#" class="tag-cloud-link">순천</a>
+		                <a href="#" class="tag-cloud-link">광양</a>
+		                <a href="#" class="tag-cloud-link">봄</a>
+		                <a href="#" class="tag-cloud-link">나혼자</a>
+					</p>
+				</div>
+			</div>	
+		</div>
+<!-- 헤드 -->	
+	
+<!-- 왼쪽 -->
+		<div class="col-md-4 sidebar ftco-animate">
+        	<div class="sidebar-box ftco-animate">
+				<div class="float_sidebar">
+            	<div id="daumMap" style="width:300px;height:500px;"></div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e"></script>
-				<script>
-					//http://apis.map.daum.net/web/sample/basicMarkerImage/
-					//참고사이트
-							var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
-						    mapOption = { 
-						        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-						        level: 3 // 지도의 확대 레벨
-						    };  
-						
-							var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-							
-					// 스크롤 생성		
-							// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-							var mapTypeControl = new daum.maps.MapTypeControl();
-							
-							// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-							// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-							map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-					
-							// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-							var zoomControl = new daum.maps.ZoomControl();
-							map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-							
-					// 핀 여러개 찍기
-							// 마커를 표시할 위치와 title 객체 배열입니다 
-							var positions = [
-							    {
-							        title: '카카오', 
-							        latlng: new daum.maps.LatLng(33.450705, 126.570677)
-							    },
-							    {
-							        title: '생태연못', 
-							        latlng: new daum.maps.LatLng(33.450936, 126.569477)
-							    },
-							    {
-							        title: '텃밭', 
-							        latlng: new daum.maps.LatLng(33.450879, 126.569940)
-							    },
-							    {
-							        title: '근린공원',
-							        latlng: new daum.maps.LatLng(33.451393, 126.570738)
-							    }
-							];
-							
-							// 마커 이미지의 이미지 주소입니다. 이미지 링크만 바꾸면 변경 가능.
-							var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-							    
-							for (var i = 0; i < positions.length; i ++) {
-							    
-							    // 마커 이미지의 이미지 크기 입니다
-							    var imageSize = new daum.maps.Size(24, 35); 
-							    
-							    // 마커 이미지를 생성합니다    
-							    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
-							    
-							    // 마커를 생성합니다
-							    var marker = new daum.maps.Marker({
-							        map: map, // 마커를 표시할 지도
-							        position: positions[i].latlng, // 마커를 표시할 위치
-							        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-							        image : markerImage // 마커 이미지 
-							    });
-							}
-							
-					// 지도에 선 잇기
-							// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-							var linePath = [
-							    new daum.maps.LatLng(33.450705, 126.570677),
-							    new daum.maps.LatLng(33.450879, 126.569940),
-							    new daum.maps.LatLng(33.450936, 126.569477),
-							    new daum.maps.LatLng(33.451393, 126.570738)
-							];
-							
-							// 지도에 표시할 선을 생성합니다
-							var polyline = new daum.maps.Polyline({
-							    path: linePath, // 선을 구성하는 좌표배열 입니다
-							    strokeWeight: 5, // 선의 두께 입니다
-							    strokeColor: '#FFAE00', // 선의 색깔입니다
-							    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-							    strokeStyle: 'solid' // 선의 스타일입니다
-							});
-							
-							// 지도에 선을 표시합니다 
-							polyline.setMap(map); 
-				</script>
+				</div>
             </div>
         
             <div class="sidebar-box ftco-animate">
-              <h3><i class="icon-tag"></i> 태그a</h3>
+              <h3><i class="icon-tag"></i> 태그bb</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">전라남도</a>
                 <a href="#" class="tag-cloud-link">여수</a>
                 <a href="#" class="tag-cloud-link">순천</a>
                 <a href="#" class="tag-cloud-link">광양</a>
-                <a href="#" class="tag-cloud-link">봄</a>
                 <a href="#" class="tag-cloud-link">나혼자</a>
               </div>
             </div>
@@ -136,26 +95,12 @@
 <!-- 왼쪽 End -->
       
 <!-- 오른쪽 -->    
-		<div class="col-lg-9 ftco-animate destination">
-			<div class="text p-3">
-				<h3 class="mb-3">소제목 입니다</h3>
-				<p>여행 내용을 간략히 소개하는 부분 입니다.<br>*이 부분을 위로 12로 잡고 배경색 넣어서 올릴까요?<br>지도는 왼쪽에서 스크롤해도 따라다니게 하면 좋을것 같다.<br>n일차 부분을 div, a, span, p 등으로 class 지정해주고 n일차(n) ^ 아이콘<br>밑에 부분 글씨 더 연하게 </p>
-				<hr>
-				<p class="days">
-					<span>
-						<i class="icon-person"></i> 작성자id &nbsp;|&nbsp; <i class="icon-bookmark-o"></i> 북마크 : 18 &nbsp;|&nbsp; <i class="icon-thumbs-o-up"></i> 추천 : 18<br>
-						<i class="icon-today"></i> 여행기간 : 18.08.18 - 18.09.18 (30일)<br>
-						<i class="icon-pencil"></i> 게시일 : 18.08.18 수요일 &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : 18.08.18 수요일<br>
-						
-					</span>
-				</p>
-			</div>		
-			<br>
+		<div class="col-md-8 ftco-animate destination">
 			
-			<div><h2 class="mb-3">1일차</h2><hr></div>
-			<div class="sl-loc"><h5><i class="flaticon-meeting-point"></i> 장소장소장소</h5></div>
-			<div class="sl-loc"><h5><i class="flaticon-hotel"></i> 숙박숙박</h5></div>
-				<div class="sl-loc-cont p-3">
+			<div class="sl-day day-updown"><label class="seul1">1일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label></div>
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label></div>
+				<div class="sl-loc-cont seul3">
 		            <p> 2번째 내용내용 Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
 		            <p><img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid"></p>
 		            <p> 내용이구영 Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
@@ -179,8 +124,8 @@
 		            <p> 내용이구영 Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
 	            </div>
 	            
-			<div><h2 class="mb-3">2일차</h2><hr></div>
-			<div><h2 class="mb-3">3일차</h2><hr></div>	       
+			<div class="sl-day sl-updown"><label class="seul1">2일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
+			<div class="sl-day sl-updown"><label class="seul1">3일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>      
             
 
 <!-- 댓글 목록 ***li,ul 짝 안맞는거 찾기~ -->
@@ -219,33 +164,6 @@
 	                  	</div>
 	                  		<p>222222</p>
 	                  </div>
-
-
-                      <ul class="slchild">
-                        <li class="comment">
-                          <div class="comment-body">
-		                  	<div class="row">
-		                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-		                  		<div class="meta">2018.08.18 2:21</div>
-		                  		<a href="#" class="reply">답글</a>
-		                  	</div>
-		                  		<p>222222</p>
-		                  </div>
-
-                            <ul class="slchild">
-                              <li class="comment">
-                                <div class="comment-body">
-				                  	<div class="row">
-				                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-				                  		<div class="meta">2018.08.18 2:21</div>
-				                  		<a href="#" class="reply">답글</a>
-				                  	</div>
-				                  		<p>222222aaaaaa</p>
-			                  	</div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
                     </li>
                   </ul>
                 </li>
@@ -285,7 +203,7 @@
 <!-- 내용끝 -->
 
 
-
+<script src="${root}/resources/js/sl-map-view.js"></script>
 <%@ include file="/include/footer.jsp"%>
 <%@ include file="/include/loader.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>
