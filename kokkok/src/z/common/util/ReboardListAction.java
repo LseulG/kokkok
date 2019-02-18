@@ -1,0 +1,56 @@
+package z.common.util;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.kokkok.action.Action;
+import com.kokkok.util.PageNavigation;
+import com.kokkok.util.Validator;
+
+public class ReboardListAction implements Action {
+
+	
+	private ReboardListAction() {}
+	
+	private static Action reboardListAction;
+	
+	static {
+		reboardListAction = new ReboardListAction();
+	}
+	
+		
+	
+	public static Action getReboardListAction() {
+		return reboardListAction;
+	}
+
+
+
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int bcode = Validator.notNumberToZero((request.getParameter("bcode")));
+		int pg = Validator.notNumberToOne((request.getParameter("pg")));
+		String key =  Validator.nullToBlank(request.getParameter("key"));
+		String word = Validator.nullToBlank(request.getParameter("word"));
+		
+//		List<ReboardDto> list = ReboardServiceImpl.getReboardService().listArticle(bcode, pg, key, word);
+//		request.setAttribute("list", list);
+		
+		
+		
+		PageNavigation pageNavigation = CommonServiceImpl.getCommonservice().getPageNavigation(bcode, pg, word,key);
+		pageNavigation.setRoot(request.getContextPath());
+		pageNavigation.makeNavigator();
+		request.setAttribute("navigation", pageNavigation);		
+		
+		
+		return "/reboard/list.jsp";
+
+	}
+
+}

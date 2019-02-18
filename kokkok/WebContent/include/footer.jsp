@@ -24,7 +24,7 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <p>
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="#" target="_blank">KITRI</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="icon-heart" aria-hidden="true"></i> by KITRI
   			</p>
           </div>
         </div>

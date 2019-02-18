@@ -24,14 +24,13 @@
     <section class="ftco-section bg-light">    
     <div class="row">
 		<div class="container-table100">
-			<div class="wrap-table100">
-			
+			<div class="wrap-table100">			
 					 <!-- 검색  -->					
 			    	<form action="#">	 
 					<div class="row d-flex justify-content-end mb-3">
 					<div class="p-2 mr-auto"><h5>회원수 : 15 명</h5></div>				
 					<div class="p-2"><input type="text" class="form-control" placeholder="검색">&nbsp;</div>
-					<div class="p-2"><input type="submit" value="Search" class="btn btn-primary py-3 px-4"></div>			   			
+					<div class="p-2"><input type="submit" value="검색" class="btn btn-primary py-3 px-4"></div>			   			
 			   		</div>   		
 			   		</form>
 			   		<!-- 검색  끝 -->
@@ -50,6 +49,8 @@
 							</tr>
 						</thead>
 						<tbody>
+						
+						<c:forEach begin="0" end="19">
 								<tr>
 									<td class="column1">2017-09-29 01:22</td>
 									<td class="column2">200398</td>
@@ -58,110 +59,8 @@
 									<td class="column5">1</td>
 									<td class="column6">$999.00</td>
 								</tr>
-								<tr>
-									<td class="column1">2017-09-28 05:57</td>
-									<td class="column2">200397</td>
-									<td class="column3">Samsung S8 Black</td>
-									<td class="column4">$756.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$756.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-26 05:57</td>
-									<td class="column2">200396</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$22.00</td>
-									<td class="column5">2</td>
-									<td class="column6">$44.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-25 23:06</td>
-									<td class="column2">200392</td>
-									<td class="column3">USB 3.0 Cable</td>
-									<td class="column4">$10.00</td>
-									<td class="column5">3</td>
-									<td class="column6">$30.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-24 05:57</td>
-									<td class="column2">200391</td>
-									<td class="column3">Smartwatch 4.0 LTE Wifi</td>
-									<td class="column4">$199.00</td>
-									<td class="column5">6</td>
-									<td class="column6">$1494.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-23 05:57</td>
-									<td class="column2">200390</td>
-									<td class="column3">Camera C430W 4k</td>
-									<td class="column4">$699.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$699.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-22 05:57</td>
-									<td class="column2">200389</td>
-									<td class="column3">Macbook Pro Retina 2017</td>
-									<td class="column4">$2199.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$2199.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-21 05:57</td>
-									<td class="column2">200388</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-19 05:57</td>
-									<td class="column2">200387</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-18 05:57</td>
-									<td class="column2">200386</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-22 05:57</td>
-									<td class="column2">200389</td>
-									<td class="column3">Macbook Pro Retina 2017</td>
-									<td class="column4">$2199.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$2199.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-21 05:57</td>
-									<td class="column2">200388</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-19 05:57</td>
-									<td class="column2">200387</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-18 05:57</td>
-									<td class="column2">200386</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>								
+					   </c:forEach>
+					   							
 						</tbody>
 					</table>
 				</div>
@@ -174,18 +73,33 @@
           <div class="col text-center">
             <div class="block-27">
               <ul>
+              	<li><span>&lt;&lt;</span></li>
                 <li><a href="#">&lt;</a></li>
                 <li class="active"><span>1</span></li>
                 <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+                <li><span>3</span></li>
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
                 <li><a href="#">&gt;</a></li>
+                <li><a href="">&gt;&gt;</a></li>
               </ul>
             </div>
           </div>
         </div>
          <!-- 페이지 넘김  끝-->
+         
+         
+         <!-- 하단 페이징 -->
+         <div class="row">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+              	${navigation.navigator}
+              </ul>
+            </div>
+          </div>
+        </div>
+         
          
     </section>
 	<%@ include file="/include/footer.jsp"%>

@@ -18,4 +18,5 @@
     <link rel="stylesheet" href="${root}/resources/css/flaticon.css">
     <link rel="stylesheet" href="${root}/resources/css/icomoon.css">
     <link rel="stylesheet" href="${root}/resources/css/style.css">
+    <link rel="stylesheet" href="${root}/resources/css/pagenav.css">
     

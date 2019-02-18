@@ -4,8 +4,6 @@
 <html>
 <head>
     <title>KokKok</title>
-    
-    
   	<%@ include file="/include/link.jsp"%> 	  	
 </head>
   <body>
@@ -40,7 +38,7 @@
 	                  </div>                  
                 </div>
                 <!-- 검색 버튼 -->
-                <input type="submit" class="search-submit btn btn-primary" value="Search">  
+                <input type="submit" class="search-submit btn btn-primary" value="검색">  
               </form>
             </div>          
           </div>
@@ -62,6 +60,7 @@
     			<div class="col-md-12">
     				<div class="destination-slider owl-carousel ftco-animate">    				
 					<!-- 여행정보 반복시작 -->
+					<c:forEach begin="0" end="10">
     					<div class="item">    					
 		    				<div class="destination blog-entry">
 		    				<!-- 여행정보 이미지링크 -->
@@ -82,36 +81,8 @@
 		    				</div>
 	    				</div>
 	    				<!-- 여행정보 반복끝 -->	
-	    				
-	    				    				
-	    				
-	    				<div class="item">
-		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-2.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-		    							<span class="icon-search2"></span>
-		    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<h3><a href="#">San Francisco, USA</a></h3>
-		    						<span class="listing">20 Listing</span>
-		    					</div>
-		    				</div>
-	    				</div>
-	    				
-	    				<div class="item">
-		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-6.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-		    							<span class="icon-search2"></span>
-		    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<h3><a href="#">Paris, Italy</a></h3>
-		    						<span class="listing">3 Listing</span>
-		    					</div>
-		    				</div>
-	    				</div>
+	    		</c:forEach>	
+	    				    	
     				</div>
     			</div>
     		</div>
@@ -132,6 +103,7 @@
     			<div class="col-md-12">
     				<div class="destination-slider owl-carousel ftco-animate">
     				
+    				<c:forEach begin="0" end="10">
 					<!-- 여행후기 반복시작 -->
     					<div class="item">    					
 		    				<div class="destination blog-entry">
@@ -152,35 +124,9 @@
 		    					</div>
 		    				</div>
 	    				</div>
-	    				<!-- 여행후기 반복끝 -->	    				
-	    				
-	    				<div class="item">
-		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-2.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-		    							<span class="icon-search2"></span>
-		    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<h3><a href="#">San Francisco, USA</a></h3>
-		    						<span class="listing">20 Listing</span>
-		    					</div>
-		    				</div>
-	    				</div>
-	    				
-	    				<div class="item">
-		    				<div class="destination">
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-6.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-		    							<span class="icon-search2"></span>
-		    						</div>
-		    					</a>
-		    					<div class="text p-3">
-		    						<h3><a href="#">Paris, Italy</a></h3>
-		    						<span class="listing">3 Listing</span>
-		    					</div>
-		    				</div>
-	    				</div>
+	    				<!-- 여행후기 반복끝 -->
+	    			</c:forEach>
+	 
     				</div>
     			</div>
     		</div>
@@ -255,6 +201,7 @@
         </div>    
     		<div class="row">
     		
+    		<c:forEach begin="0" end="4">
    				<!-- 리뷰 반복시작 -->
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination blog-entry">
@@ -286,33 +233,9 @@
     				</div>
     			</div> 
     			<!-- 리뷰 반복끝 -->
+    		</c:forEach>
     			
-    			
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="destination blog-entry">    			
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-5.jpg);">
-    						<div class="icon d-flex justify-content-center align-items-center">
-    							<span class="icon-search2"></span>
-    						</div>
-    					</a>    		
-    				 <div class="text p-4">			                
-			              	<span class="tag">생활꿀팁</span>			              	
-			                <h3 class="heading mt-3"><a href="#">8 Best 짐싸기 방법</a></h3>			  
-		    						<p class="rate">
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star"></i>
-		    							<i class="icon-star-o"></i>
-		    							<span>4.0점</span>
-		    						</p>		    	    						
-				            	<div align="right">
-					    			<span class="listing">작성자 : 페페</span><br>
-					    			<span class="listing">2019.02.09</span>
-					    		</div>	
-			              </div>
-    				</div>
-    			</div>    			
+			
     			
     			
     		</div>
@@ -332,6 +255,7 @@
         </div>
         <div class="row d-flex">
         
+        <c:forEach begin="0" end="7">
         <!-- 꿀팁 반복시작 -->
           <div class="col-md-3 ftco-animate">
             <div class="blog-entry align-self-stretch">
@@ -352,22 +276,7 @@
             
           </div>
           <!-- 꿀팁 반복끝 -->
-
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.jsp" class="block-20" style="background-image: url('${root}/resources/images/image_3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">August 12, 2018</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>          
-          </div>
+          </c:forEach>
         </div>
       </div>
     </section>               
