@@ -15,27 +15,31 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">마이메뉴-계정보기 메인화면</h1>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">마이메뉴 메인화면</h1>
           </div>
         </div>
       </div>
     </div>
-  <section class="ftco-section ftco-degree-bg">
+ <!-- 내용시작 -->
+	<section class="ftco-section ftco-degree-bg">
 	<div class="container">
+	<div class="row">
+<!-- 왼쪽 검색창 -->	
+		<div class="col-lg-3 sidebar">
+        <div class="sidebar-wrap bg-light ftco-animate">
+        	<form action="#">
+  				<div class="categories">
+					<li><a href="#">내 정보관리(계정 수정/삭제) </a></li>
+					<li><a href="#">내가 찜한 목록 </a></li>
+					<li><a href="#">내가 작성한 일정</a></li>
+				</div>
+			</form>
+        </div>
+		</div>
+<!-- 왼쪽 검색창 END -->
 
-		<div class="row">
-	       	<div class="col-lg-3 sidebar" id="myside">
-			        <ul class="list-unstyled">			        
-				        <div class="sidebar-box ftco-animate">
-							<div class="categories">
-								<li><a href="#">내가 작성한 목록 <span>(22)</span></a></li>
-								<li><a href="#">내가 찜한 목록 <span>(37)</span></a></li>
-								<li><a href="#">내 정보관리 </a></li>
-							</div>
-						</div>
-		            </ul>
-			</div>
-          <div class="col-lg-9" align="left">
+<!-- 오른쪽 목록 -->
+		<div class="col-lg-9">
 			<div class="container">
 		    <hr>    
 		    <div class="row"> 	
@@ -66,10 +70,12 @@
 			    <div class="p-2"><input type="submit" value="수정하기" class="btn btn-primary py-3 px-4"></div>			    
 			    <div class="p-2"><input type="submit" value="계정삭제" class="btn btn-primary py-3 px-4"></div>			    
 			</div>
-          </div>
-		</div>        	
-	</div>
-    </section> <!-- .section -->
+
+<!-- 오른쪽 목록  END-->
+	</div> <!-- 큰 row END -->
+	</div> <!-- 큰 container END -->
+	</section>
+<!-- 내용끝 -->
 
 
 
