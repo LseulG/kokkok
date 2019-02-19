@@ -200,8 +200,8 @@
 				</div>		
 				<br>
 			
-			<div><h2 class="mb-3"><i class="icon-map-marker"></i>1일차    (위아래 버튼)</h2><hr></div>
-			<div class="sl-loc"><h5><i class="flaticon-meeting-point"></i> 장소장소장소 (연필-쓰기/수정- 장소 옆) (위아래버튼 - 등록한것만, 오른쪽에)</h5></div>
+			<div class="sl-day day-updown"><label class="seul1">1일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박 <i class="icon-pencil"></i></label></div>
 			<div class="sl-loc"><h5><i class="flaticon-hotel"></i> 숙박숙박.</h5></div>
 			<div class="sl-loc"><h5><i class="flaticon-fork"></i> 식당맛집식도락</h5></div>
             <div class="sl-loc"><h5><i class="flaticon-shopping-bag"></i> 쇼핑최고</h5></div>

@@ -30,7 +30,7 @@
 <!-- 왼쪽 검색창 -->	
 		<div class="col-lg-3 sidebar">
         <div class="sidebar-wrap bg-light ftco-animate">
-			<h3 class="heading mb-4">검색 옵션</h3>
+			<h3 class="heading mb-4">상세 검색</h3>
         	<form action="#">
         	<div class="fields">
         	
@@ -154,7 +154,7 @@
    		        	
 		        	<!-- 검색 칸 -->
 		        	<div class="form-group">
-		                <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+		                <input type="text" class="form-control" placeholder="지역/검색어를 입력하세요">
 		        	</div>
 		        	
 		        	<!-- 검색 버튼 -->
