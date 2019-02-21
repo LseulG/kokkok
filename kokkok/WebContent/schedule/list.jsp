@@ -5,11 +5,11 @@
   <head>
     <title>방방콕콕 - 여행 일정</title>
   	<%@ include file="/include/link.jsp"%>
+  	<%@ include file="/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   </head>
   <body>
    <%@ include file="/include/nav.jsp"%>
-   
 <!-- 이미지 -->
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
       <div class="overlay"></div>
@@ -51,39 +51,29 @@
 		         </div>       	
         	
 				<div class="row">
-		         	<div class="col-md-6">
+		         	<div class="col-md-12">
         			<!-- 지역1 -->
-			        	<div class="form-group">
-			                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                      	<option value="">전국1</option>
-			                      	<option value="">서울</option>
-			                      	<option value="">경기</option>
-			                      	<option value="">강원도</option>
-			                      	<option value="">경상도</option>
-			                      	<option value="">전라도</option>
-			                    </select>
-		                  	</div>
-			            </div>
+			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
+								<div class="select-wrap one-third">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="" id="areaCodeList" class="form-control">																				
+									</select>
+								</div>
+							</div>
 					</div>
-					<div class="col-md-6">
+				</div>
+				<div class="row">
+					<div class="col-md-12">
         			<!-- 지역2 -->
-			        	<div class="form-group">
-			                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                      	<option value="">전국2</option>
-			                      	<option value="">부천</option>
-			                      	<option value="">안산</option>
-			                      	<option value="">여기</option>
-			                      	<option value="">저기</option>
-			                      	<option value="">조기</option>
-			                    </select>
-		                  	</div>
-			            </div>
+			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
+							<div class="select-wrap one-third">
+								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+								<select name="" id="sigunguCodeList" class="form-control">																				
+								</select>
+							</div>
+						</div>
 					</div>
-				</div>        	
+				</div>
 
 				<div class="row">
 		         	<div class="col-md-12">		            
@@ -104,53 +94,22 @@
 			            </div>
 			         </div>
 			     </div>
-
-        		<div class="row">
-	        		<div class="col-md-6">
-	        			<!-- 정렬 -->
-			            <div class="form-group">
-			                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                      	<option value="">인기순</option>
-			                      	<option value="">최신순</option>
-			                    </select>
-		                  	</div>
-			            </div>
-	        		</div>
-	        		<div class="col-md-6">
-	        			<!-- 검색기간 -->
-			            <div class="form-group">
-			                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
-			                    	<option value="">전체</option>
-			                    	<option value="">1일</option>
-			                    	<option value="">1주</option>
-			                    	<option value="">1개월</option>
-			                    	<option value="">6개월</option>
-			                    	<option value="">1년</option>
-			                    </select>
-		                  	</div>
-			            </div>
-						
-			         </div> 
-		         </div> 
 		         
 					<!-- 여행기간 -->
 		        	<div class="form-group">
 		            	<div class="range-slider">
 		              		<label for="name">여행기간</label>
 		              		<span>
-								<input type="number" value="1" min="1" max="60"/>일  -
-								<input type="number" value="60" min="1" max="60"/>일
+								<input type="number" id="term1_number" value="1" min="1" max="60"/>일  -
+								<input type="number" id="term2_number" value="60" min="1" max="60"/>일
 							</span>
 							<p>
-								<input value="1" min="1" max="60" step="1" type="range"/>
-								<input value="60" min="1" max="60" step="1" type="range"/>
+								<input type="range" id="term1_range" value="1" min="1" max="60" step="1"/>
+								<input type="range" id="term2_range" value="60" min="1" max="60" step="1"/>
 							</p>
 						</div>
 		        	</div>
+   		        	
    		        	
 		        	<!-- 검색 칸 -->
 		        	<div class="form-group">
@@ -171,6 +130,9 @@
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
 <!-- 목록들 -->
+        	<div align="right">
+        		<span>인기순</span> | <span>최신순</span>
+        	</div>
         	<div class="row">
         		<c:forEach var="i" begin="1" end="6">
 					<div class="col-md-4 ftco-animate destination">
@@ -221,8 +183,8 @@
 	</section>
 <!-- 내용끝 -->
 
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
+<script src="${root}/resources/js/sl-location.js"></script>
+<%@ include file="/include/footer.jsp"%>   
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>

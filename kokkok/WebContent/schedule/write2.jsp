@@ -5,6 +5,7 @@
   <head>
     <title>방방콕콕 - 여행 일정 쓰기</title>
   	<%@ include file="/include/link.jsp"%>
+  	<%@ include file="/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<link rel="stylesheet" href="${root}/resources/css/sl-map.css">
   
@@ -50,10 +51,9 @@
 	    }
 	    return flag;
 	}
-
+	
 	/** UI 설정 */
 	$(function() {
-		alert('으악');
 		// id가 itemBoxWrap인 태그를 리스트로 만든다
 	    $("#itemBoxWrap").sortable({
 	        placeholder:"itemBoxHighlight",		// 드래그 중인 아이템이 놓일 자리를 표시할 스타일 지정
@@ -325,7 +325,7 @@
   			</div>
 			<div class="sl-day day-updown"><label class="seul1">1일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
 			
-			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <i class="icon-pencil"></i></label></div>
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박3 <i class="icon-pencil"></i></label></div>
 			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-fork"></i> 식당맛집식도락</label></div>
             <div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-shopping-bag"></i> 쇼핑최고</label></div>
             <div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 장소멋진장소</label></div>
@@ -333,7 +333,7 @@
 	        
 	        <br>  
 			<div><h2 class="mb-3">2일차</h2><hr></div>
-			<div><h2 class="mb-3">3일차</h2><hr></div>	       
+			<div><h2 class="mb-3">55일차</h2><hr></div>	       
             
 			</div>
 		</div>
@@ -342,11 +342,11 @@
 	</div>
 	</section>
 <!-- 내용끝 -->
+
+<%@ include file="/include/footer.jsp"%> 
+<%@ include file="/include/arrowup.jsp"%>
 <script src="${root}/resources/js/sl-map.js"></script>
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>   
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script> 
-<%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>

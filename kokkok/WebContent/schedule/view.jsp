@@ -5,6 +5,7 @@
 <head>
 <title>방방콕콕 - 여행 일정 상세</title>
 <%@ include file="/include/link.jsp"%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e"></script>
 <link rel="stylesheet" href="${root}/resources/css/schedule.css">
 <script type="text/javascript">
 $(document).ready(function() {	
@@ -76,7 +77,7 @@ $(document).ready(function() {
         	<div class="sidebar-box ftco-animate">
 				<div class="float_sidebar">
             	<div id="daumMap" style="width:300px;height:500px;"></div>
-				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e"></script>
+				
 				</div>
             </div>
         
