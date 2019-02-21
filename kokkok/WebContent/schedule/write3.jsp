@@ -6,7 +6,7 @@
     <title>방방콕콕 - 여행 일정 쓰기</title>
   	<%@ include file="/include/link.jsp"%>
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
-  	<link rel="stylesheet" href="${root}/resources/css/sl-map.css">
+  	<link rel="stylesheet" href="${root}/resources/css/sl-map.css"> 
   </head>
   <body>
    <%@ include file="/include/nav.jsp"%>
@@ -201,26 +201,24 @@
 				<br>
 			
 			<div class="sl-day day-updown"><label class="seul1">1일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
-			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박 <i class="icon-pencil"></i></label></div>
-			<div class="sl-loc"><h5><i class="flaticon-hotel"></i> 숙박숙박.</h5></div>
-			<div class="sl-loc"><h5><i class="flaticon-fork"></i> 식당맛집식도락</h5></div>
-            <div class="sl-loc"><h5><i class="flaticon-shopping-bag"></i> 쇼핑최고</h5></div>
-            	<div class="sl-loc-cont p-3">
-	            	<p> 내용내용 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-	            	<p><img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid"></p>
-	           		<p> 내용 이어서 내용내용 Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-	            </div>
-            <div class="sl-loc"><h5><i class="flaticon-meeting-point"></i> 장소멋진장소</h5></div>
-	            <div class="sl-loc-cont p-3">
-		            <p> 2번째 내용내용 Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-		            <p><img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid"></p>
-		            <p> 내용이구영 Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-	            </div>
-	            
+			
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <i class="icon-pencil"></i></label></div>
+			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-fork"></i> 식당맛집식도락</label></div>
+            <div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-shopping-bag"></i> 쇼핑최고</label></div>
+            <div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 장소멋진장소</label></div>
+
+	       <!-- 여기에 테스트..  -->
+	       <div>
+	      	<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 1장소멋진장소</label></div>
+	      	<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 2장소멋진장소</label></div>
+	      	<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 3장소멋진장소</label></div>
+	      	<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-meeting-point"></i> 4장소멋진장소</label></div>
+	       </div>
+	        
+	        <br>  
 			<div><h2 class="mb-3">2일차</h2><hr></div>
 			<div><h2 class="mb-3">3일차</h2><hr></div>	       
             
-
 			</div>
 		</div>
 <!-- 오른쪽 END -->
@@ -229,6 +227,8 @@
 	</section>
 <!-- 내용끝 -->
 <script src="${root}/resources/js/sl-map.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script>
 <%@ include file="/include/footer.jsp"%>
 <%@ include file="/include/loader.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>

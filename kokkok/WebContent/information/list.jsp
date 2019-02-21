@@ -9,7 +9,12 @@
 	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
 	</script>
-    <script src="${root}/resources/js/information_list.js"></script>
+    <script src="${root}/resources/js/information_list.js"></script>        
+    <style>
+	#lastPage,#firstPage,#nextPageGroup,#prevPageGroup,.naviNum {
+		cursor: Pointer;
+	}	
+	</style>	
 </head>
 <body>
 
@@ -105,18 +110,18 @@
 								<div class="range-slider">
 									<span>
 										<input type="range" id="location_range" value="1000" min="1000" max="20000" step="1000"/>
-										반경 <input type="number" id="location_number" value="1000" min="1000" max="20000"/>km
+										거리 <input type="number" id="location_number" value="1000" min="1000" max="20000"/>m (1000~20000m)
 									</span>									
 								</div>
 							</div>
 							<div class="form-group infoitems infoKeyword">
-								<input type="text" class="form-control" placeholder="검색어">
+								<input type="text" id="keyword" class="form-control" placeholder="검색어">
 							</div>
 							<div class="form-group infoitems infoFestival">
-								<input type="text" id="" class="form-control datepicker" readonly="readonly" placeholder="시작날짜">
+								<input type="text" id="eventStartDate" class="form-control datepicker" readonly="readonly" placeholder="시작날짜">
 							</div>
 							<div class="form-group infoitems infoFestival">
-								<input type="text" id="" class="form-control datepicker" readonly="readonly" placeholder="끝날짜">
+								<input type="text" id="eventEndDate" class="form-control datepicker" readonly="readonly" placeholder="끝날짜">
 							</div>
 						</div>
 						<div class="form-group">
@@ -132,14 +137,15 @@
 					<div class="row mt-5">
 						<div class="col text-center">
 							<div class="block-27">
-								<ul>
-									<li><a href="#">&lt;</a></li>
-									<li class="active"><span>1</span></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&gt;</a></li>
+								<ul id="navigator">
+									<li><span>&lt;</span></li>
+									<li><span>1</span></li>
+									<li><span>2</span></li>
+									<li><span>3</span></li>
+									<li><span>4</span></li>
+									<li><span>5</span></li>									
+									<li class='naviNum' style="bgcolor: black;"><span>&gt;</span></li>
+									</div>
 								</ul>
 							</div>
 						</div>
