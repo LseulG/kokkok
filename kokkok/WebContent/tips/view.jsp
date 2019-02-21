@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<link rel="stylesheet" href="${root}/resources/css/community.css">
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
@@ -32,23 +33,10 @@
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 sidebar">
-					<div class="sidebar-box ftco-animate">
-						<div class="categories">
-							<h2>커뮤니티</h2>
-							<li><a href="blog.jsp">숙박 리뷰 <span>(12)</span></a></li>
-							<li><a href="#">맛집 리뷰 <span>(22)</span></a></li>
-							<li><a href="#">축제 리뷰 <span>(37)</span></a></li>
-							<li><a href="#">여행 꿀팁 <span>(42)</span></a></li>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-9">
-					<div class="row">
+				
 						<div class="container-table1000">
-							<div class="wrap-table100">
-								<h2>글읽기</h2>
+							<div class="wrap-table1000">
+								<h2>글읽기13</h2>
 								<br>
 								<br>
 							
@@ -117,9 +105,87 @@
 										debitis, inventore?</p>
 
 									<!-- END comment-list -->
+									
+									
+									
+									
+									
+									<div class="pt-5">
+            <h5 class="mb-4"><i class="icon-comment"></i> 댓글 6</h5>
+            <ul class="comment-list">
+            	<li class="comment">
+                  <div class="comment-body">
+                  	<div class="row">
+                  		<h3><i class="icon-person"></i> 작성자 11</h3>
+                  		<div class="meta">2018.08.18 2:21</div>
+                  		<a href="#" class="reply">답글</a>
+                  	</div>
+                  		<p>작성내용1 댓글이다 댓글</p>
+                   		<!-- <p><a href="#" class="reply">답글ㅎ</a></p>  -->
+                  </div>
+                </li>
+
+                <li class="comment">
+                  <div class="comment-body">
+                  	<div class="row">
+                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+                  		<div class="meta">2018.08.18 2:21</div>
+                  		<a href="#" class="reply">답글</a>
+                  	</div>
+                  		<p>222222</p>
+                   		<!-- <p><a href="#" class="reply">답글ㅎ</a></p>  -->
+                  </div>
+                </li>
+
+                  <ul class="children">
+                    <li class="comment">
+                      <div class="comment-body">
+                        <h3><i class="icon-person"></i> 댓글111</h3>
+                        <div class="meta">June 27, 2018 at 2:21pm</div>
+                        <p> 댓글이당111 </p>
+                        <p><a href="#" class="reply">답글</a></p>
+                      </div>
+
+
+                      <ul class="children">
+                        <li class="comment">
+                          <div class="comment-body">
+                            <h3><i class="icon-person"></i> 대댓글이다?</h3>
+                            <div class="meta">June 27, 2018 at 2:21pm</div>
+                            <p> 대댓글도 가능하네?</p>
+                            <p><a href="#" class="reply">답글</a></p>
+                          </div>
+
+                            <ul class="children">
+                              <li class="comment">
+                                <div class="comment-body">
+                                  <h3><i class="icon-person"></i> 대대댓글이네</h3>
+                                  <div class="meta">June 27, 2018 at 2:21pm</div>
+                                  <p> 대대댓글!</p>
+                                  <p><a href="#" class="reply">답글</a></p>
+                                </div>
+                              </li>
+                            </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="comment">
+                  <div class="comment-body">
+                    <h3><i class="icon-person"></i> 작성자 3333</h3>
+                    <div class="meta">June 27, 2018 at 2:21pm</div>
+                    <p> 3333333</p>
+                    <p><a href="#" class="reply">답글</a></p>
+                  </div>
+                </li>
+              </ul>
+              <!-- END comment-list -->
+ 
 
 									<div class="comment-form-wrap pt-5">
-										<h3 class="mb-5">댓글 작성</h3>
+									
 										<form action="#" class="p-5 bg-light">
 
 
@@ -159,24 +225,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-									
-	</section>
 
-	
-	</form>
-
-	</div>
-	</div>
-	</div>
-	
-		
-	
-	</div>
-	<!-- .col-md-8 -->
-	</div>
-	</div>
 	</section>
 	<!-- .section -->
 

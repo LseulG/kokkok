@@ -6,10 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<link rel="stylesheet" href="${root}/resources/css/community.css">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
-
 
 <div class="hero-wrap js-fullheight"
 		 style="background-image: url('${root}/resources/images/bg_4.jpg');">
@@ -30,50 +35,33 @@
 	<section class="ftco-section ftco-degree-bg">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 sidebar">
-					<div class="sidebar-box ftco-animate">
-						<div class="categories">
-							<h2>커뮤니티</h2>
-							<li><a href="blog.jsp">숙박 리뷰 <span>(12)</span></a></li>
-							<li><a href="#">맛집 리뷰 <span>(22)</span></a></li>
-							<li><a href="#">축제 리뷰 <span>(37)</span></a></li>
-							<li><a href="#">여행 꿀팁 <span>(42)</span></a></li>
-						</div>
+				<div>
+					<h3>글작성</h3>            
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="제목">
 					</div>
-				</div>
-
-				<div class="col-lg-9">
-					<div class="row">
-						<div class="container-table1000">
-							<div class="wrap-table100">
-							<h2>글쓰기</h2>
-												<br>
-												<br>				
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="제목입력">
-									</div>
-									<div class="form-group">
-										<textarea name="" id="" cols="30" rows="7"
-											class="form-control-a" placeholder="내용입력"></textarea>
-									</div>
-									<div class="form-group">
-										<input type="submit" value="등록"
-											class="btn btn-primary py-3 px-5">
-									</div>
-									
-								</form>
-
-							</div>
-						</div>
+			       	<div id="summernote"></div>
+			        <div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
+						<input type="button" value="등록" class="btn btn-primary py-3 px-5">
+					</div>
+					<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
+						<input type="button" value="취소" class="btn btn-primary py-3 px-5">
 					</div>
 					
 				</div>
-				<!-- .col-md-8 -->
 			</div>
 		</div>
 	</section>
 	<!-- .section -->
-
+	
+<script>
+$('#summernote').summernote({
+  placeholder: '내용을 적어주세요.',
+  tabsize: 2,
+  height: 400,
+  width: 1140
+});
+</script>
 
 <%@ include file="/include/footer.jsp"%>
 <%@ include file="/include/loader.jsp"%>    
