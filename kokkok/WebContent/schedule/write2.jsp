@@ -343,10 +343,10 @@
 	</section>
 <!-- 내용끝 -->
 <script src="${root}/resources/js/sl-map.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
-	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script>
 <%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
+<%@ include file="/include/loader.jsp"%>   
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script> 
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>
