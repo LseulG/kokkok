@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<%@ include file="/include/loader.jsp"%> 
+
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 <link rel="stylesheet" href="${root}/resources/css/login.css">
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
 <%@ include file="/review/writemodal.jsp"%>
-
 
 <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
 	<div class="overlay"></div>
@@ -287,6 +288,11 @@
 </section>
 <!-- 내용시작 END--> 
 
+
+
+<%@ include file="/include/footer.jsp"%> 
+<%@ include file="/include/arrowup.jsp"%>
+
 <script type="text/javascript">
 $(function(){
     $("#popbutton").click(function(){
@@ -294,9 +300,5 @@ $(function(){
     })
 })
 </script>
-
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
-<%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>
