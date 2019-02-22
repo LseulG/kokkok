@@ -5,7 +5,8 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%@ include file="/include/loader.jsp"%>   
+	
 	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
 	</script>
@@ -157,8 +158,9 @@
 		</div>
     </section> <!-- .section -->
 
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
+<%@ include file="/include/footer.jsp"%> 
 <%@ include file="/include/arrowup.jsp"%>
+ <script src="${root}/resources/vendor/chart.js/Chart.min.js"></script>
+ <script src="${root}/resources/vendor/chart.js/chart-pie-demo.js"></script>
 </body>
 </html>
