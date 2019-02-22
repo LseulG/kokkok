@@ -10,7 +10,7 @@
 </style>
 
 
-
+<%@ include file="/member/login/loginmodal.jsp"%>
    <!-- nav -->
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
@@ -21,13 +21,12 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">          
           <!-- <li class="nav-item"><a href="about.jsp" class="nav-link">About</a></li>  -->         
-          <li class="nav-item"><a class="nav-link" href="${root}/schedule?act=list&bcode=0&pg=1&key=&word=">여행 일정<span class="caret"></span></a>	      
 		  <li class="nav-item"><a class="nav-link" href="${root}/information?act=list&bcode=0&pg=1&key=&word=">여행 정보<span class="caret"></span></a>	      
-		  <li class="nav-item"><a class="nav-link" href="${root}/board?act=list&bcode=0&pg=1&key=&word=">리뷰<span class="caret"></span></a>	      
-		  <li class="nav-item"><a class="nav-link" href="${root}/board?act=listtips&bcode=0&pg=1&key=&word=">여행꿀팁<span class="caret"></span></a>	  
+          <li class="nav-item"><a class="nav-link" href="${root}/schedule?act=list&bcode=0&pg=1&key=&word=">여행 일정<span class="caret"></span></a>	      
+		  <li class="nav-item"><a class="nav-link" href="${root}/board?act=list&bcode=0&pg=1&key=&word=">여행 리뷰<span class="caret"></span></a>	      
+		  <li class="nav-item"><a class="nav-link" href="${root}/board?act=listtips&bcode=0&pg=1&key=&word=">여행 꿀팁<span class="caret"></span></a>	  
 		  			<!-- 로그인 모달 추가! -->    
-		  <li class="nav-item cta"><a href="#myLogin" class="nav-link"><span>로그인</span></a></li>&nbsp;&nbsp;      
-		             	<%@ include file="/member/login/loginmodal.jsp"%>
+		   <li class="nav-item cta"><a class="nav-link" data-toggle="modal" href="#myModal"><span>로그인</span></a></li>&nbsp;&nbsp;
           <li class="nav-item cta"><a href="${root}/members?act=mvregister&bcode=0&pg=1&key=&word=" class="nav-link"><span>회원가입</span></a></li>
           
           <!-- 로그인 -->

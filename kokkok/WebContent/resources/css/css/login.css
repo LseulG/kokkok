@@ -94,7 +94,7 @@
 [ Form ]*/
 .login100-form {
 	width: 100%;
-	padding: 30px;
+	padding: 20px;
 }
 
 .login100-form-title {
@@ -327,6 +327,20 @@
 	}
 }
 
+
+#idcheckBtn{
+	border-radius: 0px;
+	font-size: 0.9rem;
+}
+
+.idcheckDiv{
+    width: 30%;
+    align-self: center;
+    padding-top: 10%;
+    padding-left: 2%;
+}
+
+
 /*//////////////////////////////////////////////////////////////////
 [ Social item ]*/
 .login100-social-item {
@@ -387,9 +401,18 @@
 	width: auto; 
 	height: 40%;
 	padding: 16px;
-	border: 5px solid green;
+	border: 5px solid red;
 	background-color: white;
 	overflow: auto;	
 	max-width: 100%;
 	display: table;
+	z-index: 1;
+	
 }
+
+/**********************************************/
+
+
+
+
+
