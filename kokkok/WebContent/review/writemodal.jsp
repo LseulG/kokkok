@@ -37,6 +37,7 @@
 <script>
 $('#summernote').summernote({
   placeholder: '내용을 적어주세요.',
+  dialogsInBody: true,
   tabsize: 2,
   height: 300
 });
