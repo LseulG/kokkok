@@ -36,11 +36,11 @@
         	
  		         <div class="row">
 		         	<div class="col-md-12">
-						<!-- 일정(계획/후기) -->
+<!-- 일정(계획/후기) -->
 	        			<div class="form-group">
 			            	<div class="select-wrap one-third">
 			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                    <select name="" id="searchSchedule" class="form-control">
 			                    	<option value="">모든 일정</option>
 			                    	<option value="">여행 계획</option>
 			                    	<option value="">여행 후기</option>
@@ -52,7 +52,7 @@
         	
 				<div class="row">
 		         	<div class="col-md-12">
-        			<!-- 지역1 -->
+<!-- 지역1 -->
 			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -64,7 +64,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-        			<!-- 지역2 -->
+<!-- 지역2 -->
 			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 							<div class="select-wrap one-third">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -77,25 +77,25 @@
 
 				<div class="row">
 		         	<div class="col-md-12">		            
-			            <!-- 테마 -->
+<!-- 테마 -->
 			            <div class="form-group">
 			                <div class="select-wrap one-third">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Keyword search">
+			                    <select name="" id="searchThema" class="form-control">
 			                    	<option value="">테마 전체</option>
-			                    	<option value="">나혼자</option>
-			                    	<option value="">친구랑</option>
-			                    	<option value="">가족과</option>
-			                    	<option value="">단체</option>
-			                      	<option value="">패키지</option>
-			                      	<option value="">커플</option>
+			                    	<option value="">나홀로 여행</option>
+			                    	<option value="">친구와 함께</option>
+			                      	<option value="">커플 여행</option>
+			                    	<option value="">가족 여행</option>
+			                      	<option value="">단체 여행</option>
+			                      	<option value="">패키지 여행</option>
 			                    </select>
 		                  	</div>
 			            </div>
 			         </div>
 			     </div>
 		         
-					<!-- 여행기간 -->
+<!-- 여행기간 -->
 		        	<div class="form-group">
 		            	<div class="range-slider">
 		              		<label for="name">여행기간</label>
@@ -109,14 +109,14 @@
 							</p>
 						</div>
 		        	</div>
-   		        	
-   		        	
-		        	<!-- 검색 칸 -->
+		        	
+		        	
+<!-- 검색어 -->
 		        	<div class="form-group">
-		                <input type="text" class="form-control" placeholder="지역/검색어를 입력하세요">
+		                <input type="text" class="form-control" placeholder="검색어를 입력하세요">
 		        	</div>
 		        	
-		        	<!-- 검색 버튼 -->
+<!-- 버튼 -->
 		        	<div class="form-group">
 		            	<input type="submit" value="검색" class="btn btn-primary py-3 px-5">
 		        	</div>
@@ -145,7 +145,7 @@
 			    			<div class="d-flex">
 					    		<h3><a href="#">여행 제목이 들어갑니다!!! </a></h3>
 			    			</div>
-			    			<p>#전라남도 #여수 #순천 #광양 #저기 <br>#나혼자.</p>
+			    			<p>#전라남도 #여수 #순천 #광양 #저기 <br>#나혼자</p>
 			    			<br>
 			    			<p class="days"><span>18.08.18 - 18.09.18 (30일)</span></p>
 			    			<hr>
@@ -183,7 +183,7 @@
 	</section>
 <!-- 내용끝 -->
 
-<script src="${root}/resources/js/sl-location.js"></script>
+<script src="${root}/resources/js/sl-schedule-list.js"></script>
 <%@ include file="/include/footer.jsp"%>   
 <%@ include file="/include/arrowup.jsp"%>
 </body>
