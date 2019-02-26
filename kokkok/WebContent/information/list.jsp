@@ -5,8 +5,7 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
-<%@ include file="/include/loader.jsp"%>   
-	
+<%@ include file="/include/loader.jsp"%>	
 	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
 	</script>
@@ -21,7 +20,7 @@
 
 <%@ include file="/include/nav.jsp"%>	
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
+    <div class="hero-wrap" style="background-image: url('${root}/resources/images/bg_3.jpg'); height:100px">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -145,8 +144,7 @@
 									<li><span>3</span></li>
 									<li><span>4</span></li>
 									<li><span>5</span></li>									
-									<li class='naviNum' style="bgcolor: black;"><span>&gt;</span></li>
-									</div>
+									<li class='naviNum' style="bgcolor: black;"><span>&gt;</span></li>									
 								</ul>
 							</div>
 						</div>
@@ -158,9 +156,7 @@
 		</div>
     </section> <!-- .section -->
 
-<%@ include file="/include/footer.jsp"%> 
+<%@ include file="/include/footer.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>
- <script src="${root}/resources/vendor/chart.js/Chart.min.js"></script>
- <script src="${root}/resources/vendor/chart.js/chart-pie-demo.js"></script>
 </body>
 </html>

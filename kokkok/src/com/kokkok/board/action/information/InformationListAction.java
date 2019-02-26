@@ -9,12 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.kokkok.action.Action;
 
 public class InformationListAction implements Action {
+	
+	private static Action informationListAction;
+	
+	static {
+		informationListAction = new InformationListAction();
+	}
+	
+	private InformationListAction() {}
+
+	public static Action getInformationListAction() {
+		return informationListAction;
+	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+		return "/information/list.jsp";
 	}
 
 }

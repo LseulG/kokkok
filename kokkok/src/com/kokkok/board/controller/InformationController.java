@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import com.kokkok.board.action.information.InformationListAction;
+import com.kokkok.board.action.information.InformationMoveViewAction;
 import com.kokkok.util.*;
 
 
@@ -27,20 +29,24 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + URLEncoder.encode(word, BoardConstance.ENCODER);
 		
 		
+		
 		String path = "/index.jsp";
-		if("list".equals(act)) {			
+		if("list".equals(act)) {
+			System.out.println("if list: " + act);
+			
 			path ="/information/list.jsp" + queryString;
 			PageMove.redirect(request, response, path);
 			
-		}else if("".equals(act)) {
+		} else if ("informationlist".equals(act)) {	// 직접 DB를 얻지 않으므로 쓰지 않음
+			path = InformationListAction.getInformationListAction().execute(request, response);			
+		} else if ("mvview".equals(act)) {	// 관광정보 리스트에서 세부정보로 이동
+			path = InformationMoveViewAction.getInformationMoveViewAction().execute(request, response);
+//			System.out.println("mvview path: " + path);
+			response.sendRedirect(request.getContextPath() + path);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+//			dispatcher.forward(request, response);			
+		} else if ("informationview".equals(act)) {	// 직접 DB를 얻지 않으므로 쓰지 않음
 			
-		}else if("".equals(act)) {
-			
-		}else if("".equals(act)) {
-			
-		}else if("".equals(act)) {
-			
-		}else{			
 		}
 		
 	}

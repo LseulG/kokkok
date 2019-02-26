@@ -10,7 +10,7 @@ var infoListCurrPageNum = 1;
 var infoTotalCount = 0;
 // 관광 정보 페이지의 정렬(A=제목순, B=조회순, C=수정일순, D=생성일순)
 // 대표이미지가 반드시 있는 정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)
-var infoListArrange = "R";
+var infoListArrange = "D";
 // 한 화면에 보여지는 관광 목록의 페이지 갯수
 var navigation_size = 10;
 // 관광 목록 한 페이지의 결과 수
@@ -128,7 +128,7 @@ function getAreaCdoeList() {
 	    		"ServiceKey=" + serviceKey +
 	    		"&MobileOS=ETC&MobileApp=KokKok&numOfRows=20",
 	    type : "GET",
-	    success : function(xml){		    	
+	    success : function(xml){
 	    	var xmlData = $(xml).find("item");
 	        var listLength = xmlData.length;		        
 	        var contentStr = "<option value='' class='areaCode'>지역선택</option>";
@@ -180,11 +180,15 @@ function makeListToHtml(xml){
     	$(xmlData).each(function(){
     		contentStr += "<div class='col-md-4 ftco-animate informationItem fadeInUp ftco-animated'>";		    		
     		contentStr += "<div class='destination'>";
-    		contentStr += "<a href='" + contextPath + "/information/view.jsp' class='img img-2 d-flex justify-content-center align-items-center' style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
+    		contentStr += "<a href='" + contextPath + "/information?act=mvview' class='img img-2 d-flex justify-content-center align-items-center' "
+    		contentStr += "style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
     		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
     		contentStr += "<span class='icon-search2'></span></div></a>";
     		contentStr += "<div class='text p-3'>";
-    		contentStr += "<h3><a href='" + contextPath + "/information/view.jsp'>" + $(this).find("title").text() + "</a></h3>";
+    		contentStr += "<h3><a href='" + contextPath + "/information?act=mvview"
+    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
+    		contentStr += "&contentId=" + $(this).find("contentid").text();
+    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
     		contentStr += "<p></p>";
     		contentStr += "</div></div></div>";
     	});

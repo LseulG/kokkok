@@ -9,12 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.kokkok.action.Action;
 
 public class InformationViewAction implements Action {
+	
+	private static Action informationViewAction;
+	
+	static {
+		informationViewAction = new InformationViewAction();
+	}
+	
+	private InformationViewAction() {}
 
+	public static Action getInformationViewAction() {
+		return informationViewAction;
+	}
+	
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+		return "/information/view.jsp";
 	}
 
 }

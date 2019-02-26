@@ -5,31 +5,33 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%@ include file="/include/loader.jsp"%>
 <script src="${root}/resources/js/information_view.js"></script>
-
-	<style>
-		#primaryImage {
-			height: 300px;
-		}
-		.item {
-		  width:  200px;
-		  height: 200px;
-		  float: left;
-		  background: #2296DD;
-		  border: 2px solid #333;
-		}
 	
-		.item.thumbnail { width:  100px;height: 100px; background:#cfcfcf }
-		.item.medium { width:  300px;height: 300px; background: #A6E392}
-		.item.large { width:  400px;height: 400px; background: #D092E3}
+	<!-- masonry layout -->
+	<style>
+	#imageColumns{
+		column-width:200px;
+		column-gap: 15px;
+	}
+	.imageColumns figure{
+		display: inline-block;
+		border:1px solid rgba(0,0,0,0.2);
+		margin:0;
+		margin-bottom: 15px;
+		padding:10px;
+		box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
+	}
+	.imageColumns figure img{
+		width:100%;
+	}	
 	</style>
 	
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
 
-	<div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
+	<div class="hero-wrap" style="background-image: url('${root}/resources/images/bg_2.jpg'); height: 100px">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -47,15 +49,18 @@
 				<h3 id="detailViewTitle" class="heading mb-4">관광 정보</h3>				
 			</div>				
 			<div class="row d-md-flex">
-				<div id="primaryImage" class="col-md-4 ftco-animate img about-image" style="background-image: url(${root}/resources/images/destination-1.jpg);">
+				<div class="col-md-6 ftco-animate img about-image imageColumns">
+					<figure>
+						<img src="${root}/resources/images/destination-1.jpg" id="primaryImage" class="">
+					</figure>
 				</div>
-				<div class="col-md-8 ftco-animate">
+				<div class="col-md-6 ftco-animate">
 					<div class="row">
 						<div class="col-md-12 nav-link-wrap mb-5">
 							<div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">							
 								<a class="nav-link active" id="detailCommon-tab" data-toggle="pill" href="#detailCommon" role="tab" aria-controls="detailCommon" aria-selected="true">공통정보</a>								
 								<a class="nav-link" id="detailIntro-tab" data-toggle="pill" href="#detailIntro" role="tab" aria-controls="detailIntro" aria-selected="false">소개정보</a>								
-								<a class="nav-link" id="detailInfo-tab" data-toggle="pill" href="#detailInfo" role="tab" aria-controls="detailInfo" aria-selected="false">추가이미지</a>							
+								<a class="nav-link" id="detailInfo-tab" data-toggle="pill" href="#detailInfo" role="tab" aria-controls="detailInfo" aria-selected="false">반복정보</a>							
 								<a class="nav-link" id="detailImage-tab" data-toggle="pill" href="#detailImage" role="tab" aria-controls="detailImage" aria-selected="false">이미지정보</a>							
 							</div>
 						</div>
@@ -76,28 +81,21 @@
 									</div>
 								</div>								
 								<div class="tab-pane fade" id="detailInfo" role="tabpanel" aria-labelledby="detailInfo-tab">
-									<div>										
-										<p>
-             							<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid item thumbnail">
-             							<img src="${root}/resources/images/destination-2.jpg" alt="" class="img-fluid item">
-             							<img src="${root}/resources/images/destination-3.jpg" alt="" class="img-fluid item large">
-             							<img src="${root}/resources/images/destination-4.jpg" alt="" class="img-fluid item">
-             							<img src="${root}/resources/images/destination-5.jpg" alt="" class="img-fluid item medium">
-             							<img src="${root}/resources/images/destination-6.jpg" alt="" class="img-fluid item medium">
-             							<img src="${root}/resources/images/destination-7.jpg" alt="" class="img-fluid item">
-           								</p>										
+									<div>
+										<h2 class="mb-4">Exceptional Web Solutions</h2>
+										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur</p>
 									</div>
 								</div>
 								<div class="tab-pane fade" id="detailImage" role="tabpanel" aria-labelledby="detailImage-tab">
 									<div>										
 										<p>
-             							<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid item thumbnail">
-             							<img src="${root}/resources/images/destination-2.jpg" alt="" class="img-fluid item">
-             							<img src="${root}/resources/images/destination-3.jpg" alt="" class="img-fluid item large">
-             							<img src="${root}/resources/images/destination-4.jpg" alt="" class="img-fluid item">
-             							<img src="${root}/resources/images/destination-5.jpg" alt="" class="img-fluid item medium">
-             							<img src="${root}/resources/images/destination-6.jpg" alt="" class="img-fluid item medium">
-             							<img src="${root}/resources/images/destination-7.jpg" alt="" class="img-fluid item">
+             							<img src="${root}/resources/images/destination-1.jpg" alt="" class="">
+             							<img src="${root}/resources/images/destination-2.jpg" alt="" class="">
+             							<img src="${root}/resources/images/destination-3.jpg" alt="" class="">
+             							<img src="${root}/resources/images/destination-4.jpg" alt="" class="">
+             							<img src="${root}/resources/images/destination-5.jpg" alt="" class="">
+             							<img src="${root}/resources/images/destination-6.jpg" alt="" class="">
            								</p>										
 									</div>
 								</div>
@@ -109,17 +107,7 @@
 		</div>
     </section>
     
-    <script src='${root}/resources/js/masonry.pkgd.min.js'></script>
-	<script>
-		var container = document.querySelector('#masonry');
-		var msnry = new Masonry( container, {
-		  columnWidth: 50,
-		 
-		});
-	</script>
-
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
+<%@ include file="/include/footer.jsp"%>  
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>
