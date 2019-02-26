@@ -8,6 +8,7 @@
 <%@ include file="/include/link.jsp"%>
 <%@ include file="/include/loader.jsp"%> 
 
+
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 <link rel="stylesheet" href="${root}/resources/css/login.css">
 </head>
@@ -293,12 +294,6 @@
 <%@ include file="/include/footer.jsp"%> 
 <%@ include file="/include/arrowup.jsp"%>
 
-<script type="text/javascript">
-$(function(){
-    $("#popbutton").click(function(){
-        $('div.modal').modal({remote : 'layer.html'});
-    })
-})
-</script>
+
 </body>
 </html>
