@@ -5,7 +5,8 @@
 <head>
 <title>방방콕콕 - 여행 일정 상세</title>
 <%@ include file="/include/link.jsp"%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e"></script>
+<%@ include file="/include/loader.jsp"%> 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
 <link rel="stylesheet" href="${root}/resources/css/schedule.css">
 <script type="text/javascript">
 $(document).ready(function() {	
@@ -76,13 +77,16 @@ $(document).ready(function() {
 		<div class="col-md-4 sidebar ftco-animate">
         	<div class="sidebar-box ftco-animate">
 				<div class="float_sidebar">
-            	<div id="daumMap" style="width:300px;height:500px;"></div>
-				
+					<div class="">
+						<div class="map_wrap">
+	    					 <div id="daumMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
+						</div>
+					</div>
 				</div>
             </div>
         
             <div class="sidebar-box ftco-animate">
-              <h3><i class="icon-tag"></i> 태그bb</h3>
+              <h3><i class="icon-tag"></i> 태그cc</h3>
               <div class="tagcloud">
                 <a href="#" class="tag-cloud-link">전라남도</a>
                 <a href="#" class="tag-cloud-link">여수</a>
@@ -204,9 +208,9 @@ $(document).ready(function() {
 <!-- 내용끝 -->
 
 
-<script src="${root}/resources/js/sl-map-view.js"></script>
 <%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>
+<script src="${root}/resources/js/sl-map-view.js"></script>
+
 </body>
 </html>
