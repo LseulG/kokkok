@@ -4,16 +4,17 @@
 <html>
 <head>
     <title>KokKok</title>
-  	<%@ include file="/include/link.jsp"%>   
-  <%@ include file="/include/loader.jsp"%>		  	
+  	<%@ include file="/include/link.jsp"%>  	
+  	<%@ include file="/include/loader.jsp"%>
+  			
 </head>
   <body>
   <%@ include file="/include/nav.jsp"%>
     <!-- 대문 -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_1.jpg')">
+    <div class="hero-wrap js-fullheight2" style="background-image: url('${root}/resources/images/bg_1.jpg')">
       <div class="overlay"></div>
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+        <div class="row no-gutters slider-text js-fullheight2 align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }"> 
           <!-- 대문 내용 -->        
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>BeginEnd<br></strong>for your Pleasant Travel</h1>
@@ -46,49 +47,32 @@
         </div>
       </div>
     </div>
-
+        
+    
 <!-- 여행 정보 섹션 -->
     <section class="ftco-section ftco-destination">
     	<div class="container">
     		<div class="row justify-content-start mb-1 pb-3">
-          <div class="col-md-7 heading-section ftco-animate">
-          <!-- 여행 정보 제목 -->     
-          <span class="subheading">여행정보</span>
-            <h2 class="mb-4"><strong>지역축제  &amp; 유명시장</strong></h2>
-          </div>
-        </div>        
+        		<div class="col-md-7 heading-section ftco-animate">
+					<!-- 여행 정보 제목 -->     
+					<span class="subheading">여행정보</span>
+					<h2 class="mb-4"><strong>행사  &amp; 축제</strong></h2>
+				</div>
+        	</div>        
     		<div class="row">
-    			<div class="col-md-12">
-    				<div class="destination-slider owl-carousel ftco-animate">    				
-					<!-- 여행정보 반복시작 -->
-					<c:forEach begin="0" end="10">
-    					<div class="item">    					
-		    				<div class="destination blog-entry">
-		    				<!-- 여행정보 이미지링크 -->
-		    					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(${root}/resources/images/destination-1.jpg);">
-		    						<div class="icon d-flex justify-content-center align-items-center">
-		    							<span class="icon-search2"></span>
-		    						</div>
-		    					</a>
-		    					<!-- 여행정보 텍스트링크 -->
-		    					<div class="text p-3">
-				    				<span class="tag">지역축제</span>			              	
-					                <h3 class="heading mt-3"><a href="#">화천숭어잡이</a></h3>		    						
-		    						<div align="right">
-		    						<span class="listing">강원도 화천</span><br>
-		    						<span class="listing">2019.02.09 ~ 2019.03.09</span>
-		    						</div>		    						
-		    					</div>
-		    				</div>
-	    				</div>
-	    				<!-- 여행정보 반복끝 -->	
-	    		</c:forEach>	
-	    				    	
-    				</div>
+    			<div class="col-md-12">  				
+    			<div class="destination-slider owl-carousel ftco-animate">
+    			<c:forEach begin="0" end="11" varStatus="status"> 
+    			<div class='item informationItemList${status.index}'></div>    						
+    			</c:forEach>
+    			</div>	
+    				<!-- 여행정보 반복시작 -->	     			   				
     			</div>
     		</div>
     	</div>
     </section>    
+    
+    
 
 <!-- 여행 후기 섹션 -->
     <section class="ftco-section ftco-destination bg-light">
@@ -102,8 +86,7 @@
         </div>       
     		<div class="row">
     			<div class="col-md-12">
-    				<div class="destination-slider owl-carousel ftco-animate">
-    				
+    				<div class="destination-slider owl-carousel ftco-animate">    				
     				<c:forEach begin="0" end="10">
 					<!-- 여행후기 반복시작 -->
     					<div class="item">    					
@@ -200,8 +183,7 @@
             <h2 class="mb-4"><strong>리뷰</strong></h2>
           </div>
         </div>    
-    		<div class="row">
-    		
+    		<div class="row">    		
     		<c:forEach begin="0" end="4">
    				<!-- 리뷰 반복시작 -->
     			<div class="col-sm col-md-6 col-lg ftco-animate">
@@ -234,10 +216,7 @@
     				</div>
     			</div> 
     			<!-- 리뷰 반복끝 -->
-    		</c:forEach>
-    			
-			
-    			
+    		</c:forEach>    			
     			
     		</div>
     	</div>
@@ -273,17 +252,19 @@
 		    			<span class="listing">2019.02.09</span>
 		    		</div>	
               </div>
-            </div>
+            </div>         
             
           </div>
           <!-- 꿀팁 반복끝 -->
           </c:forEach>
         </div>
       </div>
-    </section>               
-	<%@ include file="/include/footer.jsp"%>
+    </section>
+   
+	<%@ include file="/include/footer.jsp"%>	
 	<%@ include file="/include/arrowup.jsp"%>
 <script src="${root}/resources/vendor/chart.js/Chart.min.js"></script>
 <script src="${root}/resources/vendor/chart.js/chart-pie-demo.js"></script>
+<script src="${root}/resources/js/kokkok_index.js"></script>
   </body>
 </html>

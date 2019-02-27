@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>회원관리</title>
-    <%@ include file="/include/link.jsp"%> 
+    <%@ include file="/include/link.jsp"%>
+    <%@ include file="/include/loader.jsp"%> 
     <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  
   </head>
   <body>
   	<%@ include file="/include/nav.jsp"%>    
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">회원관리</h1>
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '50%' }">  
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '50%', opacity: 1.6 }">회원관리</h1>
           </div>
         </div>
       </div>
@@ -102,8 +103,7 @@
          
          
     </section>
-	<%@ include file="/include/footer.jsp"%>
-	<%@ include file="/include/loader.jsp"%>    
+	<%@ include file="/include/footer.jsp"%>	   
 	<%@ include file="/include/arrowup.jsp"%>
     
   </body>
