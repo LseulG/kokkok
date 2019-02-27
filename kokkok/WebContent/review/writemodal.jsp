@@ -18,14 +18,14 @@
     padding-top: 15px;
 }
 </style>
-<div class="modal fade" id="reviewWriteModal" role="dialog">
+<div class="modal fade" id="reviewWriteModal" role="dialog" data-backdrop="static">
 	<div class="modal-dialog" style="max-width: 1000px; width: 800px;">
 	
 
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div>
-				<div align="center" style="padding-top: 30px;">
+				<div align="center">
 				<h3>리뷰 작성</h3>
 				</div>
 				<hr>
