@@ -158,7 +158,7 @@
 	        		<input type="button" id="addItem" value="일정추가" onclick="createItem();" />
 	       		 	<input type="button" id="submitItem" value="제출" onclick="submitItem();" />
 	  			</div>
-	  			
+<!-- 
 	  			<div class="sl-oneDay">
 					<div class="sl-day">
 						<label class="seul1">1일차 </label><span>2018.08.01</span>
@@ -167,12 +167,13 @@
 					</div>
 		        		<div class="" id="itemBoxWrap"></div>
 	  			</div>
+ -->	  			
 		        
-				<c:forEach var="i" begin="2" end="6">
+				<c:forEach var="i" begin="1" end="6">
 					<div class="sl-oneDay">
 				        <div class="sl-day">
 				        	<label class="seul1">${i}일차 </label><span>2018.08.0${i}</span>
-				        	<input type="button" id="" value="+일정 추가" class="btn btn-primary" onclick="createItemm(${i});"/>
+				        	<input type="button" id="" value="+일정 추가" class="btn btn-primary" onclick="createItem(${i});"/>
 				        	<hr>
 				        </div>
 				        <div class="" id="itemBoxWrap_${i}"></div>
