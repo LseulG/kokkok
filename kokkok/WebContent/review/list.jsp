@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +11,14 @@
 
 
 <link rel="stylesheet" href="${root}/resources/css/community.css">
-<link rel="stylesheet" href="${root}/resources/css/login.css">
 </head>
+
 <body>
 <%@ include file="/include/nav.jsp"%>
-<%@ include file="/review/writemodal.jsp"%>
 
+<%@ include file="/review/writemodal.jsp"%>
 <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
-	<div class="overlay"></div>
+	
 	<div class="container">
       		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
          		<div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
@@ -74,9 +75,8 @@
 						<br>
 						<h3 class="heading mb-4 infoItemsTitle">리뷰 등록</h3>
 					  	<div class="form-group">
-					  		<a href="#writeModal" style="text-decoration : none">
-							<input type="button" value="리뷰등록하기" class="btn btn-primary py-3 px-5">
-							</a>
+					  		<input type="button" value="리뷰등록하기" class="btn btn-primary py-3 px-5"
+					  		data-toggle="modal" data-target="#reviewWriteModal">
 						</div>
 						</form>
 					</div>		
@@ -288,7 +288,6 @@
 	</div>
 </section>
 <!-- 내용시작 END--> 
-
 
 
 <%@ include file="/include/footer.jsp"%> 
