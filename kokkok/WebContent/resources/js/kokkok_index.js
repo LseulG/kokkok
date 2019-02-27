@@ -56,12 +56,18 @@ $(document).ready(function() {
 	    	$(xmlData).each(function(index,item){   
 	    		var siLocation = $(this).find("addr1").text().split(' ');
 	    		contentStr += "<div class='destination blog-entry'>";
-	    		contentStr += "<a href='${root}/information/view.jsp' class='img d-flex justify-content-center align-items-center' style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
+	    		contentStr += "<a href='" + contextPath + "/information?act=mvview";
+	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
+	    		contentStr += "&contentId=" + $(this).find("contentid").text();
+	    		contentStr += "' class='img d-flex justify-content-center align-items-center' style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
 	    		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
 	    		contentStr += "<span class='icon-search2'></span></div></a>";
 	    		contentStr += "<div class='text p-3'>";
 	    		contentStr += "<span class='tag'>"+ siLocation[0] +"</span>";
-	    		contentStr += "<h3 class='heading mt-3'><a href='${root}/information/view.jsp'>"+ $(this).find("title").text() +"</a></h3>";	    		
+	    		contentStr += "<h3 class='heading mt-3'><a href='" + contextPath + "/information?act=mvview";
+	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
+	    		contentStr += "&contentId=" + $(this).find("contentid").text();
+	    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
 	    		contentStr += "<div align='right'>";
 	    		contentStr += "<span class='listing'>"+ $(this).find("eventstartdate").text() +" ~ "+ $(this).find("eventenddate").text() +"</span>";	    		
 	    		contentStr += "</div></div></div>";	    		
@@ -71,7 +77,6 @@ $(document).ready(function() {
 	    }
 	    infoTotalCount = $(xml).find("totalCount").text();
 	}
-	
 	
 	
 	
