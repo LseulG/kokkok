@@ -8,12 +8,12 @@
     
 </head>
 <body>
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="daumMap" style="width:100%;height:350px;"></div>
 <div id="clickLatlng"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
     mapOption = { 
         center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
