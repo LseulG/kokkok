@@ -40,9 +40,7 @@
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
-					<a href="#close">
-						<input type="button" data-dismiss="modal" value="취소" class="btn btn-primary py-2 px-3">
-					</a>
+					<input type="button" data-dismiss="modal" value="취소" class="btn btn-primary py-2 px-3">
 				</div>
 			</div>
 		</div>
