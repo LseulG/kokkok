@@ -6,6 +6,10 @@
     <title>KokKok</title>
   	<%@ include file="/include/link.jsp"%>  	
   	<%@ include file="/include/loader.jsp"%>
+  	
+  	<script type="text/javascript">
+	var contextPath='<%=request.getContextPath()%>';
+	</script>
   			
 </head>
   <body>
