@@ -7,6 +7,7 @@
   	<%@ include file="/include/link.jsp"%>
   	<%@ include file="/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
+  	
   </head>
   <body>
    <%@ include file="/include/nav.jsp"%>
@@ -133,6 +134,12 @@
         	<div align="right">
         		<span>인기순</span> | <span>최신순</span>
         	</div>
+        	<div align="right">
+        	<a href="${root}/schedule/write.jsp">
+        	<input type="button" value="일정만들기" id="scheduleWrite" class="btn btn-primary py-3 px-5">
+        	</a>
+        	</div>
+        	
         	<div class="row">
         		<c:forEach var="i" begin="1" end="6">
 					<div class="col-md-4 ftco-animate destination">
@@ -184,6 +191,7 @@
 <!-- 내용끝 -->
 
 <script src="${root}/resources/js/sl-schedule-list.js"></script>
+
 <%@ include file="/include/footer.jsp"%>   
 <%@ include file="/include/arrowup.jsp"%>
 </body>

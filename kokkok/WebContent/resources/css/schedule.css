@@ -62,6 +62,9 @@
 	font-size: 2rem;
 	font-family: inherit;
 }
+.sl-day hr{
+	margin-top: 0px;
+}
 .day-updown a {
 	font-size: 1rem;
       color: #f85959;
@@ -74,7 +77,7 @@
       border: 2px solid #fdd3d3; }
       
 .sl-loc {
-	margin-bottom: 0.5rem;
+	margin-bottom: 10px;
 	margin-top: 0;
 	line-height: 1.5;
 	color: #000000;
@@ -93,7 +96,7 @@
       border-radius: 50%;
       border: 2px solid #fdd3d3; }
 .sl-loc-cont {
-	padding: 0 0 1rem 1rem;	
+	padding: 0 0 10px 8px;	
 }
 .loc-updown a {
 	font-size: 0.5rem;
@@ -117,6 +120,21 @@
  .sl-oneDay .sl-day .btn {
 	margin-left: 18px;
 }
+
+ .sl-oneDay .sl-day .scheduleAdd{
+ 	margin-left: 18px;
+ 	color: #f85959;
+ 	display: inline-block;
+ 	height: 35px;
+ 	border-radius: 30px;
+ 	border: 1px solid #fdd3d3;
+ 	font-size: 15px;
+ 	background-color: transparent;
+ 
+ }
+ 	 .sl-oneDay .sl-day .scheduleAdd:hover {
+	 	border: 1px solid #f85959;
+	 }
       
       
 /* drag */
@@ -143,4 +161,7 @@
 		margin-right: 8px;
 		margin-top: 8px;
 		font-size: 15px;
+	}
+	.seul2 {
+		margin-left: 8px;
 	}
