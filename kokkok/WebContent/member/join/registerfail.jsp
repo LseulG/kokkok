@@ -19,7 +19,7 @@
     <div class="hero-wrap js-fullheight2" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+        <div class="row no-gutters slider-text js-fullheight2 align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></h1>
             

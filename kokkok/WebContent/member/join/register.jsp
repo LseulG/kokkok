@@ -58,7 +58,7 @@
 		<div class="container"
 			style="overflow: auto; max-width: 2000px; max-height: 1000px;">
 			<div
-				class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+				class="row no-gutters slider-text js-fullheight2 align-items-center justify-content-center"
 				data-scrollax-parent="true" style="height: 300px;">
 				<div class="col-md-9 ftco-animate text-center"
 					data-scrollax=" properties: { translateY: '70%' }">
