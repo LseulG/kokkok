@@ -42,6 +42,8 @@
 		   		<!-- 검색  끝 -->
 			   			   					<a href="${root}/tips/write.jsp" >글작성
 							</a>
+							<a href="${root}/tips/view.jsp" >글보기
+							</a>
 				<div class="table100">				
 					<table>
 						<thead>
