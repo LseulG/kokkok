@@ -78,7 +78,7 @@ public class MemberController extends HttpServlet {
 				////////////////////////// session �꽕�젙/////////////////////////////////////////
 				HttpSession session = request.getSession();
 				session.setAttribute("userInfo", memberDto);
-				response.sendRedirect(request.getHeader("referer"));
+				path = "/index.jsp";
 			}else {
 				path = "/member/join/register.jsp";
 			}
@@ -104,7 +104,7 @@ public class MemberController extends HttpServlet {
 		} else if ("mvmodify".equals(act)) {
 			path = "/member/myMenu/myInfo/modify.jsp";
 			PageMove.redirect(request, response, path);
-
+			
 		} else if ("mvdelete".equals(act)) {
 			path = "/member/myMenu/myInfo/delete.jsp";
 			PageMove.redirect(request, response, path);
