@@ -5,7 +5,10 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
-<%@ include file="/include/loader.jsp"%>	
+<%@ include file="/include/loader.jsp"%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>	
 	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
 	</script>
@@ -20,7 +23,7 @@
 
 <%@ include file="/include/nav.jsp"%>	
     
-    <div class="hero-wrap" style="background-image: url('${root}/resources/images/bg_3.jpg'); height:100px">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -104,7 +107,7 @@
 								<input type="text" id="mapY" class="form-control" value="37.568477" readonly="readonly" placeholder="Map Y">
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="button" value="지 도" class="btn btn-secondary py-3 px-5">
+								<input type="button" value="지 도" class="btn btn-secondary py-3 px-5" data-toggle="modal" data-target="#infoMapModal">
 							</div>							
 							<div class="form-group infoitems infoLocation">
 								<div class="range-slider">
@@ -155,6 +158,32 @@
 			</div>
 		</div>
     </section> <!-- .section -->
+    
+    <!-- The Modal -->
+	<div class="modal fade" id="infoMapModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">위치선택</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div id="daumMap" style="width:100%;height:350px;"></div>
+				<div id="clickLatlng"></div>
+			</div>
+			
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary py-3 px-5" data-dismiss="modal">닫 기</button>
+			</div>
+			      
+			</div>
+		</div>
+	</div>
 
 <%@ include file="/include/footer.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>

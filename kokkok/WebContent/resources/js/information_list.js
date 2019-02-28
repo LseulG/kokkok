@@ -97,6 +97,58 @@ $(document).ready(function() {
 		
 	});	
 	
+	$("#infoMapModal").on("shown.bs.modal", function(){
+		var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
+		mapOption = { 
+		    center: new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()), // 지도의 중심좌표
+//		    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		    level: 3 // 지도의 확대 레벨
+		};
+		
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+		var imageSrc = 'https://phinf.pstatic.net/memo/20190225_65/sseul878_1551068626698VMnPU_PNG/marker_red2.png?type=w740', // 마커이미지의 주소입니다    
+		imageSize = new daum.maps.Size(40, 42), // 마커이미지의 크기입니다
+		imageOption = {offset: new daum.maps.Point(13, 37)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+		//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		markerPosition = new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()); // 마커가 표시될 위치입니다
+
+		//지도를 클릭한 위치에 표출할 마커입니다
+		var marker = new daum.maps.Marker({ 
+		// 지도 중심좌표에 마커를 생성합니다 
+		position: map.getCenter() ,
+		image: markerImage // 마커이미지 설정 
+		}); 
+		//지도에 마커를 표시합니다
+		marker.setMap(map);
+
+		//지도에 클릭 이벤트를 등록합니다
+		//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+		daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+
+		// 클릭한 위도, 경도 정보를 가져옵니다 
+		var latlng = mouseEvent.latLng; 
+
+		// 마커 위치를 클릭한 위치로 옮깁니다
+		marker.setPosition(latlng);
+		
+		var lon = latlng.getLng();
+		var lat = latlng.getLat();				
+		
+		$("#mapX").val(parseFloat(lon).toFixed(6));
+		$("#mapY").val(parseFloat(lat).toFixed(6));		
+
+		var message = '위도: ' + parseFloat(lat).toFixed(6) + '  ';
+		message += '경도: ' + parseFloat(lon).toFixed(6) + '';
+
+		var resultDiv = document.getElementById('clickLatlng'); 
+		resultDiv.innerHTML = message;
+
+		});
+	});	
+	
 });
 
 function getInfoList(pageNum) {
@@ -130,9 +182,9 @@ function getAreaCdoeList() {
 	    type : "GET",
 	    success : function(xml){
 	    	var xmlData = $(xml).find("item");
-	        var listLength = xmlData.length;		        
+//	        var listLength = xmlData.length;		        
 	        var contentStr = "<option value='' class='areaCode'>지역선택</option>";
-	        if (listLength) {			        
+	        if (xmlData != null) {			        
 		    	$(xmlData).each(function(){
 		    		contentStr += "<option value='"+ $(this).find("code").text() +"' class='areaCode'>" + $(this).find("name").text() + "</option>";				        
 		    	});
@@ -158,8 +210,8 @@ function getSigunguCodeList() {
 	    	var contentStr = "<option value='' class='sigunguCode'>시군구선택</option>";	    	
 	    	if (areaCode != "") {
 		    	var xmlData = $(xml).find("item");
-		        var listLength = xmlData.length;
-		        if (listLength > 0) {
+//		        var listLength = xmlData.length;
+		        if (xmlData != null) {
 			    	$(xmlData).each(function(){
 			    		contentStr += "<option value='"+ $(this).find("code").text() +"' class='sigunguCode'>" + $(this).find("name").text() + "</option>";				        
 			    	});
@@ -174,23 +226,43 @@ function getSigunguCodeList() {
 
 function makeListToHtml(xml){
 	var xmlData = $(xml).find("item");
-    var listLength = xmlData.length;		        
+//    var listLength = xmlData.length;		        
     var contentStr = "";
-    if (listLength > 0) {
+    if (xmlData != null) {
     	$(xmlData).each(function(){
-    		contentStr += "<div class='col-md-4 ftco-animate informationItem fadeInUp ftco-animated'>";		    		
-    		contentStr += "<div class='destination'>";
-    		contentStr += "<a href='" + contextPath + "/information?act=mvview' class='img img-2 d-flex justify-content-center align-items-center' "
-    		contentStr += "style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
-    		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
-    		contentStr += "<span class='icon-search2'></span></div></a>";
-    		contentStr += "<div class='text p-3'>";
-    		contentStr += "<h3><a href='" + contextPath + "/information?act=mvview"
-    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
-    		contentStr += "&contentId=" + $(this).find("contentid").text();
-    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
-    		contentStr += "<p></p>";
-    		contentStr += "</div></div></div>";
+    		// 그럴리는 없지만 contentTypeId, contentId가 없으면 목록에 삽입할 수 없음
+    		if ($(this).find("contenttypeid").text() != null && $(this).find("contentid").text() != null) {    				
+    			// 지역 이름을 얻기 위함
+	    		var siLocation = $(this).find("addr1").text().split(' ');
+	    		
+	    		contentStr += "<div class='col-md-4 ftco-animate informationItem fadeInUp ftco-animated'>";		    		
+	    		contentStr += "<div class='destination'>";
+	    		contentStr += "<a href='" + contextPath + "/information?act=mvview";
+	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
+	    		contentStr += "&contentId=" + $(this).find("contentid").text();
+	    		contentStr += "' class='img img-2 d-flex justify-content-center align-items-center' "
+	    		// 이미지가 없는 경우 이미지 처리
+	    		if ($(this).find("firstimage").text() != null && $(this).find("firstimage").text() != "") {
+	    			contentStr += "style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
+	    		} else {
+	    			contentStr += "style='background-image: url(" + contextPath + "/resources/images/noimg.gif);'>";
+	    		}
+	    		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
+	    		contentStr += "<span class='icon-search2'></span></div></a>";
+	    		contentStr += "<div class='text p-3'>";
+	    		contentStr += "<span class='tag'>"+ siLocation[0] +"</span>";
+	    		contentStr += "<h3><a href='" + contextPath + "/information?act=mvview"
+	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
+	    		contentStr += "&contentId=" + $(this).find("contentid").text();
+	    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
+	    		contentStr += "<div align='right'>";
+	    		// 행사가 아닌 경우 date 정보가 없음
+	    		if ($(this).find("eventstartdate").text() != null && $(this).find("eventenddate").text() != null) {
+	    			contentStr += "<span class='listing'>"+ $(this).find("eventstartdate").text() +" ~ "+ $(this).find("eventenddate").text() +"</span>";
+	    		}
+	    		contentStr += "</div></div></div></div>";
+	    		
+    		}
     	});
     }
     // 일단 목록을 지우고 채움
@@ -220,6 +292,7 @@ function getInfoAreaList(pageNum) {
 				"&arrange=" + infoListArrange + 
 				"&numOfRows=" + infoListNumOfRows + 
 				"&pageNo=" + pageNum;
+//				"&eventStartDate=20190101&eventEndDate=20190302";
 //	console.log(url);
 	$.ajax({
 	    url : url,
@@ -483,7 +556,6 @@ $(document).on("click", ".naviNum", function() {
 	getInfoList(infoListCurrPageNum);
 	makeNavigator();	
 });
-
 
 
 

@@ -6,20 +6,24 @@
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
 <%@ include file="/include/loader.jsp"%>
-<script src="${root}/resources/js/information_view.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
+	<script type="text/javascript">
+		var contextPath='<%=request.getContextPath()%>';
+	</script>
+	<script src="${root}/resources/js/information_view.js"></script>
 	
 	<!-- masonry layout -->
 	<style>
 	#imageColumns{
-		column-width:200px;
-		column-gap: 15px;
+		column-width:150px;
+		column-gap: 5px;
 	}
 	.imageColumns figure{
-		display: inline-block;
+		display: block;
 		border:1px solid rgba(0,0,0,0.2);
 		margin:0;
-		margin-bottom: 15px;
-		padding:10px;
+		margin-bottom: 5px;
+		padding:5px;
 		box-shadow: 2px 2px 5px rgba(0,0,0,0.5);;
 	}
 	.imageColumns figure img{
@@ -49,10 +53,14 @@
 				<h3 id="detailViewTitle" class="heading mb-4">관광 정보</h3>				
 			</div>				
 			<div class="row d-md-flex">
-				<div class="col-md-6 ftco-animate img about-image imageColumns">
+				<div class="col-md-6 ftco-animate img about-image">
+					<div class="imageColumns">					
 					<figure>
-						<img src="${root}/resources/images/destination-1.jpg" id="primaryImage" class="">
+						<img src="" id="primaryImage" class="">
 					</figure>
+					</div>
+					<div id="daumMap" style="width:100%;height:350px;">
+					</div>
 				</div>
 				<div class="col-md-6 ftco-animate">
 					<div class="row">
