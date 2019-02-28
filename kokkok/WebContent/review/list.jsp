@@ -99,7 +99,7 @@
 					    					
 					    						<div class="d-flex">
 					    						
-					    						<h3><a href="#">제주도 호텔숙박 리뷰</a></h3>
+					    						<h3><a href="${root}/review/view.jsp">제주도 호텔숙박 리뷰</a></h3>
 		    									
 				    					 		</div>
 		    									<p>떠나요</p>

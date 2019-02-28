@@ -6,10 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<%@ include file="/include/loader.jsp"%>
+
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
+<%@ include file="/review/modifymodal.jsp"%>
 
 <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg');">
 	<div class="overlay"></div>
@@ -23,30 +26,11 @@
 	</div>
 </div>
 
-<section class="ftco-section ftco-degree-bg">
-	<div class="container">
-		<div class="row">
-		
-			<div class="col-lg-3 sidebar">
-				<div class="sidebar-box ftco-animate">
-					<div class="categories">
-						<h2>커뮤니티</h2>
-							<li><a href="blog.jsp">숙박 리뷰 <span>(12)</span></a></li>
-							<li><a href="#">맛집 리뷰 <span>(22)</span></a></li>
-							<li><a href="#">축제 리뷰 <span>(37)</span></a></li>
-							<li><a href="#">여행 꿀팁 <span>(42)</span></a></li>
-					</div>
-				</div>
-			</div>
 
-			<div class="col-lg-9">
-				<div class="row">
-					<div class="container-table1000">
-						<div class="wrap-table100">
-							<h2>글읽기</h2>
-							<br>
-							<br>
+					<div class="vwbody" style="padding:200px;">
+			
 							<h2 class="mb-3">글 제목</h2>
+					
 							<p>Lorem ipsum dolor sit amet, consectetur
 								adipisicing elit. Reiciendis, eius mollitia suscipit,
 								quisquam doloremque distinctio perferendis et doloribus
@@ -141,18 +125,18 @@
 									</a>
 								</div>
 							</div>
-<!--  -->	
+									<form action="#">
+							<div class="form-group">
+					  		<input type="button" value="수정하기" class="btn btn-primary py-3 px-5"
+					  		data-toggle="modal" data-target="#modifyWriteModal">
 						</div>
-					</div>
-				</div>
-			</div>
-<!--right end -->
+						</form>
 		</div>
-	</div>
-</section>
+
+
 
 <%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
+    
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>
