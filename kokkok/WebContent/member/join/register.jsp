@@ -53,7 +53,7 @@
 <body>
 	<%@ include file="/include/nav.jsp"%>
 
-	<div class="hero-wrap js-fullheight"
+	<div class="hero-wrap js-fullheight2"
 		style="padding-top: 100px; background-image: url('${root}/resources/images/bg_4.jpg');">
 		<div class="container"
 			style="overflow: auto; max-width: 2000px; max-height: 1000px;">
