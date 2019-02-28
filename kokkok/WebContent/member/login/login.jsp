@@ -1,77 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="com.kokkok.member.model.MemberDto"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String root = request.getContextPath();
+
+String id = (String)request.getAttribute("checkid");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="/include/link.jsp"%>
-<link rel="stylesheet" href="${root}/resources/css/login.css">
-<link rel="stylesheet" href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
+<script type="text/javascript">
+function idcheck(){
+	if(document.getElementById("checkid").value.trim().length == 0) {
+		alert("검색 아이디 입력!");
+		return;
+	} else {
+		document.idform.action = "<%=root%>/member";
+		document.idform.submit();
+	}
+}
+
+function iduse(id){
+	opener.document.getElementById("userid").value = id;
+	self.close();
+}
+</script>
 </head>
 <body>
-<%@ include file="/include/nav.jsp"%>
+<div class="box3" align="center">
+<form name="idform" method="get" action="" onsubmit="return false;">
+<input type="hidden" name="act" value="idcheck">
+<h3>아이디 중복 검사</h3>
+<hr>
+	<div class="div1" align="left">검색할 아이디를 입력하세요
+		<div class="div2">
+			<input type="text" name="checkid" id="checkid" onkeypress="javascript:if(event.keyCode == 13){ idcheck(); }">
+			<input type="button" value="검색" onclick="javascript:idcheck();">
+			<%
+				if(id == null){
+			%>
 
-
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">  
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></h1>
-            
-            <br><br> <br><br>
-		  	<div class="limiter">
-				<div class="container-login100" style="background-image: ;">
-					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-						<form class="login100-form validate-form">
-							<span class="login100-form-title p-b-49">
-								Login
-							</span>
-							<br><br>
-							<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
-								<span class="label-input100">ID</span>
-								<input class="input100" type="text" name="username" placeholder="Type your username">
-								<span class="focus-input100" data-symbol="&#xf206;"></span>
-							</div>
-							<br>
-							<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
-								<span class="label-input100">Password</span>
-								<input class="input100" type="password" name="pass" placeholder="Type your password">
-								<span class="focus-input100" data-symbol="&#xf190;"></span>
-							</div>
-							
-							<div class="text-right p-t-8 p-b-31">
-								<a href="#">
-									Forgot password?!!!!
-								</a>
-							</div>
-							
-							<br><br>
-							<div class="d-flex justify-content-center mb-3">
-						    	<div class="p-2">
-						    		<input type="submit" value="로그인" class="btn btn-primary py-3 px-4">
-						    		<input type="submit" value="회원가입" class="btn btn-primary py-3 px-4">
-						    	</div>			    
-							</div>				
-								
-							</form>
-						</div>
+			<%
+				}else{
+				int cnt = (int)request.getAttribute("idCnt");
+					if(cnt != 0){
+			%>
+						
+					<div class="div3">
+						 <%=id%>은 이미 존재하는 아이디 입니다.
 					</div>
-				</div>
-			</div>
-          </div>
-        </div>
-      </div>
 
-    <section class="ftco-section bg-light">
-    
+					<%	
+					}else{
 
-         
-    </section>
+					%>
+					<div>
+					<%=id%>는 사용할수 있습니다.<br>사용하시겠습니까?<br>
+					
+					<input type="button" value="사용" onclick="javascript:iduse('<%=id%>');">
+					</div>
+					<%
+					}
+				}
+			%>
+		</div>
 
+	</div>
 
-<%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
-<%@ include file="/include/arrowup.jsp"%>
+</form>
+</div>
 </body>
 </html>

@@ -5,6 +5,7 @@
 <head>
 <title>Insert title here</title>
 <%@ include file="/include/link.jsp"%>
+<%@ include file="/include/loader.jsp"%>    
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
@@ -25,17 +26,7 @@
 	<div class="container">
 	<div class="row">
 <!-- 왼쪽 검색창 -->	
-		<div class="col-lg-3 sidebar">
-        <div class="sidebar-wrap bg-light ftco-animate">
-        	<form action="#">
-  				<div class="categories">
-					<li><a href="#">내 정보관리(계정 수정/삭제) </a></li>
-					<li><a href="#">내가 찜한 목록 </a></li>
-					<li><a href="#">내가 작성한 일정</a></li>
-				</div>
-			</form>
-        </div>
-		</div>
+<%@ include file="/member/myMenu/sidebar.jsp"%>
 <!-- 왼쪽 검색창 END -->
 
 <!-- 오른쪽 목록 -->
@@ -93,7 +84,6 @@
 
 
 <%@ include file="/include/footer.jsp"%>
-<%@ include file="/include/loader.jsp"%>    
 <%@ include file="/include/arrowup.jsp"%>
 </body>
 </html>

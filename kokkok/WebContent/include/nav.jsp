@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kokkok.member.model.MemberDto"%>
 
     
 <style>
@@ -41,8 +41,10 @@
 		          <li><a href="${root}/member?act=mvmyinfo&bcode=0&pg=1&key=&word=" class="dropdown-item">내 정보 확인</a></li>
 		          <li><a href="${root}/member?act=mvwritelist&bcode=0&pg=1&key=&word=" class="dropdown-item">내가 작성한 일정</a></li>
 		          <li><a href="${root}/member?act=mvwishlist&bcode=0&pg=1&key=&word=" class="dropdown-item">내가 찜한 목록</a></li>
-	          	
-		          <li><a href="${root}/members?act=mvmemberslist&bcode=0&pg=1&key=&word=" class="dropdown-item">회원관리</a></li>              
+
+	<c:if test="${userInfo.adminCode != 0}">
+			          <li><a href="${root}/members?act=mvmemberslist&bcode=0&pg=1&key=&word=" class="dropdown-item">회원관리</a></li>              
+	</c:if>
 	       
 		        </ul>
           </li>&nbsp;&nbsp;
