@@ -79,7 +79,7 @@ $(document).ready(function() {
 				<div class="float_sidebar">
 					<div class="">
 						<div class="map_wrap">
-	    					 <div id="daumMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
+	    					 <div id="writeMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
 						</div>
 					</div>
 				</div>
@@ -135,69 +135,54 @@ $(document).ready(function() {
 
 <!-- 댓글 목록 ***li,ul 짝 안맞는거 찾기~ -->
             <div class="pt-5">
-            <h5 class="mb-4"><i class="icon-comment"></i> 댓글 6</h5>
-            <ul class="comment-list">
-            	<li class="comment">
-                  <div class="comment-body">
-                  	<div class="row">
-                  		<h3><i class="icon-person"></i> 작성자 11</h3>
-                  		<div class="meta">2018.08.18 2:21</div>
-                  		<a href="#" class="reply">답글</a>
-                  	</div>
-                  		<p>작성내용1 댓글이다 댓글</p>
-                  </div>
-                </li>
-
-                <li class="comment">
-                  <div class="comment-body">
-                  	<div class="row">
-                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-                  		<div class="meta">2018.08.18 2:21</div>
-                  		<a href="#" class="reply">답글</a>
-                  	</div>
-                  		<p>222222</p>
-                  </div>
-
-
-                  <ul class="slchild">
-                    <li class="comment">
-                      <div class="comment-body">
-	                  	<div class="row">
-	                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-	                  		<div class="meta">2018.08.18 2:21</div>
-	                  		<a href="#" class="reply">답글</a>
-	                  	</div>
-	                  		<p>222222</p>
-	                  </div>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="comment">
-                  <div class="comment-body">
-                  	<div class="row">
-                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-                  		<div class="meta">2018.08.18 2:21</div>
-                  		<a href="#" class="reply">답글</a>
-                  	</div>
-                  		<p>222222</p>
-                  </div>
-                </li>
-              </ul>
-              <!-- END comment-list -->
-              
-  <!-- 댓글달기 -->           
+              <!-- 댓글달기 -->           
               <div class="comment-form-wrap pt-5">
-                <form action="#" class="p-4 bg-light">
-                	<div class="form-group">
-                    	<p>댓글달기</p>
-                    	<textarea name="" id="message" cols="30" rows="5" class="form-control" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
-                 	 </div>
-                  	<div class="form-group">
-                   		 <input type="submit" value="등록" class="btn py-3 px-4 btn-primary">
+                <form action="#" class="bg-light commForm">
+                <h5 class="mb-4"><i class="icon-comment"></i> 댓글 3</h5>
+                	<div class="row commDiv">
+                    	<textarea name="" id="message" cols="30" rows="1" class="form-control commText" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+                   		 <div class="center commBtnDiv">
+	                   		 <input type="submit" value="등록" class="btn btn-primary commBtn">
+                   		 </div>
                  	 </div>
                 </form>
               </div>
+            
+           	 <div class="comment-form-wrap pt-5">
+            	<ul class="comment-list">
+	            	<li class="comment">
+	                  <div class="comment-body">
+	                  	<div class="row">
+	                  		<h3><i class="icon-person"></i> 작성자 11</h3>
+	                  		<div class="meta">2018.08.18 2:21</div>
+	                  	</div>
+	                  		<p>작성내용1 댓글이다 댓글</p>
+	                  </div>
+	                </li>
+	
+	                <li class="comment">
+	                  <div class="comment-body">
+	                  	<div class="row">
+	                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+	                  		<div class="meta">2018.08.18 2:21</div>
+	                  	</div>
+	                  		<p>222222</p>
+	                  </div>
+	                </li>
+	
+	                <li class="comment">
+	                  <div class="comment-body">
+	                  	<div class="row">
+	                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+	                  		<div class="meta">2018.08.18 2:21</div>
+	                  	</div>
+	                  		<p>3333</p>
+	                  </div>
+	                </li>
+	              </ul>
+	           </div>
+	              <!-- END comment-list -->
+              
             </div>
 
 		</div>
@@ -210,7 +195,7 @@ $(document).ready(function() {
 
 <%@ include file="/include/footer.jsp"%>
 <%@ include file="/include/arrowup.jsp"%>
-<script src="${root}/resources/js/sl-map-view.js"></script>
+<script src="${root}/resources/js/schedule_map.js"></script>
 
 </body>
 </html>
