@@ -41,24 +41,24 @@
 				<div class="col-lg-12 sidebar ftco-animate">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">관광 정보</h3>
-						<div class="form-group">
-							<div class="icon d-flex justify-content-center align-items-center">						
-								<div class="col-lg-2">
-									<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea" style="background-color: #f8f9fa; color: #dc3545">
-								</div>
-								<div class="col-lg-2">
-									<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
-								</div>
-								<div class="col-lg-2">
-									<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
-								</div>
-								<div class="col-lg-2">
-									<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
-								</div>
-								<div class="col-lg-2">
-									<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
-								</div>
+						<div class="form-group row">
+							<div class="col-lg-1"></div> 
+							<div class="col-lg-2">
+								<input type="button" value="지역별 관광정보" class="btn btn-primary" id="infoArea" style="background-color: #f8f9fa; color: #dc3545">
 							</div>
+							<div class="col-lg-2">
+								<input type="button" value="내주변 관광정보" class="btn btn-primary" id="infoLocation">
+							</div>
+							<div class="col-lg-2">
+								<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword">
+							</div>
+							<div class="col-lg-2">
+								<input type="button" value="행사 검색" class="btn btn-primary" id="infoFestival">
+							</div>
+							<div class="col-lg-2">
+								<input type="button" value="숙박 검색" class="btn btn-primary" id="infoStay">
+							</div>
+							<div class="col-lg-1"></div>
 						</div>
 					</div>
 				</div>
@@ -112,8 +112,8 @@
 							<div class="form-group infoitems infoLocation">
 								<div class="range-slider">
 									<span>
-										<input type="range" id="location_range" value="1000" min="1000" max="20000" step="1000"/>
-										거리 <input type="number" id="location_number" value="1000" min="1000" max="20000"/>m (1000~20000m)
+										<input type="range" id="location_range" value="1" min="1" max="20" step="1"/>
+										거리<input type="number" id="location_number" value="1" min="1" max="20" disabled="disabled"/>km (~20km)
 									</span>									
 								</div>
 							</div>

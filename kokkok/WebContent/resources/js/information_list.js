@@ -311,7 +311,7 @@ function getInfoLocationList(pageNum) {
 	var contentTypeId = $("#contentTypeIdList").val();
 	var mapX = $("#mapX").val();
 	var mapY = $("#mapY").val();
-	var radius = $("#location_number").val();
+	var radius = $("#location_number").val() * 1000;
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?" +
 				"ServiceKey=" + serviceKey +
 				"&contentTypeId=" + contentTypeId +
@@ -374,7 +374,13 @@ function getInfoFestivalList(pageNum) {
 		sigunguCode = $("#sigunguCodeList").val();
 	}
 	var eventStartDate = $("#eventStartDate").val();
-	var eventEndDate = $("#eventEndDate").val();
+	var eventEndDate = $("#eventEndDate").val();	
+	
+	if (eventStartDate > eventEndDate) {
+		alert("시작날짜가 끝날짜보다 큽니다.\n" + "다시 입력해주세요.");
+		return;
+	}
+	
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?" +
 					"ServiceKey=" + serviceKey +
 					"&eventStartDate=" + eventStartDate +
