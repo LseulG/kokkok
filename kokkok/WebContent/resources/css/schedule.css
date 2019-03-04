@@ -1,5 +1,30 @@
 @charset "UTF-8";
 
+/* ----- view --------------------*/
+.commForm {
+	padding: 20px 15px;
+}
+
+.form-control {
+	font-size: 15px;
+}
+.commDiv {
+	margin: 0px;
+}
+
+.commText {
+	width: 90%;
+}
+.commBtnDiv {
+	width: 10%;
+}
+.commBtn {
+}
+
+/* -------------------------------*/
+
+
+
 .ml-auto,readystate http status
 .mx-auto {
   margin-left: auto !important; 

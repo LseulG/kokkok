@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+    <link rel="stylesheet" href="${root}/resources/css/schedule_write_modal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+ <script type="text/javascript">
 
-    <link rel="stylesheet" href="${root}/resources/css/map-search.css">
+function searchClick(){
+	searchMap();
+}
+
+$("body").on("hidden.bs.modal", ".modal", function () {
+    document.getElementById("localTitle").value = null;
+    //document.getElementById("summernote").value = null;
+    selectedMarker = null;
+    document.getElementById("keyword").value = "인천 맛집";
+ });
+ 
+</script>
 <style>
 .modal-content{
     padding-right: 15px;
@@ -29,19 +42,19 @@
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				            <div>
-				                <form onsubmit="searchPlaces(); return false;">
-				                    키워드 : <input type="text" value="용산 맛집" id="keyword" size="15"> 
-				                    <button type="submit">검색하기</button> 
+				                <form onclick="searchPlaces(); return false;">
+				                    키워드 : <input type="text" value="인천 맛집" id="keyword" size="15"> 
+				                    <button type="button" id="searchBtn" onclick="javascript:searchClick();">검색하기</button> 
 				                </form>
 				            </div>
 				        </div>
 				        <hr>
-				        <ul id="placesList"></ul>
+				        <ul id="splacesList"></ul>
 				        <div id="pagination"></div>
 				    </div>
 				</div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
-				<script src="${root}/resources/js/map-search.js"></script>
+				<script src="${root}/resources/js/schedule_write_modal.js"></script>
 				
 				 <div class="form-group">
 					<input type="text" id="localTitle" class="form-control" placeholder="리뷰장소" readonly="readonly">
@@ -66,10 +79,11 @@
 
 <script>
 $('#summernote').summernote({
-  placeholder: '내용을 적어주세요.',
-  dialogsInBody: true,
-  tabsize: 2,
-  height: 200,
-  lang: 'ko-KR'   
+	  placeholder: '내용을 적어주세요.',
+	  dialogsInBody: true,
+	  tabsize: 2,
+	  height: 200,
+	  lang: 'ko-KR'   
 });
+
 </script>
