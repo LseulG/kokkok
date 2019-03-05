@@ -25,9 +25,9 @@
 		</div>
 	</div>
 </div>
-<div class="container">
+<div class="container" style=" margin-bottom: 50px;">
 <div class="row">
-					<div style="padding-left:200px; padding-top: 100px; padding-right: 200px;">
+					<div style="padding-left:200px; padding-top: 50px; padding-right: 200px;">
 			
 							<span>
 								<i class="flaticon-fork" style="font-size: 25px; font-weight: bold;">맛집 리뷰</i>
@@ -49,35 +49,71 @@
 							 먹을 수 있다.</p>
 							
 							<hr>
-							<span><i class="icon-thumbs-o-up"></i> 추천 : 18 &nbsp;|&nbsp; <i class="icon-commenting-o"></i> 댓글 : 2
-							<hr>
+							
 
 							<!-- END comment-list -->
 
-							<div class="comment-form-wrap pt-5">
-								<h3 class="mb-5">댓글 작성</h3>
-								<form action="#" class="p-5 bg-light">
-									<div class="form-group">
-										<label for="message">댓글 입력</label>
-										<textarea name="" id="message" cols="10" rows="5" class="form-control-b"></textarea>
-									</div>
-									<br>
-									<div class="form-group">
-										<input type="submit" value="댓글 등록" class="btn btn-primary">
-									</div>
-								</form>
-							</div>
-											
-							<br>
-							<br>
-							<div class="col-md-12 nav-link-wrap mb-5">
-								<div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-									<a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill" href="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">
-									글목록 돌아가기
-									</a> 
-								
-								</div>
-							</div>
+							 <div class="pt-5a">
+					              <!-- 댓글달기 -->           
+						              <div class="comment-form-wrap pt-5">
+						                <form action="#" class="bg-light commForm">
+						                <h5 class="mb-4"><i class="icon-comment"></i> 댓글 3</h5>
+						                	<div class="row commDiv">
+						                    	<textarea name="" id="message" cols="30" rows="1" class="form-control commText" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+						                   		 <div class="center commBtnDiv">
+							                   		 <input type="submit" value="등록" class="btn btn-primary commBtn">
+						                   		 </div>
+						                 	 </div>
+						                </form>
+						              </div>
+						            
+						           	 <div class="comment-form-wrap pt-5">
+						            	<ul class="comment-list">
+							            	<li class="comment">
+							                  <div class="comment-body">
+							                  	<div class="row">
+							                  		<h3><i class="icon-person"></i> 작성자 11</h3>
+							                  		<div class="meta">2018.08.18 2:21</div>
+							                  	</div>
+							                  		<p>작성내용1 댓글이다 댓글</p>
+							                  </div>
+							                </li>
+							
+							                <li class="comment">
+							                  <div class="comment-body">
+							                  	<div class="row">
+							                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+							                  		<div class="meta">2018.08.18 2:21</div>
+							                  	</div>
+							                  		<p>222222</p>
+							                  </div>
+							                </li>
+							
+							                <li class="comment">
+							                  <div class="comment-body">
+							                  	<div class="row">
+							                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+							                  		<div class="meta">2018.08.18 2:21</div>
+							                  	</div>
+							                  		<p>3333</p>
+							                  </div>
+							                </li>
+							              </ul>
+							           </div>
+						              <!-- END comment-list -->
+					              
+					            </div>
+					            
+				
+				<div class="form-group" style="margin-top: 320px;">
+	        	<a href="${root}/review/list.jsp">
+					<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
+				</a>
+					<input type="button" value="수정" class="btn btn-primary py-2 px-4" style="float: right;" data-toggle="modal" data-target="#reviewModifyModal">
+	        		<input type="button" value="삭제" class="btn btn-primary py-2 px-4" style="float: right; margin-right: 8px;">
+		    	</div>
+		    	
+		
 					
 		</div>
 </div>

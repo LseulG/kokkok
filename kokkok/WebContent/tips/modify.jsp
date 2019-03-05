@@ -27,34 +27,34 @@
 	</div>
 </div>
 
-<section class="ftco-section ftco-degree-bg">
-	<div class="container">
-		<div class="row">
-			<div>
-				<h3>글수정</h3>            
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="이전제목이 여기적어집니다. 수정.">
+<section class="ftco-section ftco-degree-bg" style="padding-top: 20px;">
+		<div class="container" style="margin-left: 160px;">
+			<div class="row">
+				<div>
+					<h3 style="text-align: center;">글수정</h3>            
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="이전제목이 여기적어집니다. 수정.">
+					</div>
+			       	<div id="summernote"></div>
+			        <div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
+						<input type="button" value="등록" class="btn btn-primary py-3 px-5">
+					</div>
+					<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
+						<input type="button" value="취소" class="btn btn-primary py-3 px-5">
+					</div>
+					
 				</div>
-		       	<div id="summernote"></div>
-		        <div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-					<input type="button" value="등록" class="btn btn-primary py-3 px-5">
-				</div>
-				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
-					<input type="button" value="취소" class="btn btn-primary py-3 px-5">
-				</div>
-				
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 	<!-- .section -->
 	
 <script>
 $('#summernote').summernote({
   placeholder: '이전내용이 여기적어집니다. 수정.',
   tabsize: 2,
-  height: 400,
-  width: 1140
+  height: 370,
+  width: 950
 });
 </script>
 

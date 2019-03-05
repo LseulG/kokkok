@@ -18,7 +18,7 @@
     padding-top: 15px;
 }
 </style>
-<div class="modal fade" id="modifyWriteModal" role="dialog" data-backdrop="static">
+<div class="modal fade" id="reviewModifyModal" role="dialog" data-backdrop="static">
 	<div class="modal-dialog" style="max-width: 1000px; width: 800px;">
 	
 
