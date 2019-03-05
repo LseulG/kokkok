@@ -9,7 +9,6 @@ import com.kokkok.info.dao.InfoDao;
 @Component
 public class InfoServiceImpl implements InfoService {
 
-	
 	@Autowired
 	private InfoDao infodao;
 
