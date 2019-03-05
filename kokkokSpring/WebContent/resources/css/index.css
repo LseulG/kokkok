@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+    .block-17 form .fields .one-two {
+      width: 25%;
+      background: #fff; }
+      .block-17 form .fields .one-two:last-child {
+        border-right: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.1); }
+      .block-17 form .fields .one-two label {
+        font-weight: 700;
+        color: #000000; }

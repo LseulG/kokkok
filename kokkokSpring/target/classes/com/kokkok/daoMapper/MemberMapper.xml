@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.memberMapper">
+	<resultMap type="com.kokkok.member.dto.MemberDto" id="memberDto">
+		<result property="userid" column="id"/>
+		<result property="username" column="name"/>
+		<result property="useremail" column="email"/>
+		<result property="userpass" column="pass"/>
+		<result property="joinDate" column="joindate"/>
+		<result property="adminCode" column="admincode"/>
+		<result property="loginid" column="id"/>
+		<result property="loginpass" column="pass"/>
+	</resultMap> 
+	
+	<insert id="memberInsert" parameterType="com.kokkok.member.dto.MemberDto">
+			insert into member(id,name,email,pass,joindate,admincode)
+			values(#{userid}, #{username}, #{useremail}, #{userpass}, sysdate, 0)                                       
+    </insert>
+    
+    <select id="login" parameterType="java.util.Map">
+    	select id, name, email,joindate,admincode from member
+		where id = #{loginid} and pass = #{loginpass}
+    </select>
+
+</mapper>
