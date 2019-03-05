@@ -58,6 +58,16 @@
 		
 	};
 	fullHeight2();
+	
+	var fullHeight3 = function() {
+
+		$('.js-fullheight3').css('height', $(window).height()/4);
+		$(window).resize(function(){
+			$('.js-fullheight3').css('height', $(window).height()/4);
+		});
+
+	};
+	fullHeight3();
 
 	// loader
 	var loader = function() {
