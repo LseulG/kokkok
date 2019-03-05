@@ -33,11 +33,11 @@
 	</div>
 
 
-	<section class="ftco-section ftco-degree-bg">
-		<div class="container">
+	<section class="ftco-section ftco-degree-bg" style="padding-top: 20px;">
+		<div class="container" style="margin-left: 160px;">
 			<div class="row">
 				<div>
-					<h3>글작성</h3>            
+					<h3 style="text-align: center;">글작성</h3>            
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="제목">
 					</div>
@@ -59,8 +59,8 @@
 $('#summernote').summernote({
   placeholder: '내용을 적어주세요.',
   tabsize: 2,
-  height: 400,
-  width: 1140
+  height: 370,
+  width: 950
 });
 </script>
 

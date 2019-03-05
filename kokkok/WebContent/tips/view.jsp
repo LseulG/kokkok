@@ -27,10 +27,17 @@
 	</div>
 </div>
 
-					<!-- <div class="vwbody" style="padding-left: 200px; padding-right: 200px; padding-top: 25px;"> -->
-			<div class="vwbody" style="padding:200px;">
-							<h2 class="mb-3">글 제목</h2>
-					
+<div class="container" style=" margin-bottom: 50px;">
+<div class="row">					
+			<div style="padding-left:200px; padding-top: 50px; padding-right: 200px;">
+							<span>
+								<i style="font-size: 25px; font-weight: bold;">제목 : 정동진 1박2일 당일 추천여행지 코스 정리</i>
+								<i class="icon-person" style="font-size: 12px; float: right; padding-top: 10px;">작성자 id : kokkok<br>
+									<i class="icon-pencil" style="font-size: 12px;">작성일 : 18.08.18</i>
+								</i>
+							</span>
+							<br>
+							<br>
 							<p>곧 뜨거운 여름이 찾아옵니다. 드디어 휴가를 떠나겠다고 마음먹은 당신! 
 							직장에도 이미 알렸겠다, 이번엔 해외로 한 번 나가려하는데... 
 							준비는 어떻게 해야 할까요?
@@ -125,12 +132,20 @@
 						              <!-- END comment-list -->
 					              
 					            </div>
-												
-							<a href="${root}/tips/modify.jsp" >수정하기
-							</a>
+											
+						<div class="form-group" style="margin-top: 320px;">
+	        	<a href="${root}/tips/list.jsp">
+					<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
+				</a>
+				<a href="${root}/tips/modify.jsp">
+					<input type="button" value="수정" class="btn btn-primary py-2 px-4" style="float: right;" >
+				</a>	
+	        		<input type="button" value="삭제" class="btn btn-primary py-2 px-4" style="float: right; margin-right: 8px;">
+		    	</div>
 			
 </div>
-
+</div>
+</div>
 
 <%@ include file="/include/footer.jsp"%>
     

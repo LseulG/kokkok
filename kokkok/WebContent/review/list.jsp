@@ -13,13 +13,15 @@
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 <link rel="stylesheet" href="${root}/resources/css/login.css">
 
+
+<!--사이드바스크롤  -->
 <script type="text/javascript">
- var stmnLEFT = 50; // 오른쪽 여백 
+ var stmnLEFT = 1; // 오른쪽 여백 
  var stmnGAP1 = 1; // 위쪽 여백 
  var stmnGAP2 = 1; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 10; // 스크롤 시작위치 
- var stmnActivateSpeed = 30; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 20; //스크롤 속도 (클수록 느림)
+ var stmnActivateSpeed = 20; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  
  function RefreshStaticMenu() { 
@@ -39,7 +41,9 @@
   document.getElementById('STATICMENU').style.top = document.body.scrollTop + stmnBASE + 'px'; 
   RefreshStaticMenu();
   }
-
+ <!--사이드바스크롤  --> 
+ 
+/* 더보기 */
 $(window).on('load', function () {
     load('#js-load', '4');
     $("#js-btn-wrap .button").on("click", function () {
@@ -59,7 +63,7 @@ function load(id, cnt, btn) {
     }
     $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 }
-	
+/* 더보기 */	
 
 	
 </script>
@@ -116,13 +120,42 @@ function load(id, cnt, btn) {
 
 
 <!-- 내용시작 -->   
-	<section class="ftco-section ftco-degree-bg">
+	<section class="ftco-section ftco-degree-bg" style="padding-top: 50px;">
 
 	<div class="container">
 		
-<!-- 위쪽 검색창 -->
-			<div class="row">
-				<div class="col-lg-12 sidebar ftco-animate">
+<!-- 상단시작 -->
+			<div class="row" style="height: 168px;">
+				
+				<div class="col-lg-3 sidebar ftco-animate" id="STATICMENU">
+					<div class="sidebar-wrap bg-light ftco-animate">
+					<h3 class="heading mb-4 infoItemsTitle">리뷰 검색</h3>
+						<form action="#">
+						<div class="fields">							
+							<div class="form-group infoitems infoKeyword">
+								<input type="text" class="form-control" placeholder="검색어">
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="button" value="검 색" class="btn btn-primary py-2 px-5">
+						</div>
+						
+						<h3 class="heading mb-4 infoItemsTitle">리뷰 등록</h3>
+					  	<div class="form-group">
+					  		
+							<input type="button" value="리뷰등록하기" class="btn btn-primary py-2 px-5" data-toggle="modal" data-target="#reviewWriteModal">
+							
+						</div>
+						</form>
+					</div>		
+				</div>
+			
+<!--상단3사이드끝  -->
+			
+			
+			
+			
+				<div class="col-lg-9 sidebar ftco-animate">
 					<div class="sidebar-wrap bg-light ftco-animate">
 						<h3 class="heading mb-4">여행 리뷰</h3>
 						<div class="form-group">
@@ -143,39 +176,15 @@ function load(id, cnt, btn) {
 						</div>
 					</div>
 				</div>
-			</div>
-<!-- 위쪽 검색창 END-->				
-<!-- 왼쪽 검색창 -->
-			<div class="row">	
-				<div class="col-lg-3 sidebar ftco-animate" id="STATICMENU">
-					<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4 infoItemsTitle">리뷰 검색</h3>
-						<form action="#">
-						<div class="fields">							
-							<div class="form-group infoitems infoKeyword">
-								<input type="text" class="form-control" placeholder="검색어">
-							</div>
-						</div>
-						<div class="form-group">
-							<input type="button" value="검 색" class="btn btn-primary py-3 px-5">
-						</div>
-						<br>
-						<br>
-						<h3 class="heading mb-4 infoItemsTitle">리뷰 등록</h3>
-					  	<div class="form-group">
-					  		<a href="#writeModal" style="text-decoration : none">
-							<input type="button" value="리뷰등록하기" class="btn btn-primary py-3 px-5">
-							</a>
-						</div>
-						</form>
-					</div>		
-				</div>
-
-<!-- 왼쪽 검색창 END-->		
-		
-<!-- 오른쪽 목록 -->		
+<!-- 상단9끝  -->
 			
-			<div class="col-lg-9 ftco-animate main" id="js-load">
+			</div>
+<!-- 상단로우끝 -->	
+		
+<!-- 하단우측시작 -->
+		<div class="row">	
+	
+			<div class="col-lg-9 ftco-animate main" id="js-load" style="margin-left: 292px;">
 				<div class="lists">
 					
 					<c:forEach var="i" begin="1" end="6">	
@@ -251,13 +260,22 @@ function load(id, cnt, btn) {
 						</div>
 					</div>
 				 </c:forEach>
-<!--더보기-->  <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>	
+				 
+				 <!--더보기-->
+				
+										
+							
+  <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button"><input type="button" value="더보기" class="btn btn-primary py-2 px-4"></a> </div>
+  
+  <!--더보기  -->	
 		 </div>
 	 </div> 
-<!-- 오른쪽 목록 END-->	
+<!-- 하단 목록 END-->	
  	
 
 </div>
+<!-- 하단로우끝 -->
+
 		</div>
 </section>
 <!-- 내용시작 END--> 

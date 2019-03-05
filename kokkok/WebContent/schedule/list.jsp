@@ -7,18 +7,6 @@
   	<%@ include file="/include/link.jsp"%>
   	<%@ include file="/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
- 
- <script type="text/javascript">
- $(document).ready(function() {
-<%--	$("#writeScheduleBtn").click(function(){
-		if(memberDto != null){
-			wirte.jsp로 이동
-		} else {
-			로그인창
-		}
- 	});
- }); --%> 
- </script>
 </head>
 <body>
    <%@ include file="/include/nav.jsp"%>
@@ -175,13 +163,19 @@
 			    			<div class="d-flex">
 					    		<h3><a href="#">여행 제목이 들어갑니다!!! </a></h3>
 			    			</div>
-			    			<p>#전라남도 #여수 #순천 #광양 #저기 <br>#나혼자</p>
+			    			<p>#전라남도 #여수 #순천 #광양 #저기 #나혼자</p>
 			    			<br>
-			    			<p class="days"><span>18.08.18 - 18.09.18 (30일)</span></p>
+			    			<p class="bottom-area d-flex">
+			    				<span class="days">18.08.18 - 18.09.18 (30일)</span>
+			    				<span class="ml-auto">후기</span>
+			    			</p>
 			    			<hr>
 			    			<p class="bottom-area d-flex">
-			    				<span><i class="icon-person"></i> 작성자id</span> <!-- icon변경 -->
-			    				<span class="ml-auto">후기</span>
+			    				<span><i class="icon-person"></i> 작성자id</span>
+			    				<span class="list-cnt">
+			    					<i class="icon-thumbs-o-up"></i> 18 &nbsp;
+			    					<i class="icon-eye"></i> 18
+			    				</span>
 			    			</p>
 			    		</div>
 					</div>

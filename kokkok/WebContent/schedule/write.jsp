@@ -8,18 +8,17 @@
   	<%@ include file="/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
- 	<script src="${root}/resources/js/schedule_write.js"></script>
+ 	
 <script type="text/javascript">
-$(document).ready(function() {
-	var tripStart = null;
-	var tripEnd = null;
-	var tripType = null;
-	var tripPersons = null;
-	var tripThema = null;
-	var tripDays = 0;
-	var preTripDays = 0;
-	var setCnt = 0;
-	
+var setCnt = 0;
+var tripStart = null;
+var tripEnd = null;
+var tripType = null;
+var tripPersons = null;
+var tripThema = null;
+var tripDays = 0;
+var preTripDays = 0;
+$(document).ready(function() {	
 	$("#setSchedule").click(function(){
 		setScheduleInfo();
 	});
@@ -62,7 +61,7 @@ function setScheduleInfo(){
 		var setStr = null;
 		if(setCnt != 0){
 			setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)의\n" +
-					tripType +"을(를) 수정하시겠습니까?\n" 
+					tripType +"으로 수정하시겠습니까?\n" 
 					+ "(여행일이 수정될 경우 작성된 내용이 지워질 수 있습니다.)";
 		} else {
 			setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)의\n" +
@@ -71,14 +70,26 @@ function setScheduleInfo(){
 		
 		var result = confirm(setStr);
 		if(result){
+			
+			if(preTripDays == 0){	// 처음 세팅
+				setSelect(tripDays);
+				setDays(tripDays);
+			} else if(preTripDays < tripDays){		// 여행일수 늘어나면  3 > 5
+				addSelect(preTripDays,tripDays);
+				addDays(preTripDays,tripDays);
+			} else if(preTripDays > tripDays){		// 여행일수 줄어들면 5 > 3
+				removeSelect(preTripDays,tripDays);
+				removeDays(preTripDays,tripDays);
+			} else {	// 여행일수 같으면 3 > 3
+				//변화 x
+			}
+			
 			setCnt = 1;
 			preTripDays = tripDays;
-			
-			var setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)" + 
-					tripType + "  |  " + "  |  " + tripPersons + "  |  " + tripThema ;
+						
+			var setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)"  
+					+"  ,  "+ tripType  +"  ,  "+ tripPersons +"  ,  "+ tripThema ;
 			$("#scheduleSetting").text(setStr);
-			
-			addDays(tripDays);
 		} 
 	}
 }
@@ -95,16 +106,16 @@ function dateDiff(start, end){
 
 function selectChange(){
 	alert("oh");
-	removeMarker2();
+	mapRemove();
+	mapView(positions_2);
 }
 </script>
 <style type="text/css">
 	#uploadFile{display: none;}
 	#daySelectWrap {
-	position:absolute;top:330px;left:30px;width:110px;height:45px;
-	margin:10px 0 30px 10px;padding:2px;overflow-y:auto;
-	background:#f85959;
-	z-index: 1;font-size:12px;border-radius: 5px;
+		position:absolute;top:350px;left:30px;width:110px;height:45px;
+		margin:10px 0 30px 10px;padding:2px;overflow-y:auto;
+		background:#f85959; z-index: 1;font-size:12px;border-radius: 5px;
 	}
 	#daySelectWrap #mapDay {
 		width:106px; height:41px; padding-left: 10px; border-radius: 5px;
@@ -232,7 +243,7 @@ function selectChange(){
 	                 	 </div>
 	                 	 <hr>
 						<p class="days">
-							<span id="scheduleSetting"></span>
+							<span id="scheduleSetting">&nbsp;</span>
 						</p>
 	                </form>
 	              </div>
@@ -245,10 +256,7 @@ function selectChange(){
     					<div id="writeMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
 						<div id="daySelectWrap" class="bg_white">
 					        <div class="select-wrap">
-					            <select name="" id="mapDay" class="a" onchange="selectChange()">
-					            	<option value="day_1">1일차</option>
-					            	<option value="day_2">2일차</option>
-					            	<option value="day_3">3일차</option>
+					            <select name="mapDay" id="mapDay" class="a" onchange="selectChange()">
 					            </select>
 							</div>
 					    </div>
@@ -265,15 +273,12 @@ function selectChange(){
 <!-- 오른쪽 END -->
 	</div>
 	
-		<div align="center">
+		<div class="writeEnd" align="center">		
 					<input type="button" value="+일정추가" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#scheduleWriteModal">
 					
-					<a href="${root}/schedule/list.jsp">
-						<input type="button" value="등록하기" class="btn btn-primary py-3 px-5">
+					<a href="${root}/schedule/view.jsp">
+						<input type="button" value="등록하기" class="btn btn-primary py-3 px-5" onclick="submitItem();">
 					</a>
-				
-	        		<input type="button" id="addItem" value="일정추가" onclick="createItem();" />
-	       		 	<input type="button" id="submitItem" value="제출" onclick="submitItem();" />
 	  	</div>
 	
 	</div>
@@ -283,10 +288,8 @@ function selectChange(){
 <%@ include file="/include/footer.jsp"%> 
 <%@ include file="/include/arrowup.jsp"%>
 <script src="${root}/resources/js/schedule_map.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
+<script src="${root}/resources/js/schedule_write.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
-
-
 </body>
 </html>
