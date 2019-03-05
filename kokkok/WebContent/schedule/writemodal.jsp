@@ -4,18 +4,21 @@
     <link rel="stylesheet" href="${root}/resources/css/schedule_write_modal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
  <script type="text/javascript">
-
 function searchClick(){
 	searchMap();
 }
 
 $("body").on("hidden.bs.modal", ".modal", function () {
     document.getElementById("localTitle").value = null;
-    //document.getElementById("summernote").value = null;
+	$("#summernote").summernote("reset");
     selectedMarker = null;
     document.getElementById("keyword").value = "인천 맛집";
  });
  
+var save = function() {
+	var markup = $("#summernote").summernote("code"); // 내용 가져오는거
+	alert(markup);
+}
 </script>
 <style>
 .modal-content{
@@ -63,7 +66,7 @@ $("body").on("hidden.bs.modal", ".modal", function () {
 				<div id="summernote"></div>
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3">
+					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
@@ -85,5 +88,7 @@ $('#summernote').summernote({
 	  height: 200,
 	  lang: 'ko-KR'   
 });
+
+
 
 </script>
