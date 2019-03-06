@@ -60,6 +60,8 @@ function modalWrite(){
 	createItem(modalDay);
 	$("#itemTitle"+modalDay+"_"+tmp).html("<i class='flaticon-"+icon+"'></i> "+title);
 	$("#itemCont"+modalDay+"_"+tmp).html(cont);	
+	//$("#itemCont"+modalDay+"_"+tmp).css('widht','100%');	
+	$("div > p > img").css('widht','100%');
 	tmp++;
 }
 

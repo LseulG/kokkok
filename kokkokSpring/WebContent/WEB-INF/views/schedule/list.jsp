@@ -31,7 +31,7 @@
 		<div class="col-lg-3 sidebar">
         <div class="sidebar-wrap bg-light ftco-animate">
         	<div class="form-group">
-	        	<a href="${root}/schedule/write.jsp">
+	        	<a href="${root}/schedule/write.kok">
 					<input type="button" value="일정 만들기" id="writeScheduleBtn" class="btn btn-primary py-3 px-5">
 				</a>
 		    </div>
@@ -155,7 +155,7 @@
         	<div class="row">
         		<c:forEach var="i" begin="1" end="6">
 					<div class="col-md-4 ftco-animate destination">
-			    		<a href="${root}/schedule/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
+			    		<a href="${root}/schedule/view.kok" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
 				    		<div class="icon d-flex justify-content-center align-items-center">
 		    					<span class="icon-search2"></span>
 		    				</div>
