@@ -137,8 +137,7 @@ function searchMap(){
 	           	};
 	            
 	            daum.maps.event.addListener(smarker, 'click', function() {
-	            	alert('o2'); 
-	            	var result = confirm('해당 지점을 선택?');
+	            	var result = confirm('해당 지점을 선택하시겠습니까?');
 	            	if (result) {
 	            		if(selectedMarker != null){
 	            			if (searchCnt != 0){

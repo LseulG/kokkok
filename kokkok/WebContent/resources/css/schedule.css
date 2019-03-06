@@ -170,7 +170,9 @@
  	 .sl-oneDay .sl-day .scheduleAdd:hover {
 	 	border: 1px solid #f85959;
 	 }
-      
+.seul1,.seul2{
+	cursor:pointer;
+}      
       
 /* drag */
  	.itemBoxHighlight {

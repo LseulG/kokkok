@@ -72,13 +72,10 @@ function setScheduleInfo(){
 		if(result){
 			
 			if(preTripDays == 0){	// 처음 세팅
-				setSelect(tripDays);
 				setDays(tripDays);
 			} else if(preTripDays < tripDays){		// 여행일수 늘어나면  3 > 5
-				addSelect(preTripDays,tripDays);
 				addDays(preTripDays,tripDays);
 			} else if(preTripDays > tripDays){		// 여행일수 줄어들면 5 > 3
-				removeSelect(preTripDays,tripDays);
 				removeDays(preTripDays,tripDays);
 			} else {	// 여행일수 같으면 3 > 3
 				//변화 x
