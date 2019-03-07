@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 <link rel="stylesheet" href="${root}/resources/css/login.css">
-
+<script src="${root}/resources/js/community_list.js"></script>
 
 <!--사이드바스크롤  -->
 <script type="text/javascript">
@@ -20,8 +20,8 @@
  var stmnGAP1 = 1; // 위쪽 여백 
  var stmnGAP2 = 1; // 스크롤시 브라우저 위쪽과 떨어지는 거리 
  var stmnBASE = 10; // 스크롤 시작위치 
- var stmnActivateSpeed = 20; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
- var stmnScrollSpeed = 10; //스크롤 속도 (클수록 느림)
+ var stmnActivateSpeed = 15; //스크롤을 인식하는 딜레이 (숫자가 클수록 느리게 인식)
+ var stmnScrollSpeed = 5; //스크롤 속도 (클수록 느림)
  var stmnTimer; 
  
  function RefreshStaticMenu() { 
@@ -129,23 +129,43 @@ function load(id, cnt, btn) {
 				
 				<div class="col-lg-3 sidebar ftco-animate" id="STATICMENU">
 					<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4 infoItemsTitle">리뷰 검색</h3>
+					<h3 class="heading mb-4 infoItemsTitle">통합 검색</h3>
 						<form action="#">
-						<div class="fields">							
-							<div class="form-group infoitems infoKeyword">
-								<input type="text" class="form-control" placeholder="검색어">
-							</div>
-						</div>
-						<div class="form-group">
-							<input type="button" value="검 색" class="btn btn-primary py-2 px-5">
-						</div>
-						
-						<h3 class="heading mb-4 infoItemsTitle">리뷰 등록</h3>
-					  	<div class="form-group">
-					  		
-							<input type="button" value="리뷰등록하기" class="btn btn-primary py-2 px-5" data-toggle="modal" data-target="#reviewWriteModal">
+							<div class="fields">	
+								<div class="form-group infoitems infoKeyword">
+									<input type="text" id="keyword" class="form-control" placeholder="통합 검색어 입력">
+								</div>
+								
+								<div class="form-group infoitems infoArea">
+									<input type="text" id="Area" class="form-control" placeholder="장소 검색어 입력">
+								</div>
+								
+								<div class="form-group infoitems infoStay">
+									<input type="text" id="Stay" class="form-control" placeholder="숙박 검색어 입력">
+								</div>
+								
+								<div class="form-group infoitems infoFood">
+									<input type="text" id="Food" class="form-control" placeholder="맛집 검색어 입력">
+								</div>
+								
+								<div class="form-group infoitems infoFestival">
+									<input type="text" id="Festival" class="form-control" placeholder="문화 검색어 입력">
+								</div>
 							
-						</div>
+							</div>		
+											
+							<!-- 	<div class="form-group">
+										<input type="text" class="form-control" placeholder="검색어">
+								</div> -->
+								<div class="form-group">
+									<input type="button" value="검 색" class="btn btn-primary py-2 px-5">
+								</div>
+								<hr>
+								<h3 class="heading mb-4">리뷰 등록</h3>
+							  	<div class="form-group">
+							  		<input type="button" id="getReviewList" value="리뷰등록하기" class="btn btn-primary py-2 px-5" data-toggle="modal" data-target="#reviewWriteModal">
+								</div>
+							
 						</form>
 					</div>		
 				</div>
@@ -160,18 +180,23 @@ function load(id, cnt, btn) {
 						<h3 class="heading mb-4">여행 리뷰</h3>
 						<div class="form-group">
 							<div class="icon d-flex justify-content-center align-items-center">
+								
+								<div class="col-lg-2">
+									<input type="button" value="통합 검색" class="btn btn-primary" id="infoKeyword" style="background-color: #f8f9fa; color: #dc3545">
+								</div>
 								<div class="col-lg-2">
 									<input type="button" value="장소 리뷰" class="btn btn-primary" id="infoArea">
 								</div>
 								<div class="col-lg-2">
-								<input type="button" value="숙박 리뷰" class="btn btn-primary" id="infoLocation">
+								<input type="button" value="숙박 리뷰" class="btn btn-primary" id="infoStay">
 								</div>
 								<div class="col-lg-2">
-								<input type="button" value="맛집 리뷰" class="btn btn-primary" id="infoKeyword">
+								<input type="button" value="맛집 리뷰" class="btn btn-primary" id="infoFood">
 								</div>
 								<div class="col-lg-2">
 								<input type="button" value="문화 리뷰" class="btn btn-primary" id="infoFestival">
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -182,18 +207,18 @@ function load(id, cnt, btn) {
 <!-- 상단로우끝 -->	
 		
 <!-- 하단우측시작 -->
-		<div class="row">	
+			
 	
-			<div class="col-lg-9 ftco-animate main" id="js-load" style="margin-left: 292px;">
-				<div class="lists">
-					
-					<c:forEach var="i" begin="1" end="6">	
+			<div class="col-lg-9 ftco-animate main lists" id="js-load" style="margin-left: 277px;">
+			
+					<div class="row">
 						
-						<div class="lists__item js-load">
-                 		 <div class="row">
+						
+						<c:forEach var="i" begin="1" end="6">
+						
+						
 					
-						  <div class="col-md-6 ftco-animate destination">
-												
+						  <div class="lists__item js-load col-md-6 ftco-animate destination">
 								<div class="text p-3">
 									<span>
 										<i class="flaticon-fork" style="font-size: 25px; font-weight: bold;">맛집 리뷰</i>
@@ -222,58 +247,25 @@ function load(id, cnt, btn) {
 							    			<span><i class="icon-thumbs-o-up"></i> 추천 : 18 &nbsp;|&nbsp; <i class="icon-commenting-o"></i> 댓글 : 2</span>
 							    	</div>
 							</div>	
-								
-				    	<!--첫번째끝  -->
-						  <div class="col-md-6 ftco-animate destination">
-												
-								<div class="text p-3">
-									<span>
-										<i class="flaticon-fork" style="font-size: 25px; font-weight: bold;">장소 리뷰</i>
-										<i class="icon-person" style="font-size: 12px; float: right; padding-top: 10px;">작성자 id : kokkok<br>
-											<i class="icon-pencil" style="font-size: 12px;">작성일 : 18.08.18</i>
-										</i>
-									</span>
-								</div>
-									<a href="${root}/review/view.jsp "class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/jangso-${i}.jpg');">
-						    		<div class="icon d-flex justify-content-center align-items-center">
-				    					<span class="icon-search2"></span>
-				    				</div>
-					    			</a>
-						    		<div class="text p-3">
-						    			<div class="d-flex">
-								    		
-						    			</div>
-								    		<p class="text-overflow">송정해수욕장과 해운대 근처에 있는 미포철길.
-												저는 지난번에 다녀왔기에 이번에는 가지않았는데요!
-												날씨 좋은 날, 미포철길을 걸으며
-												해운대 -> 송정까지 걸어가시는 것도 좋을것같아요.
-												시간은 약 1시간정도 소요된다고 하니 참고해주세요!
-											</p>
-						    				<br>
-						    				<h5 align="center"><a href="${root}/review/view.jsp">상세보기</a></h5>
-						    				<hr>
-							    			<p class="bottom-area d-flex">
-							    			<span><i class="icon-thumbs-o-up"></i> 추천 : 18 &nbsp;|&nbsp; <i class="icon-commenting-o"></i> 댓글 : 2</span>
-							    	</div>
-							</div>	
-						<!--두번째끝  -->
-						</div>
-					</div>
-				 </c:forEach>
-				 
-				 <!--더보기-->
 				
-										
-							
-  <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button"><input type="button" value="더보기" class="btn btn-primary py-2 px-4"></a> </div>
-  
-  <!--더보기  -->	
+						
+					
+					
+						 </c:forEach>
+					
+			
+			
+				 <!--더보기-->
+					 
+  			
 		 </div>
+		  <div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button"><input type="button" value="더보기" class="btn btn-primary py-2 px-4"></a> </div>
+				 <!--더보기  -->	
 	 </div> 
 <!-- 하단 목록 END-->	
  	
 
-</div>
+
 <!-- 하단로우끝 -->
 
 		</div>
