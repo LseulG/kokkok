@@ -14,7 +14,5 @@ public class MainController {
 	
 	@Autowired
 	private MainService mainService;
-	
 
-	
 }

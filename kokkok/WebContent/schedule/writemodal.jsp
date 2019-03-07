@@ -4,18 +4,22 @@
     <link rel="stylesheet" href="${root}/resources/css/schedule_write_modal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
  <script type="text/javascript">
-
 function searchClick(){
 	searchMap();
 }
 
 $("body").on("hidden.bs.modal", ".modal", function () {
+	//reviewType 세팅
     document.getElementById("localTitle").value = null;
-    //document.getElementById("summernote").value = null;
+	$("#summernote").summernote("reset");
     selectedMarker = null;
     document.getElementById("keyword").value = "인천 맛집";
  });
  
+var save = function() {
+	var markup = $("#summernote").summernote("code"); // 내용 가져오는거
+	alert(markup);
+}
 </script>
 <style>
 .modal-content{
@@ -57,13 +61,25 @@ $("body").on("hidden.bs.modal", ".modal", function () {
 				<script src="${root}/resources/js/schedule_write_modal.js"></script>
 				
 				 <div class="form-group">
-					<input type="text" id="localTitle" class="form-control" placeholder="리뷰장소" readonly="readonly">
+				 	<div class="row col-md-12">
+				 		<div class="col-md-2">
+							 <select id="reviewType" class="form-control">
+		                    	<option value="meeting">장소</option>
+		                    	<option value="fork">맛집</option>
+		                    	<option value="hotel">숙박</option>
+		                  	 </select>
+				 		</div>
+				 		<div class="col-md-10">
+						 <input type="text" id="localTitle" class="form-control" placeholder="리뷰장소" readonly="readonly">
+				 		</div>
+				 	</div>
 				</div>
 				
 				<div id="summernote"></div>
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3">
+<!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
+					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="modalWrite();" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
@@ -76,14 +92,27 @@ $("body").on("hidden.bs.modal", ".modal", function () {
 
 	</div>
 </div>
-
 <script>
 $('#summernote').summernote({
-	  placeholder: '내용을 적어주세요.',
+	  placeholder: '내용을 적어주세요...',
 	  dialogsInBody: true,
 	  tabsize: 2,
 	  height: 200,
-	  lang: 'ko-KR'   
+	  lang: 'ko-KR',
+	  toolbar : [
+		  ['Font Style', ['fontname']],
+		  ['style', ['bold', 'italic', 'underline']],
+		  ['font', ['strikethrough']],
+		  ['fontsize', ['fontsize']],
+		  ['color', ['color']],
+		  ['para', ['paragraph']],
+		  ['Insert', ['picture','link','hr']]
+	  ]
 });
+
+//if ($('#summernote').summernote('isEmpty')) {
+//	  alert('editor content is empty');
+//}
+
 
 </script>

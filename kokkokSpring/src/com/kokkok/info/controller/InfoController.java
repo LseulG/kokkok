@@ -24,5 +24,6 @@ public class InfoController {
 		mav.addObject("request",request);
 		infoService.infoList(mav);
 		return mav;
+		
 	}
 }

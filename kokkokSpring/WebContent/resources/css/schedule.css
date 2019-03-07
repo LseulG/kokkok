@@ -1,28 +1,71 @@
 @charset "UTF-8";
 
+/* ----- view --------------------*/
+.commForm {
+	padding: 20px 15px;
+}
+
+.form-control {
+	font-size: 15px;
+}
+.commDiv {
+	margin: 0px;
+}
+
+.commText {
+	width: 90%;
+}
+.commBtnDiv {
+	width: 10%;
+}
+.commBtn {
+}
+
+.comment-list .slchild {
+    padding: 20px 0 0 20px;
+    margin: 0;
+    float: left;
+    width: 100%; }
+}
+/* ----^댓글^-----*/
+.viewWrap .cnt { display: inline-block; }
+.viewWrap .cnt div{
+	display: inline-block;	
+	margin-right: 25px;
+}
+.viewWrap .cnt .scheduleJJim,.scheduleRecomm{
+	cursor:pointer;
+}
+.viewWrap .tagcloud a {
+	background-color: white;
+}
+/* ----^왼쪽 사이드바 wrap^-----*/
+/* -------------------------------*/
+
 .ml-auto,readystate http status
 .mx-auto {
   margin-left: auto !important; 
   color: #f85959;
-  font-weight: bold;}
-  
-  
-  /* border-top: 1px solid transparent; 추가추가추가 */
-  background: #fff; } 
+  font-weight: bold;
+}
+.list-cnt{
+	margin-left: auto !important; 
+	color: #4d4d4d;	
+}
 .destination .text {
   border: 1px solid #e6e6e6;
-  /* border-top: 1px solid transparent; 추가추가추가 */
-  background: #fff; }
-  /*추가추가*/
+  background: #fff; 
+ }
   .destination .text .days {
   margin: 0px;
+  font-size: 13px;
+  color: black;
 } 
-
+/*
 .destination .text .days span {
   font-size: 13px;
-  color: black; }
+  color: black; }*/
       
-     /* 추가추가 */
 .tagcloud a.location {
 	color: #cd2c6c;
 	border: 1px solid #cd2c6c;
@@ -36,15 +79,6 @@
 	border: 1px solid #332679;
 }
  
- 
-.comment-list .slchild {
-    padding: 20px 0 0 20px;
-    margin: 0;
-    float: left;
-    width: 100%; }
-	
-}
-
 .slday-title {
   font-family: inherit;
   font-weight: 500;
@@ -96,7 +130,8 @@
       border-radius: 50%;
       border: 2px solid #fdd3d3; }
 .sl-loc-cont {
-	padding: 0 0 10px 8px;	
+	padding: 0 0 10px 3px;
+	font-size: 14px;	
 }
 .loc-updown a {
 	font-size: 0.5rem;
@@ -135,14 +170,16 @@
  	 .sl-oneDay .sl-day .scheduleAdd:hover {
 	 	border: 1px solid #f85959;
 	 }
-      
+.seul1,.seul2{
+	cursor:pointer;
+}      
       
 /* drag */
  	.itemBoxHighlight {
 	height:40px;
 	margin-bottom: 0.5rem;
 	margin-top: 0;
-	background-color:#dee0e2;
+	background-color:#ffecec;
 	}
 	.modifyBox {
 		float:right;
@@ -165,3 +202,5 @@
 	.seul2 {
 		margin-left: 8px;
 	}
+	
+}

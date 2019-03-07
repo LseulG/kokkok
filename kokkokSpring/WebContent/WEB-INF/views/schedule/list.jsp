@@ -17,7 +17,6 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.jsp">Home</a></span> <span>Tour</span></p>
             <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행 일정</h1>
           </div>
         </div>
@@ -31,6 +30,13 @@
 <!-- 왼쪽 검색창 -->	
 		<div class="col-lg-3 sidebar">
         <div class="sidebar-wrap bg-light ftco-animate">
+        	<div class="form-group">
+	        	<a href="${root}/schedule/write.kok">
+					<input type="button" value="일정 만들기" id="writeScheduleBtn" class="btn btn-primary py-3 px-5">
+				</a>
+		    </div>
+		    <br>
+        	
 			<h3 class="heading mb-4">상세 검색</h3>
         	<form action="#">
         	<div class="fields">
@@ -49,7 +55,22 @@
 		                  	</div>
 	        			</div>
         			</div>
-		         </div>       	
+		         </div>  
+		         
+		         <div class="row">
+		         	<div class="col-md-12">
+<!-- 조회 -->
+	        			<div class="form-group">
+			            	<div class="select-wrap one-third">
+			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+			                    <select name="" id="listSort" class="form-control">
+			                    	<option value="">인기순</option>
+			                    	<option value="">최신순</option>
+			                    </select>
+		                  	</div>
+	        			</div>
+        			</div>
+		         </div>      	
         	
 				<div class="row">
 		         	<div class="col-md-12">
@@ -131,19 +152,10 @@
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
 <!-- 목록들 -->
-        	<div align="right">
-        		<span>인기순</span> | <span>최신순</span>
-        	</div>
-        	<div align="right">
-        	<a href="${root}/schedule/write.jsp">
-        	<input type="button" value="일정만들기" id="scheduleWrite" class="btn btn-primary py-3 px-5">
-        	</a>
-        	</div>
-        	
         	<div class="row">
         		<c:forEach var="i" begin="1" end="6">
 					<div class="col-md-4 ftco-animate destination">
-			    		<a href="${root}/schedule/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
+			    		<a href="${root}/schedule/view.kok" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
 				    		<div class="icon d-flex justify-content-center align-items-center">
 		    					<span class="icon-search2"></span>
 		    				</div>
@@ -152,13 +164,19 @@
 			    			<div class="d-flex">
 					    		<h3><a href="#">여행 제목이 들어갑니다!!! </a></h3>
 			    			</div>
-			    			<p>#전라남도 #여수 #순천 #광양 #저기 <br>#나혼자</p>
+			    			<p>#전라남도 #여수 #순천 #광양 #저기 #나혼자</p>
 			    			<br>
-			    			<p class="days"><span>18.08.18 - 18.09.18 (30일)</span></p>
+			    			<p class="bottom-area d-flex">
+			    				<span class="days">18.08.18 - 18.09.18 (30일)</span>
+			    				<span class="ml-auto">후기</span>
+			    			</p>
 			    			<hr>
 			    			<p class="bottom-area d-flex">
-			    				<span><i class="icon-person"></i> 작성자id</span> <!-- icon변경 -->
-			    				<span class="ml-auto">후기</span>
+			    				<span><i class="icon-person"></i> 작성자id</span>
+			    				<span class="list-cnt">
+			    					<i class="icon-thumbs-o-up"></i> 18 &nbsp;
+			    					<i class="icon-eye"></i> 18
+			    				</span>
 			    			</p>
 			    		</div>
 					</div>
@@ -190,7 +208,7 @@
 	</section>
 <!-- 내용끝 -->
 
-<script src="${root}/resources/js/sl-schedule-list.js"></script>
+<script src="${root}/resources/js/schedule_list.js"></script>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>   
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>

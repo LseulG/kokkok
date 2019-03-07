@@ -19,8 +19,47 @@ $(document).ready(function() {
 	$(".seul2").click(function(){
 		$(".seul3").slideDown();
 	});
+	
+	var jjimCnt = 0;
+	var recommCnt = 0;
+	$(".scheduleJJim").click(function(){
+		if (jjimCnt != 0){
+			$(".icon-heart").attr("class","icon-heart-o");
+			jjimCnt = 0;			
+		} else {
+			$(".icon-heart-o").attr("class","icon-heart");
+			jjimCnt = 1;
+		}
+	});
+	$(".scheduleRecomm").click(function(){
+		if (recommCnt != 0){
+			$(".icon-thumbs-up").attr("class","icon-thumbs-o-up");
+			recommCnt = 0;
+		} else {
+			$(".icon-thumbs-o-up").attr("class","icon-thumbs-up");
+			recommCnt = 1;
+		}		
+	});
+	
 });
+function selectChange(){
+	alert("oh");
+	mapRemove();
+	mapView(positions_2);
+}
 </script>
+<style>
+.icon-heart { color: #f85e5e;}
+.icon-thumbs-up { color: #6887f1;}
+#daySelectWrap {
+	position:absolute;top:10px;left:10px;width:110px;height:45px;
+	margin:10px 0 30px 10px;padding:2px;overflow-y:auto;
+	background:#f85959; z-index: 1;font-size:12px;border-radius: 5px;
+}
+#daySelectWrap #mapDay {
+	position:absolute; width:106px; height:41px; padding-left: 10px; border-radius: 5px;
+}
+</style>
 </head>
 <body>
 <%@ include file="/include/nav.jsp"%>
@@ -46,27 +85,22 @@ $(document).ready(function() {
 		<div class="col-md-12 ftco-animate destination">
 			<div class="text p-3 row">			
 				<div class="col-md-4 ftco-animate destination">
-		    		<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');"></a>
+		    		<!-- 
+		    		 <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');"></a>
+		    		 -->
+					<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid">
 				</div>
 				<div class="col-md-8">
-					<h3 class="mb-3">제목 입니다a.</h3>
-					<p>여행 내용을 간략히 소개하는 부분 입니다.<br>지도는 왼쪽에서 스크롤해도 따라다니게 하면 좋을것 같다.<br>n일차 부분을 div, a, span, p 등으로 class 지정해주고 n일차(n) ^ 아이콘<br>밑에 부분 글씨 더 연하게</p>
-					<hr>
-					<p class="days">
-						<span>
-							<i class="icon-person"></i> 작성자id &nbsp;|&nbsp; <i class="icon-bookmark-o"></i> 북마크 : 18 &nbsp;|&nbsp; <i class="icon-thumbs-o-up"></i> 추천 : 18<br>
-							<i class="icon-today"></i> 여행기간 : 18.08.18 - 18.09.18 (30일)<br>
-							<i class="icon-pencil"></i> 게시일 : 18.08.18 수요일 &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : 18.08.18 수요일<br>
-						</span>
-					</p><br>
-					<p class="tagcloud">
-						<a href="#" class="tag-cloud-link">전라남도</a>
-		                <a href="#" class="tag-cloud-link">여수</a>
-		                <a href="#" class="tag-cloud-link">순천</a>
-		                <a href="#" class="tag-cloud-link">광양</a>
-		                <a href="#" class="tag-cloud-link">봄</a>
-		                <a href="#" class="tag-cloud-link">나혼자</a>
-					</p>
+						<h3 class="mb-3">제목 입니다.</h3>
+						<p>여행 내용을 간략히 소개하는 부분 입니다.<br>지도는 왼쪽에서 스크롤해도 따라다니게 하면 좋을것 같다.<br>n일차 부분을 div, a, span, p 등으로 class 지정해주고 n일차(n) ^ 아이콘<br>밑에 부분 글씨 더 연하게
+						</p>
+						<hr>
+						<p class="days">
+							<span>
+								<i class="icon-person"></i> 작성자id &nbsp;|&nbsp; <i class="icon-today"></i> 여행기간 : 18.08.18 - 18.09.18 (30일)<br>
+								<i class="icon-pencil"></i> 게시일 : 18.08.18 수요일 &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : 18.08.18 수요일<br>
+							</span>
+						</p>
 				</div>
 			</div>	
 		</div>
@@ -74,26 +108,43 @@ $(document).ready(function() {
 	
 <!-- 왼쪽 -->
 		<div class="col-md-4 sidebar ftco-animate">
+		
+			<div class="sidebar-wrap bg-light ftco-animate viewWrap">
+				<div class="cnt">
+					<div class="scheduleJJim"><h3 class="heading mb-4"><i class="icon-heart-o"></i> 찜 18</h3></div>
+					<div class="scheduleRecomm"><h3 class="heading mb-4"><i class="icon-thumbs-o-up"></i> 추천 18</h3></div>
+					<div class="scheduleHit"><h3 class="heading mb-4"><i class="icon-eye"></i> 조회수 18</h3></div>
+				</div>
+				<h3 class="heading"><i class="icon-tag"></i> 여행지</h3>
+              	<div class="tagcloud">
+	                <a href="#" class="tag-cloud-link">전라남도</a>
+	                <a href="#" class="tag-cloud-link">여수</a>
+	                <a href="#" class="tag-cloud-link">순천</a>
+	                <a href="#" class="tag-cloud-link">광양</a>
+              	</div>
+            </div>
+
+<!-- 왼쪽 지도 -->		
         	<div class="sidebar-box ftco-animate">
 				<div class="float_sidebar">
-					<div class="">
+					<div class="" style="position: relative">
 						<div class="map_wrap">
-	    					 <div id="writeMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
+	    					<div id="writeMap" style="width:100%;height:400px;position:relative;overflow:hidden;"></div>
+							<div id="daySelectWrap" class="bg_white">
+					        <div class="select-wrap">
+					            <select name="mapDay" id="mapDay" class="" onchange="selectChange()">
+					            	<option value="day_1">1일차</option>
+					            	<option value="day_2">2일차</option>
+					            	<option value="day_3">3일차</option>
+					            </select>
+							</div>
+					    </div>
 						</div>
 					</div>
 				</div>
             </div>
         
-            <div class="sidebar-box ftco-animate">
-              <h3><i class="icon-tag"></i> 태그cc</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">전라남도</a>
-                <a href="#" class="tag-cloud-link">여수</a>
-                <a href="#" class="tag-cloud-link">순천</a>
-                <a href="#" class="tag-cloud-link">광양</a>
-                <a href="#" class="tag-cloud-link">나혼자</a>
-              </div>
-            </div>
+        	
 
 		</div>
 <!-- 왼쪽 End -->
