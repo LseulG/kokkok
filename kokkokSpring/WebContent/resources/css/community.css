@@ -112,4 +112,69 @@
 
  
 }
+
+#sidebox { 
+	background-color:#F0F0F0; 
+	position:absolute; width:120px; 
+	top:433px; 
+	right:420px;
+	padding: 3px 10px;
+}
+
+/* ----- view --------------------*/
+.commForm {
+	padding: 20px 15px;
+}
+
+.form-control {
+	font-size: 15px;
+}
+.commDiv {
+	margin: 0px;
+}
+
+.commText {
+	width: 90%;
+}
+.commBtnDiv {
+	width: 10%;
+}
+.commBtn {
+}
+
+/* -------------------------------*/
+
+
+.column1a {
+  width: 90px;
+  padding-left: 20px;
+ 
+}
+
+.column2a {
+  width: 350px;
+  text-align: center;
+}
+
+.column3a {
+ width: 100px;
+  text-align: center;
+}
+
+.column4a {
+  width: 100px;
+  text-align: center;
+}
+
+.column5a {
+  width: 80px;
+  text-align: center;
+}
+
+.column6a {
+  width: 80px;
+  text-align: center;
+  
+ }
+
  

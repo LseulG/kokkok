@@ -9,132 +9,145 @@
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>
 
 <link rel="stylesheet" href="${root}/resources/css/community.css">
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
 <%@ include file="/WEB-INF/views/review/modifymodal.jsp"%>
 
-<div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg');">
+<div class="hero-wrap js-fullheight3" style="background-image: url('${root}/resources/images/bg_4.jpg');">
 	<div class="overlay"></div>
 	<div class="container">
-		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+		<div class="row no-gutters slider-text js-fullheight3 align-items-center justify-content-center" data-scrollax-parent="true">
 			<div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
 				<!-- <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.jsp">Home</a></span> <span>Blog</span></p> -->
-				<h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">커 뮤 니 티</h1>
+				<h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행 꿀팁</h1>
 			</div>
 		</div>
 	</div>
 </div>
 
+<div class="container" style=" margin-bottom: 50px;">
+<div class="row">					
+			<div style="padding-left:200px; padding-top: 50px; padding-right: 200px;">
+							<span>
+								<i style="font-size: 25px; font-weight: bold;">제목 : 정동진 1박2일 당일 추천여행지 코스 정리</i>
+								<i class="icon-person" style="font-size: 12px; float: right; padding-top: 10px;">작성자 id : kokkok<br>
+									<i class="icon-pencil" style="font-size: 12px;">작성일 : 18.08.18</i>
+								</i>
+							</span>
+							<br>
+							<br>
+							<p>곧 뜨거운 여름이 찾아옵니다. 드디어 휴가를 떠나겠다고 마음먹은 당신! 
+							직장에도 이미 알렸겠다, 이번엔 해외로 한 번 나가려하는데... 
+							준비는 어떻게 해야 할까요?
+							걱정 없이 척척, 편안한 여행을 위한 준비 꿀팁을 아래에서 알아보세요! 
+							간단하면서도 유용하답니다.
+							<img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid">
+							
+							<p>1. 비행기 티켓 구매  
+							보통 온라인 검색을 통해 티켓 구입 많이들 하시죠. 
+							비행기 티켓은 실시간으로 가격이 변동합니다. 
+							또한, 검색할 때마다 데이터가 저장돼  다음 번 검색 시 기존 가격보다 
+							한층 더 오른 가격을 만나게 될 수도 있습니다. 이럴 땐  브라우저 히스토리를 
+							지우고 검색해보세요. 일반적으로, 스마트폰보다 컴퓨터로 검색하면 더 저렴한 
+							티켓을 찾기 쉽다고 합니다.
+							티켓 가격이 가장 저렴하다고 알려진 때는 화요일 오후 3시경입니다. 
+							꼭 이 시간대에 좌석을 찾아보세요!
+							특가 찬스를 놓쳤다고 해도 이젠 안심이네요. 위의 팁을 통해 비용을 크게
+							 절약할 수 있으니까요!</p>
+							 <img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid">
 
-					<div class="vwbody" style="padding:200px;">
-			
-							<h2 class="mb-3">글 제목</h2>
-					
-							<p>Lorem ipsum dolor sit amet, consectetur
-								adipisicing elit. Reiciendis, eius mollitia suscipit,
-								quisquam doloremque distinctio perferendis et doloribus
-								unde architecto optio laboriosam porro adipisci sapiente
-								officiis nemo accusamus ad praesentium? Esse minima nisi
-								et. Dolore perferendis, enim praesentium omnis, iste
-								doloremque quia officia optio deserunt molestiae
-								voluptates soluta architecto tempora.</p>
-							<p>
-								<img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid">
+							<p>2. 비행기 좌석
+							좌석이 세 개씩 나란히 배치된 비행기를 예약하셨나요? 두 명이서 함께 여행한다면, 
+							좌석 지성 시 같은 줄의 창가 자리와 통로 자리를 선택해보세요. 만석이 아닌 이상 누군가가
+							 가운데 샌드위치 좌석을 선택할 확률은 드물죠. 따라서 두 명이서 세 자리를 차지해 편안히 
+							 여행할 수 있답니다! </p>
+							 
+							<img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid">
+
+							<p>3. 여행 가방 공간 확보 
+							짐을 착착 가방에 넣을 땐 옷을 접어 넣기 보다 돌돌 말아 넣는 게 좋습니다. 별 게 아닐 것 같지만, 가득 찬 가방에 깜박한 신발을 구겨넣을 때 그 차이가 확연히 느껴집니다.
+							4. 일반적인 짐 정리 팁 
+							벨트를 돌돌 말아 신발 입구에 넣어두면 공간도 아끼고 신발 형태도 유지할 수 있습니다!
+							신발에 샤워캡을 씌우면 (바닥이 덮이도록) 함께 넣은 옷가지가 더러워지는 걸 방지할 수 있습니다.
+							5. 스마트폰 트릭
+							해외 휴가지에서 인터넷 사용이 염려되시나요? 그렇다면...
+							와이파이 맵(Wifi Map)이란 앱을 깔아보세요. 방문한 도시에서 무료로 무선 인터넷을 제공하는 핫스팟을 찾아줍니다. 
+							구글 맵의 "오프라인 지도 저장하기"를 활용하세요. 로컬 인터넷을 쓰지 못하는 상황에서 길찾기가 쉬워집니다. 폰에 탑재된 GPS 기능을 쓸 경우엔 인터넷이 필요없죠.
+							6. 중요 서류 
+							여행을 떠나기 전에 미리 여행 시 반드시 필요한 서류(여권 등)의 사진을 찍거나 스캔해서 본인 이메일 주소로 전송해두세요. 혹시 모를 도난에 대비해 대단히 유용합니다. 현지 경찰서에서 본인의 신분을 바로 증명할 수 있으니까요. 
+							자, 마침내 떠날 준비가 모두 안료됐습니다. 최고의 여행은 계획 없이 떠날 때 이루어진다는 말이 있죠. 위의 기본적인 팁만 명심하고, 객지에서 일어나는 온갖 모험과 서프라이즈를 마음껏 즐기세요. 잘 알려진 맛집보다 현지인들만 찾는 리얼 맛집을 득템할 수도 있을 거예요. 그럼 안전하고 즐거운 여행하시길 바랍니다!</p>
 							</p>
-							<p>Molestiae cupiditate inventore animi, maxime
-								sapiente optio, illo est nemo veritatis repellat sunt
-								doloribus nesciunt! Minima laborum magni reiciendis qui
-								voluptate quisquam voluptatem soluta illo eum ullam
-								incidunt rem assumenda eveniet eaque sequi deleniti
-								tenetur dolore amet fugit perspiciatis ipsa, odit.
-								Nesciunt dolor minima esse vero ut ea, repudiandae
-								suscipit!</p>
-							<h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-							<p>Temporibus ad error suscipit exercitationem hic
-								molestiae totam obcaecati rerum, eius aut, in.
-								Exercitationem atque quidem tempora maiores ex
-								architecto voluptatum aut officia doloremque. Error
-								dolore voluptas, omnis molestias odio dignissimos culpa
-								ex earum nisi consequatur quos odit quasi repellat qui
-								officiis reiciendis incidunt hic non? Debitis commodi
-								aut, adipisci.</p>
-							<p>
-								<img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid">
-							</p>
-							<p>Quisquam esse aliquam fuga distinctio, quidem
-								delectus veritatis reiciendis. Nihil explicabo quod, est
-								eos ipsum. Unde aut non tenetur tempore, nisi culpa
-								voluptate maiores officiis quis vel ab consectetur
-								suscipit veritatis nulla quos quia aspernatur
-								perferendis, libero sint. Error, velit, porro. Deserunt
-								minus, quibusdam iste enim veniam, modi rem maiores.</p>
-							<p>Odit voluptatibus, eveniet vel nihil cum ullam
-								dolores laborum, quo velit commodi rerum eum quidem
-								pariatur! Quia fuga iste tenetur, ipsa vel nisi in
-								dolorum consequatur, veritatis porro explicabo soluta
-								commodi libero voluptatem similique id quidem?
-								Blanditiis voluptates aperiam non magni. Reprehenderit
-								nobis odit inventore, quia laboriosam harum excepturi
-								ea.</p>
-							<p>Adipisci vero culpa, eius nobis soluta. Dolore,
-								maxime ullam ipsam quidem, dolor distinctio similique
-								asperiores voluptas enim, exercitationem ratione aut
-								adipisci modi quod quibusdam iusto, voluptates beatae
-								iure nemo itaque laborum. Consequuntur et pariatur totam
-								fuga eligendi vero dolorum provident. Voluptatibus,
-								veritatis. Beatae numquam nam ab voluptatibus culpa,
-								tenetur recusandae!</p>
-							<p>Voluptas dolores dignissimos dolorum temporibus,
-								autem aliquam ducimus at officia adipisci quasi nemo a
-								perspiciatis provident magni laboriosam repudiandae iure
-								iusto commodi debitis est blanditiis alias laborum sint
-								dolore. Dolores, iure, reprehenderit. Error provident,
-								pariatur cupiditate soluta doloremque aut ratione. Harum
-								voluptates mollitia illo minus praesentium, rerum ipsa
-								debitis, inventore?</p>
 
 							<!-- END comment-list -->
 
-							<div class="comment-form-wrap pt-5">
-								<h3 class="mb-5">댓글 작성</h3>
-								<form action="#" class="p-5 bg-light">
-									<div class="form-group">
-										<label for="message">댓글 입력</label>
-										<textarea name="" id="message" cols="30" rows="10" class="form-control-b"></textarea>
-									</div>
-									<br>
-									<div class="form-group">
-										<input type="submit" value="댓글 등록" class="btn py-3 px-4 btn-primary">
-									</div>
-								</form>
-							</div>
+							<div class="pt-5">
+					              <!-- 댓글달기 -->           
+					              <div class="comment-form-wrap pt-5">
+					                <form action="#" class="bg-light commForm">
+					                <h5 class="mb-4"><i class="icon-comment"></i> 댓글 3</h5>
+					                	<div class="row commDiv">
+					                    	<textarea name="" id="message" cols="30" rows="1" class="form-control commText" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+					                   		 <div class="center commBtnDiv">
+						                   		 <input type="submit" value="등록" class="btn btn-primary commBtn">
+					                   		 </div>
+					                 	 </div>
+					                </form>
+					              </div>
+					            
+					           	 <div class="comment-form-wrap pt-5">
+					            	<ul class="comment-list">
+						            	<li class="comment">
+						                  <div class="comment-body">
+						                  	<div class="row">
+						                  		<h3><i class="icon-person"></i> 작성자 11</h3>
+						                  		<div class="meta">2018.08.18 2:21</div>
+						                  	</div>
+						                  		<p>작성내용1 댓글이다 댓글</p>
+						                  </div>
+						                </li>
+						
+						                <li class="comment">
+						                  <div class="comment-body">
+						                  	<div class="row">
+						                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+						                  		<div class="meta">2018.08.18 2:21</div>
+						                  	</div>
+						                  		<p>222222</p>
+						                  </div>
+						                </li>
+						
+						                <li class="comment">
+						                  <div class="comment-body">
+						                  	<div class="row">
+						                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
+						                  		<div class="meta">2018.08.18 2:21</div>
+						                  	</div>
+						                  		<p>3333</p>
+						                  </div>
+						                </li>
+						              </ul>
+						           </div>
+						              <!-- END comment-list -->
+					              
+					            </div>
 											
-							<br>
-							<br>
-							<div class="col-md-12 nav-link-wrap mb-5">
-								<div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-									<a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill" href="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">
-									글목록
-									</a> 
-									<a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">
-									윗글
-									</a> 
-									<a class="nav-link" id="v-pills-goal-tab" data-toggle="pill" href="#v-pills-goal" role="tab" aria-controls="v-pills-goal" aria-selected="false">
-									아랫글
-									</a>
-								</div>
-							</div>
-							
-							<a href="${root}/tips/modify.jsp" >수정하기
-							</a>
-						</form>
-		</div>
-
-
+						<div class="form-group" style="margin-top: 320px;">
+	        	<a href="${root}/tips/list.jsp">
+					<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
+				</a>
+				<a href="${root}/tips/modify.jsp">
+					<input type="button" value="수정" class="btn btn-primary py-2 px-4" style="float: right;" >
+				</a>	
+	        		<input type="button" value="삭제" class="btn btn-primary py-2 px-4" style="float: right; margin-right: 8px;">
+		    	</div>
+			
+</div>
+</div>
+</div>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
-    
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 </body>
 </html>
