@@ -47,7 +47,7 @@
 								<tr>
 									<td class="column1a">24455</td>
 									
-									<td class="column2a"><a href="${root}/tips/view.jsp">정동진 1박2일 & 2빅3일 & 당일 추천여행지 코스 정리 [7]</a></td>
+									<td class="column2a"><a href="${root}/WEB-INF/views/tips/view.jsp">정동진 1박2일 & 2빅3일 & 당일 추천여행지 코스 정리 [7]</a></td>
 									
 									<td class="column3a">메롱</td>
 									<td class="column4a">2018.09.04</td>
@@ -116,7 +116,7 @@
 						</table>
 						<br>
 						 <div align="right">
-						<a href="${root}/tips/write.jsp">
+						<a href="${root}/WEB-INF/views/tips/write.jsp">
 						<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4">
 						</a>	
 					</div>

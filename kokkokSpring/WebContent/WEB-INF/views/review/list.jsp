@@ -227,7 +227,7 @@ function load(id, cnt, btn) {
 										</i>
 									</span>
 								</div>
-									<a href="${root}/review/view.jsp "class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/food-${i}.jpg');">
+									<a href="${root}/WEB-INF/views/review/view.jsp "class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/food-${i}.jpg');">
 						    		<div class="icon d-flex justify-content-center align-items-center">
 				    					<span class="icon-search2"></span>
 				    				</div>

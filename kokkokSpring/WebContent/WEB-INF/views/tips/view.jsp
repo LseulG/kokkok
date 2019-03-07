@@ -137,7 +137,7 @@
 	        	<a href="${root}/tips/list.jsp">
 					<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
 				</a>
-				<a href="${root}/tips/modify.jsp">
+				<a href="${root}/WEB-INF/views/tips/modify.jsp">
 					<input type="button" value="수정" class="btn btn-primary py-2 px-4" style="float: right;" >
 				</a>	
 	        		<input type="button" value="삭제" class="btn btn-primary py-2 px-4" style="float: right; margin-right: 8px;">
