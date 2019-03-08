@@ -66,11 +66,11 @@ public class MemberDto {
 	        this.pass = pass;
 	    }
 
-	    public Date getJoinString() {
+	    public Date getJoin() {
 	        return joindate;
 	    }
 
-	    public void setJoinString(Date joindate) {
+	    public void setJoindate(Date joindate) {
 	        this.joindate = joindate;
 	    }
 
