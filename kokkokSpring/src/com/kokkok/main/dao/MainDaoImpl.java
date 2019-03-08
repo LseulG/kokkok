@@ -18,7 +18,7 @@ public class MainDaoImpl implements MainDao{
 	public int checkWish(String seq, String id) {
 		Map<String, String> hMap = new HashMap<>();
 		hMap.put("seq", seq);
-		hMap.put("id", id);
+		hMap.put("userid", id);
 		return sqlSessionTemplate.selectOne("checkWish",hMap);
 	}
 	
@@ -26,7 +26,7 @@ public class MainDaoImpl implements MainDao{
 	public int registerWish(String seq, String id) {		
 		Map<String, String> hMap = new HashMap<>();
 		hMap.put("seq", seq);
-		hMap.put("id", id);
+		hMap.put("userid", id);
 		return sqlSessionTemplate.insert("registerWish",hMap);
 	}
 
@@ -34,7 +34,7 @@ public class MainDaoImpl implements MainDao{
 	public int deleteWish(String seq, String id) {
 		Map<String, String> hMap = new HashMap<>();
 		hMap.put("seq", seq);
-		hMap.put("id", id);
+		hMap.put("userid", id);
 		return sqlSessionTemplate.insert("deleteWish",hMap);
 	}
 

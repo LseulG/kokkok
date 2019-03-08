@@ -1,5 +1,6 @@
 package com.kokkok.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +47,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int login(String id, String pass) {
-
-		return 0;
+	public MemberDto login(String id, String pass) {
+		Map<String, Object> hmap = new HashMap<>();
+		hmap.put("userid", id);
+		hmap.put("userpass", pass);
+		return sqlSessionTemplate.selectOne("login",hmap);
 	}
 
 	@Override

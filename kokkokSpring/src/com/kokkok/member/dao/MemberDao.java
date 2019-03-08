@@ -11,7 +11,7 @@ public interface MemberDao {
 	public int idCheck(String id);
 	
 	public int memberInsert(MemberDto memberDto);
-	public int login(String id, String pass);
+	public MemberDto login(String id, String pass);
 	
 	MemberDto getMember(String id);
 	int modify(MemberDto memberDto); 

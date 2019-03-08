@@ -5,15 +5,15 @@
 <mapper namespace="dao.commonMapper">
 	
 	<insert id="registerWish" parameterType="java.util.Map">
-		insert into wish values(WISH_SEQ.nextval, #{seq}, #{id})
+		insert into wish values(WISH_SEQ.nextval, #{seq}, #{userid})
 	</insert>
   	
   	<select id="checkWish" parameterType="java.util.Map" resultType="int">
-  		<![CDATA[select count(*) from wish where id = #{id} and seq = #{seq}]]>
+  		<![CDATA[select count(*) from wish where id = #{userid} and seq = #{seq}]]>
   	</select>
   	
   	<delete id="deleteWish" parameterType="java.util.Map">
-  		delete from wish where id = #{id} and seq = #{seq}
+  		delete from wish where userid = #{userid} and seq = #{seq}
   	</delete>
   	
   	<select id="countWish" parameterType="java.util.Map" resultType="int">

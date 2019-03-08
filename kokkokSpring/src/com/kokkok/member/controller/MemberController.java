@@ -74,6 +74,16 @@ public class MemberController {
 		memberService.myWishreview(mav);
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/member/login.kok",method=RequestMethod.POST)
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		memberService.login(mav);
+		return mav;
+	}
+
 
 
 }
