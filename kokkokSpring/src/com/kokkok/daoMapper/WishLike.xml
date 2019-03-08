@@ -3,13 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.commonMapper">
-	
+
 	<insert id="registerWish" parameterType="java.util.Map">
 		insert into wish values(WISH_SEQ.nextval, #{seq}, #{userid})
 	</insert>
   	
   	<select id="checkWish" parameterType="java.util.Map" resultType="int">
-  		<![CDATA[select count(*) from wish where id = #{userid} and seq = #{seq}]]>
+  		<![CDATA[select count(*) from wish where userid = #{userid} and seq = #{seq}]]>
   	</select>
   	
   	<delete id="deleteWish" parameterType="java.util.Map">
