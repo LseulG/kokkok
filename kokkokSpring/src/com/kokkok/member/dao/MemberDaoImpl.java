@@ -1,6 +1,5 @@
 package com.kokkok.member.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.kokkok.member.dto.MemberDto;
+import com.kokkok.dto.MemberDto;
+
+
 
 @Component
 public class MemberDaoImpl implements MemberDao {

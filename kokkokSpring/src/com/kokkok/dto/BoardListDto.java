@@ -16,7 +16,6 @@ public class BoardListDto {
  public BoardListDto() {}
  
  public BoardListDto(int bcode, String bname, int ccode) {
-	super();
 	this.bcode = bcode;
 	this.bname = bname;
 	this.ccode = ccode;

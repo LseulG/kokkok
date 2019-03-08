@@ -13,7 +13,6 @@ public class CategortDto {
  public CategortDto() {}
  
  public CategortDto(int ccode, String cname) {
-	super();
 	this.ccode = ccode;
 	this.cname = cname;
 }

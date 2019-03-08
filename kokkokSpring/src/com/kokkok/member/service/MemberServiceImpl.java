@@ -1,7 +1,6 @@
 package com.kokkok.member.service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kokkok.dto.MemberDto;
 import com.kokkok.member.dao.MemberDao;
-import com.kokkok.member.dto.MemberDto;
 
 @Component
 public class MemberServiceImpl implements MemberService{
@@ -59,7 +58,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		Map<String, Object> map = mav.getModelMap();
 		MemberDto memberDto=(MemberDto) map.get("memberDto");
-		memberDto.setJoinDate(new Date());
+		memberDto.setJoindate(new Date());
 
 		int check=memberDao.memberInsert(memberDto);
 

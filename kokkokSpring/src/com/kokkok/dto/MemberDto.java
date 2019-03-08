@@ -4,90 +4,91 @@ import java.util.Date;
 
 public class MemberDto {
 
-	    // 아이디 
-	    private String id;
+	// 아이디
+	private String userid;
 
-	    // 이름 
-	    private String name;
+	// 이름
+	private String username;
 
-	    // 이메일 
-	    private String email;
+	// 이메일
+	private String useremail;
 
-	    // 비밀번호 
-	    private String pass;
+	// 비밀번호
+	private String userpass;
 
-	    // 회원가입일 
-	    private Date joindate;
+	// 회원가입일
+	private Date joindate;
 
-	    // 등급코드 
-	    private Integer admincode;
+	// 등급코드
+	private Integer admincode;
 
-	    public MemberDto() {}
-	    
-	    public MemberDto(String id, String name, String email, String pass, Date joindate, Integer admincode) {
-			super();
-			this.id = id;
-			this.name = name;
-			this.email = email;
-			this.pass = pass;
-			this.joindate = joindate;
-			this.admincode = admincode;
-		}
+	public MemberDto() {
+	}
 
-		public String getId() {
-	        return id;
-	    }
+	public MemberDto(String userid, String username, String useremail, String userpass, Date joindate,
+			Integer admincode) {
+		this.userid = userid;
+		this.username = username;
+		this.useremail = useremail;
+		this.userpass = userpass;
+		this.joindate = joindate;
+		this.admincode = admincode;
+	}
 
-	    public void setId(String id) {
-	        this.id = id;
-	    }
+	public String getUserid() {
+		return userid;
+	}
 
-	    public String getName() {
-	        return name;
-	    }
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+	public String getUsername() {
+		return username;
+	}
 
-	    public String getEmail() {
-	        return email;
-	    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-	    public void setEmail(String email) {
-	        this.email = email;
-	    }
+	public String getUseremail() {
+		return useremail;
+	}
 
-	    public String getPass() {
-	        return pass;
-	    }
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
 
-	    public void setPass(String pass) {
-	        this.pass = pass;
-	    }
+	public String getUserpass() {
+		return userpass;
+	}
 
-	    public Date getJoin() {
-	        return joindate;
-	    }
+	public void setUserpass(String userpass) {
+		this.userpass = userpass;
+	}
 
-	    public void setJoindate(Date joindate) {
-	        this.joindate = joindate;
-	    }
+	public Date getJoindate() {
+		return joindate;
+	}
 
-	    public Integer getAdmincode() {
-	        return admincode;
-	    }
+	public void setJoindate(Date joindate) {
+		this.joindate = joindate;
+	}
 
-	    public void setAdmincode(Integer admincode) {
-	        this.admincode = admincode;
-	    }
+	public Integer getAdmincode() {
+		return admincode;
+	}
 
-		@Override
-		public String toString() {
-			return "MemberDto [id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + ", joindate="
-					+ joindate + ", admincode=" + admincode + "]";
-		}
-	    
-	    
+	public void setAdmincode(Integer admincode) {
+		this.admincode = admincode;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [userid=" + userid + ", username=" + username + ", useremail=" + useremail + ", userpass="
+				+ userpass + ", joindate=" + joindate + ", admincode=" + admincode + "]";
+	}
+
+	
 
 	}

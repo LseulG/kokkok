@@ -9,47 +9,55 @@ public class RecommendDto {
 	    private int seq;
 
 	    // 아이디 
-	    private String id;
+	    private String userid;
 
 	    
 	    public RecommendDto() {}
-	    
-	    public RecommendDto(int rseq, int seq, String id) {
-			super();
+
+
+		public RecommendDto(int rseq, int seq, String userid) {
 			this.rseq = rseq;
 			this.seq = seq;
-			this.id = id;
+			this.userid = userid;
 		}
 
+
 		public int getRseq() {
-	        return rseq;
-	    }
+			return rseq;
+		}
 
-	    public void setRseq(int rseq) {
-	        this.rseq = rseq;
-	    }
 
-	    public int getSeq() {
-	        return seq;
-	    }
+		public void setRseq(int rseq) {
+			this.rseq = rseq;
+		}
 
-	    public void setSeq(int seq) {
-	        this.seq = seq;
-	    }
 
-	    public String getId() {
-	        return id;
-	    }
+		public int getSeq() {
+			return seq;
+		}
 
-	    public void setId(String id) {
-	        this.id = id;
-	    }
+
+		public void setSeq(int seq) {
+			this.seq = seq;
+		}
+
+
+		public String getUserid() {
+			return userid;
+		}
+
+
+		public void setUserid(String userid) {
+			this.userid = userid;
+		}
+
 
 		@Override
 		public String toString() {
-			return "RecommendDto [rseq=" + rseq + ", seq=" + seq + ", id=" + id + "]";
+			return "RecommendDto [rseq=" + rseq + ", seq=" + seq + ", userid=" + userid + "]";
 		}
-
+	    
+	    
 	    
 	    
 

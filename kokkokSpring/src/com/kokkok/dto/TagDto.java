@@ -19,7 +19,6 @@ public class TagDto {
  public TagDto() {}
  
  public TagDto(int tseq, String tname, String tcontent, int seq) {
-	super();
 	this.tseq = tseq;
 	this.tname = tname;
 	this.tcontent = tcontent;

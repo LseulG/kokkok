@@ -20,7 +20,6 @@ public class LocationDto {
 	    public LocationDto() {}
 	    
 	    public LocationDto(String location, String x, String y, String address, int seq) {
-			super();
 			this.location = location;
 			this.x = x;
 			this.y = y;

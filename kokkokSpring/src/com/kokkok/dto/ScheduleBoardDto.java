@@ -17,7 +17,6 @@ public class ScheduleBoardDto {
 	    public ScheduleBoardDto() {}
 	    
 	    public ScheduleBoardDto(int sseq, int seq, int tripday, int step) {
-			super();
 			this.sseq = sseq;
 			this.seq = seq;
 			this.tripday = tripday;

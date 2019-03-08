@@ -10,46 +10,44 @@ public class WishDto {
  private int seq;
 
  // 아이디 
- private String id;
+ private String userid;
 
  public WishDto() {}
- 
- public WishDto(int wseq, int seq, String id) {
-	super();
+
+public WishDto(int wseq, int seq, String userid) {
 	this.wseq = wseq;
 	this.seq = seq;
-	this.id = id;
+	this.userid = userid;
 }
 
 public int getWseq() {
-     return wseq;
- }
+	return wseq;
+}
 
- public void setWseq(int wseq) {
-     this.wseq = wseq;
- }
+public void setWseq(int wseq) {
+	this.wseq = wseq;
+}
 
- public int getSeq() {
-     return seq;
- }
+public int getSeq() {
+	return seq;
+}
 
- public void setSeq(int seq) {
-     this.seq = seq;
- }
+public void setSeq(int seq) {
+	this.seq = seq;
+}
 
- public String getId() {
-     return id;
- }
+public String getUserid() {
+	return userid;
+}
 
- public void setId(String id) {
-     this.id = id;
- }
+public void setUserid(String userid) {
+	this.userid = userid;
+}
 
 @Override
 public String toString() {
-	return "WishDto [wseq=" + wseq + ", seq=" + seq + ", id=" + id + "]";
+	return "WishDto [wseq=" + wseq + ", seq=" + seq + ", userid=" + userid + "]";
 }
-
  
  
 

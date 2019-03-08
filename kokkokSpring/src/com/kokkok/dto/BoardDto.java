@@ -12,7 +12,7 @@ public class BoardDto {
 	private int bcode;
 
 	// 작성자아이디
-	private String id;
+	private String userid;
 
 	// 제목
 	private String subject;
@@ -38,12 +38,11 @@ public class BoardDto {
 	public BoardDto() {
 	}
 
-	public BoardDto(int seq, int bcode, String id, String subject, String content, Date logtime, Date updatetime,
+	public BoardDto(int seq, int bcode, String userid, String subject, String content, Date logtime, Date updatetime,
 			int recommcount, int wishcount, int hit) {
-		super();
 		this.seq = seq;
 		this.bcode = bcode;
-		this.id = id;
+		this.userid = userid;
 		this.subject = subject;
 		this.content = content;
 		this.logtime = logtime;
@@ -69,12 +68,12 @@ public class BoardDto {
 		this.bcode = bcode;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getSubject() {
@@ -135,11 +134,12 @@ public class BoardDto {
 
 	@Override
 	public String toString() {
-		return "BoardDto [seq=" + seq + ", bcode=" + bcode + ", id=" + id + ", subject=" + subject + ", content="
-				+ content + ", logtime=" + logtime + ", updatetime=" + updatetime + ", recommcount=" + recommcount
-				+ ", wishcount=" + wishcount + ", hit=" + hit + "]";
+		return "BoardDto [seq=" + seq + ", bcode=" + bcode + ", userid=" + userid + ", subject=" + subject
+				+ ", content=" + content + ", logtime=" + logtime + ", updatetime=" + updatetime + ", recommcount="
+				+ recommcount + ", wishcount=" + wishcount + ", hit=" + hit + "]";
 	}
 
+	
 	
 	
 }

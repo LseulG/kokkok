@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kokkok.member.dto.MemberDto;
+import com.kokkok.dto.MemberDto;
 import com.kokkok.member.service.MemberService;
 
 

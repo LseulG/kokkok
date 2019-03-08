@@ -11,7 +11,7 @@ public class CommentsDto {
 	    private int seq;
 
 	    // 작성자아이디 
-	    private String id;
+	    private String userid;
 
 	    // 댓글내용 
 	    private String ccontent;
@@ -22,60 +22,73 @@ public class CommentsDto {
 	    
 	    public CommentsDto() {}
 
-	    public CommentsDto(int cseq, int seq, String id, String ccontent, Date clogtime) {
-			super();
+
+		public CommentsDto(int cseq, int seq, String userid, String ccontent, Date clogtime) {
 			this.cseq = cseq;
 			this.seq = seq;
-			this.id = id;
+			this.userid = userid;
 			this.ccontent = ccontent;
 			this.clogtime = clogtime;
 		}
 
+
 		public int getCseq() {
-	        return cseq;
-	    }
+			return cseq;
+		}
 
-	    public void setCseq(int cseq) {
-	        this.cseq = cseq;
-	    }
 
-	    public int getSeq() {
-	        return seq;
-	    }
+		public void setCseq(int cseq) {
+			this.cseq = cseq;
+		}
 
-	    public void setSeq(int seq) {
-	        this.seq = seq;
-	    }
 
-	    public String getId() {
-	        return id;
-	    }
+		public int getSeq() {
+			return seq;
+		}
 
-	    public void setId(String id) {
-	        this.id = id;
-	    }
 
-	    public String getCcontent() {
-	        return ccontent;
-	    }
+		public void setSeq(int seq) {
+			this.seq = seq;
+		}
 
-	    public void setCcontent(String ccontent) {
-	        this.ccontent = ccontent;
-	    }
 
-	    public Date getClogtime() {
-	        return clogtime;
-	    }
+		public String getUserid() {
+			return userid;
+		}
 
-	    public void setClogtime(Date clogtime) {
-	        this.clogtime = clogtime;
-	    }
+
+		public void setUserid(String userid) {
+			this.userid = userid;
+		}
+
+
+		public String getCcontent() {
+			return ccontent;
+		}
+
+
+		public void setCcontent(String ccontent) {
+			this.ccontent = ccontent;
+		}
+
+
+		public Date getClogtime() {
+			return clogtime;
+		}
+
+
+		public void setClogtime(Date clogtime) {
+			this.clogtime = clogtime;
+		}
+
 
 		@Override
 		public String toString() {
-			return "CommentsDto [cseq=" + cseq + ", seq=" + seq + ", id=" + id + ", ccontent=" + ccontent
+			return "CommentsDto [cseq=" + cseq + ", seq=" + seq + ", userid=" + userid + ", ccontent=" + ccontent
 					+ ", clogtime=" + clogtime + "]";
 		}
+	    
+		
 	    
 	    
 

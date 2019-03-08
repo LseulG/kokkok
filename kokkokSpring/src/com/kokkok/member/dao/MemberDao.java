@@ -3,7 +3,9 @@ package com.kokkok.member.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.kokkok.member.dto.MemberDto;
+import com.kokkok.dto.MemberDto;
+
+
 
 public interface MemberDao {
 	public int idCheck(String id);
