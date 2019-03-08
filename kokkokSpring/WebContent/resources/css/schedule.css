@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+	#daySelectWrap {
+		position:absolute;top:350px;left:30px;width:110px;height:45px;
+		margin:10px 0 30px 10px;padding:2px;overflow-y:auto;
+		background:#f85959; z-index: 1;font-size:12px;border-radius: 5px;
+	}
+	#daySelectWrap #mapDay {
+		width:106px; height:41px; padding-left: 10px; border-radius: 5px;
+	}
+	.sl-loc-cont p img{
+	  display: inline-block;
+	  vertical-align: middle;
+	  max-height: 100%;
+	  max-width: 100%;
+	}
+
 /* ----- view --------------------*/
 .commForm {
 	padding: 20px 15px;

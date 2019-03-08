@@ -20,6 +20,13 @@ var save = function() {
 	var markup = $("#summernote").summernote("code"); // 내용 가져오는거
 	alert(markup);
 }
+function reviewBtn(){
+	if ($('#summernote').summernote('isEmpty')) {
+		  alert('editor content is empty');
+	} else {
+		modalWrite();
+	}
+}
 </script>
 <style>
 .modal-content{
@@ -79,7 +86,7 @@ var save = function() {
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
 <!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="modalWrite();" data-dismiss="modal"/>
+					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="reviewBtn();" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
@@ -109,10 +116,5 @@ $('#summernote').summernote({
 		  ['Insert', ['picture','link','hr']]
 	  ]
 });
-
-//if ($('#summernote').summernote('isEmpty')) {
-//	  alert('editor content is empty');
-//}
-
 
 </script>
