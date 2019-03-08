@@ -19,17 +19,23 @@ var infoListNumOfRows = 12;
 var infoTypeId = "infoArea";
 
 $(document).ready(function() {
-	// Initialize Information Buttons
-	$("div.infoitems").hide();
-	$("div.infoArea").show();
-	$("h3.infoItemsTitle").text("지역별 관광정보");
 	
-	// Initialize Area and Sigungu
-	getAreaCdoeList();
-	getSigunguCodeList();
+	//해쉬가 있다면 그에 맞춰 값을 얻어오고 그렇지 않다면 초기화
+	if (document.location.hash) {
+		initPageByHash();		
+				
+	} else {
+		// Initialize Information Buttons
+		setInformationButtons();
+		
+		// Initialize Area and Sigungu
+		getAreaCodeList();
+		getSigunguCodeList();
+		
+		// First Information List
+		getInfoAreaList(1);
+	}
 	
-	// First Information List
-	getInfoAreaList(1);
 	
 	// Set Date Format
 	$(".datepicker").datepicker({
@@ -38,45 +44,35 @@ $(document).ready(function() {
 	});
 	
 	// Change State When Buttons Click
-	$("#infoArea").click(function(){		 
-		$("div.infoitems").hide();
-		$("div.infoArea").show();
-		$("h3.infoItemsTitle").text("지역별 관광정보");
-		initInformationButtonColor();
-		$(this).attr("style", "background-color: #f8f9fa; color: #dc3545");
+	$("#infoArea").click(function(){
 		infoTypeId = "infoArea";
+		setInformationButtons();				
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	$("#infoLocation").click(function(){
-		$("div.infoitems").hide();
-		$("div.infoLocation").show();
-		$("h3.infoItemsTitle").text("내주변 관광정보");
-		initInformationButtonColor();
-		$(this).attr("style", "background-color: #f8f9fa; color: #dc3545");
-		infoTypeId = "infoLocation";
+		infoTypeId = "infoLocation";		
+		setInformationButtons();
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	$("#infoKeyword").click(function(){
-		$("div.infoitems").hide();
-		$("div.infoKeyword").show();
-		$("h3.infoItemsTitle").text("통합 검색");
-		initInformationButtonColor();
-		$(this).attr("style", "background-color: #f8f9fa; color: #dc3545");
 		infoTypeId = "infoKeyword";
+		setInformationButtons();
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	$("#infoFestival").click(function(){
-		$("div.infoitems").hide();
-		$("div.infoFestival").show();
-		$("h3.infoItemsTitle").text("행사 검색");
-		initInformationButtonColor();
-		$(this).attr("style", "background-color: #f8f9fa; color: #dc3545");
 		infoTypeId = "infoFestival";
+		setInformationButtons();
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	$("#infoStay").click(function(){
-		$("div.infoitems").hide();
-		$("div.infoStay").show();
-		$("h3.infoItemsTitle").text("숙박 검색");
-		initInformationButtonColor();
-		$(this).attr("style", "background-color: #f8f9fa; color: #dc3545");
 		infoTypeId = "infoStay";
+		setInformationButtons();
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	
 	// Input-Range Synchronize with Input-number  
@@ -87,69 +83,73 @@ $(document).ready(function() {
 	// AreaCodeList Change Event
 	$("#areaCodeList").change(function() {
 		getSigunguCodeList();
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
+	});
+	
+	// SigunguCodeList Change Event
+	$("#sigunguCodeList").change(function() {		
+		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+//	    createListHash();
 	});
 	
 	// Search Button Click Event
 	$("#getInfoList").click(function() {
-		infoListCurrPageNum = 1;
-		
-		getInfoList(infoListCurrPageNum);
-		
-	});	
+		infoListCurrPageNum = 1;		
+		getInfoList(infoListCurrPageNum);		
+	});
 	
+	// order type change Event
+	$("#orderType").change(function() {
+		infoListArrange = $("this").val();
+//		infoListCurrPageNum = 1;
+		getInfoList(infoListCurrPageNum);		
+	});
+	
+	// Map Modal Click Event
 	$("#infoMapModal").on("shown.bs.modal", function(){
-		var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
-		mapOption = { 
-		    center: new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()), // 지도의 중심좌표
-//		    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    level: 3 // 지도의 확대 레벨
-		};
-		
-		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-		var imageSrc = 'https://phinf.pstatic.net/memo/20190225_65/sseul878_1551068626698VMnPU_PNG/marker_red2.png?type=w740', // 마커이미지의 주소입니다    
-		imageSize = new daum.maps.Size(40, 42), // 마커이미지의 크기입니다
-		imageOption = {offset: new daum.maps.Point(13, 37)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-
-		//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-		var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
-		markerPosition = new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()); // 마커가 표시될 위치입니다
-
-		//지도를 클릭한 위치에 표출할 마커입니다
-		var marker = new daum.maps.Marker({ 
-		// 지도 중심좌표에 마커를 생성합니다 
-		position: map.getCenter() ,
-		image: markerImage // 마커이미지 설정 
-		}); 
-		//지도에 마커를 표시합니다
-		marker.setMap(map);
-
-		//지도에 클릭 이벤트를 등록합니다
-		//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-		daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
-
-		// 클릭한 위도, 경도 정보를 가져옵니다 
-		var latlng = mouseEvent.latLng; 
-
-		// 마커 위치를 클릭한 위치로 옮깁니다
-		marker.setPosition(latlng);
-		
-		var lon = latlng.getLng();
-		var lat = latlng.getLat();				
-		
-		$("#mapX").val(parseFloat(lon).toFixed(6));
-		$("#mapY").val(parseFloat(lat).toFixed(6));		
-
-		var message = '위도: ' + parseFloat(lat).toFixed(6) + '  ';
-		message += '경도: ' + parseFloat(lon).toFixed(6) + '';
-
-		var resultDiv = document.getElementById('clickLatlng'); 
-		resultDiv.innerHTML = message;
-
-		});
+		getMapAndExecution();		
 	});	
 	
 });
+
+//jquery를 이용해서 request parameter를 가져오기 위한 함수 코드
+function urlParam(name){	
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results == null) {
+		return null;
+    } else {
+    	return results[1] || 0;
+	}	
+}
+
+//Initialize Information Buttons
+function setInformationButtons(){
+	$("div.infoitems").hide();	
+	initInformationButtonColor();
+	
+	if (infoTypeId == "infoArea") {
+		$("div.infoArea").show();
+		$("h3.infoItemsTitle").text("지역별 관광정보");
+		$("#infoArea").attr("style", "background-color: #f8f9fa; color: #dc3545");
+	} else if (infoTypeId == "infoLocation") {
+		$("div.infoLocation").show();
+		$("h3.infoItemsTitle").text("내주변 관광정보");
+		$("#infoLocation").attr("style", "background-color: #f8f9fa; color: #dc3545");
+	} else if (infoTypeId == "infoKeyword") {
+		$("div.infoKeyword").show();
+		$("h3.infoItemsTitle").text("통합 검색");
+		$("#infoKeyword").attr("style", "background-color: #f8f9fa; color: #dc3545");
+	} else if (infoTypeId == "infoFestival") {
+		$("div.infoFestival").show();
+		$("h3.infoItemsTitle").text("행사 검색");
+		$("#infoFestival").attr("style", "background-color: #f8f9fa; color: #dc3545");
+	} else if (infoTypeId == "infoStay") {
+		$("div.infoStay").show();
+		$("h3.infoItemsTitle").text("숙박 검색");
+		$("#infoStay").attr("style", "background-color: #f8f9fa; color: #dc3545");
+	}
+}
 
 function getInfoList(pageNum) {
 	if (infoTypeId == "infoArea") {
@@ -174,7 +174,7 @@ function initInformationButtonColor() {
 	$("#infoStay").attr("style", "");	
 }
 
-function getAreaCdoeList() {
+function getAreaCodeList() {
 	$.ajax({
 	    url : "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?" + 
 	    		"ServiceKey=" + serviceKey +
@@ -191,6 +191,8 @@ function getAreaCdoeList() {
 	        }
 	        $(".areaCode").remove();
 	        $("#areaCodeList").append(contentStr);
+	        // areaCode 값이 있다면 세팅
+	        $("#areaCodeList").val(areaCode);
 	    }
 	});
 }
@@ -219,6 +221,8 @@ function getSigunguCodeList() {
 	    	}
 	        $(".sigunguCode").remove();
 	        $("#sigunguCodeList").append(contentStr);
+	        // sigunguCode 값이 있다면 세팅
+	        $("#sigunguCodeList").val(sigunguCode);
 	    	
 	    }
 	});
@@ -257,7 +261,8 @@ function makeListToHtml(xml){
 	    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
 	    		contentStr += "<div align='right'>";
 	    		// 행사가 아닌 경우 date 정보가 없음
-	    		if ($(this).find("eventstartdate").text() != null && $(this).find("eventenddate").text() != null) {
+	    		if ($(this).find("eventstartdate").text() != null && $(this).find("eventenddate").text() != null &&
+	    			$(this).find("eventstartdate").text() != "" && $(this).find("eventenddate").text() != "") {
 	    			contentStr += "<span class='listing'>"+ $(this).find("eventstartdate").text() +" ~ "+ $(this).find("eventenddate").text() +"</span>";
 	    		}
 	    		contentStr += "</div></div></div></div>";
@@ -267,7 +272,7 @@ function makeListToHtml(xml){
     }
     // 일단 목록을 지우고 채움
     $(".informationItem").remove();
-    $(".informationItemList").append(contentStr);
+    $("#informationItemList").append(contentStr);
     // 관광 정보의 총 갯수
     infoTotalCount = $(xml).find("totalCount").text();
     // 네비게이터를 만듬
@@ -283,6 +288,7 @@ function getInfoAreaList(pageNum) {
 	if ($("#sigunguCodeList").val() != null) {
 		sigunguCode = $("#sigunguCodeList").val();
 	}
+	infoListArrange = $("#orderType").val();	
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?" +
 				"ServiceKey=" + serviceKey +
 				"&contentTypeId=" + contentTypeId +
@@ -312,6 +318,7 @@ function getInfoLocationList(pageNum) {
 	var mapX = $("#mapX").val();
 	var mapY = $("#mapY").val();
 	var radius = $("#location_number").val() * 1000;
+	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?" +
 				"ServiceKey=" + serviceKey +
 				"&contentTypeId=" + contentTypeId +
@@ -343,6 +350,7 @@ function getInfoKeywordList(pageNum) {
 		sigunguCode = $("#sigunguCodeList").val();
 	}
 	var keyword = $("#keyword").val();
+	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?" +
 					"ServiceKey=" + serviceKey +
 					"&keyword=" + encodeURIComponent(keyword) +
@@ -380,7 +388,7 @@ function getInfoFestivalList(pageNum) {
 		alert("시작날짜가 끝날짜보다 큽니다.\n" + "다시 입력해주세요.");
 		return;
 	}
-	
+	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?" +
 					"ServiceKey=" + serviceKey +
 					"&eventStartDate=" + eventStartDate +
@@ -411,9 +419,8 @@ function getInfoStayList(pageNum) {
 	}
 	if ($("#sigunguCodeList").val() != null) {
 		sigunguCode = $("#sigunguCodeList").val();
-	}
-	var eventStartDate = $("#eventStartDate").val();
-	var eventEndDate = $("#eventEndDate").val();
+	}	
+	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?" +
 					"ServiceKey=" + serviceKey +
 					"&areaCode=" + areaCode +
@@ -497,7 +504,11 @@ function makeNavigator() {
 	}	
 	
 	$("#navigator").children("li").remove();
-    $("#navigator").append(contentStr);
+    $("#navigator").append(contentStr);    
+    
+    // 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
+    createListHash();
+    
 }
 
 $(document).on("click", "#lastPage", function() {
@@ -563,11 +574,94 @@ $(document).on("click", ".naviNum", function() {
 	makeNavigator();	
 });
 
+// 웹브라우저 뒤로가기를 위해 hash tag를 작성
+function createListHash() {	
+	// 값은 관광정보유형 + 구분자(^) + 현재 페이지 + ^ + ..............    
+	var str_hash = "";
+	str_hash += infoTypeId + "^";
+	str_hash += areaCode + "^";
+	str_hash += sigunguCode + "^";
+	str_hash += infoListCurrPageNum + "^";
+   
+    document.location.hash = "#" + str_hash;
+    
+//    alert("document.location.hash");
+}
 
+function initPageByHash() {
+	var str_hash;
+	var arr_value;
+	str_hash = document.location.hash;
+	str_hash = str_hash.replace("#", "");
+	arr_value = str_hash.split("^");
+	infoTypeId = arr_value[0];
+	areaCode = arr_value[1];
+	sigunguCode = arr_value[2];
+	infoListCurrPageNum = arr_value[3];	
+	
+	// Initialize Information Buttons
+	setInformationButtons();
+	
+	// Initialize Area and Sigungu
+	getAreaCodeList();
+	getSigunguCodeList();
+	
+	// First Information List
+	getInfoList(infoListCurrPageNum);
+}
 
+// 지도에 관한 함수
+function getMapAndExecution() {
+	var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
+	mapOption = { 
+	    center: new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()), // 지도의 중심좌표
+//	    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	    level: 3 // 지도의 확대 레벨
+	};
+	
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+	var imageSrc = 'https://phinf.pstatic.net/memo/20190225_65/sseul878_1551068626698VMnPU_PNG/marker_red2.png?type=w740', // 마커이미지의 주소입니다    
+	imageSize = new daum.maps.Size(40, 42), // 마커이미지의 크기입니다
+	imageOption = {offset: new daum.maps.Point(13, 37)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
+	//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
+	markerPosition = new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()); // 마커가 표시될 위치입니다
 
+	//지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new daum.maps.Marker({ 
+	// 지도 중심좌표에 마커를 생성합니다 
+	position: map.getCenter() ,
+	image: markerImage // 마커이미지 설정 
+	}); 
+	//지도에 마커를 표시합니다
+	marker.setMap(map);
+
+	//지도에 클릭 이벤트를 등록합니다
+	//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+
+	// 클릭한 위도, 경도 정보를 가져옵니다 
+	var latlng = mouseEvent.latLng; 
+
+	// 마커 위치를 클릭한 위치로 옮깁니다
+	marker.setPosition(latlng);
+	
+	var lon = latlng.getLng();
+	var lat = latlng.getLat();				
+	
+	$("#mapX").val(parseFloat(lon).toFixed(6));
+	$("#mapY").val(parseFloat(lat).toFixed(6));		
+
+	var message = '위도: ' + parseFloat(lat).toFixed(6) + '  ';
+	message += '경도: ' + parseFloat(lon).toFixed(6) + '';
+
+	var resultDiv = document.getElementById('clickLatlng'); 
+	resultDiv.innerHTML = message;
+
+	});
+}
 
 
 

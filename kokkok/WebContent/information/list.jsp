@@ -135,8 +135,16 @@
 				</div>
           
 				<div class="col-lg-9">
-					<div class="row informationItemList">					
-					</div>					
+					<div class="form-group" align="right">
+						<select name="" id="orderType" class="">
+							<option value="D">생성일순</option>
+							<option value="B">조회순</option>
+							<option value="A">제목순</option>									
+							<option value="C">수정일순</option>									
+						</select>
+					</div>
+					<div id="informationItemList" class="row">					
+					</div>
 					<div class="row mt-5">
 						<div class="col text-center">
 							<div class="block-27">
