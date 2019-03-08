@@ -1,15 +1,17 @@
 package com.kokkok.dto;
 
-public class SheduleDto {
+import java.util.Date;
+
+public class ScheduleDto {
 	
 	    // 여행일정게시판번호 
 	    private int sseq;
 
 	    // 시작날짜 
-	    private String startString;
+	    private Date startdate;
 
 	    // 끝날짜 
-	    private String endString;
+	    private Date enddate;
 
 	    // 원래사진 
 	    private String originpicture;
@@ -26,14 +28,14 @@ public class SheduleDto {
 	    // 여행테마 
 	    private String thema;
 
-	    public SheduleDto() {}
+	    public ScheduleDto() {}
 	    
-	    public SheduleDto(int sseq, String startString, String endString, String originpicture, String savefolder,
+	    public ScheduleDto(int sseq, Date startdate, Date enddate, String originpicture, String savefolder,
 				String savepicture, String persons, String thema) {
 			super();
 			this.sseq = sseq;
-			this.startString = startString;
-			this.endString = endString;
+			this.startdate = startdate;
+			this.enddate = enddate;
 			this.originpicture = originpicture;
 			this.savefolder = savefolder;
 			this.savepicture = savepicture;
@@ -49,20 +51,20 @@ public class SheduleDto {
 	        this.sseq = sseq;
 	    }
 
-	    public String getStartString() {
-	        return startString;
+	    public Date getStartString() {
+	        return startdate;
 	    }
 
-	    public void setStartString(String startString) {
-	        this.startString = startString;
+	    public void setStartString(Date startdate) {
+	        this.startdate = startdate;
 	    }
 
-	    public String getEndString() {
-	        return endString;
+	    public Date getEndString() {
+	        return enddate;
 	    }
 
-	    public void setEndString(String endString) {
-	        this.endString = endString;
+	    public void setEndString(Date enddate) {
+	        this.enddate = enddate;
 	    }
 
 	    public String getOriginpicture() {
@@ -107,7 +109,7 @@ public class SheduleDto {
 
 		@Override
 		public String toString() {
-			return "SheduleDto [sseq=" + sseq + ", startString=" + startString + ", endString=" + endString
+			return "SheduleDto [sseq=" + sseq + ", startdate=" + startdate + ", enddate=" + enddate
 					+ ", originpicture=" + originpicture + ", savefolder=" + savefolder + ", savepicture=" + savepicture
 					+ ", persons=" + persons + ", thema=" + thema + "]";
 		}

@@ -1,6 +1,6 @@
 package com.kokkok.dto;
 
-public class SheduleBoardDto {
+public class ScheduleBoardDto {
 	    // 여행일정게시판번호 
 	    private int sseq;
 
@@ -14,9 +14,9 @@ public class SheduleBoardDto {
 	    private int step;
 
 	    
-	    public SheduleBoardDto() {}
+	    public ScheduleBoardDto() {}
 	    
-	    public SheduleBoardDto(int sseq, int seq, int tripday, int step) {
+	    public ScheduleBoardDto(int sseq, int seq, int tripday, int step) {
 			super();
 			this.sseq = sseq;
 			this.seq = seq;

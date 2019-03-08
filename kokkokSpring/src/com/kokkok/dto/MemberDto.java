@@ -1,5 +1,7 @@
 package com.kokkok.dto;
 
+import java.util.Date;
+
 public class MemberDto {
 
 	    // 아이디 
@@ -15,20 +17,20 @@ public class MemberDto {
 	    private String pass;
 
 	    // 회원가입일 
-	    private String joinString;
+	    private Date joindate;
 
 	    // 등급코드 
 	    private Integer admincode;
 
 	    public MemberDto() {}
 	    
-	    public MemberDto(String id, String name, String email, String pass, String joinString, Integer admincode) {
+	    public MemberDto(String id, String name, String email, String pass, Date joindate, Integer admincode) {
 			super();
 			this.id = id;
 			this.name = name;
 			this.email = email;
 			this.pass = pass;
-			this.joinString = joinString;
+			this.joindate = joindate;
 			this.admincode = admincode;
 		}
 
@@ -64,12 +66,12 @@ public class MemberDto {
 	        this.pass = pass;
 	    }
 
-	    public String getJoinString() {
-	        return joinString;
+	    public Date getJoinString() {
+	        return joindate;
 	    }
 
-	    public void setJoinString(String joinString) {
-	        this.joinString = joinString;
+	    public void setJoinString(Date joindate) {
+	        this.joindate = joindate;
 	    }
 
 	    public Integer getAdmincode() {
@@ -82,8 +84,8 @@ public class MemberDto {
 
 		@Override
 		public String toString() {
-			return "MemberDto [id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + ", joinString="
-					+ joinString + ", admincode=" + admincode + "]";
+			return "MemberDto [id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + ", joindate="
+					+ joindate + ", admincode=" + admincode + "]";
 		}
 	    
 	    

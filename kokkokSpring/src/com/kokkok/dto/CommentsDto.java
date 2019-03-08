@@ -1,5 +1,7 @@
 package com.kokkok.dto;
 
+import java.util.Date;
+
 public class CommentsDto {
 
 	    // 댓글번호 
@@ -15,12 +17,12 @@ public class CommentsDto {
 	    private String ccontent;
 
 	    // 댓글작성일 
-	    private String clogtime;
+	    private Date clogtime;
 	    
 	    
 	    public CommentsDto() {}
 
-	    public CommentsDto(int cseq, int seq, String id, String ccontent, String clogtime) {
+	    public CommentsDto(int cseq, int seq, String id, String ccontent, Date clogtime) {
 			super();
 			this.cseq = cseq;
 			this.seq = seq;
@@ -61,11 +63,11 @@ public class CommentsDto {
 	        this.ccontent = ccontent;
 	    }
 
-	    public String getClogtime() {
+	    public Date getClogtime() {
 	        return clogtime;
 	    }
 
-	    public void setClogtime(String clogtime) {
+	    public void setClogtime(Date clogtime) {
 	        this.clogtime = clogtime;
 	    }
 
