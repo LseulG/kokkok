@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.commonMapper">
+	
+	<insert id="registerWish" parameterType="java.util.Map">
+		insert into wish values(WISH_SEQ.nextval, #{seq}, #{id})
+	</insert>
+  	
+  	<select id="checkWish" parameterType="java.util.Map" resultType="int">
+  		<![CDATA[select count(*) from wish where id = #{id} and seq = #{seq}]]>
+  	</select>
+  	
+  	<delete id="deleteWish" parameterType="java.util.Map">
+  		delete from wish where id = #{id} and seq = #{seq}
+  	</delete>
+  	
+  	<select id="countWish" parameterType="java.util.Map" resultType="int">
+  		select wishcount from board where seq = #{seq}
+  	</select>
+  	
+  	<update id="addWish" parameterType="java.util.Map">
+  		update board set wishcount = wishcount + 1 where seq = #{seq}
+  	</update>
+  	
+  	<update id="minusWish" parameterType="java.util.Map">
+  		update board set wishcount = wishcount - 1 where seq = #{seq}
+  	</update>
+  	
+  	
+
+</mapper>
