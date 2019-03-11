@@ -17,4 +17,10 @@ public class InfoServiceImpl implements InfoService {
 		mav.setViewName("/information/list");				
 	}
 
+	@Override
+	public void infoView(ModelAndView mav) {
+		mav.setViewName("/information/view");
+		
+	}
+
 }

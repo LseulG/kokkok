@@ -26,4 +26,13 @@ public class InfoController {
 		return mav;
 		
 	}
+	
+	@RequestMapping(value="/information/view.kok",method=RequestMethod.GET)
+	public ModelAndView infoView(HttpServletRequest request, HttpServletResponse response) {		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		infoService.infoView(mav);
+		return mav;
+		
+	}
 }
