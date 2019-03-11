@@ -2,18 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.memberMapper">
+<mapper namespace="com.kokkok.member.dao.MemberDao">
 
 	
-
-	<insert id="memberInsert" parameterType="com.kokkok.dto.MemberDto">
+	<insert id="register" parameterType="com.kokkok.dto.MemberDto">
 		insert into member(userid,username,useremail,userpass,joindate,admincode)
 		values(#{userid}, #{username}, #{useremail}, #{userpass}, sysdate, 0)                                       
     </insert>
     
-    <select id="login" parameterType="java.util.Map" resultType="com.kokkok.dto.MemberDto">
-    	select userid, username, useremail, joindate, admincode from member
-		where userid = #{userid} and userpass = #{userpass}
+      
+    <select id="idCheck" parameterType="String" resultType="int">
+        select count(userid)
+        from member
+        where userid = #{userid}
     </select>
+    
+    
+    <select id="login" parameterType="java.util.Map" resultType="com.kokkok.dto.MemberDto">
+    	select * from member
+		where userid = #{loginid} and userpass = #{loginpass}
+    </select>
+
 
 </mapper>
