@@ -56,10 +56,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/idsearch.kok",method=RequestMethod.GET)
-	public ModelAndView idcheck(@RequestParam("checkid") String id) {
+	public ModelAndView idcheck(@RequestParam("checkid") String id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = memberService.idCheck(id);
-		mav.addObject("check", id);
+		request.setAttribute("checkid", id);
+		request.setAttribute("idCnt", cnt);
+		mav.addObject("checkid", id);
 		mav.addObject("idcnt", cnt);
 		mav.setViewName("member/join/idcheck");
 		return mav;
@@ -130,7 +132,6 @@ public class MemberController {
 		MemberDto memberDto = memberService.login(map);
 		if(memberDto != null) {
 			LogCheck.logger.info(LogCheck.logMsg + memberDto.toString());
-			mav.addObject("memberDto", memberDto);
 			session.setAttribute("userInfo", memberDto);
 			path = path.substring(path.lastIndexOf("zzkokzz6") + 9, path.length());
 			

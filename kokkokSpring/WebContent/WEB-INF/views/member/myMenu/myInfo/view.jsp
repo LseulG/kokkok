@@ -13,7 +13,12 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
-
+<c:if test="${userInfo == null}">
+<script>	
+alert('로그인 세션이 만료되었습니다.'); 
+document.location.href = "${root}/index.jsp";
+</script>
+</c:if>
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
@@ -75,7 +80,8 @@
 			<hr>	  	
 			</div>
 			<div class="d-flex justify-content-center mb-3">
-			    <div class="p-2"><input type="button" value="수정하기" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/modify.kok'"></div>			    
+			    <div class="p-2"><input type="button" value="수정하기" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/modify.kok'"></div>
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		    
 			    <div class="p-2"><input type="button" value="계정삭제" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/delete.kok'"></div>			    
 			</div>
 

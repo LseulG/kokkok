@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8" import="java.util.regex.Pattern"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 <%
 	String id = (String) request.getAttribute("checkid");
 %>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +22,13 @@ function idcheck(){
 	if(document.getElementById("checkid").value.trim().length == 0) {
 		alert("검색 아이디 입력!");
 		return;
-	} else {
+	} else{
 		document.idform.action = "${root}/member/idsearch.kok";
-		document.idform.submit();
-		}
+		document.idform.submit();    	  
+      }
+
 	}
+	
 
 	function iduse(id) {
 		opener.document.getElementById("userid").value = id;
@@ -39,7 +41,7 @@ function idcheck(){
 
 
 
-	<div>
+	<div align="center">
 
 
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -63,10 +65,34 @@ function idcheck(){
 							id="idsearchBtn" onclick="javascript:idcheck();">
 					</div>
 
-
 				</div>
+				<div id="checkidblank" style="display: none;"></div>
 				<br>
+				
+				<div align="left">
 
+				<%
+					if (id == null) {
+				%>
+					<div>아이디를 입력해주세요!</div>
+					
+				<%	  
+				} 
+
+					if(id != null) {
+						String idReg = "^[a-z]{1}[a-z0-9]{3,15}$";
+						boolean i = Pattern.matches(idReg, id);
+						if(i == true){
+						int cnt = (int) request.getAttribute("idCnt");
+						if (cnt != 0) {
+				%>
+				<div class="div3">
+					<%=id%>은 이미 존재하는 아이디 입니다.
+				</div>
+
+				<%
+						} else{
+				%>
 				<div class="row">
 					<div style="padding-right:20px">
 						<%=id%>는 사용할수 있습니다.<br>사용하시겠습니까?<br> 
@@ -75,9 +101,23 @@ function idcheck(){
 						<input type="button" value="사용하기" class="btn btn-primary" onclick="javascript:iduse('<%=id%>');">
 					</div>
 				</div>
-				
+				<%
+						}
+						
+					} else {
+				%>
+				<div class="div3">
+					<%=id%>는 부적합 합니다.<br>
+					아이디는 영문으로 시작해야 하며,<br>
+					영문과 숫자 조합 4~16자리로 사용해야 합니다.<br>
+					대문자는 사용하실 수 없습니다.
+				</div>
+				<%
+						}
+					}
+				%>
 
-
+				</div>
 			</form>
 		</div>
 	</div>
