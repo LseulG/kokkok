@@ -198,62 +198,7 @@
     	</div>
     </section>
     
-	  <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(${root}/resources/images/bg_1.jpg);">
-	  	<input type="button" id="likeBtn" value="좋아요"/>
-	  	<div id="wishTest"></div>
-	  </section>
-	<script type="text/javascript">
-	  
-	  $(document).ready(function() {
-		  
-		  $.ajax({
-			  url: "${root}/checkWish.kok",
-			  type: "POST",
-			  dataType: "json",
-			  //data: {"seq" : "${article.seq}", "key" : "${userInfo.ID}"},
-			  data: {"seq" : "1", "key" : "sangjae"},
-			  success: function(response){
-				 var wishCheck = response.wishCheck;
-				 var wishCount = response.wishCount;				  
-				  checkWish(wishCheck,wishCount);
-				  
-			  }
-		  });	  
-	  	
-	  });
-	  
-	  
-	  $(document).on("click", "#likeBtn", function() {
-		  $.ajax({
-			  url: "${root}/registerWish.kok",
-			  type: "POST",
-			  dataType: "json",
-			  //data: {"seq" : "${article.seq}", "key" : "${userInfo.ID}"},
-			  data: {"seq" : "1", "key" : "sangjae"},
-			  success: function(response){				
-				  var wishCheck = response.wishCheck;
-				  var wishCount = response.wishCount;				
-				  checkWish(wishCheck,wishCount);
-			  }
-		  });	  	
-	  });
-	  
-	  
-	  function checkWish(wishCheck,wishCount){
-		
-		  $("#wishTest").children("div").remove();
-		  var statusWish = "";
-		  if(wishCheck > 0){
-			  statusWish += "<div class='scheduleJJim'><h3 class='heading mb-4'><i class='icon-heart'></i> 찜"+wishCount+"</h3></div>";
-		  }else{
-			  statusWish += "<div class='scheduleJJim'><h3 class='heading mb-4'><i class='icon-heart-o'></i> 찜"+wishCount+"</h3></div>";
-		  }
-		  $("#wishTest").append(statusWish);
-	  }	  
 
-	  
-	  </script>	  
-	  
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>	
 	<%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 <script src="${root}/resources/vendor/chart.js/Chart.min.js"></script>

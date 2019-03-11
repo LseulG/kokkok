@@ -105,11 +105,11 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<div class="container-login100"
 						style="padding-top: 0px; padding-bottom: 100px;">
-						<div class="wrap-login100" style="width:500px">
+						<div class="wrap-login100" style="width:500px; height:780px;">
 							<form class="login100-form" name="registerform" id="registerform"
 								method="post" action="" style="padding: 50px">
 								<input type="hidden" name="act" value="register"> 
-									<span class="login100-form-title p-b-49"> 회원가입</span> 
+									<span class="login100-form-title p-b-49">회원가입</span> 
 									<br> <br>
 									
 								<div class="row">

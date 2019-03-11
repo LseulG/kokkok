@@ -125,15 +125,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/login.kok",method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> map,HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public ModelAndView login(@RequestParam Map<String, String> map,HttpSession session, HttpServletRequest request) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		String path = request.getHeader("referer");
-		LogCheck.logger.info(LogCheck.logMsg + path);
+		String projectName = request.getContextPath(); 
+		LogCheck.logger.info(LogCheck.logMsg +"이전 페이지경로:"+ path);
+		LogCheck.logger.info(LogCheck.logMsg +"프로젝트 이름:"+ projectName);
+		LogCheck.logger.info(LogCheck.logMsg +"프로젝트 길이:"+projectName.length());
 		MemberDto memberDto = memberService.login(map);
 		if(memberDto != null) {
 			LogCheck.logger.info(LogCheck.logMsg + memberDto.toString());
 			session.setAttribute("userInfo", memberDto);
-			path = path.substring(path.lastIndexOf("zzkokzz6") + 9, path.length());
+			path = path.substring(path.lastIndexOf(projectName) + projectName.length()+1, path.length());
+			LogCheck.logger.info(LogCheck.logMsg +"이동할페이지 주소:"+ path);
 			
 			if("index.jsp".equals(path) || "member/register.kok".equals(path)) {
 				mav.setViewName("redirect:index.jsp");
@@ -144,19 +148,18 @@ public class MemberController {
 			return mav;
 		}
 		
-		LogCheck.logger.info(LogCheck.logMsg + path);
 		mav.setViewName("redirect:"+path);
 		return mav;
 	}
 	
+	
 	@RequestMapping(value="/logout.kok",method=RequestMethod.GET)
 	public String logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
-		String path = request.getHeader("referer");
-		path = path.substring(path.lastIndexOf("zzkokzz6") + 9, path.length()-4);
-		LogCheck.logger.info(LogCheck.logMsg + path.toString());
 		return "redirect:index.jsp";
 	}
+
+
 
 
 	
