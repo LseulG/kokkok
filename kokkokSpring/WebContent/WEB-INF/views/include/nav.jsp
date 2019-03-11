@@ -1,7 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    
+
 <style>
 
 #adminMy{
@@ -28,12 +28,12 @@
 		  <li class="nav-item"><a class="nav-link" href="${root}/tips/list.kok">여행 꿀팁<span class="caret"></span></a>	  
 		  			<!-- 로그인 모달 추가! -->
 			
-
+<c:if test="${userInfo == null}">
 		  <li class="nav-item cta" style="cursor: pointer"><a class="nav-link" data-toggle="modal" data-target="#myLoginModal"><span>로그인</span></a></li>&nbsp;&nbsp;
-          <li class="nav-item cta"><a href="${root}/member/mvRegister.kok" class="nav-link"><span>회원가입</span></a></li>
+          <li class="nav-item cta"><a href="${root}/member/register.kok" class="nav-link"><span>회원가입</span></a></li>
+</c:if>
 
-
-
+<c:if test="${userInfo != null}">
           <!-- 로그인 -->
           <li class="nav-item cta dropdown">
           	<a href="" class="dropdown-toggle nav-link" data-toggle="dropdown"><span>마이페이지</span></a>
@@ -43,13 +43,14 @@
 				<li><a href="${root}/member/mywishschedule.kok" class="dropdown-item">내가 찜한 일정</a></li>
 				<li><a href="${root}/member/mywishreview.kok" class="dropdown-item">내가 찜한 리뷰</a></li>
 
-			     <li><a href="${root}/members?act=mvmemberslist&bcode=0&pg=1&key=&word=" class="dropdown-item">회원관리</a></li>              
-
-	       
+		<c:if test="${userInfo.admincode != 0}">
+			    <li><a href="${root}/members?act=mvmemberslist&bcode=0&pg=1&key=&word=" class="dropdown-item">회원관리</a></li>              
+		</c:if> 
 		        </ul>
           </li>&nbsp;&nbsp;
-          <li class="nav-item cta"><a href="${root}/member?act=logout" class="nav-link"><span>로그아웃</span></a></li>
+          <li class="nav-item cta"><a href="${root}/logout.kok" class="nav-link"><span>로그아웃</span></a></li>
 
+</c:if>
 	
            
         </ul>

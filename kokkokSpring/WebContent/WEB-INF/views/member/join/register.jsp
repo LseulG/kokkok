@@ -35,13 +35,13 @@
 			return;
 		} else {
 			document.getElementById("registerform").setAttribute("action",
-					"${root}/member/registerOk.kok");
+					"${root}/member/register.kok");
 			document.getElementById("registerform").submit();
 		}
 	}
 
 	function openidcheck() {
-		window.open("${root}/member/IdCheck.kok","idcheck","top=200, left=300, width=400, height=350, menubar=no, status=no, toolbar=no, location=no, scrollbars=no");
+		window.open("${root}/member/idcheck.kok","idcheck","top=200, left=300, width=400, height=350, menubar=no, status=no, toolbar=no, location=no, scrollbars=no");
 	}
 </script>
 </head>
@@ -64,9 +64,9 @@
 					data-scrollax=" properties: { translateY: '70%' }">
 					<div class="container-login100"
 						style="padding-top: 0px; padding-bottom: 100px;">
-						<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+						<div class="wrap-login100" style="width:500px">
 							<form class="login100-form" name="registerform" id="registerform"
-								method="post" action="">
+								method="post" action="" style="padding: 50px">
 								<input type="hidden" name="act" value="register"> <span
 									class="login100-form-title p-b-49"> 회원가입 </span> <br> <br>
 									
@@ -127,35 +127,19 @@
 											data-symbol="&#xf15a;"></span>
 									</div>
 								</div>
-
-
-
-
 								<br> <br>
-
-
 								<div class="d-flex justify-content-center mb-3">
 									<div class="col-lg-5">
-										<a href="#"> <input type="button" value="회원가입"
+									<input type="button" value="회원가입"
 											class="btn btn-primary" style="width: 70%;"
-											onclick="javascript:register();" data-toggle="modal"
-											data-target="#registerModel">
-										</a>
-
-
-
-
+											onclick="javascript:register();">
 									</div>
-
 									<div class="col-lg-5">
 										<input type="button" value="취소" class="btn btn-primary"
 											style="width: 70%;"
 											onclick="location.href='${root}/index.jsp'">
 									</div>
 								</div>
-
-
-
 							</form>
 						</div>
 					</div>
@@ -170,3 +154,5 @@
 	<%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 </body>
 </html>
+
+

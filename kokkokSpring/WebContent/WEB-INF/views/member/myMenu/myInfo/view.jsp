@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,7 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>    
+<link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
@@ -26,43 +29,58 @@
 	<div class="container">
 	<div class="row">
 <!-- 왼쪽 검색창 -->	
-<%@ include file="/WEB-INF/views/member/myMenu/sidebar.jsp"%>
+<div class="col-lg-3 sidebar">
+	<div class="sidebar-wrap bg-light ftco-animate">
+		<div class="categories">
+			<li><a href="${root}/member/myInfo.kok" class="dropdown-item" style="color:red;">내 정보관리</a></li>
+			<li><a href="${root}/member/mylist.kok" class="dropdown-item">내가 작성한 일정</a></li>
+			<li><a href="${root}/member/mywishschedule.kok" class="dropdown-item">내가 찜한 일정</a></li>
+			<li><a href="${root}/member/mywishreview.kok" class="dropdown-item">내가 찜한 리뷰</a></li>
+		</div>
+	</div>
+</div>
 <!-- 왼쪽 검색창 END -->
 
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
-			<div class="container">
+			<div class="container" align="center">
 		    <hr>    
 		    <div class="row"> 	
+		    	<div class="table100" style="width: 600px; margin-left: 50px;">
 			     <table>
 				    <tbody>
 				      <tr>
-				        <td><span class="label-input100">ID123</span></td>
-				        <td>${userInfo.id}</td>	      
+				        <td style="font-weight: bold">ID3232</td>
+				        <td>${userInfo.userid}</td>	      
+				      </tr>	
+				      
+				      <tr>
+				        <td style="font-weight: bold">이름</td>
+				        <td>${userInfo.username}</td>	      
 				      </tr>	      	
+				      
 				      <tr>
-				        <td>Email</td>
-				        <td>${userInfo.email}</td>		        
+				        <td style="font-weight: bold">Email</td>
+				        <td>${userInfo.useremail}</td>		        
 				      </tr>
 				      <tr>
-				        <td>가입일</td>
-				        <td>${userInfo.joinDate}</td>	      
-				      </tr>
-				      <tr>
-				        <td>마지막 방문일</td>
-				        <td>2019.02.10</td>	      
+				        <td style="font-weight: bold">가입일</td>
+				        <td><fmt:formatDate pattern="yyyy년 MM월 dd일 HH시 mm분" value="${userInfo.joindate}"/></td> 
+				        
 				      </tr>
 				    </tbody>
 			  		</table>	  	
+		    	</div>
 			</div>
 			<hr>	  	
 			</div>
 			<div class="d-flex justify-content-center mb-3">
-			    <div class="p-2"><input type="button" value="수정하기" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member?act=mvmodify'"></div>			    
-			    <div class="p-2"><input type="button" value="계정삭제" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member?act=mvdelete'"></div>			    
+			    <div class="p-2"><input type="button" value="수정하기" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/modify.kok'"></div>			    
+			    <div class="p-2"><input type="button" value="계정삭제" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/delete.kok'"></div>			    
 			</div>
 
 <!-- 오른쪽 목록  END-->
+	</div>
 	</div> <!-- 큰 row END -->
 	</div> <!-- 큰 container END -->
 	</section>

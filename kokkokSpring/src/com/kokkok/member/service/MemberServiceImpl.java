@@ -1,24 +1,23 @@
 package com.kokkok.member.service;
 
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kokkok.comm.LogCheck;
 import com.kokkok.dto.MemberDto;
 import com.kokkok.member.dao.MemberDao;
 
-@Component
+@Service
 public class MemberServiceImpl implements MemberService{
 
+	
 	@Autowired
-	private MemberDao memberDao;
+ 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public void myInfo(ModelAndView mav) {
@@ -48,52 +47,24 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("/member/myMenu/myWish/myreviewlist");		
 	}
 
+
+
 	@Override
-	public void mvRegister(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/join/register");		
+	public MemberDto login(Map<String, String> map) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.login(map);
 	}
 
 	@Override
-	public void registerOk(ModelAndView mav) {
-		
-		Map<String, Object> map = mav.getModelMap();
-		MemberDto memberDto=(MemberDto) map.get("memberDto");
-		memberDto.setJoindate(new Date());
-
-		int check=memberDao.memberInsert(memberDto);
-
-		mav.addObject("check",check);		
-		mav.setViewName("/member/join/registerok");		
+	public int register(MemberDto memberDto) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.register(memberDto);
 	}
 
 	@Override
-	public void idCheck(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/join/idcheck");	
-	}
-
-	@Override
-	public void login(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		String id = request.getParameter("loginid");
-		String pass = request.getParameter("loginpass");
-		LogCheck.logger.info(LogCheck.logMsg + id + "," + pass);
-		
-		MemberDto memberDto = memberDao.login(id, pass);
-		LogCheck.logger.info(LogCheck.logMsg + memberDto.toString());
-		
-		if(memberDto != null) {
-			System.out.println("??");
-			HttpSession session = request.getSession();
-			session.setAttribute("userInfo", memberDto);
-			mav.setViewName("/member/myMenu/myWish/myreviewlist");	
-		} else {
-			mav.setViewName("/member/join/register");				
-		}
+	public int idCheck(String id) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.idCheck(id);
 	}
 
 

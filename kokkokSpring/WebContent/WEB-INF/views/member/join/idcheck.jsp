@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String root = request.getContextPath();
 	String id = (String) request.getAttribute("checkid");
 %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="<%=root%>/resources/css/login.css">
+<link rel="stylesheet" href="${root}/resources/css/login.css">
 <link rel="stylesheet"
-	href="<%=root%>/resources/fonts/iconic/css/material-design-iconic-font.min.css">
+	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
 
-<link rel="stylesheet" href="<%=root%>/resources/css/style.css">
+<link rel="stylesheet" href="${root}/resources/css/style.css">
 
 <script type="text/javascript">
 function idcheck(){
@@ -21,7 +23,7 @@ function idcheck(){
 		alert("검색 아이디 입력!");
 		return;
 	} else {
-		document.idform.action = "<%=root%>/member";
+		document.idform.action = "${root}/member/idsearch.kok";
 		document.idform.submit();
 		}
 	}
@@ -65,23 +67,6 @@ function idcheck(){
 				</div>
 				<br>
 
-				<%
-					if (id == null) {
-				%>
-					아이디를 입력해주세요!
-				<%
-					} else {
-						int cnt = (int) request.getAttribute("idCnt");
-						if (cnt != 0) {
-				%>
-
-				<div class="div3">
-					<%=id%>은 이미 존재하는 아이디 입니다.
-				</div>
-
-				<%
-					} else {
-				%>
 				<div class="row">
 					<div style="padding-right:20px">
 						<%=id%>는 사용할수 있습니다.<br>사용하시겠습니까?<br> 
@@ -90,10 +75,7 @@ function idcheck(){
 						<input type="button" value="사용하기" class="btn btn-primary" onclick="javascript:iduse('<%=id%>');">
 					</div>
 				</div>
-				<%
-						}
-					}
-				%>
+				
 
 
 			</form>

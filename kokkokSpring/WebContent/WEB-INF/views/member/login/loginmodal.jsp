@@ -23,11 +23,15 @@
 	width: 350px;
 }
 </style>
+
+
+
 <link rel="stylesheet" href="${root}/resources/css/login.css">
 <link rel="stylesheet"
 	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
 
 <script type="text/javascript">
+
 	function login() {
 		var iderrorview = document.getElementById("idblank");
 		var passerrorview = document.getElementById("passblank");
@@ -44,7 +48,7 @@
 			return;
 		} else {
 			document.getElementById("loginform").setAttribute("action",
-					"${root}/member/login.kok");
+					"${root}/login.kok");
 			document.getElementById("loginform").submit();
 		}
 	}
@@ -95,8 +99,7 @@
 					<div class="d-flex justify-content-center mb-3">
 						<div class="p-2">
 							<input type="button" value="로그인"
-								class="btn btn-primary py-3 px-4" data-toggle="modal"
-								data-target="#login" onclick="javascript:login();">&nbsp;&nbsp;&nbsp;&nbsp;
+								class="btn btn-primary py-3 px-4" onclick="javascript:login();"> &nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" value="회원가입"
 								class="btn btn-primary py-3 px-4"
 								onclick="location.href='${root}/member?act=mvregister'">

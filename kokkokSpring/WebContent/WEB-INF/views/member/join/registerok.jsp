@@ -32,7 +32,7 @@
 							</span>
 							<br>
 								<span class="label-input100">
-								${memberDto.username}님 반갑습니다.<br>로그인후 이용해주세요.
+								${memberInfo.username}님 반갑습니다.<br>로그인후 이용해주세요.
 								</span>
 							<br><br><br>
 							<div class="d-flex justify-content-center mb-3">

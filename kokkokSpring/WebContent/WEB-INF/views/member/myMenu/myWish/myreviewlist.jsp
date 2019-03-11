@@ -10,6 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
+
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
@@ -27,15 +28,24 @@
 	<div class="row">
 	
 <!-- 왼쪽 검색창 -->	
-<%@ include file="/WEB-INF/views/member/myMenu/sidebar.jsp"%>
+<div class="col-lg-3 sidebar">
+	<div class="sidebar-wrap bg-light ftco-animate">
+		<div class="categories">
+			<li><a href="${root}/member/myInfo.kok" class="dropdown-item">내 정보관리</a></li>
+			<li><a href="${root}/member/mylist.kok" class="dropdown-item">내가 작성한 일정</a></li>
+			<li><a href="${root}/member/mywishschedule.kok" class="dropdown-item">내가 찜한 일정</a></li>
+			<li><a href="${root}/member/mywishreview.kok" class="dropdown-item" style="color:red;">내가 찜한 리뷰</a></li>
+		</div>
+	</div>
+</div>
 <!-- 왼쪽 검색창 END -->
 
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
 <!-- 목록들 -->
-        	<p align="right">+더보기!</p>
+ 
         	<div class="row">
-        		<c:forEach var="i" begin="1" end="3">
+        		<c:forEach var="i" begin="1" end="6">
 					<div class="col-md-4 ftco-animate destination">
 			    		<a href="${root}/schedule/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
 				    		<div class="icon d-flex justify-content-center align-items-center">
@@ -59,34 +69,25 @@
         		</c:forEach>
           	</div>
           	
-		   	<div>
-		   		<p align="right">+더보기</p>
-				<table border="1" style="width:100%;">
-					<thead>
-						<tr align="center">
-							<th>글번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-							<th>등록날짜</th>
-							<th>찜한일자</th>
-							<th>null</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>제목입니다</td>
-							<td>홍길동</td>
-							<td>2019.01.02</td>
-							<td>2019.02.10</td>
-							<td>null</td>
-
-					</tbody>
-				</table>
-			</div>
-          	
+			
 <!-- 목록들 END -->
-
+<!-- page -->
+          	<div class="row mt-5">
+		          <div class="col text-center">
+		            <div class="block-27">
+		              <ul>
+		                <li><a href="#">&lt;</a></li>
+		                <li class="active"><span>1</span></li>
+		                <li><a href="#">2</a></li>
+		                <li><a href="#">3</a></li>
+		                <li><a href="#">4</a></li>
+		                <li><a href="#">5</a></li>
+		                <li><a href="#">&gt;</a></li>
+		              </ul>
+		            </div>
+		          </div>
+          	</div>
+<!-- page END -->          	
       	
 		</div> 
 <!-- 오른쪽 목록  END-->

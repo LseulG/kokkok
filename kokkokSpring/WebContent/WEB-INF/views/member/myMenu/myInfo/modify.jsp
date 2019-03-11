@@ -5,6 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function modify() {
+		//나중에 정규표현식 적용!!
+		//if(document.joinform.name.value == ""){
+			
+		if (document.getElementById("mid").value.trim().length == 0) {
+			alert("아이디입력!!")
+			return;
+		} else if (document.getElementById("mname").value.trim().length == 0) {
+			alert("이름입력!!")
+			return;
+		} else if (document.getElementById("mpass").value.trim().length == 0) {
+			alert("비밀번호입력!!")
+			return;
+		} else if (document.getElementById("mpasscheck").value != document
+				.getElementById("passcheck").value) {
+			alert("비밀번호확인!!")
+			return;
+		} else if (document.getElementById("memail").value.trim().length == 0) {
+			alert("이메일 입력!!")
+			return;
+		} else {
+			document.getElementById("modifyform").setAttribute("action",
+					"${root}/member/modify.kok");
+			document.getElementById("modifyform").submit();
+		}
+	}
+
+	function openidcheck() {
+		window.open("${root}/member/idcheck.kok","idcheck","top=200, left=300, width=400, height=350, menubar=no, status=no, toolbar=no, location=no, scrollbars=no");
+	}
+</script>
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>   
 </head>
@@ -33,15 +65,11 @@
 
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9" align="center">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">
-						나의 정보
-					</span>
-					<br><br>
+			<div class="wrap-login100" style="width: 500px;background: aliceblue;">
+				<form class="login100-form validate-form" id="modifyform">
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
 						<span class="label-input100">아이디</span>
-							<input class="input100" type="text" name="username" value="Test" readonly="readonly">
+							<input class="input100" type="text" id="mid" name="userid" value="${userInfo.userid}" readonly="readonly">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					<div class="d-flex justify-content-center mb-3" align="right">
@@ -51,38 +79,43 @@
 					</div>	
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
 						<span class="label-input100">이름</span>
-							<input class="input100" type="text" name="username" value="홍길동!!!" readonly="readonly">
+							<input class="input100" type="text" id="mname" name="username" value="${userInfo.username}">
 						<span class="focus-input100" data-symbol="&#xf203;"></span>
 					</div>
 					<br>
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
 						<span class="label-input100">비밀번호</span>
-						<input class="input100" type="password" name="pass" placeholder="비밀번호입력">
+						<input class="input100" type="password" id="mpass" name="userpass" placeholder="비밀번호입력">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					<br>
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
 						<span class="label-input100">비밀번호확인</span>
-						<input class="input100" type="password" name="pass" placeholder="비밀번호 재입력">
+						<input class="input100" type="password" id="mpasscheck" name="passcheck" placeholder="비밀번호 재입력">
 						<span class="focus-input100" data-symbol="&#xf191;"></span>
 					</div>
 					<br>
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
 						<span class="label-input100">이메일</span>
-						<input class="input100" type="text" name="pass" value="test@naver.com">
+						<input class="input100" type="text" id="memail" name="useremail" value="${userInfo.useremail}">
 						<span class="focus-input100" data-symbol="&#xf15a;"></span>
 					</div>
 					
 					
 					
 					<br><br>
-					<div class="d-flex justify-content-center mb-3">
-				    	<div class="p-2">
-				    		<input type="submit" value="수정" class="btn btn-primary py-3 px-4">
-				    		<input type="submit" value="취소" class="btn btn-primary py-3 px-4">
-				    	</div>			    
-					</div>				
-						
+						<div class="d-flex justify-content-center mb-3">
+							<div class="col-lg-5">
+							<input type="button" value="수정하기"
+									class="btn btn-primary" style="width: 70%;"
+									onclick="javascript:modify();">
+							</div>
+							<div class="col-lg-5">
+								<input type="button" value="취소" class="btn btn-primary"
+									style="width: 70%;"
+									onclick="location.href='${root}/member/myInfo.kok'">
+							</div>
+						</div>			
 					</form>
 				</div>
 

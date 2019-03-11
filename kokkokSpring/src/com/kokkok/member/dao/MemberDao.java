@@ -8,10 +8,14 @@ import com.kokkok.dto.MemberDto;
 
 
 public interface MemberDao {
-	public int idCheck(String id);
+	int register(MemberDto memberDto);
+	MemberDto login(Map<String, String> map);
 	
-	public int memberInsert(MemberDto memberDto);
-	public MemberDto login(String id, String pass);
+	int checkLogin(Map<String, String> map);
+
+	
+
+	int idCheck(String id);
 	
 	MemberDto getMember(String id);
 	int modify(MemberDto memberDto); 

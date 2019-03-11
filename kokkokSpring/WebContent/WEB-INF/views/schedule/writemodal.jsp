@@ -28,20 +28,13 @@ function reviewBtn(){
 	}
 }
 </script>
-<style>
-.modal-content{
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
-    padding-top: 15px;
-}
-</style>
+
 <div class="modal fade" id="scheduleWriteModal" role="dialog" data-backdrop="static">
 	<div class="modal-dialog" style="max-width: 1200px; width: 1000px;">
 	
 
 		<!-- Modal content-->
-		<div class="modal-content">
+		<div class="modal-content" style="padding: 15px 15px 15px 15px;">
 			<div>
 				<div align="center">
 					<h3>리뷰 작성</h3>
