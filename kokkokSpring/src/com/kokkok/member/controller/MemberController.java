@@ -124,20 +124,21 @@ public class MemberController {
 		return mav;
 	}
 	
+	
 	@RequestMapping(value="/login.kok",method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> map,HttpSession session, HttpServletRequest request) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		String path = request.getHeader("referer");
 		String projectName = request.getContextPath(); 
-		LogCheck.logger.info(LogCheck.logMsg +"ÀÌÀü ÆäÀÌÁö°æ·Î:"+ path);
-		LogCheck.logger.info(LogCheck.logMsg +"ÇÁ·ÎÁ§Æ® ÀÌ¸§:"+ projectName);
-		LogCheck.logger.info(LogCheck.logMsg +"ÇÁ·ÎÁ§Æ® ±æÀÌ:"+projectName.length());
+		LogCheck.logger.info(LogCheck.logMsg +"ì´ì „ í˜ì´ì§€ ê²½ë¡œ:"+ path);
+		LogCheck.logger.info(LogCheck.logMsg +"í”„ë¡œì íŠ¸ ì´ë¦„:"+ projectName);
+		LogCheck.logger.info(LogCheck.logMsg +"í”„ë¡œì íŠ¸ ì´ë¦„ ê¸¸ì´:"+projectName.length());
 		MemberDto memberDto = memberService.login(map);
 		if(memberDto != null) {
 			LogCheck.logger.info(LogCheck.logMsg + memberDto.toString());
 			session.setAttribute("userInfo", memberDto);
 			path = path.substring(path.lastIndexOf(projectName) + projectName.length()+1, path.length());
-			LogCheck.logger.info(LogCheck.logMsg +"ÀÌµ¿ÇÒÆäÀÌÁö ÁÖ¼Ò:"+ path);
+			LogCheck.logger.info(LogCheck.logMsg +"ì´ë™í•  í˜ì´ì§€:"+ path);
 			
 			if("index.jsp".equals(path) || "member/register.kok".equals(path)) {
 				mav.setViewName("redirect:index.jsp");
@@ -151,6 +152,7 @@ public class MemberController {
 		mav.setViewName("redirect:"+path);
 		return mav;
 	}
+	
 	
 	
 	@RequestMapping(value="/logout.kok",method=RequestMethod.GET)
