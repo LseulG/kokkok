@@ -1,6 +1,8 @@
 package com.kokkok.member.service;
 
+
 import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -67,6 +69,35 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.idCheck(id);
 	}
 
+	@Override
+	public MemberDto findPw(Map<String, String> map) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.findPw(map);
+	}
+
+	@Override
+	public int updatePw(MemberDto memberDto) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.updatePw(memberDto);
+	}
+
+	@Override
+	public int memberModify(Map<String, String> map) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.memberModify(map);
+	}
+
+	@Override
+	public MemberDto reLogin(Map<String, String> map) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.reLogin(map);
+	}
+
+	@Override
+	public int memberdelete(Map<String, String> map) {
+		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
+		return memberDao.memberdelete(map);
+	}
 
 
 

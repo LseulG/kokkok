@@ -14,7 +14,7 @@
     <select id="idCheck" parameterType="String" resultType="int">
         <![CDATA[select count(*)
         from member
-        where userid = #{userid}]]>
+        where userid = #{checkid}]]>
     </select>
     
     
@@ -22,6 +22,33 @@
     	select * from member
 		where userid = #{loginid} and userpass = #{loginpass}
     </select>
+    
+    <select id="reLogin" parameterType="java.util.Map" resultType="com.kokkok.dto.MemberDto">
+    	select * from member
+		where userid = #{mid} and userpass = #{mpass}
+    </select>
+    
+    <update id="updatePw" parameterType="com.kokkok.dto.MemberDto">
+		update member set userpass = #{userpass} 
+		where userid = #{userid} and useremail = #{useremail}
+	</update>
 
+	<select id="findPw" parameterType="java.util.Map" resultType="com.kokkok.dto.MemberDto">
+		select * from member 
+		where userid = #{findid} and useremail = #{findemail}
+	</select>
+	
+	<update id="memberModify" parameterType="com.kokkok.dto.MemberDto">
+		update member 
+		set username = #{mname},
+    		userpass = #{mpass},
+    		useremail = #{memail}
+		where userid = #{mid}
+	</update>
+	
+	<delete id="memberdelete" parameterType="java.util.Map">
+		delete from member
+		where userid=#{deleteid} and userpass=#{deletepass}
+	</delete>
 
 </mapper>

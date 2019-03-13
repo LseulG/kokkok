@@ -7,6 +7,24 @@
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>
 </head>
+<script type="text/javascript">
+
+document.onkeydown = function(e) {
+ key = (e) ? e.keyCode : event.keyCode;
+ if(key==8 || key==116) {
+  if(e) {
+   e.preventDefault();
+  } else {
+   event.keyCode = 0;
+   event.returnValue = false;
+  }
+ }
+}		
+window.history.forward();
+function noBack() {
+	window.history.forward();
+}
+</script>
 <style>
 .ftco-navbar-light {
 	z-index: 1;
@@ -25,14 +43,16 @@
             <br><br> <br><br>
 		  
 				<div class="container-login100" style="padding-bottom: 400px;">
-					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+					<div class="wrap-login100">
 						<form class="login100-form validate-form">
-							<span class="login100-form-title p-b-49">
+							<span class="login100-form-title">
 								회원가입성공
 							</span>
-							<br>
-								<span class="label-input100">
-								${memberInfo.username}님 반갑습니다.<br>로그인후 이용해주세요.
+							<br><br>
+								<span class="label-input100" style="font-size: 17px">
+								환영합니다.<br>
+								회원가입이 완료되었습니다.<br>
+								로그인후 이용해주세요.
 								</span>
 							<br><br><br>
 							<div class="d-flex justify-content-center mb-3">
@@ -57,4 +77,6 @@
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 </body>
 </html>
+
+
 

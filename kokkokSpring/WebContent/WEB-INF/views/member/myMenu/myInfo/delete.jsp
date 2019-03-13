@@ -17,6 +17,21 @@ alert('로그인 세션이 만료되었습니다.');
 document.location.href = "${root}/index.jsp";
 </script>
 </c:if>
+
+<script type="text/javascript">
+	function deletemember() {
+		if(document.getElementById("deletepass").value.trim().length == 0){
+			alert("비밀번호를 입력해주세요.")
+			return;
+		} else{
+			document.getElementById("memberdeleteform").setAttribute("action",
+			"${root}/member/delete.kok");
+			document.getElementById("memberdeleteform").submit();
+		}
+	}
+
+</script>
+
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
@@ -53,33 +68,30 @@ document.location.href = "${root}/index.jsp";
 		<div class="col-lg-9" align="center">
 
 			<div class="wrap-login100" style="background: aliceblue;">
-			<form class="login100-form validate-form">
+			<form class="login100-form validate-form" id="memberdeleteform" name="memberdeleteform" method="POST">
 			<span class="login100-form-title p-b-49">
 				계정삭제
 			</span>
 			<br><br>
 			<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
 				<span class="label-input100">아이디</span>
-					<input class="input100" type="text" name="userid" value="${userInfo.userid}" readonly="readonly">
+					<input class="input100" type="text" id="deleteid" name="deleteid" value="${userInfo.userid}" readonly="readonly">
 				<span class="focus-input100" data-symbol="&#xf206;"></span>
 			</div>
 
 			<br>
 			<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
 				<span class="label-input100">비밀번호</span>
-				<input class="input100" type="password" name="userpass" placeholder="비밀번호입력">
+				<input class="input100" type="password" id="deletepass" name="deletepass" placeholder="비밀번호입력">
 				<span class="focus-input100" data-symbol="&#xf190;"></span>
 			</div>
-
-			
-			
 			
 			<br><br>
 			<div class="d-flex justify-content-center mb-3">
 				<div class="col-lg-5">
 				<input type="button" value="삭제"
 						class="btn btn-primary" style="width: 70%;"
-						onclick="javascript:register();">
+						onclick="javascript:deletemember();">
 				</div>
 				<div class="col-lg-5">
 					<input type="button" value="취소" class="btn btn-primary"

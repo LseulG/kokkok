@@ -38,14 +38,9 @@ function idcheck(){
 </head>
 
 <body>
-
-
-
 	<div align="center">
-
-
-		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-			<form class="login100-form validate-form" name="idform" method="get"
+		<div class="wrap-login100">
+			<form class="login100-form validate-form" name="idform" method="POST"
 				action="" onsubmit="return false;">
 				<input type="hidden" name="act" value="idcheck">
 				<h2>아이디 중복 검사</h2>
@@ -53,11 +48,12 @@ function idcheck(){
 
 				<div class="row">
 
-					<div class="wrap-input100 validate-input m-b-23"
+					<div class="wrap-input100 validate-input"
 						data-validate="Username is reauired" align="left"
 						style="width: 70%">
 						<span class="label-input100">아이디</span> <input class="input100"
-							type="text" id="checkid" name="checkid" placeholder="아이디를 입력해주세요" />
+							type="text" id="checkid" name="checkid" placeholder="아이디를 입력해주세요"
+							onkeypress="if(event.keyCode == 13){idcheck(); return;}"/>
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					<div class="idcheckDiv">

@@ -31,6 +31,10 @@
 	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
 
 <script type="text/javascript">
+	
+	function openfindpass() {
+		window.open("${root}/member/findpass.kok","idcheck","top=200, left=100, width=480, height=400, menubar=no, status=no, toolbar=no, location=no, scrollbars=no");
+	}
 
 	function login() {
 		var iderrorview = document.getElementById("idblank");
@@ -92,8 +96,8 @@
 							data-symbol="&#xf190;"></span>
 					</div>
 					<div id="passblank" style="display: none;"></div>
-					<div class="text-right p-t-8 p-b-31">
-						<a href="#"> 비밀번호를 잊으셨나요?? </a>
+					<div class="text-right">
+						<a href="javascript:openfindpass();"> 비밀번호를 잊으셨나요??!</a>
 					</div>
 					<br>
 					<div class="d-flex justify-content-center mb-3">

@@ -10,8 +10,13 @@ import com.kokkok.dto.MemberDto;
 public interface MemberDao {
 	int register(MemberDto memberDto);
 	MemberDto login(Map<String, String> map);
+	MemberDto reLogin(Map<String, String> map);
 	int idCheck(String id);
-	
+	MemberDto findPw(Map<String, String> map);
+	int updatePw(MemberDto memberDto);
+	int memberModify(Map<String, String> map);
+	int memberdelete(Map<String, String> map);
+
 
 
 	

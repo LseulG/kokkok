@@ -5,10 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="/WEB-INF/views/include/link.jsp"%>
+<%@ include file="/WEB-INF/views/include/loader.jsp"%>   
+<link rel="stylesheet" href="${root}/resources/css/login.css">
+<link rel="stylesheet"
+	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
+</head>
 <script type="text/javascript">
-	function modify() {
+	function modifymember() {
 
-			
 		// 비밀번호 정규식(A~Z,a~z,0~9로 시작하는 4~16자리 비밀번호를 설정)
 		var pwJ = /^[A-Za-z0-9]{4,16}$/; 
 		
@@ -29,19 +34,19 @@
 		var memailCheck = $("#memail").val();
 
 		if (document.getElementById("mid").value.trim().length == 0) {
-			alert("아이디입력!!")
+			alert("아이디를 입력해주세요.")
 			return;
 		} else if (document.getElementById("mname").value.trim().length == 0) {
-			alert("이름입력!!")
+			alert("이름을 입력해주세요.")
 			return;
 		} else if (document.getElementById("mpass").value.trim().length == 0) {
-			alert("비밀번호입력!!")
+			alert("비밀번호를 입력해주세요.")
 			return;
 		} else if (document.getElementById("mpass").value != document.getElementById("mpasscheck").value) {
-			alert("비밀번호확인!!")
+			alert("비밀번호가 일치하지 않습니다.")
 			return;
 		} else if (document.getElementById("memail").value.trim().length == 0) {
-			alert("이메일 입력!!")
+			alert("이메일을 입력해주세요.")
 			return;
 		} else if(nameJ.test(mnameCheck) == false){
 			mnameerrorview.innerHTML = "<font color='red'>이름은 2~6글자의 한글로 입력해주세요.</font>";
@@ -63,9 +68,9 @@
 			return;
 		}
 		else {
-			document.getElementById("modifyform").setAttribute("action",
-					"${root}/member/register.kok");
-			document.getElementById("modifyform").submit();
+			document.getElementById("modifymemberform").setAttribute("action",
+					"${root}/member/modify.kok");
+			document.getElementById("modifymemberform").submit();
 		}
 	}
 	
@@ -76,15 +81,8 @@
 		document.getElementById("mpass").value = null;
 		document.getElementById("mpasscheck").value = null;
 		 $("#chdiv").css("display", "none");
-		 
 	}
 </script>
-<%@ include file="/WEB-INF/views/include/link.jsp"%>
-<%@ include file="/WEB-INF/views/include/loader.jsp"%>   
-<link rel="stylesheet" href="${root}/resources/css/login.css">
-<link rel="stylesheet"
-	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
-</head>
 <style>
 #changepassBtn{
 	border-radius: 0px;
@@ -144,33 +142,30 @@ document.location.href = "${root}/index.jsp";
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9" align="center">
 			<div class="wrap-login100" style="width: 600px;background: aliceblue;">
-				<form class="login100-form validate-form" id="modifyform">
+				<form class="login100-form validate-form" name="modifymemberform" id="modifymemberform" method="post" action="">
 					<span class="login100-form-title"> 내정보 수정</span><br>
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired" align="left">
-						<span class="label-input100">아이디</span>
+						<span class="label-input100">아이디(수정불가)</span>
 							<input class="input100" type="text" id="mid" name="mid" value="${userInfo.userid}" readonly="readonly">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-					<div class="d-flex justify-content-center mb-3" align="right">
-				    	<div class="p-2" align="right">
-						   
-				    	</div>			    
-					</div>	
+					<br>
+
 					<div class="wrap-input100 validate-input" data-validate = "Username is reauired" align="left">
 						<span class="label-input100">이름</span>
 							<input class="input100" type="text" id="mname" name="mname" value="${userInfo.username}" placeholder="수정하실 이름을 입력해주세요.">
 						<span class="focus-input100" data-symbol="&#xf203;"></span>
 					</div>
-					<div id="nameblank" style="display: none;" align="center"></div>
-					
-					<br>
+					<div id="nameblank" style="display: none;" align="left"></div>
 
+					<br>
+					
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
-						<span class="label-input100">비밀번호</span>
+						<span class="label-input100">비밀번호(수정을 원하시면 변경 버튼을 눌러 변경해주세요.)</span>
 						<input class="input100" type="password" id="mpass" name="mpass" value="${userInfo.userpass}" placeholder="수정하실 비밀번호를 입력해주세요" readonly="readonly">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
-					<div id="pwblank" style="display: none;"></div>
+					<div id="pwblank" style="display: none;" align="left"></div>
 		
 					<br>
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
@@ -178,25 +173,27 @@ document.location.href = "${root}/index.jsp";
 						<input class="input100" type="password" id="mpasscheck" name="mpasscheck" value="${userInfo.userpass}" placeholder="수정하실 비밀번호를 확인해주세요." readonly="readonly">
 						<span class="focus-input100" data-symbol="&#xf191;"></span>
 					</div>
+				
 					<div class="changepassDiv" id="chdiv">
 						<input type="button" value="비밀번호변경" class="btn btn-primary"
 									id="changepassBtn" onclick="javascript:changepass();">
 					</div>
+					
+					
 					<br>
 					<div class="wrap-input100 validate-input" data-validate="Password is required" align="left">
 						<span class="label-input100">이메일</span>
 						<input class="input100" type="text" id="memail" name="memail" value="${userInfo.useremail}">
 						<span class="focus-input100" data-symbol="&#xf15a;"></span>
 					</div>
-					<div id="emailblank" style="display: none;"></div>
-					
+					<div id="emailblank" style="display: none;" align="left"></div>
 					
 					<br><br>
 						<div class="d-flex justify-content-center mb-3">
 							<div class="col-lg-5">
 							<input type="button" value="수정하기"
 									class="btn btn-primary" style="width: 70%;"
-									onclick="javascript:modify();">
+									onclick="javascript:modifymember();">
 							</div>
 							<div class="col-lg-5">
 								<input type="button" value="취소" class="btn btn-primary"

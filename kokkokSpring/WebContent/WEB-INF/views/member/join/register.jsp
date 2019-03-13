@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="${root}/resources/css/login.css">
 <link rel="stylesheet"
 	href="${root}/resources/fonts/iconic/css/material-design-iconic-font.min.css">
-<head>
+</head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script type="text/javascript">
+
 	function register() {
 		//아이디 정규식(a~z,0~9로 시작하는 4~16자리 아이디)
 		var idJ = /^[a-z0-9]{4,16}$/;
@@ -81,8 +81,13 @@
 	function openidcheck() {
 		window.open("${root}/member/idcheck.kok","idcheck","top=200, left=100, width=500, height=350, menubar=no, status=no, toolbar=no, location=no, scrollbars=no");
 	}
+
+
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
 </script>
-</head>
 <style>
 .ftco-navbar-light {
 	z-index: 1;
@@ -118,7 +123,7 @@
 										data-validate="Username is reauired" align="left"
 										style="width: 70%">
 										<span class="label-input100">아이디</span> <input
-											class="input100" type="text" id="userid" name="userid"
+											class="input100" type="text" id="userid" name="userid" readonly="readonly"
 											placeholder="중복체크를 통해 입력해주세요."/> <span class="focus-input100"
 											data-symbol="&#xf206;"></span>
 									</div>
@@ -138,7 +143,7 @@
 										<span class="focus-input100" data-symbol="&#xf203;"></span>
 									</div>
 								</div>
-								<div id="nameblank" style="display: none;" align="center"></div>
+								<div id="nameblank" style="display: none;" align="left"></div>
 								<br>
 
 								<div class="row">
@@ -150,7 +155,7 @@
 											data-symbol="&#xf190;"></span>
 									</div>
 								</div>
-								<div id="pwblank" style="display: none;"></div>
+								<div id="pwblank" style="display: none;" align="left"></div>
 								
 								<br>
 								<div class="row">
@@ -172,7 +177,7 @@
 											data-symbol="&#xf15a;"></span>
 									</div>
 								</div>
-								<div id="emailblank" style="display: none;"></div>
+								<div id="emailblank" style="display: none;" align="left"></div>
 								<br> <br>
 								<div class="d-flex justify-content-center mb-3">
 									<div class="col-lg-5">

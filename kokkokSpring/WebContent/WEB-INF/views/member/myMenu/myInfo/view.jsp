@@ -55,7 +55,7 @@ document.location.href = "${root}/index.jsp";
 			     <table>
 				    <tbody>
 				      <tr>
-				        <td style="font-weight: bold">ID3232</td>
+				        <td style="font-weight: bold">ID</td>
 				        <td>${userInfo.userid}</td>	      
 				      </tr>	
 				      
@@ -82,9 +82,10 @@ document.location.href = "${root}/index.jsp";
 			<div class="d-flex justify-content-center mb-3">
 			    <div class="p-2"><input type="button" value="수정하기" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/modify.kok'"></div>
 			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		    
+			    <c:if test="${userInfo.admincode == 0}">			    
 			    <div class="p-2"><input type="button" value="계정삭제" class="btn btn-primary py-3 px-4" onclick="location.href='${root}/member/delete.kok'"></div>			    
+			    </c:if>
 			</div>
-
 <!-- 오른쪽 목록  END-->
 	</div>
 	</div> <!-- 큰 row END -->
