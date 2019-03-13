@@ -25,17 +25,27 @@ public class ScheduleListServiceImpl implements ScheduleListService {
 	private SqlSession sqlSession;	
 	
 	@Override
-	public String getScheduleListJson(int pg, int order, int listNumOfRows) {
+	public String getScheduleListJson(int pg, int order, int listNumOfRows, int listType, String thema, int minTerm, int maxTerm, String searchWord) {
+		Map<String, String> map = new HashMap<String, String>();
+		// 정렬, 게시물유형, 테마, 기간, 검색어를 map에 넣음
+		map.put("order", order + "");
+		map.put("listType", listType + "");
+		map.put("thema", thema);
+		map.put("minTerm", minTerm + "");
+		map.put("maxTerm", maxTerm + "");
+		map.put("searchWord", searchWord);
 		// 가져올 목록 전체 갯수
-		int totCount = sqlSession.selectOne("getScheduleListTotalCount");
-//		System.out.println(totCount);
+		int totCount = sqlSession.selectOne("getScheduleListTotalCount", map);
+//		System.out.println("getScheduleListJson totCount = " + totCount);
+		System.out.println("getScheduleListJson minTerm = " + minTerm + ",maxTerm = " + maxTerm);
 		
 		// 페이지에 맞춰 목록을 가져와야 하므로 시작과 끝을 정함
 		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
 		int endNum = listNumOfRows * pg;
-		Map<String, String> map = new HashMap<String, String>();
+		
 		map.put("startNum", startNum + "");
 		map.put("endNum", endNum + "");
+		
 		
 		List<ScheduleListDto> list = sqlSession.getMapper(ScheduleListDao.class).getScheduleList(map);
 		JSONObject json = new JSONObject();
@@ -63,8 +73,8 @@ public class ScheduleListServiceImpl implements ScheduleListService {
 			schedule.put("persons", scheduleListDto.getPersons());
 			schedule.put("thema", scheduleListDto.getThema());
 			schedule.put("location", scheduleListDto.getLocation());
-			schedule.put("x", scheduleListDto.getX());
-			schedule.put("y", scheduleListDto.getY());
+			schedule.put("lat", scheduleListDto.getLat());
+			schedule.put("lng", scheduleListDto.getLng());
 			schedule.put("address", scheduleListDto.getAddress());
 			schedule.put("simpleaddr", scheduleListDto.getSimpleaddr());
 			

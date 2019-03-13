@@ -5,7 +5,7 @@ var currPageNum = 1;
 // 목록의 총 갯수
 var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
-var navigation_size = 10;
+var navigation_size = 3;
 // 관광 목록 한 페이지의 결과 수
 var listNumOfRows = 2;
 
@@ -51,6 +51,12 @@ $(document).ready(function() {
 			$("#term2_number").val($("#term2_range").val());
 		}		
 		
+	});
+	
+	// Search Button Click Event
+	$("#getScheduleList").click(function() {
+		currPageNum = 1;
+		getScheduleList();
 	});
 	
 });
@@ -109,15 +115,21 @@ function getScheduleList() {
 	var urlStr = contextPath + '/schedule/getlist.kok';
 	// 일정 타입(0=모든 일정, 1=여행 계획, 2=여행 일정)
 	var listType = $("#searchSchedule").val();
+//	listType = 1;
 	// 페이지의 정렬(1=인기순, 2=최신순)
 	var listArrange = $("#listSort").val();
 	// 테마
 	var thema = $("#searchThema").val();
+//	thema = "나홀로 여행";
 	// 여행기간
 	var minTerm = $("#term1_number").val();
 	var maxTerm = $("#term2_number").val();
+	// 검색어
+	var searchWord = $("#searchWord").val();
+//	searchWord = "서울";
 	
-	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows};
+	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
+				 "thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord};
 	
 	$.ajax({		
 		url : urlStr,

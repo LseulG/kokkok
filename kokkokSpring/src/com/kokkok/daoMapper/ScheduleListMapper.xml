@@ -4,10 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kokkok.schedule.dao.ScheduleListDao">	
     
-    <select id="getScheduleListTotalCount" resultType="int">
+    <select id="getScheduleListTotalCount" parameterType="java.util.Map" resultType="int">
     	select count(*) as scount
 		from schedule a, board b, location c
 		where a.seq = b.seq and b.seq = c.seq
+		and enddate - startdate + 1 &gt;= #{minTerm}
+		and enddate - startdate + 1 &lt;= #{maxTerm}
+		<if test="listType != 0">
+		and bcode = #{listType}
+		</if>
+		<if test="thema != '테마 전체'">
+		and thema = #{thema}
+		</if>
+		and (subject like '%'||#{searchWord}||'%' or simpleaddr like '%'||#{searchWord}||'%')
     </select>
     
     <select id="getScheduleList" parameterType="java.util.Map" resultType="com.kokkok.dto.ScheduleListDto">
@@ -15,10 +24,24 @@
 		from (select rownum rn, a.*
 		from (select sseq, b.seq, bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit,
 		startdate, enddate, enddate - startdate + 1 as period, originpicture, savefolder, savepicture, persons, thema,
-		location, x, y, address, simpleaddr
+		location, lat, lng, address, simpleaddr
 		from schedule a, board b, location c
-		where a.seq = b.seq and b.seq = c.seq 
-		order by sseq desc) a		
+		where a.seq = b.seq and b.seq = c.seq
+		and enddate - startdate + 1 &gt;= #{minTerm}
+		and enddate - startdate + 1 &lt;= #{maxTerm}
+		<if test="listType != 0">
+		and bcode = #{listType}
+		</if>
+		<if test="thema != '테마 전체'">
+		and thema = #{thema}
+		</if>
+		and (subject like '%'||#{searchWord}||'%' or simpleaddr like '%'||#{searchWord}||'%')
+		<if test="order == 1">
+		order by sseq desc) a
+		</if>		
+		<if test="order == 2">
+		order by recommcount desc) a
+		</if>		
 		where <![CDATA[ rownum <= #{endNum} ]]>) b
 		where b.rn >= #{startNum}
     </select>

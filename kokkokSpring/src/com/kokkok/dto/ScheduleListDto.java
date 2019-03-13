@@ -35,10 +35,10 @@ public class ScheduleListDto extends BoardDto {
     private String location;
     
     // 위도
-    private String x;
+    private String lat;
     
     // 경도
-    private String y;
+    private String lng;
     
     // 주소
     private String address;
@@ -49,7 +49,7 @@ public class ScheduleListDto extends BoardDto {
     public ScheduleListDto() {}
 
 	public ScheduleListDto(int sseq, Date startdate, Date enddate, int period, String originpicture, String savefolder,
-			String savepicture, String persons, String thema, String location, String x, String y, String address,
+			String savepicture, String persons, String thema, String location, String lat, String lng, String address,
 			String simpleaddr) {
 		super();
 		this.sseq = sseq;
@@ -62,8 +62,8 @@ public class ScheduleListDto extends BoardDto {
 		this.persons = persons;
 		this.thema = thema;
 		this.location = location;
-		this.x = x;
-		this.y = y;
+		this.lat = lat;
+		this.lng = lng;
 		this.address = address;
 		this.simpleaddr = simpleaddr;
 	}
@@ -148,20 +148,20 @@ public class ScheduleListDto extends BoardDto {
 		this.location = location;
 	}
 
-	public String getX() {
-		return x;
+	public String getLat() {
+		return lat;
 	}
 
-	public void setX(String x) {
-		this.x = x;
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
 
-	public String getY() {
-		return y;
+	public String getLng() {
+		return lng;
 	}
 
-	public void setY(String y) {
-		this.y = y;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 
 	public String getAddress() {
@@ -184,8 +184,8 @@ public class ScheduleListDto extends BoardDto {
 	public String toString() {
 		return "ScheduleListDto [sseq=" + sseq + ", startdate=" + startdate + ", enddate=" + enddate + ", period="
 				+ period + ", originpicture=" + originpicture + ", savefolder=" + savefolder + ", savepicture="
-				+ savepicture + ", persons=" + persons + ", thema=" + thema + ", location=" + location + ", x=" + x
-				+ ", y=" + y + ", address=" + address + ", simpleaddr=" + simpleaddr + "]";
+				+ savepicture + ", persons=" + persons + ", thema=" + thema + ", location=" + location + ", lat=" + lat
+				+ ", lng=" + lng + ", address=" + address + ", simpleaddr=" + simpleaddr + "]";
 	}
     
 }
