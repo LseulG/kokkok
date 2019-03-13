@@ -13,7 +13,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
-<%@ include file="/WEB-INF/views/review/modifymodal.jsp"%>
 
 <div class="hero-wrap js-fullheight3" style="background-image: url('${root}/resources/images/bg_4.jpg');">
 	<div class="overlay"></div>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.commonMapper">
+<mapper namespace="com.kokkok.main.dao.MainDao">
 
 	<insert id="registerWish" parameterType="java.util.Map">
 		insert into wish values(WISH_SEQ.nextval, #{seq}, #{userid})
@@ -28,6 +28,9 @@
   		update board set wishcount = wishcount - 1 where seq = #{seq}
   	</update>
   	
+  	<select id="getNextSeq" resultType="int">
+    	select BOARD_SEQ.nextval from dual
+    </select>
   	
 
 </mapper>

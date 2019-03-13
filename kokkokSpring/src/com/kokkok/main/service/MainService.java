@@ -10,6 +10,6 @@ public interface MainService {
 	public int registerWish(ModelAndView mav);
 	public int checkWish(ModelAndView mav);
 	public int countWish(ModelAndView mav);
-	
+	public int getNextSeq();
 	
 }

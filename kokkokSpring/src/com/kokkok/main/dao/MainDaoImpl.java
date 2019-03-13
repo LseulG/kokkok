@@ -58,6 +58,12 @@ public class MainDaoImpl implements MainDao{
 		hMap.put("seq", seq);
 		return sqlSessionTemplate.update("minusWish",hMap);
 	}
+
+	@Override
+	public int getNextSeq() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

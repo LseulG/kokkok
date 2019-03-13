@@ -21,16 +21,6 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	
-//	@RequestMapping(value="/registerWish.kok",method=RequestMethod.POST)
-//	@ResponseBody
-//	public ModelAndView registerWish(HttpServletRequest request, HttpServletResponse response) {		
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("request",request);
-//		mainService.registerWish(mav);
-//		
-//		return mav;
-//	}
-	
 	@RequestMapping(value="/registerWish.kok",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> registerWish(HttpServletRequest request, HttpServletResponse response) {		
@@ -60,6 +50,7 @@ public class MainController {
 		map.put("wishCount", count);
 		return map;
 	}
+	
 	
 	
 	

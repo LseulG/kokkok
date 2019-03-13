@@ -3,36 +3,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
     <link rel="stylesheet" href="${root}/resources/css/schedule_write_modal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
- <script type="text/javascript">
 
-
-function searchClick(){
-	searchMap();
-}
-
-$("body").on("hidden.bs.modal", ".modal", function () { //모달 꺼질때
-	//reviewType 세팅
-    document.getElementById("localTitle").value = null;
-	$("#summernote").summernote("reset");
-    selectedMarker = null;
-    document.getElementById("keyword").value = "인천 맛집";
- });
-
-function reviewBtn(){	
-	if(document.getElementById("localTitle").value == ""){
-		alert('장소를 지정해주세요.');
-	}else if ($('#summernote').summernote('isEmpty')) {
-		  alert('내용을 입력해 주세요.');	 
-	}else {
-		var markup = $("#summernote").summernote("code"); // 내용 가져오는거
-		$('#subject').val($('#localTitle').val());		
-		$('#content').val(markup);
-		$('#bcode').val($('#reviewType').val());
-		$("#reviewWriteForm").attr("action","${root}/review/write.kok").submit();
-	}
-}
-
-</script>
 <style>
 .modal-content{
     padding-right: 15px;
@@ -41,7 +12,7 @@ function reviewBtn(){
     padding-top: 15px;
 }
 </style>
-<div class="modal fade" id="reviewWriteModal" role="dialog" data-backdrop="static">
+<div class="modal fade" id="reviewModifyModal" role="dialog" data-backdrop="static">
 	<div class="modal-dialog" style="max-width: 1200px; width: 1000px;">
 	
 
@@ -72,11 +43,12 @@ function reviewBtn(){
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
 				<script src="${root}/resources/js/review_write_modal.js"></script>
 				
-				<form name ="reviewWriteForm" id="reviewWriteForm" method="post" action="">				
+				<form name ="reviewModifyForm" id="reviewModifyForm" method="post" action="">				
 				<input type="hidden" name="bcode" id="bcode" value="">
+				<input type="hidden" name="ccode" id="ccode" value="2">
 				<input type="hidden" name="subject" id="subject" value="">		
 				<input type="hidden" name="content" id="content" value="">
-				<input type="hidden" name="tname" id="tname" value="">
+				<input type="hidden" name="seq" id="seq" value="">
 				
 				
 				 <div class="form-group">
@@ -89,7 +61,7 @@ function reviewBtn(){
 		                  	 </select>
 				 		</div>
 				 		<div class="col-md-10">
-						 <input type="text" id="localTitle" class="form-control" placeholder="리뷰장소" readonly="readonly">
+						 <input type="text" id="localTitle" class="form-control" placeholder="리뷰장소" readonly="readonly" value="">
 				 		</div>
 				 	</div>
 				</div>
@@ -97,8 +69,7 @@ function reviewBtn(){
 				<div id="summernote"></div>
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-<!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="reviewBtn();" data-dismiss="modal"/>
+					<input type="button" value="수정" class="btn btn-primary py-2 px-3" onclick="modifyBtn();" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">			
@@ -110,6 +81,42 @@ function reviewBtn(){
 
 	</div>
 </div>
+ <script type="text/javascript">
+
+ function searchClick(){
+ 	searchMap();
+ }
+ 
+$("#reviewModifyModal").on("shown.bs.modal", function(){//모달 켜질때
+		searchMap();
+		$("#localTitle").val('${article.subject}');	
+		var setArticleContent = '${article.content}';
+	    $('#summernote').summernote('code', setArticleContent);
+	});
+
+$("body").on("hidden.bs.modal", ".modal", function () {//모달 꺼질때
+	 document.getElementById("localTitle").value = null;
+	 $("#summernote").summernote("reset");
+	 selectedMarker = null;
+	 document.getElementById("keyword").value = "인천 맛집";
+ });
+ 
+function modifyBtn(){	
+	if(document.getElementById("localTitle").value == ""){
+		alert('장소를 지정해주세요.');
+	}else if ($('#summernote').summernote('isEmpty')) {
+		  alert('내용을 입력해 주세요.');	 
+	}else {
+		var markup = $("#summernote").summernote("code"); // 내용 가져오는거
+		$('#subject').val($('#localTitle').val());		
+		$('#content').val(markup);
+		$('#bcode').val($('#reviewType').val());
+		$('#seq').val('${article.seq}');
+		$("#reviewModifyForm").attr("action","${root}/review/update.kok").submit();
+	}
+}
+
+</script>
 <script>
 $('#summernote').summernote({
 	  placeholder: '내용을 적어주세요...',

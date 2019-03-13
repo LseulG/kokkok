@@ -8,4 +8,7 @@ public interface MainDao {
 	public int countWish(String seq);
 	public int addWish(String seq);
 	public int minusWish(String seq);
+	
+	
+	public int getNextSeq();
 }
