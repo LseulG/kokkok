@@ -7,6 +7,14 @@
   	<%@ include file="/WEB-INF/views/include/link.jsp"%>
   	<%@ include file="/WEB-INF/views/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
+  	<script type="text/javascript">
+	var contextPath='<%=request.getContextPath()%>';
+	</script>
+	<style>
+	#lastPage,#firstPage,#nextPageGroup,#prevPageGroup,.naviNum {
+		cursor: Pointer;
+	}	
+	</style>
   	
   </head>
   <body>
@@ -48,9 +56,9 @@
 			            	<div class="select-wrap one-third">
 			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 			                    <select name="" id="searchSchedule" class="form-control">
-			                    	<option value="">모든 일정</option>
-			                    	<option value="">여행 계획</option>
-			                    	<option value="">여행 후기</option>
+			                    	<option value="0">모든 일정</option>
+			                    	<option value="1">여행 계획</option>
+			                    	<option value="2">여행 후기</option>
 			                    </select>
 		                  	</div>
 	        			</div>
@@ -64,17 +72,17 @@
 			            	<div class="select-wrap one-third">
 			                	<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 			                    <select name="" id="listSort" class="form-control">
-			                    	<option value="">인기순</option>
-			                    	<option value="">최신순</option>
+			                    	<option value="1">인기순</option>
+			                    	<option value="2">최신순</option>
 			                    </select>
 		                  	</div>
 	        			</div>
         			</div>
 		         </div>      	
         	
-				<div class="row">
+				<!-- <div class="row">
 		         	<div class="col-md-12">
-<!-- 지역1 -->
+지역1
 			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -86,7 +94,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-<!-- 지역2 -->
+지역2
 			        	<div class="form-group infoitems infoArea infoKeyword infoFestival infoStay">
 							<div class="select-wrap one-third">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
@@ -95,7 +103,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row">
 		         	<div class="col-md-12">		            
@@ -104,13 +112,13 @@
 			                <div class="select-wrap one-third">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
 			                    <select name="" id="searchThema" class="form-control">
-			                    	<option value="">테마 전체</option>
-			                    	<option value="">나홀로 여행</option>
-			                    	<option value="">친구와 함께</option>
-			                      	<option value="">커플 여행</option>
-			                    	<option value="">가족 여행</option>
-			                      	<option value="">단체 여행</option>
-			                      	<option value="">패키지 여행</option>
+			                    	<option value="테마 전체">테마 전체</option>
+			                    	<option value="나홀로 여행">나홀로 여행</option>
+			                    	<option value="친구와 함께">친구와 함께</option>
+			                      	<option value="커플 여행">커플 여행</option>
+			                    	<option value="가족 여행">가족 여행</option>
+			                      	<option value="단체 여행">단체 여행</option>
+			                      	<option value="패키지 여행">패키지 여행</option>
 			                    </select>
 		                  	</div>
 			            </div>
@@ -152,10 +160,10 @@
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
 <!-- 목록들 -->
-        	<div class="row">
-        		<c:forEach var="i" begin="1" end="6">
-					<div class="col-md-4 ftco-animate destination">
-			    		<a href="${root}/schedule/view.kok" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
+        	<div id="scheduleList" class="row">
+        		
+					<%-- <div class="col-md-4 ftco-animate destination">
+			    		<a href="${root}/schedule/view.kok" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');">
 				    		<div class="icon d-flex justify-content-center align-items-center">
 		    					<span class="icon-search2"></span>
 		    				</div>
@@ -179,8 +187,8 @@
 			    				</span>
 			    			</p>
 			    		</div>
-					</div>
-        		</c:forEach>
+					</div> --%>
+        		
           	</div>
 <!-- 목록들 END -->
 
@@ -188,7 +196,7 @@
           	<div class="row mt-5">
 		          <div class="col text-center">
 		            <div class="block-27">
-		              <ul>
+		              <ul id="navigator">
 		                <li><a href="#">&lt;</a></li>
 		                <li class="active"><span>1</span></li>
 		                <li><a href="#">2</a></li>
