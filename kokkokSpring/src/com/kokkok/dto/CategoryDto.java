@@ -1,7 +1,7 @@
 package com.kokkok.dto;
 
 //카테고리 
-public class CategortDto {
+public class CategoryDto {
 
  // 카테고리번호 
  private int ccode;
@@ -10,9 +10,9 @@ public class CategortDto {
  private String cname;
 
  
- public CategortDto() {}
+ public CategoryDto() {}
  
- public CategortDto(int ccode, String cname) {
+ public CategoryDto(int ccode, String cname) {
 	this.ccode = ccode;
 	this.cname = cname;
 }
@@ -35,7 +35,7 @@ public int getCcode() {
 
 @Override
 public String toString() {
-	return "CategortDto [ccode=" + ccode + ", cname=" + cname + "]";
+	return "CategoryDto [ccode=" + ccode + ", cname=" + cname + "]";
 }
 
  

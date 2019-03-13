@@ -1,8 +1,11 @@
 package com.kokkok.schedule.dao;
 
-import com.kokkok.schedule.dto.ScheduleDto;
+import java.util.Map;
+
+import com.kokkok.dto.ScheduleDto;
 
 public interface ScheduleDao {
-
-	public int insert(ScheduleDto scheduleDto);
+	public int scheduleWrite(Map<String, Object> map);
+	public int getNextSseq();
+	public int scheduleReviewWrite(Map<String, Object> map);
 }

@@ -6,6 +6,8 @@ var tripPersons = null;
 var tripThema = null;
 var tripDays = 0;
 var preTripDays = 0;
+var totalReview = 0;
+var selectCont ="", selectBcode=0;
 $(document).ready(function() {	
 	$("#setSchedule").click(function(){
 		setScheduleInfo();
@@ -75,6 +77,18 @@ function setScheduleInfo(){
 			var setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)"  
 					+"  ,  "+ tripType  +"  ,  "+ tripPersons +"  ,  "+ tripThema ;
 			$("#scheduleSetting").text(setStr);
+			
+			// hidden setting
+			if(tripType == "여행 계획"){
+				$('#bcode').val('1');
+			} else {
+				$('#bcode').val('2');
+			}
+			$('#startdate').val(tripStart);
+			$('#enddate').val(tripEnd);
+			$('#persons').val(tripPersons);
+			$('#thema').val(tripThema);
+			
 		} 
 	}
 }
@@ -143,21 +157,25 @@ function modalWrite(){
 	var type = $("#reviewType").val();
 	var title = document.getElementById("localTitle").value;
 	var cont = $("#summernote").summernote("code"); // 내용 가져오는거
+	selectCont = cont;
 	
 	var icon = null;
 	if (type == "meeting") {
 		icon = "meeting-point";
+		selectBcode = 3;
 	} else if(type == "fork") {
 		icon = "fork";
+		selectBcode = 5;
 	} else {
 		icon = "hotel";
+		selectBcode = 4;
 	}
-	
+		
 	createItem(modalDay);
 	$("#itemTitle"+modalDay+"_"+tmp).html("<i class='flaticon-"+icon+"'></i> "+title);
 	$("#itemCont"+modalDay+"_"+tmp).html(cont);	
 	$("div > p > img").css('widht','100%');
-	
+	totalReview = totalReview + 1;
 }
 
 /*-------- 여행지 추가삭제 --------*/
@@ -191,6 +209,9 @@ function reorder(numm) {
         $(box).find(".itemNum"+numm).html(i + 1);
         $(box).find(".itemTitle"+numm).attr("id","itemTitle"+numm+"_"+(i + 1));
         $(box).find(".itemCont"+numm).attr("id","itemCont"+numm+"_"+(i + 1));
+        
+        $(box).find(".step"+numm).attr("value",(i+1));
+        
         tmp=(i + 1);
     });
 }
@@ -215,14 +236,28 @@ function createItem(numm){
 	.append("<label class='modifyBox'>수정</label>")		// 아이템에 삭제 버튼 추가
 	.append("<label class='deleteBox'>삭제</label>")		// 아이템에 삭제 버튼 추가
 	.append("<div class='sl-loc-cont itemCont"+numm+"'>" +
-			"<p>리뷰입니다 리뷰 리뷰는 이렇게 하는 겁니다 <b>아하하</b></p><p><u>이거는 밑줄을 그어볼까나&nbsp;</u></p>" +
 			"<p><u>신기하다 신기해</u></p>" +
 			"</div>")
+			
+	 // subject, content, //location, lat, lng, address, simpleaddr // tripday, step
+	.append("<input type='hidden' name='list["+totalReview+"].bcode' id='list["+totalReview+"].bcode' class='bcode"+numm+"' value='"+selectBcode+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].subject' id='list["+totalReview+"].subject' class='subject"+numm+"' value='"+selectLoc+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].content' id='list["+totalReview+"].content' class='content"+numm+"' value='"+selectCont+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].location' id='list["+totalReview+"].location' class='location"+numm+"' value='"+selectLoc+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].lat' id='list["+totalReview+"].lat' class='lat"+numm+"' value='"+selectLat+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].lng' id='list["+totalReview+"].lng' class='lng"+numm+"' value='"+selectLng+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].address' id='list["+totalReview+"].address' class='address"+numm+"' value='"+selectAddr+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].simpleaddr' id='list["+totalReview+"].simpleaddr' class='simpleaddr"+numm+"' value='"+selectAddr+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].tripday' id='list["+totalReview+"].tripday' class='tripday"+numm+"' value='"+numm+"'>")
+	.append("<input type='hidden' name='list["+totalReview+"].step' id='list["+totalReview+"].step' class='step"+numm+"' value=''>")
+	
+			
 	.find(".deleteBox").click(function() {		// 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
 		var delCheck = confirm('삭제하시겠습니까?');
 		if (delCheck == true){
 			$(this).parent().remove();
 	        reorder(numm);
+	        totalReview = totalReview - 1;
 		}
 	});
 // 숫자를 다시 붙인다.

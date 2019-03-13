@@ -19,8 +19,8 @@ import net.sf.json.JSONObject;
 @Service
 public class ScheduleListServiceImpl implements ScheduleListService {
 
-	@Autowired
-	private ScheduleDao scheduleDao;	
+	//@Autowired
+	//private ScheduleDao scheduleDao;	
 	@Autowired
 	private SqlSession sqlSession;	
 	
