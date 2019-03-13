@@ -72,7 +72,7 @@ function findpass() {
 					<div id="findemailblank" style="display: none;" align="left"></div>
 					<br>
 					<div class="findpassDiv" align="right">
-						<input type="button" value="검색" class="btn btn-primary"
+						<input type="button" value="찾기" class="btn btn-primary"
 							id="idsearchBtn" onclick="javascript:findpass();" style="width: 40%">
 					</div>
 				</div>

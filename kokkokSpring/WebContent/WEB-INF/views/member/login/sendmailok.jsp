@@ -26,13 +26,15 @@
 
 <body>
 	<div align="center">
+		<br>
 		<div class="wrap-login100">
 				<h2>비밀번호 찾기</h2>
 				<br>
 				<div>
-					<div class="wrap-input100 validate-input">
-						<strong>${memberDto.uesremail}</strong>로 임시비밀번호가 발송되었습니다.<br>
-						임시번호 확인후 로그인 해주세요.			
+					<div>
+						<strong>${memberDto.useremail}</strong>로<br>
+						임시비밀번호가 발송되었습니다.<br>
+						메일 확인후 로그인 해주세요.			
 					</div>
 					<br>
 					

@@ -24,9 +24,13 @@ document.location.href = "${root}/index.jsp";
 			alert("비밀번호를 입력해주세요.")
 			return;
 		} else{
-			document.getElementById("memberdeleteform").setAttribute("action",
-			"${root}/member/delete.kok");
-			document.getElementById("memberdeleteform").submit();
+			 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+				document.getElementById("memberdeleteform").setAttribute("action",
+				"${root}/member/delete.kok");
+				document.getElementById("memberdeleteform").submit();
+			 }else{   //취소
+			     return false;
+			 }
 		}
 	}
 

@@ -217,7 +217,7 @@ public class MemberController {
 		    	htmlContent += "감사합니다.";
 			    MimeMessage message = mailSender.createMimeMessage();
 
-			    message.setFrom(new InternetAddress("kokkokbangbang@gmail.com@gmail.com","Kokkok"));  // 보내는사람 이메일
+			    message.setFrom(new InternetAddress("kokkokbangbang@gmail.com","Kokkok"));  // 보내는사람 이메일
 			    message.addRecipient(RecipientType.TO, new InternetAddress(memberDto.getUseremail())); // 받는사람 이메일
 			    message.setSubject("방방콕콕 임시비밀번호입니다."); // 제목
 			    message.setText(htmlContent, "UTF-8", "html");  // 내용
