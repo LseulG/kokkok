@@ -84,8 +84,8 @@ function setScheduleInfo(){
 				tripTypeNum = 1;
 			} else {
 				tripTypeNum = 2;
-			}
-			$('#bcode').val(tripTypeNum);
+			}			
+			$('#sbcode').val(tripTypeNum);
 			$('#startdate').val(tripStart);
 			$('#enddate').val(tripEnd);
 			$('#persons').val(tripPersons);

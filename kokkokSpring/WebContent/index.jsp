@@ -12,6 +12,7 @@
 	</script>
 	<link rel="stylesheet" href="${root}/resources/css/index.css"> 
 	
+	
 </head>
   <body>
   <%@ include file="/WEB-INF/views/include/nav.jsp"%>

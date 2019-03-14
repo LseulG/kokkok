@@ -61,7 +61,7 @@ $(document).ready(function() {
 	<section class="ftco-section ftco-degree-bg">
 	<form action="" id="scheduleWriteForm" method="POST">
 	
-	<input type="hidden" name="bcode" id="bcode" value="">
+	<input type="hidden" name="sbcode" id="sbcode" value="">
 	<input type="hidden" name="ssubject" id="ssubject" value="">
 	<input type="hidden" name="scontent" id="scontent" value="">
 	<input type="hidden" name="startdate" id="startdate" value="">

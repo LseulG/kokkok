@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +41,7 @@ public class ScheduleController {
 			ScheduleReviewDtoList list) {
 		//MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		//map.put("userid", memberDto.getUserid());
-		map.put("userid", "sseul");
-		
+		map.put("userid", "sseul");		
 		// schedule insert
 		// +) file upload
 		int scheduleCnt = scheduleService.scheduleWrite(map);
