@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <insert id="scheduleWrite" parameterType="map">
 	    	insert all
 	    	 into schedule (sseq, seq, startdate, enddate, originpicture, savefolder, savepicture, persons, thema) 
-	    	values (schedule_seq.nextval, #{seq}, #{startdate}, #{enddate}, 0, 0, 0, #{persons}, #{thema})
+	    	values (schedule_seq.nextval, #{seq}, #{startdate}, #{enddate}, 'image_8.jpg', 'resources/images', 'image_8.jpg', #{persons}, #{thema})
 	    	 into board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit)
 	    	values (#{seq}, #{bcode}, #{userid}, #{ssubject}, #{scontent}, sysdate, sysdate, 0,0,0 )
 	    	select * from dual    
