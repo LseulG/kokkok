@@ -1,4 +1,4 @@
-package com.kokkok.tip.dao;
+package com.kokkok.tips.dao;
 
 import java.util.List;
 import java.util.Map;

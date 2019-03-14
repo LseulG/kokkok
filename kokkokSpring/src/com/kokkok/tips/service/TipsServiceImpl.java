@@ -1,4 +1,4 @@
-package com.kokkok.tip.service;
+package com.kokkok.tips.service;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kokkok.comm.Constance;
 import com.kokkok.comm.PageNavigation;
 import com.kokkok.dto.TipsDto;
-import com.kokkok.tip.dao.TipsDao;
+import com.kokkok.tips.dao.TipsDao;
 
 
 @Service

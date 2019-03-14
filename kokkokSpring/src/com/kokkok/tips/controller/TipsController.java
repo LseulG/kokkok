@@ -1,4 +1,4 @@
-package com.kokkok.tip.controller;
+package com.kokkok.tips.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kokkok.comm.PageNavigation;
 import com.kokkok.dto.MemberDto;
 import com.kokkok.dto.TipsDto;
-import com.kokkok.tip.service.TipsService;
+import com.kokkok.tips.service.TipsService;
 
 
 @Controller
