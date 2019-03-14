@@ -3,7 +3,6 @@ package com.kokkok.schedule.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kokkok.schedule.dto.ScheduleReviewDtoList;
+import com.kokkok.dto.ScheduleReviewDtoList;
 import com.kokkok.schedule.service.ScheduleService;
 
 @Controller
@@ -39,40 +38,12 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule/write.kok",method=RequestMethod.POST)
 	public ModelAndView scheduleWrite(@RequestParam Map<String,Object> map, HttpSession session, 
 			ScheduleReviewDtoList list) {
-			//,@RequestParam("uploadFile")MultipartFile multipartFile) {
 		//MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		//map.put("userid", memberDto.getUserid());
 		map.put("userid", "sseul");
 		
 		// schedule insert
-/*		if(multipartFile != null && !multipartFile.isEmpty()) {
-			String originpicture = multipartFile.getOriginalFilename();
-			
-			String realPath = servletContext.getRealPath("/upload/album");
-				
-			DateFormat df = new SimpleDateFormat("yyMMdd");
-			String savefolder = df.format(new Date());
-			String realSaveFolder = realPath + File.separator + savefolder;
-			System.out.println(realSaveFolder);
-			File dir = new File(realSaveFolder);
-			if(!dir.exists()) {
-				dir.mkdirs();
-			}
-			String savepicture = UUID.randomUUID().toString() + originpicture.substring(originpicture.lastIndexOf('.'));
-			
-			File file = new File(realSaveFolder, savepicture);
-			try {
-				multipartFile.transferTo(file);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-						
-			map.put("originpicture", originpicture);
-			map.put("savefolder", savefolder);
-			map.put("savepicture", savepicture);
-		}*/
+		// +) file upload
 		int scheduleCnt = scheduleService.scheduleWrite(map);
 		int reviewCnt = 0;
 		

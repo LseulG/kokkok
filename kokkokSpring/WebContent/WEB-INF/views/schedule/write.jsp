@@ -28,7 +28,12 @@ $(document).ready(function() {
 			}
 		}
 	});
-	
+	$("#cancelBtn").click(function() {
+		var result = confirm("등록을 취소 하시겠습니까?");
+		if(result){
+			history.back();
+		}
+	});
 });
 </script>
 <style type="text/css">
@@ -197,10 +202,7 @@ $(document).ready(function() {
 	
 		<div class="writeEnd" align="center">		
 			<input type="button" value="등록" class="btn btn-primary py-3 px-5" id="registerBtn">
-			
-			<a href="javascript:history.back();">
-				<input type="button" value="취소" class="btn btn-primary py-3 px-5">
-			</a>
+			<input type="button" value="취소" class="btn btn-primary py-3 px-5" id="cancelBtn">
 	  	</div>
 	
 	</div>

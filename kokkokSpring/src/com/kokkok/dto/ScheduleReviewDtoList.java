@@ -1,4 +1,4 @@
-package com.kokkok.schedule.dto;
+package com.kokkok.dto;
 
 import java.util.List;
 

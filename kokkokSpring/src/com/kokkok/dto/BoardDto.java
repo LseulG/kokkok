@@ -21,10 +21,10 @@ public class BoardDto {
 	private String content;
 
 	// 작성일자
-	private Date logtime;
+	private String logtime;
 
 	// 수정일자
-	private Date updatetime;
+	private String updatetime;
 
 	// 추천수
 	private int recommcount;
@@ -38,7 +38,7 @@ public class BoardDto {
 	public BoardDto() {
 	}
 
-	public BoardDto(int seq, int bcode, String userid, String subject, String content, Date logtime, Date updatetime,
+	public BoardDto(int seq, int bcode, String userid, String subject, String content, String logtime, String updatetime,
 			int recommcount, int wishcount, int hit) {
 		this.seq = seq;
 		this.bcode = bcode;
@@ -92,19 +92,19 @@ public class BoardDto {
 		this.content = content;
 	}
 
-	public Date getLogtime() {
+	public String getLogtime() {
 		return logtime;
 	}
 
-	public void setLogtime(Date logtime) {
+	public void setLogtime(String logtime) {
 		this.logtime = logtime;
 	}
 
-	public Date getUpdatetime() {
+	public String getUpdatetime() {
 		return updatetime;
 	}
 
-	public void setUpdatetime(Date updatetime) {
+	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
 
