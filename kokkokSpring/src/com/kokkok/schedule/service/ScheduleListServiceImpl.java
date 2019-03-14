@@ -18,9 +18,7 @@ import net.sf.json.JSONObject;
 
 @Service
 public class ScheduleListServiceImpl implements ScheduleListService {
-
-	//@Autowired
-	//private ScheduleDao scheduleDao;	
+	
 	@Autowired
 	private SqlSession sqlSession;	
 	
@@ -37,7 +35,7 @@ public class ScheduleListServiceImpl implements ScheduleListService {
 		// 가져올 목록 전체 갯수
 		int totCount = sqlSession.selectOne("getScheduleListTotalCount", map);
 //		System.out.println("getScheduleListJson totCount = " + totCount);
-		System.out.println("getScheduleListJson minTerm = " + minTerm + ",maxTerm = " + maxTerm);
+//		System.out.println("getScheduleListJson minTerm = " + minTerm + ",maxTerm = " + maxTerm);
 		
 		// 페이지에 맞춰 목록을 가져와야 하므로 시작과 끝을 정함
 		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
@@ -58,7 +56,7 @@ public class ScheduleListServiceImpl implements ScheduleListService {
 			schedule.put("bcode", scheduleListDto.getBcode());
 			schedule.put("userid", scheduleListDto.getUserid());
 			schedule.put("subject", scheduleListDto.getSubject());
-			schedule.put("content", scheduleListDto.getContent());
+//			schedule.put("content", scheduleListDto.getContent());
 			schedule.put("logtime", scheduleListDto.getLogtime());
 			schedule.put("updatetime", scheduleListDto.getUpdatetime());
 			schedule.put("recommcount", scheduleListDto.getRecommcount());
@@ -72,11 +70,11 @@ public class ScheduleListServiceImpl implements ScheduleListService {
 			schedule.put("savepicture", scheduleListDto.getSavepicture());
 			schedule.put("persons", scheduleListDto.getPersons());
 			schedule.put("thema", scheduleListDto.getThema());
-			schedule.put("location", scheduleListDto.getLocation());
-			schedule.put("lat", scheduleListDto.getLat());
-			schedule.put("lng", scheduleListDto.getLng());
-			schedule.put("address", scheduleListDto.getAddress());
-			schedule.put("simpleaddr", scheduleListDto.getSimpleaddr());
+//			schedule.put("location", scheduleListDto.getLocation());
+//			schedule.put("lat", scheduleListDto.getLat());
+//			schedule.put("lng", scheduleListDto.getLng());
+//			schedule.put("address", scheduleListDto.getAddress());
+//			schedule.put("simpleaddr", scheduleListDto.getSimpleaddr());
 			
 			jarray.add(schedule);
 		}

@@ -167,17 +167,17 @@ function makeListHtml(json) {
 		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
 		contentStr += "</div>";
 		contentStr += "<p>";
-		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
-			var saddr = schedule.simpleaddr;
-			var addr_array = saddr.split(" ");
-//			alert(saddr + " " + addr_array.length);			
-			
-			for(var j = 0; j < addr_array.length; j++){
-				contentStr += "#" + addr_array[j] + " ";
-			}			
-		}
-		contentStr += "<br>#" + schedule.persons;
-		contentStr += "<br>#" + schedule.thema;
+//		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
+//			var saddr = schedule.simpleaddr;
+//			var addr_array = saddr.split(" ");
+////			alert(saddr + " " + addr_array.length);			
+//			
+//			for(var j = 0; j < addr_array.length; j++){
+//				contentStr += "#" + addr_array[j] + " ";
+//			}			
+//		}
+		contentStr += "<br>#" + schedule.persons + "&nbsp;";
+		contentStr += "#" + schedule.thema;
 		contentStr += "</p>";
 		contentStr += "<p class='bottom-area d-flex'>";		
 		contentStr += "<span class='days'>" + schedule.startdate + " - " + schedule.enddate + " (" + schedule.period + "일)</span>";
