@@ -20,6 +20,17 @@ public class InfoController {
 	
 	@RequestMapping(value="/information/list.kok",method=RequestMethod.GET)
 	public ModelAndView infoList(HttpServletRequest request, HttpServletResponse response) {		
+//		System.out.println(request.getParameter("word"));
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		infoService.infoList(mav);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/information/list.kok",method=RequestMethod.POST)
+	public ModelAndView infoListPost(HttpServletRequest request, HttpServletResponse response) {
+//		System.out.println(request.getParameter("word"));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request",request);
 		infoService.infoList(mav);

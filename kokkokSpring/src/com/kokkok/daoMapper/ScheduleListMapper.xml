@@ -36,7 +36,7 @@
 		</if>
 		and subject like '%'||#{searchWord}||'%'
 		<if test="order == 1">
-		order by recommcount desc) a
+		order by recommcount, sseq desc) a
 		</if>		
 		<if test="order == 2">
 		order by sseq desc) a

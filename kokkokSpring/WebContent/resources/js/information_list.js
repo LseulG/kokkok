@@ -25,6 +25,14 @@ $(document).ready(function() {
 		initPageByHash();		
 				
 	} else {
+//		alert(urlParam("word"));
+		// 메인 검색창으로 들어왔다면 통합검색으로 검색함
+		if (urlParam("word") != null && urlParam("word") != "") {
+			alert(urlParam("word"));
+			infoTypeId = "infoKeyword";
+			$("#keyword").val(urlParam("word"));
+		}
+		
 		// Initialize Information Buttons
 		setInformationButtons();
 		
@@ -33,9 +41,8 @@ $(document).ready(function() {
 		getSigunguCodeList();
 		
 		// First Information List
-		getInfoAreaList(1);
-	}
-	
+		getInfoList(infoListCurrPageNum);
+	}	
 	
 	// Set Date Format
 	$(".datepicker").datepicker({
@@ -114,8 +121,9 @@ $(document).ready(function() {
 });
 
 //jquery를 이용해서 request parameter를 가져오기 위한 함수 코드
-function urlParam(name){	
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+function urlParam(name){
+	// 한글을 디코딩하기 위해서 decodeURI 사용
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(decodeURI(window.location.href));
 	if (results == null) {
 		return null;
     } else {

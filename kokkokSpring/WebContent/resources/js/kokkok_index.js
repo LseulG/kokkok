@@ -29,7 +29,20 @@ $(document).ready(function() {
 	
 	getScheduleList();
 	
-	
+	// Search Button Click Event
+	$("#btnMainSearch").click(function() {
+		var mainSearchKey = $("#mainSearchKey").val();
+		if($("#mainSearchWord").val() == "") {
+			alert("검색할 글자가 없습니다.");
+			return;
+		} else {
+			$("#word").val($("#mainSearchWord").val());
+			if (mainSearchKey == 1) {
+				$("#formSearchKeyword").attr("action", contextPath + "/information/list.kok").submit();
+			}
+		}		
+		
+	});
 	
 });
 
@@ -192,12 +205,15 @@ function getScheduleList() {
 	var currPageNum = 1;
 	var listNumOfRows = 10;
 	
-	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
-				 "thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord};
+	var param = JSON.stringify({"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
+				 "thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord});
+//	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
+//			"thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord};
 	
 	$.ajax({		
 		url : urlStr,
-		type : 'GET',
+//		type : 'GET',
+		type : 'POST',
 		contentType : 'application/json;charset=UTF-8',
 		dataType : 'json',
 		data: param,

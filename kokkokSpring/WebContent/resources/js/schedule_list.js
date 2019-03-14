@@ -5,9 +5,9 @@ var currPageNum = 1;
 // 목록의 총 갯수
 var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
-var navigation_size = 3;
+var navigation_size = 10;
 // 관광 목록 한 페이지의 결과 수
-var listNumOfRows = 2;
+var listNumOfRows = 12;
 
 $(document).ready(function() {
 	// Initialize Area and Sigungu

@@ -12,7 +12,6 @@
 	</script>
 	<link rel="stylesheet" href="${root}/resources/css/index.css"> 
 	
-	
 </head>
   <body>
   <%@ include file="/WEB-INF/views/include/nav.jsp"%>
@@ -27,25 +26,27 @@
             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">여행 계획, 여행 후기, 여행꿀팁, 축제 정보, 숙박 정보 등을 공유해 보세요!</p>
             <div class="block-17 my-4">
             <!-- 검색 위치 form태그-->
-              <form action="" method="post" class="d-block d-flex">
+              <form action="" id="formSearchKeyword" method="get" class="d-block d-flex">
+              	<input type="hidden" name="word" id="word" value="">
+              	
                 <div class="fields d-block d-flex">
                 <!-- 검색 카테고리 -->
 	                <div class="select-wrap one-two">
 	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="" id="" class="form-control" placeholder="Keyword search">
-	                      <option value="">여행 정보</option>
-	                      <option value="">여행 일정</option>
-	                      <option value="">여행 리뷰</option>
-	                      <option value="">여행 꿀팁</option>
+	                    <select name="" id="mainSearchKey" class="form-control" placeholder="Keyword search">
+	                      <option value="1">여행 정보</option>
+	                      <option value="2">여행 일정</option>
+	                      <option value="3">여행 리뷰</option>
+	                      <option value="4">여행 꿀팁</option>
 	                    </select>
                   	</div>
                   	<!-- 검색 TEXT -->
 	                  <div class="textfield-search one-third">
-	                  	<input type="text" class="form-control" placeholder="예: 강릉, 축제, 맛집 리뷰">
+	                  	<input type="text" id="mainSearchWord" class="form-control" placeholder="예: 강릉, 축제, 맛집 리뷰">
 	                  </div>                  
                 </div>
                 <!-- 검색 버튼 -->
-                <input type="submit" class="search-submit btn btn-primary" value="검색">  
+                <input type="button" id="btnMainSearch" class="search-submit btn btn-primary" value="검색">  
               </form>
             </div>          
           </div>

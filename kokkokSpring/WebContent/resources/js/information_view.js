@@ -16,8 +16,9 @@ $(document).ready(function() {
 });
 
 // jquery를 이용해서 request parameter를 가져오기 위한 함수 코드
-function urlParam(name){	
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+function urlParam(name){
+	// 한글을 디코딩하기 위해서 decodeURI 사용
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(decodeURI(window.location.href));
 	if (results == null) {
 		return null;
     } else {
