@@ -79,11 +79,13 @@ function setScheduleInfo(){
 			$("#scheduleSetting").text(setStr);
 			
 			// hidden setting
+			var tripTypeNum = 0;
 			if(tripType == "여행 계획"){
-				$('#bcode').val('1');
+				tripTypeNum = 1;
 			} else {
-				$('#bcode').val('2');
+				tripTypeNum = 2;
 			}
+			$('#bcode').val(tripTypeNum);
 			$('#startdate').val(tripStart);
 			$('#enddate').val(tripEnd);
 			$('#persons').val(tripPersons);
