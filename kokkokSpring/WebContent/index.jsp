@@ -85,27 +85,7 @@
 		            <h2><strong>여행 후기</strong></h2>
 		          </div>
 		        </div>
-		        <div class="row d-flex">		        
-		        <c:forEach begin="0" end="3">
-		        <!-- 반복시작 -->
-		          <div class="col-md-3 ftco-animate">
-		            <div class="blog-entry align-self-stretch">		            
-		              <a href="blog-single.jsp" class="block-20" style="background-image: url('${root}/resources/images/image_1.jpg');">
-		              	<div class="icon d-flex justify-content-center align-items-center"><span class="icon-search2"></span></div>
-		              </a>
-		              <!-- 텍스트 링크 -->
-		              <div class="text p-4">		               
-		              	<span class="tag">여행후기</span>		              	
-		                <h3 class="heading mt-3"><a href="#">친구와 강릉여행 후기</a></h3>
-			            	<div align="right">
-				    			<span class="listing">작성자 : 페페</span><br>
-				    			<span class="listing">2019/02/09</span>
-				    		</div>
-		              </div>
-		            </div> 
-		          </div>
-		          <!-- 반복끝 -->
-		          </c:forEach>
+		        <div id="commentList" class="row">                    
 		        </div>
 		      </div>
 		    </section>		    
@@ -119,27 +99,7 @@
 		            <h2><strong>여행 계획</strong></h2>
 		          </div>
 		        </div>
-		        <div class="row d-flex">		        
-		        <c:forEach begin="0" end="3">
-		        <!-- 반복시작 -->
-		          <div class="col-md-3 ftco-animate">
-		            <div class="blog-entry align-self-stretch">		            
-		              <a href="blog-single.jsp" class="block-20" style="background-image: url('${root}/resources/images/image_1.jpg');">
-		              	<div class="icon d-flex justify-content-center align-items-center"><span class="icon-search2"></span></div>
-		              </a>
-		              <!-- 텍스트 링크 -->
-		              <div class="text p-4">		               
-		              	<span class="tag">여행계획</span>		              	
-		                <h3 class="heading mt-3"><a href="#">나홀로 해남여행 계획</a></h3>
-			            	<div align="right">
-				    			<span class="listing">작성자 : 페페</span><br>
-				    			<span class="listing">2019/02/09</span>
-				    		</div>
-		              </div>
-		            </div> 
-		          </div>
-		          <!-- 반복끝 -->
-		          </c:forEach>
+		        <div id="scheduleList" class="row">                    
 		        </div>
 		      </div>
 		    </section>

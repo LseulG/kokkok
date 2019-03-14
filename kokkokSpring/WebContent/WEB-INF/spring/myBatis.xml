@@ -30,7 +30,11 @@
 				<value>classpath:com/kokkok/daoMapper/MainComm.xml</value>
 				<value>classpath:com/kokkok/daoMapper/ReviewMapper.xml</value>
 				<value>classpath:com/kokkok/daoMapper/ScheduleListMapper.xml</value>
+<<<<<<< HEAD
 				<value>classpath:com/kokkok/daoMapper/TipsMapper.xml</value>	
+=======
+				<value>classpath:com/kokkok/daoMapper/ScheduleMapper.xml</value>	
+>>>>>>> branch 'master' of https://github.com/LseulG/kokkok.git
 			</list>
 		</property>		
 	</bean>	

@@ -143,12 +143,12 @@
 		        	
 <!-- 검색어 -->
 		        	<div class="form-group">
-		                <input type="text" class="form-control" placeholder="검색어를 입력하세요">
+		                <input type="text" id="searchWord" class="form-control" placeholder="검색어를 입력하세요">
 		        	</div>
 		        	
 <!-- 버튼 -->
 		        	<div class="form-group">
-		            	<input type="submit" value="검색" class="btn btn-primary py-3 px-5">
+		            	<input type="button" id="getScheduleList" value="검색" class="btn btn-primary py-3 px-5">
 		        	</div>
 
 		    </div>

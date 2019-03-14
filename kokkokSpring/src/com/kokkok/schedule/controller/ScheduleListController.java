@@ -18,9 +18,16 @@ public class ScheduleListController {
 	// ajax 이용함. 해당 페이지와 정렬순서를 받아서 서비스로직에서 처리한 후 JSON을 리턴
 	@RequestMapping(value="/schedule/getlist.kok", produces = "application/text; charset=utf8", method=RequestMethod.GET)
 //	public @ResponseBody String scheduleListJson() {
-	public @ResponseBody String scheduleListJson(@RequestParam(value="pg") int pg, @RequestParam(value= "order") int order, @RequestParam(value= "listNumOfRows") int listNumOfRows) {
+	public @ResponseBody String scheduleListJson(@RequestParam(value="pg") int pg, 
+												 @RequestParam(value= "order") int order, 
+												 @RequestParam(value= "listNumOfRows") int listNumOfRows, 
+												 @RequestParam(value= "listType") int listType, 
+												 @RequestParam(value= "thema") String thema,
+												 @RequestParam(value= "minTerm") int minTerm, 
+												 @RequestParam(value= "maxTerm") int maxTerm, 
+												 @RequestParam(value= "searchWord") String searchWord) {
 //		System.out.println("scheduleListJson()");		
-		String schedulelist = scheduleListService.getScheduleListJson(pg, order, listNumOfRows);
+		String schedulelist = scheduleListService.getScheduleListJson(pg, order, listNumOfRows, listType, thema, minTerm, maxTerm, searchWord);
 //		System.out.println("controller: " + schedulelist);
 		return schedulelist;
 	}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kokkok.schedule.dao.ScheduleDao">
+    
+        <insert id="scheduleWrite" parameterType="map">
+	    	insert all
+	    	 into schedule (sseq, seq, startdate, enddate, originpicture, savefolder, savepicture, persons, thema) 
+	    	values (schedule_seq.nextval, #{seq}, #{startdate}, #{enddate}, 0, 0, 0, #{persons}, #{thema})
+	    	 into board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit)
+	    	values (#{seq}, #{bcode}, #{userid}, #{ssubject}, #{scontent}, sysdate, sysdate, 0,0,0 )
+	    	select * from dual    
+   		 </insert>
+   		 
+   		 <select id="getNextSseq" resultType="int">
+   		 	select max(sseq) from schedule
+   		 </select>
+   		 
+   		 <insert id="scheduleReviewWrite" parameterType="java.util.Map">
+   		 	insert all
+   		 	 into board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit)
+   		 	  values (#{seq}, #{bcode},#{userid}, #{subject}, #{content}, sysdate, sysdate, 0,0,0 )
+   		 	 into location (seq, location, lat, lng, address, simpleaddr)
+   		 	  values (#{seq}, #{location}, #{lat}, #{lng}, #{address}, #{simpleaddr})
+   		 	 into schedule_board (sseq, seq, tripday, step)
+   		 	  values (#{sseq}, #{seq}, #{tripday}, #{step})
+   		 	select * from dual   
+   		 </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

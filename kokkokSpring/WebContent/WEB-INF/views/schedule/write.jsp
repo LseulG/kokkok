@@ -10,7 +10,26 @@
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
  	
 <script type="text/javascript">
-
+$(document).ready(function() {
+	$("#registerBtn").click(function() {
+		if($("#scheduleTitle").val() == "") {
+			alert("여행 제목을 입력해주세요");
+			return;
+		} else if($("#scheduleMsg").val() == "") {
+			alert("여행 소개를 입력해주세요");
+			return;
+		} else {
+			var result = confirm("등록 하시겠습니까?");
+			if(result){
+				alert("리뷰개수:"+totalReview);
+				$('#ssubject').val($("#scheduleTitle").val());
+				$('#scontent').val($("#scheduleMsg").val());
+				$("#scheduleWriteForm").attr("action", "${root}/schedule/write.kok").submit();
+			}
+		}
+	});
+	
+});
 </script>
 <style type="text/css">
 	#uploadFile{display: none;}
@@ -36,6 +55,15 @@
 <!-- 내용시작 -->
 	<section class="ftco-section ftco-degree-bg">
 	<form action="" id="scheduleWriteForm" method="POST">
+	
+	<input type="hidden" name="bcode" id="bcode" value="">
+	<input type="hidden" name="ssubject" id="ssubject" value="">
+	<input type="hidden" name="scontent" id="scontent" value="">
+	<input type="hidden" name="startdate" id="startdate" value="">
+	<input type="hidden" name="enddate" id="enddate" value="">
+	<input type="hidden" name="persons" id="persons" value="">
+	<input type="hidden" name="thema" id="thema" value=""> 
+	
 	<div class="container">
 	<div class="row">
 <!-- 왼쪽 검색창 -->	
@@ -168,9 +196,11 @@
 	</div>
 	
 		<div class="writeEnd" align="center">		
-					<a href="${root}/schedule/view.jsp">
-						<input type="button" value="등록하기" class="btn btn-primary py-3 px-5" onclick="submitItem();">
-					</a>
+			<input type="button" value="등록" class="btn btn-primary py-3 px-5" id="registerBtn">
+			
+			<a href="javascript:history.back();">
+				<input type="button" value="취소" class="btn btn-primary py-3 px-5">
+			</a>
 	  	</div>
 	
 	</div>

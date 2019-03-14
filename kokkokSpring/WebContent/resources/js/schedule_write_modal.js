@@ -4,6 +4,8 @@ $("#scheduleWriteModal").on("shown.bs.modal", function(){
 	searchMap();
 });
 
+var selectLoc = "", selectLat = "", selectLng = "", selectAddr = "";
+
 //+) 선택 마커와 이미지 세팅
 var selectedMarker = null;
 var clickImage = new daum.maps.MarkerImage(
@@ -129,7 +131,7 @@ function searchMap(){
 	            		selectedMarker = smarker;
 	            		originImage = smarker.getImage();
 	            		smarker.setImage(clickImage);
-	            		selectedMarker.setZIndex(888);
+	            		//selectedMarker.setZIndex(888);
 	            		
 	            		document.getElementById("localTitle").value = title;
 	            		searchCnt = 0;
@@ -149,13 +151,19 @@ function searchMap(){
 	            		selectedMarker = smarker;
 	            		originImage = smarker.getImage();
 	            		smarker.setImage(clickImage);
-	            		selectedMarker.setZIndex(888);
+	            		//selectedMarker.setZIndex(888);
 	            		
 	            	 // 위경도 smarker.getPosition();
 	                 // 위도 smarker.getPosition().getLat();
 	                 // 경도 smarker.getPosition().getLng();
 	                 //	 지번주소 document.getElementById("roadAddress"+(smarker.getZIndex()+1)).innerHTML
 	                 // 도로명주소 document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML
+	            		
+	            		selectLoc = title;
+	            		selectLat = smarker.getPosition().getLat();
+	            		selectLng = smarker.getPosition().getLng();	            			
+	            		selectAddr = document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML;
+	            		
 	            		document.getElementById("localTitle").value = title;  
 	            		searchCnt = 0;
 	            	} 
@@ -175,7 +183,6 @@ function searchMap(){
 	
 	// 검색결과 항목을 Element로 반환하는 함수입니다
 	function getListItem(index, places) {
-	
 	    var el = document.createElement('li'),
 	    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 	                '<div class="info">' +

@@ -7,7 +7,6 @@
 function searchClick(){
 	searchMap();
 }
-
 $("body").on("hidden.bs.modal", ".modal", function () {
 	//reviewType 세팅
     document.getElementById("localTitle").value = null;
@@ -16,13 +15,12 @@ $("body").on("hidden.bs.modal", ".modal", function () {
     document.getElementById("keyword").value = "인천 맛집";
  });
  
-var save = function() {
-	var markup = $("#summernote").summernote("code"); // 내용 가져오는거
-	alert(markup);
-}
 function reviewBtn(){
-	if ($('#summernote').summernote('isEmpty')) {
-		  alert('editor content is empty');
+	// 제목 선택 안한거 예외처리 추가하기
+	if(document.getElementById("localTitle").value == ""){
+		alert('장소를 지정해주세요.');
+	} else if ($('#summernote').summernote('isEmpty')) {
+		  alert('내용을 입력해 주세요.');	 
 	} else {
 		modalWrite();
 	}
