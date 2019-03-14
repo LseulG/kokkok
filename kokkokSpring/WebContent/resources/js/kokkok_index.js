@@ -23,65 +23,242 @@ var infoTypeId = "infoArea";
 $(document).ready(function() {
 	
 	// First Information List
-	getInfoFestivalList();	
+	getInfoFestivalList();
 	
-	function getInfoFestivalList() {
-		var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?" +
-						"ServiceKey=" + serviceKey +
-						"&eventStartDate=" +
-						"&eventEndDate=" +
-						"&areaCode=" +
-						"&sigunguCode=" +
-						"&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=KokKok" +
-						"&arrange=" + infoListArrange + 
-						"&numOfRows=" + infoListNumOfRows + 
-						"&pageNo=1";		
-		$.ajax({
-		    url : url,
-		    type : "GET",
-		    success : function(xml){		    
-		    	makeListToHtml(xml);	        
-		    },
-			error : function() {
-				alert("fail");
-			}	    
-		});
-	}	
+	getCommentList();
 	
-	function makeListToHtml(xml){
-		var xmlData = $(xml).find("item");
-	    var listLength = xmlData.length;		        
-	    var contentStr = "";	   
-	    if (listLength > 0) {
-	    	$(xmlData).each(function(index,item){   
-	    		var siLocation = $(this).find("addr1").text().split(' ');
-	    		var eventStartDate = $(this).find("eventstartdate").text() + "";
-	    		var eventEndDate = $(this).find("eventenddate").text() + "";
-	    		var formatEventStartDate = eventStartDate.slice(0,4) + "/" + eventStartDate.slice(4, 6) + "/" + eventStartDate.slice(6);
-	    		var formatEventEndDate = eventEndDate.slice(0,4) + "/" + eventEndDate.slice(4, 6) + "/" + eventEndDate.slice(6);
-	    		contentStr += "<div class='destination blog-entry'>";
-	    		contentStr += "<a href='" + contextPath + "/information?act=mvview";
-	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
-	    		contentStr += "&contentId=" + $(this).find("contentid").text();
-	    		contentStr += "' class='img d-flex justify-content-center align-items-center' style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
-	    		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
-	    		contentStr += "<span class='icon-search2'></span></div></a>";
-	    		contentStr += "<div class='text p-3'>";
-	    		contentStr += "<span class='tag'>"+ siLocation[0] +"</span>";
-	    		contentStr += "<h3 class='heading mt-3'><a href='" + contextPath + "/information?act=mvview";
-	    		contentStr += "&contentTypeId=" + $(this).find("contenttypeid").text(); 
-	    		contentStr += "&contentId=" + $(this).find("contentid").text();
-	    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
-	    		contentStr += "<div align='right'>";
-	    		contentStr += "<span class='listing'>"+ formatEventStartDate +" ~ "+ formatEventEndDate +"</span>";	    		
-	    		contentStr += "</div></div></div>";	    		
-	    		$(".informationItemList"+index).append(contentStr);	    		
-	    		contentStr = "";
-	    	});	    	
-	    }
-	    infoTotalCount = $(xml).find("totalCount").text();
-	}
+	getScheduleList();
 	
 	
 	
 });
+
+function getInfoFestivalList() {
+	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?" +
+					"ServiceKey=" + serviceKey +
+					"&eventStartDate=" +
+					"&eventEndDate=" +
+					"&areaCode=" +
+					"&sigunguCode=" +
+					"&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=KokKok" +
+					"&arrange=" + infoListArrange + 
+					"&numOfRows=" + infoListNumOfRows + 
+					"&pageNo=1";		
+	$.ajax({
+	    url : url,
+	    type : "GET",
+	    success : function(xml){		    
+	    	makeInfoListToHtml(xml);	        
+	    },
+		error : function() {
+//			alert("fail");
+		}	    
+	});
+}	
+
+function makeInfoListToHtml(xml){
+	var xmlData = $(xml).find("item");
+    var listLength = xmlData.length;		        
+    var contentStr = "";    
+    if (listLength > 0) {
+    	$(xmlData).each(function(index,item){   
+    		var siLocation = $(this).find("addr1").text().split(' ');
+    		var eventStartDate = $(this).find("eventstartdate").text() + "";
+    		var eventEndDate = $(this).find("eventenddate").text() + "";
+    		var formatEventStartDate = eventStartDate.slice(0,4) + "/" + eventStartDate.slice(4, 6) + "/" + eventStartDate.slice(6);
+    		var formatEventEndDate = eventEndDate.slice(0,4) + "/" + eventEndDate.slice(4, 6) + "/" + eventEndDate.slice(6);
+    		contentStr += "<div class='destination blog-entry'>";
+    		contentStr += "<a href='" + contextPath + "/information/view.kok";
+    		contentStr += "?contentTypeId=" + $(this).find("contenttypeid").text(); 
+    		contentStr += "&contentId=" + $(this).find("contentid").text();
+    		contentStr += "' class='img d-flex justify-content-center align-items-center' style='background-image: url(" + $(this).find("firstimage").text() + ");'>";
+    		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";
+    		contentStr += "<span class='icon-search2'></span></div></a>";
+    		contentStr += "<div class='text p-3'>";
+    		contentStr += "<span class='tag'>"+ siLocation[0] +"</span>";
+    		contentStr += "<h3><a href='" + contextPath + "/information/view.kok"
+    		contentStr += "?contentTypeId=" + $(this).find("contenttypeid").text(); 
+    		contentStr += "&contentId=" + $(this).find("contentid").text();
+    		contentStr += "'>" + $(this).find("title").text() + "</a></h3>";
+    		contentStr += "<div align='right'>";
+    		contentStr += "<span class='listing'>"+ formatEventStartDate +" ~ "+ formatEventEndDate +"</span>";	    		
+    		contentStr += "</div></div></div>";    		
+    		$(".informationItemList"+index).append(contentStr);	    		
+    		contentStr = "";
+    	});
+    }
+}
+
+function getCommentList() {
+	var urlStr = contextPath + '/schedule/getlist.kok';
+	// 일정 타입(0=모든 일정, 1=여행 계획, 2=여행 후기)
+	var listType = 2;
+	// 페이지의 정렬(1=인기순, 2=최신순)
+	var listArrange = 1;
+	// 테마
+	var thema = "테마 전체";
+	// 여행기간
+	var minTerm = 1;
+	var maxTerm = 60;
+	// 검색어
+	var searchWord = "";
+	var currPageNum = 1;
+	var listNumOfRows = 10;
+	
+	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
+				 "thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord};
+	
+	$.ajax({		
+		url : urlStr,
+		type : 'GET',
+		contentType : 'application/json;charset=UTF-8',
+		dataType : 'json',
+		data: param,
+		success : function(response) {
+//			alert("success : function(schedulelist)");
+			makeCommentListHtml(response);
+		},
+		error : function() {
+			alert("error : function()");			
+		}
+		
+	});
+}
+
+function makeCommentListHtml(json) {
+//	alert("makeCommentListHtml(json) start");
+	var listcnt = json.schedulelist.length;
+	var contentStr = "";
+	var btypeNm = ["일정", "후기"];
+	for (var i = 0; i < 4; i++) {
+		var schedule = json.schedulelist[i];
+		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
+		contentStr += "<span class='icon-search2'></span>";		
+		contentStr += "</div>";		
+		contentStr += "</a>";		
+		contentStr += "<div class='text p-3'>";		
+		contentStr += "<div class='d-flex'>";		
+		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
+		contentStr += "</div>";
+		contentStr += "<p>";
+		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
+			var saddr = schedule.simpleaddr;
+			var addr_array = saddr.split(" ");
+//			alert(saddr + " " + addr_array.length);			
+			
+			for(var j = 0; j < addr_array.length; j++){
+				contentStr += "#" + addr_array[j] + " ";
+			}			
+		}
+		contentStr += "<br>#" + schedule.persons;
+		contentStr += "<br>#" + schedule.thema;
+		contentStr += "</p>";
+		contentStr += "<p class='bottom-area d-flex'>";		
+		contentStr += "<span class='days'>" + schedule.startdate + " - " + schedule.enddate + " (" + schedule.period + "일)</span>";
+		contentStr += "<span class='ml-auto'>" + btypeNm[schedule.bcode - 1] + "</span>";
+		contentStr += "</p>";
+		contentStr += "<hr>";		
+		contentStr += "<p class='bottom-area d-flex'>";		
+		contentStr += "<span><i class='icon-person'></i>" + schedule.userid + "</span>";
+		contentStr += "<span class='list-cnt'>";
+		contentStr += "<i class='icon-thumbs-o-up'></i> " + schedule.recommcount + " &nbsp;";
+		contentStr += "<i class='icon-eye'></i> " + schedule.wishcount ;
+		contentStr += "</span>";
+		contentStr += "</p>";
+		contentStr += "</div>";		
+		contentStr += "</div>";
+	}
+	// 일단 싹 지우고 리스트 추가
+	$("#commentList").children("div").remove();
+	$("#commentList").append(contentStr);	
+}
+
+function getScheduleList() {
+	var urlStr = contextPath + '/schedule/getlist.kok';
+	// 일정 타입(0=모든 일정, 1=여행 계획, 2=여행 후기)
+	var listType = 1;
+	// 페이지의 정렬(1=인기순, 2=최신순)
+	var listArrange = 1;
+	// 테마
+	var thema = "테마 전체";
+	// 여행기간
+	var minTerm = 1;
+	var maxTerm = 60;
+	// 검색어
+	var searchWord = "";
+	var currPageNum = 1;
+	var listNumOfRows = 10;
+	
+	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
+				 "thema": thema, "minTerm": minTerm, "maxTerm": maxTerm, "searchWord": searchWord};
+	
+	$.ajax({		
+		url : urlStr,
+		type : 'GET',
+		contentType : 'application/json;charset=UTF-8',
+		dataType : 'json',
+		data: param,
+		success : function(response) {
+//			alert("success : function(schedulelist)");
+			makeScheduleListHtml(response);
+		},
+		error : function() {
+			alert("error : function()");			
+		}
+		
+	});
+}
+
+function makeScheduleListHtml(json) {
+//	alert("makeCommentListHtml(json) start");
+	var listcnt = json.schedulelist.length;
+	var contentStr = "";
+	var btypeNm = ["일정", "후기"];
+	for (var i = 0; i < 4; i++) {
+		var schedule = json.schedulelist[i];
+		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
+		contentStr += "<span class='icon-search2'></span>";		
+		contentStr += "</div>";		
+		contentStr += "</a>";		
+		contentStr += "<div class='text p-3'>";		
+		contentStr += "<div class='d-flex'>";		
+		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
+		contentStr += "</div>";
+		contentStr += "<p>";
+		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
+			var saddr = schedule.simpleaddr;
+			var addr_array = saddr.split(" ");
+//			alert(saddr + " " + addr_array.length);			
+			
+			for(var j = 0; j < addr_array.length; j++){
+				contentStr += "#" + addr_array[j] + " ";
+			}			
+		}
+		contentStr += "<br>#" + schedule.persons;
+		contentStr += "<br>#" + schedule.thema;
+		contentStr += "</p>";
+		contentStr += "<p class='bottom-area d-flex'>";		
+		contentStr += "<span class='days'>" + schedule.startdate + " - " + schedule.enddate + " (" + schedule.period + "일)</span>";
+		contentStr += "<span class='ml-auto'>" + btypeNm[schedule.bcode - 1] + "</span>";
+		contentStr += "</p>";
+		contentStr += "<hr>";		
+		contentStr += "<p class='bottom-area d-flex'>";		
+		contentStr += "<span><i class='icon-person'></i>" + schedule.userid + "</span>";
+		contentStr += "<span class='list-cnt'>";
+		contentStr += "<i class='icon-thumbs-o-up'></i> " + schedule.recommcount + " &nbsp;";
+		contentStr += "<i class='icon-eye'></i> " + schedule.wishcount ;
+		contentStr += "</span>";
+		contentStr += "</p>";
+		contentStr += "</div>";		
+		contentStr += "</div>";
+	}
+	// 일단 싹 지우고 리스트 추가
+	$("#scheduleList").children("div").remove();
+	$("#scheduleList").append(contentStr);	
+}
