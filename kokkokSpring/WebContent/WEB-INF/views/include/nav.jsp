@@ -25,7 +25,7 @@
 		  <li class="nav-item"><a class="nav-link" href="${root}/information/list.kok">여행 정보<span class="caret"></span></a>	      
           <li class="nav-item"><a class="nav-link" href="${root}/schedule/list.kok">여행 일정<span class="caret"></span></a>	      
 		  <li class="nav-item"><a class="nav-link" href="${root}/review/list.kok">여행 리뷰<span class="caret"></span></a>	      
-		  <li class="nav-item"><a class="nav-link" href="${root}/tips/list.kok">여행 꿀팁<span class="caret"></span></a>	  
+		  <li class="nav-item"><a class="nav-link" href="${root}/tips/list.kok?bcode=3&pg=1&key=&word=">여행 꿀팁<span class="caret"></span></a>	  
 		  			<!-- 로그인 모달 추가! -->
 			
 <c:if test="${userInfo == null}">

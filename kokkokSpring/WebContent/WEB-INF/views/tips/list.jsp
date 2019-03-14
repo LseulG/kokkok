@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-
 <%@ include file="/WEB-INF/views/include/link.jsp"%> 
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>   
+<%@ include file="/WEB-INF/views/include/board_common.jsp"%>
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  
 <link rel="stylesheet" href="${root}/resources/css/community.css">
+<script type="text/javascript" src="${root}/resources/js/board.js"></script>
+
 </head>
 
 <body>
@@ -24,152 +25,158 @@
 	</div>
 </div>
   
-<section class="ftco-section bg-light" style="padding-top: 0px;">    
+<section class="ftco-section bg-light">    
 	<div class="row">
-		<div class="container-table100" style="padding-top: 0px; margin-top: 0px;">
-			<div class="wrap-table100" style="padding-top: 0px; margin-top: 0px; height: 800px;">
+		<div class="container-table100">
+			<div class="wrap-table100">
 	
-			
-			   			
-				<div class="table100" style="width: 1000px; margin-left: 100px;">				
-					<table>
-						<thead>
-							<tr class="table100-head" style="height: 40px;">
-								<th class="column1a">글번호</th>
-								<th class="column2a">제목</th>
-								<th class="column3a">작성자</th>
-								<th class="column4a">작성일</th>
-								<th class="column5a">조회수</th>
-								<th class="column6a">좋아요</th>
-							</tr>
-						</thead>
-						<tbody>
-								<tr>
-									<td class="column1a">24455</td>
-									
-									<td class="column2a"><a href="${root}/WEB-INF/views/tips/view.jsp">정동진 1박2일 & 2빅3일 & 당일 추천여행지 코스 정리 [7]</a></td>
-									
-									<td class="column3a">메롱</td>
-									<td class="column4a">2018.09.04</td>
-									<td class="column5a">32</td>
-									<td class="column6a">5</td>
-								</tr>
-								<tr>
-									<td class="column1a">24454</td>
-									<td class="column2a">여름 휴가 아직 안오신분 완도로 오세요^^[6]</td>
-									<td class="column3a">홍길동</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">1</td>
-									<td class="column6a">1</td>
-								</tr>
-								<tr>
-									<td class="column1a">24453</td>
-									<td class="column2a">삼척 가볼만한곳 베스트10 (삼척 여행코스)</td>
-									<td class="column3a">누구</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">212</td>
-									<td class="column6a">6</td>
-								</tr>
-								<tr>
-									<td class="column1a">24452</td>
-									<td class="column2a">제주도자유여행 쉽고 빠르게 계획하는 방법! </td>
-									<td class="column3a">나에요</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">3</td>
-									<td class="column6a">0</td>
-								</tr>
-									<tr>
-									<td class="column1a">24452</td>
-									<td class="column2a">[기차여행] 3·4월 봄바람 살랑 “강릉, 삼척을 잇는다” 서해에는 없는 이것![3]  </td>
-									<td class="column3a">너에요</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">3</td>
-									<td class="column6a">0</td>
-								</tr>
-									<tr>
-									<td class="column1a">24452</td>
-									<td class="column2a">부산여행 숙소 추천해요!!!!! 호텔일루아!!!!![5]</td>
-									<td class="column3a">부산맨</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">3</td>
-									<td class="column6a">0</td>
-								</tr>
-									<tr>
-									<td class="column1a">24452</td>
-									<td class="column2a">제주도자유여행 쉽고 빠르게 계획하는 방법! </td>
-									<td class="column3a">나에요</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">3</td>
-									<td class="column6a">0</td>
-								</tr>
-									<tr>
-									<td class="column1a">24452</td>
-									<td class="column2a">제주도자유여행 쉽고 빠르게 계획하는 방법! </td>
-									<td class="column3a">나에요</td>
-									<td class="column4a">2018.01.11</td>
-									<td class="column5a">3</td>
-									<td class="column6a">0</td>
-								</tr>
+		
+					<div style="margin-top: 0px; padding-top: 0px;">새글<font style="color: red;">${navigator.newArticleCount}</font>
+					&nbsp; /전체<font style="color: red;">${navigator.totalArticleCount}</font>
+					</div>
 								
-												
+					<form name="listForm" method="post">
+						<table>
+							<thead>
+								<tr class="table100-head" align="center">
+									<th class="column1a">글번호</th>
+									<th class="column2a">제목</th>
+									<th class="column3a">작성자</th>
+									<th class="column4a">작성일</th>
+									<th class="column5a">조회수</th>
+									<th class="column5a">추천수</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="article" items="${list}">
+									<tr class="posting" article-seq="${article.seq}">
+										<td align="center" class="column1a">${article.seq}</td>
+										<td style="word-break: break-all;" class="column2a">${article.subject}</td>
+										<td style="word-break: break-all;" class="column3a">${article.userid}</td>
+										<td align="center" class="column4a">${article.logtime}</td>
+										<td align="center" class="column5a">${article.hit}</td>
+										<td align="center" class="column6a">${article.recommcount}</td>
+										
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
-						<br>
-						 <div align="right">
-						<a href="${root}/WEB-INF/views/tips/write.jsp">
-						<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4">
-						</a>	
-					</div>
+					</form>
 					
-					     <div class="row">
-			           <div class="col text-center">
-			              <div class="block-27">
-			                 <ul>
-				                 <li><a href="#">&lt;</a></li>
-				                 <li class="active"><span>1</span></li>
-				                 <li><a href="#">2</a></li>
-				               	 <li><a href="#">3</a></li>
-			                     <li><a href="#">4</a></li>
-			              	     <li><a href="#">5</a></li>
-			              	     <li><a href="#">&gt;</a></li>
-			             	  </ul>
-			               </div>
-			            
-			          
-			           
-						      <!-- 검색  -->					
-								
-								<div style="width: 180px; float: left; margin-right:10px; margin-left: 380px; margin-top: 20px;">
-									<input type="text" class="form-control" placeholder="검색">			
-								</div>
-						   
-						   	
-								<div style="float: left; margin-top: 26px;">
-									<input type="button" value="검색" class="btn btn-primary py-2 px-4">	
-								</div>
-								
-								
-							<!-- 검색  끝 -->
-			               
-			     		</div>
-			        </div>
-					</div>
-		<!-- table end -->			
-			
+					
+			</div>
+	    </div>
+    </div>
 
-       <!-- 페이지 넘김 -->
-       				<br>
-       				<br>
-       				
-       				
-			   
-       <!-- 페이지 넘김  끝-->
-       
-     
-      		 </div>
-   		 </div>
-	</div>
+					
+					<div align="left">
+					<b>${navigator.pageNo}</b> / ${navigator.totalPageCount} pages
+					</div>			
+					
+					
+					
+					<form name="writeForm" method="post">
+						<div align="right">
+							<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4 writeBtn"">
+						</div>
+					</form>
+				   
+			           
+			               ${navigator.navigator}
+			         
+			              
+			              <div style="width: 180px; float: left; margin-right:10px; margin-left: 380px; margin-top: 20px;">
+				              <select name="key" id="skey" class="inp">
+								<option value="subject">글제목
+								<option value="name">글쓴이
+								<option value="seq">글번호
+							  </select> 
+							<br>
+							   <span id="sear1"><input type="text" name="word" id="sword" size="22"
+								class="inp" placeholder="검색어 입력"></span> 
+			              	    </div>		
+						 
+						  
+						  <div style="float: left; margin-top: 26px;">
+							  <input id="searchBtn" type="button" value="검색" class="btn btn-primary py-2 px-4">	
+						  </div> 
+						  
+					  
+			       
+			        
+			       <%--  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td colspan="3" height="10"></td>
+						</tr>
+						<tr>
+							<td width="50%"></td>
+							<td nowrap>
+								<select name="key" id="skey" class="inp">
+									<option value="subject">글제목
+									<option value="name">글쓴이
+									<option value="seq">글번호
+								</select> 
+								<span id="sear1"><input type="text" name="word" id="sword" size="22"
+								class="inp" style="margin-top: -19px;"></span> 
+								<img src="${root}/img/board/sbtn_s.gif" width="32" height="18"
+								border="0" align="absmiddle" alt="검색" id="searchBtn">
+								
+								<c:if test="${userInfo != null}">
+									<img src="${root}/img/board/sbtn_mytext.gif" width="82" height="20"
+									align="absmiddle" alt="내가 쓴 글 보기" id="myBtn">
+								</c:if>	
+								
+								<br>
+							</td>
+							<td width="50%" align="right"><a href="#"><img
+								src="${root}/img/board/sbtn_top.gif" width="24" height="11"
+								align="absmiddle" alt="TOP"></a><br>
+							</td>
+						</tr>
+					</table> --%>
+	
+
 </section>
+
+<script>
+control = "${root}/tips";
+initPath();
+
+$(document).ready(function() {
+	
+	$("#firstpage").click(function() {		
+		moveBoard('${bcode}', '1', '', '', listpath);		
+	});
+	
+	$(".mvpage").click(function() {
+		moveBoard("${bcode}", $(this).attr("move-page-no"), "${key}", "${word}", listpath)
+	});
+	
+	$("#searchBtn").click(function() {
+		moveBoard('${bcode}', '1', $("#skey").val(), $("#sword").val(), listpath);		
+	});
+	
+	$("#myBtn").click(function() {
+		moveBoard('${bcode}', '1', 'id', '${userInfo.id}', listpath);		
+	});
+	
+	$(".writeBtn").click(function() {
+		 moveBoard('${bcode}', '1', '', '', writepath);
+		/* $("#writeForm").attr("method", "post").attr("action", writepath).submit(); */
+	});	
+	
+	
+	$(".posting").click(function() {
+		$("#bcode").val("${bcode}");
+		$("#pg").val("${pg}");
+		$("#key").val("${key}");
+		$("#word").val("${word}");
+		$("#seq").val($(this).attr("article-seq"));
+		$("#commonform").attr("method", "get").attr("action", viewpath).submit();
+	});
+});
+</script>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>

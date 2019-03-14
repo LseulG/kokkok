@@ -29,7 +29,8 @@
 				<value>classpath:com/kokkok/daoMapper/MemberMapper.xml</value>
 				<value>classpath:com/kokkok/daoMapper/MainComm.xml</value>
 				<value>classpath:com/kokkok/daoMapper/ReviewMapper.xml</value>
-				<value>classpath:com/kokkok/daoMapper/ScheduleListMapper.xml</value>	
+				<value>classpath:com/kokkok/daoMapper/ScheduleListMapper.xml</value>
+				<value>classpath:com/kokkok/daoMapper/TipsMapper.xml</value>	
 			</list>
 		</property>		
 	</bean>	

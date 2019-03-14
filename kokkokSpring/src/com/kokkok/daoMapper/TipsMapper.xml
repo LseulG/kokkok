@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kokkok.tips.dao.TipsDao">
+   
+    <select id="listArticle" parameterType="map" resultType="com.kokkok.dto.TipsDto">
+ 	select b.* 
+	from (
+         select rownum rn, a.* 
+	          from (
+	                select bcode, seq, subject, userid, hit, recommcount, content, updatetime, 
+                    case  
+	                    when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
+	                    then to_char(logtime, 'hh24:mi:ss') 
+	                    else to_char(logtime, 'yy.mm.dd') 
+	                end logtime
+	               		
+		       from board
+	           where bcode = 1
+	        
+               <if test="word != null and word != ''">
+	        	<choose>
+	        		<when test="key == 'subject'">
+	        		and b.subject like '%'||#{word}||'%'
+	        		</when>
+	        		<otherwise>
+	        		and b.${key} = #{word}
+	        		</otherwise>
+	        	</choose>
+              </if> 
+              
+	          order by seq desc 
+              ) a
+              
+          where rownum &lt;= #{end} 
+          ) b 
+	where b.rn &gt; #{start} 
+	
+	</select>
+	
+	<insert id="writeArticle" parameterType="com.kokkok.dto.TipsDto">
+	  insert into
+    	  	board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, hit)
+    	  	values (#{seq}, #{bcode}, #{userid}, #{subject}, #{content}, sysdate, sysdate, 0, 0)
+	</insert>
+	
+	<select id="viewArticle" parameterType="int" resultType="com.kokkok.dto.TipsDto">
+	select seq, userid, subject, content, hit, logtime, bcode,
+	from board
+	where b.seq = #{seq}
+	</select>
+		
+	<!-- <insert id="commentsArticle" parameterType="com.kokkok.dto.TipDto">
+	insert into comments (cseq, seq, userid, ccontent, clogtime)
+	values (comments_cseq.nextval, #{seq}, #{userid}, #{ccontent}, sysdate)
+	</insert> -->
+	
+	<update id="modifyArticle" parameterType="com.kokkok.dto.TipsDto">
+	update board
+	set subject = #{subject},
+	content = #{content}
+	where seq = #{seq}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="com.kokkok.dto.TipsDto">
+	delete from board where seq = #{seq} 
+	</delete> 
+	
+	<select id="getNextSeq" resultType="int">
+	select board_seq.nextval 
+	from dual
+	</select>
+	<select id="getNewArticleCount" parameterType="int" resultType="int">
+	select count(seq) 
+	from board
+	where bcode = #{bocde}
+	and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd')
+	</select>
+	
+	<select id="getTotalArticleCount" parameterType="map" resultType="int">
+	select count(seq) 
+	from board
+	where bcode = #{bcode}
+	<if test="word != null and word != ''">
+      	<choose>
+      		<when test="key == 'subject'">
+      		and subject like '%'||#{word}||'%'
+      		</when>
+      		<otherwise>
+      		and ${key} = #{word}
+      		</otherwise>
+      	</choose>
+    </if>
+	</select>
+	<update id="updateHit" parameterType="int">
+	update board
+	set hit = hit+1
+	where seq = #{seq}
+	</update>
+   
+    
+</mapper>
