@@ -33,7 +33,7 @@
                 <!-- 검색 카테고리 -->
 	                <div class="select-wrap one-two">
 	                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                    <select name="" id="mainSearchKey" class="form-control" placeholder="Keyword search">
+	                    <select name="" id="mainSearchKey" class="form-control">
 	                      <option value="1">여행 정보</option>
 	                      <option value="2">여행 일정</option>
 	                      <option value="3">여행 리뷰</option>
