@@ -22,6 +22,8 @@ $(document).ready(function() {
 		
 		// 처음은 1페이지
 		currPageNum = 1;
+		// 처음은 최신순
+		$("#listSort").val(2);
 		// First Schedule List
 		getScheduleList();	
 	}
