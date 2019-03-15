@@ -3,22 +3,15 @@ package com.kokkok.tips.service;
 import java.util.List;
 import java.util.Map;
 
-import com.kokkok.comm.PageNavigation;
 import com.kokkok.dto.TipsDto;
 
 public interface TipsService {
-
-	int writeArticle(Map<String, Object> map);
-	List<TipsDto> listArticle(Map<String, String> map);
-	TipsDto viewArticle(int seq);
-	TipsDto getArticle(int seq);
-	void modifyArticle(TipsDto tipsDto);
-	void deleteArticle(TipsDto tipsDto);
+	public int tipsWrite(Map<String, Object> map);
+	public TipsDto tipsView(String seq);
+	public List<TipsDto> tipsList(Map<String, Object> map);
 	
-	PageNavigation getPageNavigation(Map<String, String> map);
-	TipsDto viewArticle(String string);
-	int writeArticle(TipsDto tipsDto);
-	int getNextSeq();
+	public int tipsUpdate(Map<String, Object> map);
+	public int tipsDelete(Map<String, Object> map);
 }
 
 

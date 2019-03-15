@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>
-<%@ include file="/WEB-INF/views/include/board_common.jsp"%>
-
 <link rel="stylesheet" href="${root}/resources/css/community.css">
-<script type="text/javascript" src="${root}/resources/js/board.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
@@ -34,6 +31,7 @@
 								<i style="font-size: 25px; font-weight: bold;">제목 : ${article.subject}</i>
 								<i class="icon-person" style="font-size: 12px; float: right; padding-top: 10px;">작성자 id : ${article.userid}<br>
 									<i class="icon-pencil" style="font-size: 12px;">작성일 : ${article.logtime}</i>
+									글번호:${article.seq}
 								</i>
 							</span>
 							<br>
@@ -117,157 +115,20 @@
 </div>
 </div>
 
+<script type="text/javascript">
 
-
-<script>
-control = "${root}/tips";
-initPath();
-
-$(document).ready(function() {
-	
-	getList();
-	
-	$(".newpage").click(function() {		
-		moveBoard('${bcode}', '1', '', '', listpath);		
-	});
-	
-	$(".mvpage").click(function() {
-		moveBoard("${bcode}", "${pg}", "${key}", "${word}", listpath)
-	});
-	
-
-	$(".deleteBtn").click(function() {
-		$("#bcode").val("${bcode}}");
-		$("#pg").val("1");		
-		$("#seq").val("${article.seq}");		
-		document.commonform.action = "${root}/tips/delete.kok";
-		document.commonform.submit();
-	});
-	
-
-	
-	$(".modifyBtn").click(function() {
-		$("#bcode").val("${bcode}");
-		$("#pg").val("1");		
-		$("#seq").val("${article.seq}");
-		$("#commonform").attr("method", "get").attr("action", modifypath).submit();
-	});
-	
-	// 댓글
-	$("#memoBtn").click(function() {
-		var seq = '${article.seq}';
-		var mcontent = $("#mcontent").val();
-		$("#mcontent").val('');
-		var parameter = JSON.stringify({'seq' : seq, 'mcontent' : mcontent});
-		if(mcontent.trim().length != 0) {
-			$.ajax({
-				url : '${root}/memo',
-				type : 'POST',
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				data : parameter,
-				success : function(data) {
-					makeList(data);
-				}
-			});
-		}
-	});
-	
-	$(document).on("click", ".deletMemoBtn", function() {
-		if(confirm("삭제하시겠습니까?")) {
-			var mseq = $(this).parent("td").attr("data-seq");
-			$.ajax({
-				url : '${root}/memo/' + mseq,
-				type : 'DELETE',
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				success : function(data) {
-					
-				}
-			});
-		}
-		getList();
-	});
-	
-	$(document).on("click", ".viewModifyBtn", function() {
-		var mseq = $(this).parent("td").attr("data-seq");
-		$("#div" + mseq).css("display", "");
-	});
-	
-	$(document).on("click", ".memoModifyBtn", function() {
-		var mseq = $(this).parents("td").attr("data-seq");
-		$("#div" + mseq).css("display", "none");
-		var seq = '${article.seq}';
-		var mcontent = $("#mcontent" + mseq).val();
-		var parameter = JSON.stringify({'seq' : seq, 'mseq' : mseq, 'mcontent' : mcontent});
-		if(mcontent.trim().length != 0) {
-			$.ajax({
-				url : '${root}/memo',
-				type : 'PUT',
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				data : parameter,
-				success : function(data) {
-					makeList(data);
-				}
-			});
-		}
-	});
-	
-	$(document).on("click", ".memoCancelBtn", function() {
-		var mseq = $(this).parents("td").attr("data-seq");
-		$("#div" + mseq).css("display", "none");
-	});
-	
+$(document).on("click", "#reviewDeleteBtn", function() {
+	var reviewDeleteCheck = confirm("정말로 삭제하시겠습니까?");
+	if(reviewDeleteCheck){
+	$('#seq').val('${article.seq}');
+	$("#reviewModifyForm").attr("action","${root}/review/delete.kok").submit();
+	}else {return}
 });
 
-function getList() {
-	$.ajax({
-		url : '${root}/memo/${article.seq}',
-		type : 'GET',
-		contentType : 'application/json;charset=UTF-8',
-		dataType : 'json',
-		success : function(data) {
-			makeList(data);
-		}
-	});
-}
-
-function makeList(memos) {
-	$("#memoview").empty();
-	var mlist = memos.memolist;
-	var output = "";
-	for(var i=0;i<mlist.length;i++) {
-		output += '<tr>';
-		output += '	<td width="150" height="70">' + mlist[i].name + '</td>';
-		output += '	<td>' + mlist[i].mcontent + '</td>';
-		output += '	<td width="200">' + mlist[i].mtime + '</td>';
-		if(mlist[i].id == '${userInfo.id}') {
-			output += '<td width="100" data-seq="' + mlist[i].mseq + '">';
-			output += '	<label class="viewModifyBtn">수정</label> / ';
-			output += '	<label class="deletMemoBtn">삭제</label>';
-			output += '</td>';
-			output += '</tr>';
-			output += '<tr>';
-			output += '	<td colspan="4" data-seq="' + mlist[i].mseq + '">';
-			output += '	<div id="div' + mlist[i].mseq + '" style="display: none;">';
-			output += '	<textarea style="resize: none;" id="mcontent' + mlist[i].mseq + '" cols="150" rows="3">' + mlist[i].mcontent + '</textarea>';
-			output += '	<img src="${root}/img/board/replysubmit.JPG" class="memoModifyBtn">';
-			output += '	<img src="${root}/img/board/replycancel.jpg" class="memoCancelBtn">';
-			output += '	</div>';
-			output += '	</td>';
-		}		
-		output += '</tr>';
-		output += '<tr>';
-		output += '	<td colspan="3" class="bg_board_title_02" height="1"';
-		output += '		style="overflow: hidden; padding: 0px"></td>';
-		output += '</tr>';
-	}
-	$("#memoview").append(output);
-}
 </script>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 </body>
 </html>
+

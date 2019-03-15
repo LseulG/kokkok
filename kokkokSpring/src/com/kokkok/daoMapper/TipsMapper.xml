@@ -4,22 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kokkok.tips.dao.TipsDao">
    
-    <select id="listArticle" parameterType="map" resultType="com.kokkok.dto.TipsDto">
- 	select b.* 
+   <insert id="tipsWrite" parameterType="map">
+    	  insert into
+    	  	board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit)
+    	  	values (#{seq}, #{bcode}, #{userid}, #{subject}, #{content}, sysdate, sysdate, 0,0,0)    	  	
+    </insert>
+    
+    <select id="tipsView" parameterType="String" resultType="com.kokkok.dto.TipsDto">
+    	select * from board where seq = #{seq}
+    </select>
+    
+    <select id="tipsList" parameterType="map" resultType="com.kokkok.dto.TipsDto">
+	<!-- select b.* 
 	from (
          select rownum rn, a.* 
-	          from (
+	          from ( -->
 	                select bcode, seq, subject, userid, hit, recommcount, content, updatetime, 
                     case  
 	                    when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
 	                    then to_char(logtime, 'hh24:mi:ss') 
 	                    else to_char(logtime, 'yy.mm.dd') 
-	                end logtime
+	                end logtime 
 	               		
 		       from board
-	           where bcode = 1
+	           where bcode = 6 
 	        
-               <if test="word != null and word != ''">
+	        <if test="word != null and word != ''">
 	        	<choose>
 	        		<when test="key == 'subject'">
 	        		and b.subject like '%'||#{word}||'%'
@@ -28,76 +38,51 @@
 	        		and b.${key} = #{word}
 	        		</otherwise>
 	        	</choose>
-              </if> 
-              
-	          order by seq desc 
-              ) a
-              
-          where rownum &lt;= #{end} 
-          ) b 
-	where b.rn &gt; #{start} 
-	
+	        </if>
+	        
+	        order by seq desc 
+	  <!--       ) a 
+	    where rownum &lt;= #{end} 
+	    ) b 
+	where b.rn &gt; #{start}  -->
 	</select>
-	
-	<insert id="writeArticle" parameterType="com.kokkok.dto.TipsDto">
-	  insert into
-    	  	board (seq, bcode, userid, subject, content, logtime, updatetime, recommcount, hit)
-    	  	values (#{seq}, #{bcode}, #{userid}, #{subject}, #{content}, sysdate, sysdate, 0, 0)
-	</insert>
-	
-	<select id="viewArticle" parameterType="int" resultType="com.kokkok.dto.TipsDto">
-	select seq, userid, subject, content, hit, logtime, bcode,
-	from board
-	where b.seq = #{seq}
-	</select>
-		
-	<!-- <insert id="commentsArticle" parameterType="com.kokkok.dto.TipDto">
-	insert into comments (cseq, seq, userid, ccontent, clogtime)
-	values (comments_cseq.nextval, #{seq}, #{userid}, #{ccontent}, sysdate)
-	</insert> -->
-	
-	<update id="modifyArticle" parameterType="com.kokkok.dto.TipsDto">
-	update board
-	set subject = #{subject},
-	content = #{content}
-	where seq = #{seq}
-	</update>
-	
-	<delete id="deleteBoard" parameterType="com.kokkok.dto.TipsDto">
-	delete from board where seq = #{seq} 
-	</delete> 
-	
-	<select id="getNextSeq" resultType="int">
-	select board_seq.nextval 
-	from dual
-	</select>
-	<select id="getNewArticleCount" parameterType="int" resultType="int">
-	select count(seq) 
-	from board
-	where bcode = #{bocde}
-	and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd')
-	</select>
-	
-	<select id="getTotalArticleCount" parameterType="map" resultType="int">
-	select count(seq) 
-	from board
-	where bcode = #{bcode}
-	<if test="word != null and word != ''">
-      	<choose>
-      		<when test="key == 'subject'">
-      		and subject like '%'||#{word}||'%'
-      		</when>
-      		<otherwise>
-      		and ${key} = #{word}
-      		</otherwise>
-      	</choose>
-    </if>
-	</select>
-	<update id="updateHit" parameterType="int">
-	update board
-	set hit = hit+1
-	where seq = #{seq}
-	</update>
+    
+    
+    
+            
+    <!-- <select id="tipsList" parameterType="map" resultType="com.kokkok.dto.TipsDto">
+    	select a.seq, a.bcode, a.userid, a.subject, a.content, a.updatetime, a.recommcount, a.wishcount, a.hit, b.ccode,
+    		case when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
+                  then to_char(logtime, 'hh24:mi:ss') 
+                  else to_char(logtime, 'yy/mm/dd') 
+             end logtime 
+    	from board a, board_list b 
+    	where a.bcode = b.bcode and b.ccode = #{ccode}
+    	<if test="bcode != null and bcode !=''">
+		and a.bcode = #{bcode}
+    	</if>
+    	<if test="word != null and word != ''">
+    	and (a.subject like '%'||#{word}||'%' or a.content like '%'||#{word}||'%')    	
+    	</if>    	
+    	order by a.seq desc
+    </select> -->
+    
+    <update id="tipsUpdate" parameterType="map">
+    	update board
+		set bcode = #{bcode}, subject = #{subject}, content = #{content}, updatetime = sysdate
+		where seq = #{seq}
+    </update>
+    
+    <delete id="tipsDelete" parameterType="map">
+	    {call 
+	     declare 
+	     begin 	      
+	      delete from recommend where seq = #{seq}; 
+	      delete from wish where seq = #{seq}; 
+	      delete from board where seq = #{seq}; 
+	     end 
+	    }
+    </delete>
    
     
 </mapper>
