@@ -116,7 +116,7 @@ $(document).ready(function() {
 			<div class="container-table100">
 				<div class="wrap-table100">
 				<form action="" id="tipsListForm" name="tipsListForm" method="get">
-				<input type="hidden" name="seqtip" id="seqtip" value=""/>
+				<input type="hidden" name="seq" id="seq" value=""/>
 					<table>
 						<thead>
 						<tr class="table100-head" align="center">
