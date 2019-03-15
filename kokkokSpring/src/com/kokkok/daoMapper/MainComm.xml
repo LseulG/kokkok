@@ -28,9 +28,60 @@
   		update board set wishcount = wishcount - 1 where seq = #{seq}
   	</update>
   	
+  	
+  	
+  	
+  	<insert id="registerRecommend" parameterType="java.util.Map">
+		insert into recommend values(recommend_SEQ.nextval, #{seq}, #{userid})
+	</insert>
+  	
+  	<select id="checkRecommend" parameterType="java.util.Map" resultType="int">
+  		<![CDATA[select count(*) from recommend where userid = #{userid} and seq = #{seq}]]>
+  	</select>
+  	
+  	<delete id="deleteRecommend" parameterType="java.util.Map">
+  		delete from recommend where userid = #{userid} and seq = #{seq}
+  	</delete>
+  	
+  	<select id="countRecommend" parameterType="java.util.Map" resultType="int">
+  		select recommcount from board where seq = #{seq}
+  	</select>
+  	
+  	<update id="addRecommend" parameterType="java.util.Map">
+  		update board set recommcount = recommcount + 1 where seq = #{seq}
+  	</update>
+  	
+  	<update id="minusRecommend" parameterType="java.util.Map">
+  		update board set recommcount = recommcount - 1 where seq = #{seq}
+  	</update>
+  	
+  	
+  	
+  	
   	<select id="getNextSeq" resultType="int">
     	select BOARD_SEQ.nextval from dual
     </select>
+    
+    <update id="updateHit" parameterType="String">
+    	update board set hit = hit + 1 where seq = #{seq}
+    </update>
+    
   	
-
+  	<insert id="writeComments" parameterType="com.kokkok.dto.CommentsDto">
+  		insert into comments (cseq, seq, userid, ccontent, clogtime)
+		values (comments_seq.nextval, #{seq}, #{userid}, #{ccontent}, sysdate)
+  	</insert>
+	
+	<select id="commentsList" parameterType="String" resultType="com.kokkok.dto.CommentsDto">
+		select * from comments where seq = #{seq} order by cseq
+	</select>
+	
+	<delete id="commentsDelete" parameterType="String">
+		delete comments where cseq = #{cseq}
+	</delete>
+	
+	<update id="commentsUpdate" parameterType="java.util.Map">
+		update comments set ccontent = #{ccontent} where cseq = #{cseq}
+	</update>
+	
 </mapper>

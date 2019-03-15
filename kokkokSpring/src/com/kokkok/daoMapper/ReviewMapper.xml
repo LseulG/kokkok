@@ -42,8 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     declare 
 	     begin 	      
 	      delete from recommend where seq = #{seq}; 
-	      delete from wish where seq = #{seq}; 
-	      delete from board where seq = #{seq}; 
+	      delete from wish where seq = #{seq};
+	      delete from comments seq = #{seq}; 
+	      delete from board where seq = #{seq};	      
 	     end 
 	    }
     </delete>

@@ -25,8 +25,12 @@
   display: block;
   text-overflow: ellipsis;
   white-space: nowrap; 
-  height: 250px;
+  /* height: 250px; */
+	height: auto;	/* 기본 높이 */
+	min-height: 50px;	/* 최소 높이 */
+	max-height: 250px;	/* 최대 높이 */  
 }
+
 .review-list-cont p img{
   display: inline-block;
   vertical-align: middle;
@@ -38,6 +42,22 @@
 	max-width: 95%;
 	
 }
+/* -----wish and like --------------------*/
+.cnt { 
+	display: inline-block;
+	
+ }
+.cnt div{
+	display: inline-block;	
+	margin-right: 25px;
+	cursor:pointer;
+}
+.cnt span{
+	display: inline-block;	
+	margin-right: 25px;
+}
+.icon-heart { color: #f85e5e;}
+.icon-thumbs-up { color: #6887f1;}  
 
 /* ----- view --------------------*/
 .commForm {

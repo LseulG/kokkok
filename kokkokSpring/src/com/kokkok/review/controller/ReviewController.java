@@ -60,7 +60,7 @@ public class ReviewController {
 		
 		ModelAndView mav = new ModelAndView();	
 		if(cnt != 0) {
-			ReviewDto reviewDto = reviewService.reviewView(seq+"");			
+			ReviewDto reviewDto = reviewService.reviewView(seq+"");	
 			mav.addObject("article",reviewDto);			
 			path = "review/view";
 		}		
@@ -72,7 +72,8 @@ public class ReviewController {
 	@RequestMapping(value="/review/view.kok",method=RequestMethod.GET)
 	public ModelAndView reviewView(@RequestParam String seq) {
 		
-		ReviewDto reviewDto = reviewService.reviewView(seq);		
+		mainService.updateHit(seq);
+		ReviewDto reviewDto = reviewService.reviewView(seq);
 		ModelAndView mav = new ModelAndView();			
 		mav.addObject("article",reviewDto);
 		mav.setViewName("review/view");

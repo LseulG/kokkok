@@ -17,13 +17,13 @@ public class CommentsDto {
 	    private String ccontent;
 
 	    // 댓글작성일 
-	    private Date clogtime;
+	    private String clogtime;
 	    
 	    
 	    public CommentsDto() {}
 
 
-		public CommentsDto(int cseq, int seq, String userid, String ccontent, Date clogtime) {
+		public CommentsDto(int cseq, int seq, String userid, String ccontent, String clogtime) {
 			this.cseq = cseq;
 			this.seq = seq;
 			this.userid = userid;
@@ -72,12 +72,12 @@ public class CommentsDto {
 		}
 
 
-		public Date getClogtime() {
+		public String getClogtime() {
 			return clogtime;
 		}
 
 
-		public void setClogtime(Date clogtime) {
+		public void setClogtime(String clogtime) {
 			this.clogtime = clogtime;
 		}
 
