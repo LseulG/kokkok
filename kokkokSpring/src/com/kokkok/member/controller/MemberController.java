@@ -3,6 +3,8 @@ package com.kokkok.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -17,6 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import com.kokkok.comm.LogCheck;
 import com.kokkok.dto.MemberDto;
+import com.kokkok.dto.ReviewDto;
 import com.kokkok.member.service.MemberService;
 
 
@@ -59,17 +63,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/registerok.kok",method=RequestMethod.GET)
-	public String registerok() {
+	public String registerOk() {
 		return "member/join/registerok";
 	}
 	
 	@RequestMapping(value="/member/idcheck.kok",method=RequestMethod.GET)
-	public String idcheck() {
+	public String idCheck() {
 		return "member/join/idcheck";
 	}
 	
 	@RequestMapping(value="/member/idsearch.kok",method=RequestMethod.POST)
-	public ModelAndView idcheck(@RequestParam("checkid") String id, HttpServletRequest request) {
+	public ModelAndView idCheck(@RequestParam("checkid") String id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		int cnt = memberService.idCheck(id);
 		request.setAttribute("checkid", id);
@@ -86,12 +90,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/modify.kok",method=RequestMethod.GET)
-	public String modify() {
+	public String memberModify() {
 		return "member/myMenu/myInfo/modify";
 	}
 	
 	@RequestMapping(value="/member/modify.kok",method=RequestMethod.POST)
-	public ModelAndView modify(@RequestParam Map<String, String> map,HttpSession session) {
+	public ModelAndView memberModify(@RequestParam Map<String, String> map,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		int check = memberService.memberModify(map);
 		LogCheck.logger.info(LogCheck.logMsg + check);
@@ -107,12 +111,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/delete.kok",method=RequestMethod.GET)
-	public String delete() {
+	public String memberDelete() {
 		return "member/myMenu/myInfo/delete";
 	}
 	
 	@RequestMapping(value="/member/delete.kok",method=RequestMethod.POST)
-	public ModelAndView delete(@RequestParam Map<String, String> map,HttpSession session) {
+	public ModelAndView memberDelete(@RequestParam Map<String, String> map,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		int check = memberService.memberdelete(map);
 		LogCheck.logger.info(LogCheck.logMsg + check);
@@ -126,32 +130,6 @@ public class MemberController {
 	}
 	
 
-	
-	
-	@RequestMapping(value="/member/mylist.kok",method=RequestMethod.GET)
-	public ModelAndView mylist(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request",request);
-		memberService.myWriteSchedule(mav);
-		return mav;
-	}
-	
-	@RequestMapping(value="/member/mywishschedule.kok",method=RequestMethod.GET)
-	public ModelAndView myschedulewish(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request",request);
-		memberService.myWishSchedule(mav);
-		return mav;
-	}
-	
-	@RequestMapping(value="/member/mywishreview.kok",method=RequestMethod.GET)
-	public ModelAndView myreviewwish(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request",request);
-		memberService.myWishreview(mav);
-		return mav;
-	}
-	
 	@RequestMapping(value="/login.kok",method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam Map<String, String> map,HttpSession session, HttpServletRequest request) throws IOException {
 		ModelAndView mav = new ModelAndView();
@@ -186,13 +164,8 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
-	@RequestMapping(value="/admin/memberlist.kok",method=RequestMethod.GET)
-	public String memberlist() {
-		return "admin/members/list";
-	}
-	
 	@RequestMapping(value="/member/findpass.kok",method=RequestMethod.GET)
-	public String findpass() {
+	public String findPass() {
 		return "member/login/findpassword";
 	}
 
@@ -234,5 +207,52 @@ public class MemberController {
 		return mav;
 
 	}
+	
+
+	@RequestMapping(value="/admin/memberlist.kok",method=RequestMethod.GET)
+	public String memberList() {
+		return "admin/members/list";
+	}
+	
+	
+	@RequestMapping(value="/member/mywritelist.kok",method=RequestMethod.GET)
+	public ModelAndView myWriteList(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		memberService.myWriteSchedule(mav);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/member/mywishschedule.kok",method=RequestMethod.GET)
+	public String myScheduleWish() {
+		return "member/myMenu/myWish/myschedulelist";
+	}
+	
+	@RequestMapping(value="/member/getwishschedule.kok",produces = "application/text; charset=utf8", method=RequestMethod.GET)
+	public @ResponseBody String getScheduleWish(@RequestParam(value="userid") String userid,
+		  										@RequestParam(value="pg") int pg,	
+		  										@RequestParam(value="listNumOfRows") int listNumOfRows) {
+		String myScheduleDtoList = memberService.getMyWishSchedule(pg, listNumOfRows, userid);
+		return myScheduleDtoList;
+	}
+	
+	
+	
+	@RequestMapping(value="/member/mywishreview.kok",method=RequestMethod.GET)
+	public  String myWishReview() {
+		return "member/myMenu/myWish/myreviewlist";
+	}
+	
+	
+	
+	@RequestMapping(value="/member/getmywishreview.kok", produces = "application/text; charset=utf8", method=RequestMethod.GET)	
+	public @ResponseBody String getMyWishReview(@RequestParam(value="userid") String userid,
+											  	@RequestParam(value="pg") int pg,	
+											  	@RequestParam(value="listNumOfRows") int listNumOfRows) {	
+		String myReviewDtoList = memberService.getMyWishReview(pg, listNumOfRows, userid);
+		return myReviewDtoList; 
+	}
+	
 
 }

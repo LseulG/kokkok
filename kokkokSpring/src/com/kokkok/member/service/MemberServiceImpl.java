@@ -1,23 +1,32 @@
 package com.kokkok.member.service;
 
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kokkok.dto.MemberDto;
+import com.kokkok.dto.ReviewDto;
+import com.kokkok.dto.ScheduleListDto;
 import com.kokkok.member.dao.MemberDao;
+import com.kokkok.schedule.dao.ScheduleListDao;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Service
 public class MemberServiceImpl implements MemberService{
 
-	
 	@Autowired
  	private SqlSessionTemplate sqlSessionTemplate;
 	
@@ -41,14 +50,6 @@ public class MemberServiceImpl implements MemberService{
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		mav.setViewName("/member/myMenu/myWish/myschedulelist");		
 	}
-
-	@Override
-	public void myWishreview(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/myMenu/myWish/myreviewlist");		
-	}
-
 
 
 	@Override
@@ -97,6 +98,101 @@ public class MemberServiceImpl implements MemberService{
 	public int memberdelete(Map<String, String> map) {
 		MemberDao memberDao = sqlSessionTemplate.getMapper(MemberDao.class);
 		return memberDao.memberdelete(map);
+	}
+
+	@Override
+	public String getMyWishReview(int pg, int listNumOfRows, String id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", id);
+		int totCount = sqlSessionTemplate.selectOne("getMyWishReviewTotalCount", map);
+
+		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
+		int endNum = listNumOfRows * pg;
+		
+		map.put("startNum", startNum + "");
+		map.put("endNum", endNum + "");
+		
+		List<ReviewDto> list = sqlSessionTemplate.getMapper(MemberDao.class).getMyWishReview(map);
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		for(ReviewDto reviewDto : list) {
+			JSONObject myReviewList = new JSONObject();
+			myReviewList.put("seq", reviewDto.getSeq());
+			myReviewList.put("bcode", reviewDto.getBcode());
+			myReviewList.put("userid", reviewDto.getUserid());
+			myReviewList.put("subject", reviewDto.getSubject());
+			myReviewList.put("content", reviewDto.getContent());
+			myReviewList.put("logtime", reviewDto.getLogtime());
+			myReviewList.put("updatetime", reviewDto.getUpdatetime());
+			myReviewList.put("recommcount", reviewDto.getRecommcount());
+			myReviewList.put("wishcount", reviewDto.getWishcount());
+			myReviewList.put("hit", reviewDto.getHit());
+			myReviewList.put("cname", reviewDto.getCname());
+			myReviewList.put("ccode", reviewDto.getCcode());
+			myReviewList.put("bname", reviewDto.getBname());
+			myReviewList.put("tseq", reviewDto.getTseq());
+			myReviewList.put("tname", reviewDto.getTname());
+			myReviewList.put("tcontent", reviewDto.getTcontent());
+			jarray.add(myReviewList);
+
+		}
+		json.put("totCount", totCount);
+		
+		json.put("myReviewList", jarray);
+		return json.toString();
+	}
+
+	@Override
+	public String getMyWishSchedule(int pg, int listNumOfRows, String id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", id);
+		int totCount = sqlSessionTemplate.selectOne("getMyWishScheduleTotalCount", map);
+
+		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
+		int endNum = listNumOfRows * pg;
+		
+		map.put("startNum", startNum + "");
+		map.put("endNum", endNum + "");
+		
+		List<ScheduleListDto> list = sqlSessionTemplate.getMapper(MemberDao.class).getMyWishSchedule(map);
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		for(ScheduleListDto scheduleListDto : list) {
+			
+			JSONObject mySchedule = new JSONObject();
+			mySchedule.put("sseq", scheduleListDto.getSseq());
+			mySchedule.put("seq", scheduleListDto.getSeq());
+			mySchedule.put("bcode", scheduleListDto.getBcode());
+			mySchedule.put("userid", scheduleListDto.getUserid());
+			mySchedule.put("subject", scheduleListDto.getSubject());
+			mySchedule.put("content", scheduleListDto.getContent());
+			mySchedule.put("logtime", scheduleListDto.getLogtime());
+			mySchedule.put("updatetime", scheduleListDto.getUpdatetime());
+			mySchedule.put("recommcount", scheduleListDto.getRecommcount());
+			mySchedule.put("wishcount", scheduleListDto.getWishcount());
+			mySchedule.put("hit", scheduleListDto.getHit());
+			mySchedule.put("startdate", new SimpleDateFormat("yyyy/MM/dd").format(scheduleListDto.getStartdate()));
+			mySchedule.put("enddate", new SimpleDateFormat("yyyy/MM/dd").format(scheduleListDto.getEnddate()));
+			mySchedule.put("period", scheduleListDto.getPeriod());
+			mySchedule.put("originpicture", scheduleListDto.getOriginpicture());
+			mySchedule.put("savefolder", scheduleListDto.getSavefolder());
+			mySchedule.put("savepicture", scheduleListDto.getSavepicture());
+			mySchedule.put("persons", scheduleListDto.getPersons());
+			mySchedule.put("thema", scheduleListDto.getThema());
+			mySchedule.put("location", scheduleListDto.getLocation());
+			mySchedule.put("lat", scheduleListDto.getLat());
+			mySchedule.put("lng", scheduleListDto.getLng());
+			mySchedule.put("address", scheduleListDto.getAddress());
+			mySchedule.put("simpleaddr", scheduleListDto.getSimpleaddr());
+			
+			jarray.add(mySchedule);
+		}
+		
+		json.put("totCount", totCount);
+		
+		json.put("myScheduleList", jarray);
+//		System.out.println(json.toString());
+		return json.toString();
 	}
 
 

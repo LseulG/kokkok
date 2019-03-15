@@ -39,7 +39,7 @@
           	<a href="" class="dropdown-toggle nav-link" data-toggle="dropdown"><span>마이페이지</span></a>
    		        <ul class="dropdown-menu">
 				<li><a href="${root}/member/myInfo.kok" class="dropdown-item">내 정보관리</a></li>
-				<li><a href="${root}/member/mylist.kok" class="dropdown-item">내가 작성한 일정</a></li>
+				<li><a href="${root}/member/mywritelist.kok" class="dropdown-item">내가 작성한 일정</a></li>
 				<li><a href="${root}/member/mywishschedule.kok" class="dropdown-item">내가 찜한 일정</a></li>
 				<li><a href="${root}/member/mywishreview.kok" class="dropdown-item">내가 찜한 리뷰</a></li>
 
