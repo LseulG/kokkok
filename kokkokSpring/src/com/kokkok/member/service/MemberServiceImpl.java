@@ -30,27 +30,6 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
  	private SqlSessionTemplate sqlSessionTemplate;
 	
-	@Override
-	public void myInfo(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/myMenu/myInfo/view");		
-	}
-
-	@Override
-	public void myWriteSchedule(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/myMenu/myWrite/list");		
-	}
-
-	@Override
-	public void myWishSchedule(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		mav.setViewName("/member/myMenu/myWish/myschedulelist");		
-	}
-
 
 	@Override
 	public MemberDto login(Map<String, String> map) {
@@ -191,6 +170,59 @@ public class MemberServiceImpl implements MemberService{
 		json.put("totCount", totCount);
 		
 		json.put("myScheduleList", jarray);
+//		System.out.println(json.toString());
+		return json.toString();
+	}
+
+	@Override
+	public String getMyWriteSchedule(int pg, int listNumOfRows, String id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid", id);
+		int totCount = sqlSessionTemplate.selectOne("getMyWriteScheduleTotalCount", map);
+
+		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
+		int endNum = listNumOfRows * pg;
+		
+		map.put("startNum", startNum + "");
+		map.put("endNum", endNum + "");
+		
+		List<ScheduleListDto> list = sqlSessionTemplate.getMapper(MemberDao.class).getMyWriteSchedule(map);
+		JSONObject json = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		for(ScheduleListDto scheduleListDto : list) {
+			
+			JSONObject myWriteSchedule = new JSONObject();
+			myWriteSchedule.put("sseq", scheduleListDto.getSseq());
+			myWriteSchedule.put("seq", scheduleListDto.getSeq());
+			myWriteSchedule.put("bcode", scheduleListDto.getBcode());
+			myWriteSchedule.put("userid", scheduleListDto.getUserid());
+			myWriteSchedule.put("subject", scheduleListDto.getSubject());
+			myWriteSchedule.put("content", scheduleListDto.getContent());
+			myWriteSchedule.put("logtime", scheduleListDto.getLogtime());
+			myWriteSchedule.put("updatetime", scheduleListDto.getUpdatetime());
+			myWriteSchedule.put("recommcount", scheduleListDto.getRecommcount());
+			myWriteSchedule.put("wishcount", scheduleListDto.getWishcount());
+			myWriteSchedule.put("hit", scheduleListDto.getHit());
+			myWriteSchedule.put("startdate", new SimpleDateFormat("yyyy/MM/dd").format(scheduleListDto.getStartdate()));
+			myWriteSchedule.put("enddate", new SimpleDateFormat("yyyy/MM/dd").format(scheduleListDto.getEnddate()));
+			myWriteSchedule.put("period", scheduleListDto.getPeriod());
+			myWriteSchedule.put("originpicture", scheduleListDto.getOriginpicture());
+			myWriteSchedule.put("savefolder", scheduleListDto.getSavefolder());
+			myWriteSchedule.put("savepicture", scheduleListDto.getSavepicture());
+			myWriteSchedule.put("persons", scheduleListDto.getPersons());
+			myWriteSchedule.put("thema", scheduleListDto.getThema());
+			myWriteSchedule.put("location", scheduleListDto.getLocation());
+			myWriteSchedule.put("lat", scheduleListDto.getLat());
+			myWriteSchedule.put("lng", scheduleListDto.getLng());
+			myWriteSchedule.put("address", scheduleListDto.getAddress());
+			myWriteSchedule.put("simpleaddr", scheduleListDto.getSimpleaddr());
+			
+			jarray.add(myWriteSchedule);
+		}
+		
+		json.put("totCount", totCount);
+		
+		json.put("myWriteScheduleList", jarray);
 //		System.out.println(json.toString());
 		return json.toString();
 	}

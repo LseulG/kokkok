@@ -102,5 +102,30 @@
 		where b.rn >= #{startNum}
 		]]>
 	</select>
+	
+	
+	<select id="getMyWriteScheduleTotalCount" parameterType="java.util.Map" resultType="int">
+		<![CDATA[
+		select count(*) as scount from schedule a, board b
+		where a.seq = b.seq
+		and b.userid = #{userid}
+		]]>
+    </select>
+	
+	<select id="getMyWriteSchedule" parameterType="java.util.Map" resultType="com.kokkok.dto.ScheduleListDto">
+		<![CDATA[
+        select b.*
+		from (select rownum rn, a.*
+		    from (select sseq, b.seq, b.bcode, b.userid, b.subject, b.logtime, b.updatetime, b.recommcount, b.wishcount, b.hit,
+		        a.startdate, a.enddate, a.enddate - a.startdate + 1 as period, a.originpicture, a.savefolder, 
+		        a.savepicture, a.persons, a.thema		
+		        from schedule a, board b
+		        where a.seq = b.seq
+		        and b.userid = #{userid}
+		        order by updatetime desc) a
+		    where rownum <= #{endNum}) b
+		where b.rn >= #{startNum}
+		]]>
+	</select>
 
 </mapper>

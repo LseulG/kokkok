@@ -24,6 +24,10 @@ public interface MemberDao {
 	
 	int getMyWishScheduleTotalCount(Map<String, String> map);
 	List<ScheduleListDto> getMyWishSchedule(Map<String, String> map);
+	
+	int getMyWriteScheduleTotalCount(Map<String, String> map);
+	List<ScheduleListDto> getMyWriteSchedule(Map<String, String> map);
+
 
 
 

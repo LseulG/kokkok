@@ -6,6 +6,14 @@
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>    
+<script type="text/javascript">
+	var contextPath='<%=request.getContextPath()%>';
+</script>
+<style>
+#lastPage,#firstPage,#nextPageGroup,#prevPageGroup,.naviNum {
+	cursor: Pointer;
+}	
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
@@ -45,45 +53,21 @@ document.location.href = "${root}/index.jsp";
 
 <!-- 오른쪽 목록 -->
 		<div class="col-lg-9">
+		
 <!-- 목록들 -->
-        	<div class="row">
-        		<c:forEach var="i" begin="1" end="6">
-					<div class="col-md-4 ftco-animate destination">
-			    		<a href="${root}/schedule/view.jsp" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-${i}.jpg');">
-				    		<div class="icon d-flex justify-content-center align-items-center">
-		    					<span class="icon-search2"></span>
-		    				</div>
-			    		</a>
-			    		<div class="text p-3">
-			    			<div class="d-flex">
-					    		<h3><a href="#">여행 제목이 들어갑니다!!! </a></h3>
-			    			</div>
-			    			<p>#전라남도 #여수 #순천 #광양 #저기 <br>#나혼자.</p>
-			    			<br>
-			    			<p class="days"><span>18.08.18 - 18.09.18 (30일)</span></p>
-			    			<hr>
-			    			<p class="bottom-area d-flex">
-			    				<span><i class="icon-person"></i> 작성자id</span> <!-- icon변경 -->
-			    				<span class="ml-auto">후기</span>
-			    			</p>
-			    		</div>
-					</div>
-        		</c:forEach>
-          	</div>
+   		<form action="" id="scheduleWriteForm" name="scheduleWriteForm" method="get">
+   		    <input type="hidden" id="getuserId" value="${userInfo.userid}">	
+        	<div id="mywritescheduleList" class="row"></div>
+        </form>
+	
 <!-- 목록들 END -->
 
 <!-- page -->
           	<div class="row mt-5">
 		          <div class="col text-center">
 		            <div class="block-27">
-		              <ul>
-		                <li><a href="#">&lt;</a></li>
-		                <li class="active"><span>1</span></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li><a href="#">&gt;</a></li>
+		              <ul id="navigator">
+
 		              </ul>
 		            </div>
 		          </div>
@@ -96,6 +80,7 @@ document.location.href = "${root}/index.jsp";
 	</section>
 <!-- 내용끝 -->
 
+<script src="${root}/resources/js/myschedule_write_list.js"></script>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>

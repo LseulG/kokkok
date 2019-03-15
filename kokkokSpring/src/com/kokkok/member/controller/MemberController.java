@@ -1,36 +1,26 @@
 package com.kokkok.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import com.kokkok.comm.LogCheck;
 import com.kokkok.dto.MemberDto;
-import com.kokkok.dto.ReviewDto;
 import com.kokkok.member.service.MemberService;
 
 
@@ -208,6 +198,7 @@ public class MemberController {
 
 	}
 	
+	
 
 	@RequestMapping(value="/admin/memberlist.kok",method=RequestMethod.GET)
 	public String memberList() {
@@ -215,13 +206,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value="/member/mywritelist.kok",method=RequestMethod.GET)
-	public ModelAndView myWriteList(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request",request);
-		memberService.myWriteSchedule(mav);
-		return mav;
-	}
+
 	
 	
 	@RequestMapping(value="/member/mywishschedule.kok",method=RequestMethod.GET)
@@ -239,12 +224,12 @@ public class MemberController {
 	
 	
 	
+	
+	
 	@RequestMapping(value="/member/mywishreview.kok",method=RequestMethod.GET)
 	public  String myWishReview() {
 		return "member/myMenu/myWish/myreviewlist";
 	}
-	
-	
 	
 	@RequestMapping(value="/member/getmywishreview.kok", produces = "application/text; charset=utf8", method=RequestMethod.GET)	
 	public @ResponseBody String getMyWishReview(@RequestParam(value="userid") String userid,
@@ -253,6 +238,25 @@ public class MemberController {
 		String myReviewDtoList = memberService.getMyWishReview(pg, listNumOfRows, userid);
 		return myReviewDtoList; 
 	}
+	
+	
+	
+	
+	
+	@RequestMapping(value="/member/mywritelist.kok",method=RequestMethod.GET)
+	public String myWriteList() {
+		return "/member/myMenu/myWrite/list";
+	}
+	
+	@RequestMapping(value="/member/getMyWriteschedule.kok", produces = "application/text; charset=utf8", method=RequestMethod.GET)	
+	public @ResponseBody String getMyWriteschedule(@RequestParam(value="userid") String userid,
+											  	   @RequestParam(value="pg") int pg,	
+											  	   @RequestParam(value="listNumOfRows") int listNumOfRows) {
+		String myScheduleDtoList = memberService.getMyWriteSchedule(pg, listNumOfRows, userid);
+		return myScheduleDtoList; 
+	}
+	
+	
 	
 
 }

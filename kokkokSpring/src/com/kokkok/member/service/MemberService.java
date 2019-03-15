@@ -1,12 +1,9 @@
 package com.kokkok.member.service;
 
-import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kokkok.dto.MemberDto;
-import com.kokkok.dto.ReviewDto;
 
 public interface MemberService {
 	int register(MemberDto memberDto);
@@ -19,9 +16,8 @@ public interface MemberService {
 	int memberdelete(Map<String, String> map);
 	String getMyWishReview(int pg, int listNumOfRows, String id);
 	String getMyWishSchedule(int pg, int listNumOfRows, String id);
+	String getMyWriteSchedule(int pg, int listNumOfRows, String id);
 
 
-	public void myInfo(ModelAndView mav);
-	public void myWriteSchedule(ModelAndView mav);
-	public void myWishSchedule(ModelAndView mav);
+
 }
