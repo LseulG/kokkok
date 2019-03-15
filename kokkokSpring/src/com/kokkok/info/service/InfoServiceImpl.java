@@ -13,15 +13,13 @@ public class InfoServiceImpl implements InfoService {
 	private InfoDao infodao;
 
 	@Override
-	public void infoList(ModelAndView mav) {
-		
+	public void infoList(ModelAndView mav) {		
 		mav.setViewName("/information/list");				
 	}
 
 	@Override
 	public void infoView(ModelAndView mav) {
-		mav.setViewName("/information/view");
-		
+		mav.setViewName("/information/view");		
 	}
 
 }

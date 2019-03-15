@@ -27,7 +27,8 @@
             <div class="block-17 my-4">
             <!-- 검색 위치 form태그-->
               <form action="" id="formSearchKeyword" method="get" class="d-block d-flex">
-              	<input type="hidden" name="word" id="word" value="">
+              	<input type="hidden" name="searchWord" id="searchWord" value="">
+              	<input type="hidden" name="searchBcode" id="searchBcode"" value="">
               	
                 <div class="fields d-block d-flex">
                 <!-- 검색 카테고리 -->

@@ -18,19 +18,20 @@ var infoListNumOfRows = 12;
 // 현재 관광 정보
 var infoTypeId = "infoArea";
 
-$(document).ready(function() {
+$(document).ready(function() {	
 	
 	//해쉬가 있다면 그에 맞춰 값을 얻어오고 그렇지 않다면 초기화
 	if (document.location.hash) {
+//		alert("document.location.hash: " + urlParam("searchWord"));
 		initPageByHash();		
 				
 	} else {
-//		alert(urlParam("word"));
+//		alert(urlParam("searchWord"));
 		// 메인 검색창으로 들어왔다면 통합검색으로 검색함
-		if (urlParam("word") != null && urlParam("word") != "") {
-			alert(urlParam("word"));
+		if (urlParam("searchWord") != null && urlParam("searchWord") != "") {
+//			alert(urlParam("searchWord"));
 			infoTypeId = "infoKeyword";
-			$("#keyword").val(urlParam("word"));
+			$("#keyword").val(urlParam("searchWord"));
 		}
 		
 		// Initialize Information Buttons
@@ -57,7 +58,7 @@ $(document).ready(function() {
 		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
 //	    createListHash();
 	});
-	$("#infoLocation").click(function(){
+	$("#infoLocation").click(function(){		
 		infoTypeId = "infoLocation";		
 		setInformationButtons();
 		// 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬

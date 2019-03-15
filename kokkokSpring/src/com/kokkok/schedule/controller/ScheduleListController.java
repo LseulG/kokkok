@@ -2,6 +2,9 @@ package com.kokkok.schedule.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kokkok.schedule.service.ScheduleListService;
 
@@ -17,6 +21,14 @@ public class ScheduleListController {
 	
 	@Autowired
 	private ScheduleListService scheduleListService;
+	
+	@RequestMapping(value="/schedule/searchScheduleList.kok",method=RequestMethod.GET)
+	public ModelAndView searchScheduleList(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request",request);
+		mav.setViewName("/schedule/list");
+		return mav;
+	}
 	
 	// ajax 이용함. 해당 페이지와 정렬순서를 받아서 서비스로직에서 처리한 후 JSON을 리턴
 	@RequestMapping(value="/schedule/getlist.kok", produces = "application/text; charset=utf8", method=RequestMethod.GET)

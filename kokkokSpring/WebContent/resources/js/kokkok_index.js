@@ -18,8 +18,6 @@ var infoListNumOfRows = 12;
 // 현재 관광 정보
 var infoTypeId = "infoArea";
 
-
-
 $(document).ready(function() {
 	
 	// First Information List
@@ -32,13 +30,21 @@ $(document).ready(function() {
 	// Search Button Click Event
 	$("#btnMainSearch").click(function() {
 		var mainSearchKey = $("#mainSearchKey").val();
-		if($("#mainSearchWord").val() == "") {
+		var mainSearchWord = $("#mainSearchWord").val();
+		if(mainSearchWord == "") {
 			alert("검색할 글자가 없습니다.");
 			return;
 		} else {
-			$("#word").val($("#mainSearchWord").val());
+			$("#searchWord").val(mainSearchWord);
+//			alert(mainSearchWord);
 			if (mainSearchKey == 1) {
 				$("#formSearchKeyword").attr("action", contextPath + "/information/list.kok").submit();
+			} else if (mainSearchKey == 2) {
+				$("#searchBcode").val(1);
+				$("#formSearchKeyword").attr("action", contextPath + "/schedule/searchScheduleList.kok").submit();
+			} else if (mainSearchKey == 3) {
+				$("#searchBcode").val(2);
+				$("#formSearchKeyword").attr("action", contextPath + "/schedule/searchScheduleList.kok").submit();
 			}
 		}		
 		
@@ -140,10 +146,12 @@ function getCommentList() {
 
 function makeCommentListHtml(json) {
 //	alert("makeCommentListHtml(json) start");
-	var listcnt = json.schedulelist.length;
+	var listCnt = json.schedulelist.length;
 	var contentStr = "";
 	var btypeNm = ["일정", "후기"];
-	for (var i = 0; i < 4; i++) {
+	// listCnt가 4개 보다 적다면 그 수를 출력하고 더 많아도 4개만 출력
+	if (listCnt > 4) listCnt = 4;
+	for (var i = 0; i < listCnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
 		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
@@ -230,10 +238,12 @@ function getScheduleList() {
 
 function makeScheduleListHtml(json) {
 //	alert("makeCommentListHtml(json) start");
-	var listcnt = json.schedulelist.length;
+	var listCnt = json.schedulelist.length;
 	var contentStr = "";
 	var btypeNm = ["일정", "후기"];
-	for (var i = 0; i < 4; i++) {
+	// listCnt가 4개 보다 적다면 그 수를 출력하고 더 많아도 4개만 출력
+	if (listCnt > 4) listCnt = 4;
+	for (var i = 0; i < listCnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
 		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		

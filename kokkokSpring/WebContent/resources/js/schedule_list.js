@@ -10,18 +10,26 @@ var navigation_size = 10;
 var listNumOfRows = 12;
 
 $(document).ready(function() {
-	// Initialize Area and Sigungu
-//	getAreaCdoeList();
-//	getSigunguCodeList();
 	
-	// AreaCodeList Change Event
-//	$("#areaCodeList").change(function() {
-//		getSigunguCodeList();
-//	})
-	
-	// 처음은 1페이지
-	currPageNum = 1;
-	getScheduleList();
+	//해쉬가 있다면 그에 맞춰 값을 얻어오고 그렇지 않다면 초기화
+	if (document.location.hash) {
+		
+	} else {
+		if (urlParam("searchWord") != null && urlParam("searchWord") != "") {
+//			alert(urlParam("searchWord"));			
+			$("#searchWord").val(urlParam("searchWord"));
+		}
+		
+		if (urlParam("searchBcode") != null && urlParam("searchBcode") != "") {
+//			alert(urlParam("searchBcode"));
+			$("#searchSchedule").val(urlParam("searchBcode"));
+		}
+		
+		// 처음은 1페이지
+		currPageNum = 1;
+		// First Schedule List
+		getScheduleList();	
+	}
 	
 	// Input-Range Synchronize with Input-number	
 	$("#term1_range").on("input", function() {
@@ -60,6 +68,17 @@ $(document).ready(function() {
 	});
 	
 });
+
+//jquery를 이용해서 request parameter를 가져오기 위한 함수 코드
+function urlParam(name){
+	// 한글을 디코딩하기 위해서 decodeURI 사용
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(decodeURI(window.location.href));
+	if (results == null) {
+		return null;
+    } else {
+    	return results[1] || 0;
+	}	
+}
 
 function getAreaCdoeList() {
 	$.ajax({
