@@ -14,6 +14,9 @@ public class ScheduleViewDto {
 	private String savepicture; // 저장사진
 	private String persons; // 여행인원
 	private String thema; // 여행테마
+	
+    // 여행기간
+    private int period;
 
 	// BoardDto
 	// private int seq; // 글번호
@@ -21,8 +24,8 @@ public class ScheduleViewDto {
 	private String userid; // 작성자아이디
 	private String subject; // 제목
 	private String content; // 내용
-	private Date logtime; // 작성일자
-	private Date updatetime; // 수정일자
+	private String logtime; // 작성일자
+	private String updatetime; // 수정일자
 	private int recommcount; // 추천수
 	private int wishcount; // 찜갯수
 	private int hit; // 조회수
@@ -31,11 +34,12 @@ public class ScheduleViewDto {
 	}
 
 	public ScheduleViewDto(int sseq, int seq, String startdate, String enddate, String originpicture, String savefolder,
-			String savepicture, String persons, String thema, int bcode, String userid, String subject, String content,
-			Date logtime, Date updatetime, int recommcount, int wishcount, int hit) {
+			int period, String savepicture, String persons, String thema, int bcode, String userid, String subject, String content,
+			String logtime, String updatetime, int recommcount, int wishcount, int hit) {
 		super();
 		this.sseq = sseq;
 		this.seq = seq;
+		this.period = period;
 		this.startdate = startdate;
 		this.enddate = enddate;
 		this.originpicture = originpicture;
@@ -54,6 +58,13 @@ public class ScheduleViewDto {
 		this.hit = hit;
 	}
 
+	public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
+	}
 	public int getSseq() {
 		return sseq;
 	}
@@ -158,19 +169,19 @@ public class ScheduleViewDto {
 		this.content = content;
 	}
 
-	public Date getLogtime() {
+	public String getLogtime() {
 		return logtime;
 	}
 
-	public void setLogtime(Date logtime) {
+	public void setLogtime(String logtime) {
 		this.logtime = logtime;
 	}
 
-	public Date getUpdatetime() {
+	public String getUpdatetime() {
 		return updatetime;
 	}
 
-	public void setUpdatetime(Date updatetime) {
+	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
 

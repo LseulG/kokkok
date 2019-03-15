@@ -1,5 +1,7 @@
 package com.kokkok.schedule.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kokkok.dto.ScheduleBoardDto;
+import com.kokkok.dto.ScheduleReviewDto;
+import com.kokkok.dto.ScheduleViewDto;
 import com.kokkok.main.dao.MainDao;
 import com.kokkok.schedule.dao.ScheduleDao;
 
@@ -42,8 +47,28 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	
 	@Override
-	public void scheduleView(ModelAndView mav) {
-		mav.setViewName("/schedule/view");
+	public String selectSseq() {
+		int sseq = sqlSessionTemplate.getMapper(ScheduleDao.class).getNextSseq();
+		return Integer.toString(sseq);
+	}
+	
+	@Override
+	public ScheduleViewDto scheduleView(String sseq) {
+		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+		return scheduleDao.scheduleView(sseq);
+	}
+
+	@Override
+	public List<ScheduleReviewDto> scheduleReviewView(String sseq) {
+		List<ScheduleBoardDto> list = sqlSessionTemplate.getMapper(ScheduleDao.class).selectReview(sseq);
+		
+		List<ScheduleReviewDto> reviewList = new ArrayList<>();
+		for (int i=0; i<list.size(); i++) {
+			String seq = Integer.toString(list.get(i).getSeq());		
+			reviewList.add(sqlSessionTemplate.getMapper(ScheduleDao.class).scheduleReviewView(seq));
+		}
+		
+		return reviewList;
 	}
 	
 }

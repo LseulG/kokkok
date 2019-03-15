@@ -1,7 +1,5 @@
 package com.kokkok.dto;
 
-import java.util.Date;
-
 // BoardDto + LocationDto + ScheduleBoardDto
 public class ScheduleReviewDto {
 	// BoardDto
@@ -10,8 +8,8 @@ public class ScheduleReviewDto {
 	private String userid; // 작성자아이디
 	private String subject; // 제목
 	private String content; // 내용
-	private Date logtime; // 작성일자
-	private Date updatetime; // 수정일자
+	private String logtime; // 작성일자
+	private String updatetime; // 수정일자
 	private int recommcount; // 추천수
 	private int wishcount; // 찜갯수
 	private int hit; // 조회수
@@ -33,8 +31,8 @@ public class ScheduleReviewDto {
 	public ScheduleReviewDto() {
 	}
 
-	public ScheduleReviewDto(int seq, int bcode, String userid, String subject, String content, Date logtime,
-			Date updatetime, int recommcount, int wishcount, int hit, String location, String lat, String lng,
+	public ScheduleReviewDto(int seq, int bcode, String userid, String subject, String content, String logtime,
+			String updatetime, int recommcount, int wishcount, int hit, String location, String lat, String lng,
 			String address, String simpleaddr, int sseq, int tripday, int step) {
 		super();
 		this.seq = seq;
@@ -97,19 +95,19 @@ public class ScheduleReviewDto {
 		this.content = content;
 	}
 
-	public Date getLogtime() {
+	public String getLogtime() {
 		return logtime;
 	}
 
-	public void setLogtime(Date logtime) {
+	public void setLogtime(String logtime) {
 		this.logtime = logtime;
 	}
 
-	public Date getUpdatetime() {
+	public String getUpdatetime() {
 		return updatetime;
 	}
 
-	public void setUpdatetime(Date updatetime) {
+	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
 

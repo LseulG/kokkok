@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +9,9 @@
 <%@ include file="/WEB-INF/views/include/loader.jsp"%> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
 <link rel="stylesheet" href="${root}/resources/css/schedule.css">
+<script src="${root}/resources/js/schedule_view.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {	
-	$(".seul2").hide();
-	$(".seul3").hide();
-
-	$(".seul1").click(function(){
-		$(".seul2").slideDown();
-	});
-	$(".seul2").click(function(){
-		$(".seul3").slideDown();
-	});
-	
 	var jjimCnt = 0;
 	var recommCnt = 0;
 	$(".scheduleJJim").click(function(){
@@ -40,13 +32,7 @@ $(document).ready(function() {
 			recommCnt = 1;
 		}		
 	});
-	
 });
-function selectChange(){
-	alert("oh");
-	mapRemove();
-	mapView(positions_2);
-}
 </script>
 <style>
 .icon-heart { color: #f85e5e;}
@@ -91,14 +77,14 @@ function selectChange(){
 					<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid">
 				</div>
 				<div class="col-md-8">
-						<h3 class="mb-3">제목 입니다.</h3>
-						<p>여행 내용을 간략히 소개하는 부분 입니다.<br>지도는 왼쪽에서 스크롤해도 따라다니게 하면 좋을것 같다.<br>n일차 부분을 div, a, span, p 등으로 class 지정해주고 n일차(n) ^ 아이콘<br>밑에 부분 글씨 더 연하게
-						</p>
+						<h3 class="mb-3">${scheduleArticle.subject}</h3>
+						${scheduleArticle.content}
 						<hr>
 						<p class="days">
 							<span>
-								<i class="icon-person"></i> 작성자id &nbsp;|&nbsp; <i class="icon-today"></i> 여행기간 : 18.08.18 - 18.09.18 (30일)<br>
-								<i class="icon-pencil"></i> 게시일 : 18.08.18 수요일 &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : 18.08.18 수요일<br>
+								<i class="icon-person"></i> ${scheduleArticle.userid} &nbsp;|&nbsp; 
+								<i class="icon-today"></i> 여행기간 : ${scheduleArticle.startdate} - ${scheduleArticle.enddate} (${scheduleArticle.period}일)<br>
+								<i class="icon-pencil"></i> 게시일 : ${scheduleArticle.logtime} &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : ${scheduleArticle.updatetime}<br>
 							</span>
 						</p>
 				</div>
@@ -151,38 +137,47 @@ function selectChange(){
       
 <!-- 오른쪽 -->    
 		<div class="col-md-8 ftco-animate destination">
-			
-			<div class="sl-day day-updown"><label class="seul1">1일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
-			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label></div>
-			<div class="sl-loc loc-updown"><label class="seul2"><i class="flaticon-hotel"></i> 숙박숙박1 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label></div>
-				<div class="sl-loc-cont seul3">
-		            <p> 2번째 내용내용 Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-		            <p><img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid"></p>
-		            <p> 내용이구영 Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-	            </div>
-			<div class="sl-loc"><h5><i class="flaticon-fork"></i> 식당맛집식도락</h5></div>
-				<div class="sl-loc-cont p-3">
-	            	<p> 내용내용 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-	            	<p><img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid"></p>
-	           		<p> 내용 이어서 내용내용 Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-	            </div>
-            <div class="sl-loc"><h5><i class="flaticon-shopping-bag"></i> 쇼핑최고</h5></div>
-            	<div class="sl-loc-cont p-3">
-	            	<p> 내용내용 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-	            	<p><img src="${root}/resources/images/image_7.jpg" alt="" class="img-fluid"></p>
-	           		<p> 내용 이어서 내용내용 Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-	            </div>
-            <div class="sl-loc"><h5><i class="flaticon-meeting-point"></i> 장소멋진장소</h5></div>
-	            <div class="sl-loc-cont p-3">
-		            <p> 2번째 내용내용 Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-		            <p><img src="${root}/resources/images/image_8.jpg" alt="" class="img-fluid"></p>
-		            <p> 내용이구영 Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-	            </div>
-	            
-			<div class="sl-day sl-updown"><label class="seul1">2일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>
-			<div class="sl-day sl-updown"><label class="seul1">3일차 <a href="#"><i class="icon-keyboard_arrow_down"></i></a></label><hr></div>      
-            
-
+	         
+			<!-- 일차별 내용 -->	
+            <div class="daysAdd3" id="daysAdd3">
+            <c:set var="idx" value="0"/>
+            <c:forEach varStatus="day" var="review" items="${reviewArticle}">
+            	<c:if test="${idx != review.tripday}">
+            		<div class="sl-oneDay">
+						<div class="sl-day">
+							<label class="seul1" onclick="dayTogg(${review.tripday})">${review.tripday}일차<span>
+							${scheduleArticle.startdate}
+							</span></label>
+							<hr>
+						</div>
+						<div class="seul1_Item${review.tripday}">
+            		<c:set var="idx" value="${review.tripday}"/>
+            	</c:if>
+			            	<div class="itemBox sl-loc loc-updown">
+			             		<span class="itemNum">${review.step}</span>
+				            	<label class="seul2 itemTitle" id="itemTitle${review.tripday}_${review.step}">
+				            	<c:set var="type" value="${review.bcode}"/>
+					       		<c:choose>
+					       			<c:when test="${type eq 3}"><i class="flaticon-meeting-point"></i> </c:when>
+					       			<c:when test="${type eq 4}"><i class="flaticon-hotel"></i> </c:when>
+					       			<c:when test="${type eq 5}"><i class="flaticon-fork"></i> </c:when>
+					       		</c:choose>
+				            	 ${review.subject}</label>
+				            					
+								<div class="sl-loc-cont itemCont1">
+									${review.content}
+								</div> 	
+							</div>
+            	<c:if test="${day.index < reviewArticle.size()-1}">
+            		<c:if test="${reviewArticle.get(day.index+1).tripday != idx}">
+            			</div>
+            		</div>
+            		</c:if>            	
+            	</c:if>
+        
+			</c:forEach>
+            </div> 
+						
 <!-- 댓글 목록 ***li,ul 짝 안맞는거 찾기~ -->
             <div class="pt-5">
               <!-- 댓글달기 -->           
@@ -231,7 +226,7 @@ function selectChange(){
 	                </li>
 	              </ul>
 	           </div>
-	              <!-- END comment-list -->
+	             <!-- END comment-list -->
               
             </div>
 
@@ -245,7 +240,7 @@ function selectChange(){
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
-<script src="${root}/resources/js/schedule_map.js"></script>
+<script src="${root}/resources/js/schedule_view_map.js"></script>
 
 </body>
 </html>

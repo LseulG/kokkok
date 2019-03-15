@@ -117,8 +117,7 @@ function addTag(num){
 	var contents = "<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
 		"<div class='sl-day' id='sl_day_"+num+"'>" +
 		"<label class='seul1' onclick='dayTogg("+num+")'>"+num+"일차<span>2018.08.0"+num+"</span></label>" +
-		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' onclick='createItem("+num+");'/>" +
-		"<input type='button' id='' value='+모달 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleWriteModal' onclick='modalSetDay("+num+");'/>" +
+		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleWriteModal' onclick='modalSetDay("+num+");'/>" +
 		"<hr>" +
 		"</div>" +
 		"<div class='seul1_Item"+num+"' id='itemBoxWrap_"+num+"'></div>" +
@@ -178,6 +177,9 @@ function modalWrite(){
 	$("#itemCont"+modalDay+"_"+tmp).html(cont);	
 	$("div > p > img").css('widht','100%');
 	totalReview = totalReview + 1;
+	//alert("modalWrite():" + selectLoc +  "," +selectLat);
+	//position_day[step] = selectLat,selectLng;
+	//createPosition(selectLat,selectLng);
 }
 
 /*-------- 여행지 추가삭제 --------*/

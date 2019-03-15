@@ -41,6 +41,21 @@ var positions_2 = [
 		title: '3',
 		latlng: new daum.maps.LatLng(33.45384441323185, 126.572420432074 )
 	}
+];
+
+var positions_4 = [
+	{
+		title: '1', 
+		latlng: new daum.maps.LatLng(37.4493769515909, 126.597799845781)
+	},
+	{
+		title: '2', 
+		latlng: new daum.maps.LatLng(37.70468482116549, 126.39106820252701)
+	},
+	{
+		title: '3',
+		latlng: new daum.maps.LatLng(37.5015472952354, 126.76955494751202 )
+	}
 	];
 
 // 마커 이미지의 이미지 주소입니다

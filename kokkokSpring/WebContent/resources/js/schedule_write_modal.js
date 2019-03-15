@@ -131,7 +131,11 @@ function searchMap(){
 	            		selectedMarker = smarker;
 	            		originImage = smarker.getImage();
 	            		smarker.setImage(clickImage);
-	            		//selectedMarker.setZIndex(888);
+	            		
+	            		selectLoc = title;
+	            		selectLat = smarker.getPosition().getLat();
+	            		selectLng = smarker.getPosition().getLng();	            			
+	            		selectAddr = document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML;
 	            		
 	            		document.getElementById("localTitle").value = title;
 	            		searchCnt = 0;
@@ -151,13 +155,6 @@ function searchMap(){
 	            		selectedMarker = smarker;
 	            		originImage = smarker.getImage();
 	            		smarker.setImage(clickImage);
-	            		//selectedMarker.setZIndex(888);
-	            		
-	            	 // 위경도 smarker.getPosition();
-	                 // 위도 smarker.getPosition().getLat();
-	                 // 경도 smarker.getPosition().getLng();
-	                 //	 지번주소 document.getElementById("roadAddress"+(smarker.getZIndex()+1)).innerHTML
-	                 // 도로명주소 document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML
 	            		
 	            		selectLoc = title;
 	            		selectLat = smarker.getPosition().getLat();

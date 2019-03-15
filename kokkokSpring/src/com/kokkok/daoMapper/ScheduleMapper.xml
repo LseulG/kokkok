@@ -28,6 +28,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		 	select * from dual   
    		 </insert>
 
+		<select id="scheduleView" parameterType="String" resultType="com.kokkok.dto.ScheduleViewDto">
+			select sseq, b.seq, startdate, enddate, originpicture, savefolder, savepicture, persons, thema, enddate - startdate + 1 as period,
+				bcode, userid, subject, content, logtime, updatetime, recommcount, wishcount, hit
+			 from schedule s, board b
+			 where s.seq=b.seq and sseq=#{sseq}
+		</select>
+		
+		<select id="selectReview" parameterType="String" resultType="com.kokkok.dto.ScheduleBoardDto">
+			select *
+			from schedule_board
+			where sseq=#{sseq}
+			order by tripday, step
+		</select>
+		
+		<select id="scheduleReviewView" parameterType="String" resultType="com.kokkok.dto.ScheduleReviewDto">
+			select *
+			from board b, location l, schedule_board sb
+			where b.seq=l.seq and b.seq=sb.seq
+			and b.seq=#{seq}
+		</select>
 </mapper>
 
 
