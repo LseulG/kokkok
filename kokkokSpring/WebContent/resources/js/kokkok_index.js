@@ -39,12 +39,12 @@ $(document).ready(function() {
 //			alert(mainSearchWord);
 			if (mainSearchKey == 1) {
 				$("#formSearchKeyword").attr("action", contextPath + "/information/list.kok").submit();
-			} else if (mainSearchKey == 2) {
-				$("#searchBcode").val(1);
+			} else if (mainSearchKey == 2) {				
 				$("#formSearchKeyword").attr("action", contextPath + "/schedule/searchScheduleList.kok").submit();
 			} else if (mainSearchKey == 3) {
-				$("#searchBcode").val(2);
-				$("#formSearchKeyword").attr("action", contextPath + "/schedule/searchScheduleList.kok").submit();
+				
+			} else if (mainSearchKey == 4) {
+				
 			}
 		}		
 		

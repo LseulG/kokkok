@@ -20,11 +20,6 @@ $(document).ready(function() {
 			$("#searchWord").val(urlParam("searchWord"));
 		}
 		
-		if (urlParam("searchBcode") != null && urlParam("searchBcode") != "") {
-//			alert(urlParam("searchBcode"));
-			$("#searchSchedule").val(urlParam("searchBcode"));
-		}
-		
 		// 처음은 1페이지
 		currPageNum = 1;
 		// First Schedule List
