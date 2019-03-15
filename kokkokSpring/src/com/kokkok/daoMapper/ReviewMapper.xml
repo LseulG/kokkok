@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                   else to_char(logtime, 'yy/mm/dd') 
              end logtime 
     	from board a, board_list b 
-    	where a.bcode = b.bcode and b.ccode = #{ccode}
+    	where a.bcode = b.bcode and b.ccode = #{ccode} and a.subject != '삭제된 일정입니다.'
     	<if test="bcode != null and bcode !=''">
 		and a.bcode = #{bcode}
     	</if>
@@ -43,8 +43,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     begin 	      
 	      delete from recommend where seq = #{seq}; 
 	      delete from wish where seq = #{seq};
-	      delete from comments seq = #{seq}; 
-	      delete from board where seq = #{seq};	      
+	      delete from comments where seq = #{seq};	     
+	      update board set subject = '삭제된 일정입니다.', content = '' where seq = #{seq};	       
 	     end 
 	    }
     </delete>

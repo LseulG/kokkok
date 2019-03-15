@@ -105,9 +105,7 @@ $(document).on("click", "#reviewDeleteBtn", function() {
 //댓글쓰기
 $(document).on("click", "#commentsBtn", function() {
 
-	//if(${userInfo.userid}==""){
-	//	alert("로그인을 먼저 해주세요.");
-	//}else{
+	
 	var seq = '${article.seq}';
  	var ccontent = $("#ccontent").val();
 	$("#ccontent").val('');	
@@ -126,7 +124,7 @@ $(document).on("click", "#commentsBtn", function() {
 	}else{
 		alert("");
 	}
-	//}
+	
 });
 //댓글삭제
 $(document).on("click", ".commentsDeleteBtn", function() {
@@ -211,7 +209,6 @@ function getCommentsList(){
 function getWishView(){
 	
 	 var getWishData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	//data: {"seq" : "${article.seq}", "userid" : "${userInfo.ID}"},
 	  $.ajax({
 		  url: "${root}/checkWish.kok",
 		  type: "POST",
@@ -229,11 +226,8 @@ function getWishView(){
 
 $(document).on("click", "#wishIcon", function() {
 
-	//if("${userInfo.userid}"==null){
-	//	alert("로그인을 먼저 해주세요.");
-	//}else{
+
 	var getWishData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	//data: {"seq" : "${article.seq}", "userid" : "${userInfo.ID}"},
 	  $.ajax({
 		  url: "${root}/registerWish.kok",
 		  type: "POST",
@@ -265,7 +259,6 @@ function makeWishView(wishCheck,wishCount){
 //추천하기
 function getRecommendView(){
 	 var getRecommendData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	//data: {"seq" : "${article.seq}", "userid" : "${userInfo.ID}"},
 	  $.ajax({
 		  url: "${root}/checkRecommend.kok",
 		  type: "POST",
@@ -283,13 +276,10 @@ function getRecommendView(){
 
 $(document).on("click", "#recommendIcon", function() {	
 
-	//if(${userInfo.userid}=null){
-	//	alert("로그인을 먼저 해주세요.");
-	//}else{  실제사용시에는 !=null 하고 위치 바꿔서 사용 
+
 
 		
 	var getRecommendData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	//data: {"seq" : "${article.seq}", "userid" : "${userInfo.ID}"},
 	  $.ajax({
 		  url: "${root}/registerRecommend.kok",
 		  type: "POST",
@@ -302,7 +292,6 @@ $(document).on("click", "#recommendIcon", function() {
 			 makeRecommendView(recommendCheck,recommendCount);	
 		  }
 	  });	  
-	//}
 });
 
 
