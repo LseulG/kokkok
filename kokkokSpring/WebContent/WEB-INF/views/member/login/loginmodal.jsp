@@ -92,7 +92,8 @@
 						data-validate="Password is required" align="left">
 						<span class="label-input100">비밀번호</span> <input class="input100"
 							type="password" name="loginpass" id="loginpass"
-							placeholder="비밀번호를 입력해주세요."> <span class="focus-input100"
+							placeholder="비밀번호를 입력해주세요."
+							onkeypress="if(event.keyCode == 13){login(); return;}"> <span class="focus-input100"
 							data-symbol="&#xf190;"></span>
 					</div>
 					<div id="passblank" style="display: none;"></div>

@@ -8,18 +8,6 @@
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>
 </head>
 <script type="text/javascript">
-
-document.onkeydown = function(e) {
- key = (e) ? e.keyCode : event.keyCode;
- if(key==8 || key==116) {
-  if(e) {
-   e.preventDefault();
-  } else {
-   event.keyCode = 0;
-   event.returnValue = false;
-  }
- }
-}		
 window.history.forward();
 function noBack() {
 	window.history.forward();

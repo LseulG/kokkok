@@ -15,7 +15,6 @@
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
 
-
     <div class="hero-wrap js-fullheight2" style="background-image: url('${root}/resources/images/bg_4.jpg')">
       <div class="overlay"></div>
       <div class="container">
