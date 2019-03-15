@@ -804,13 +804,15 @@ function makeDetailImageHtml(xml){
 // 대표이미지를 클릭하면 대표이미지를 다시 표시
 $(document).on("click", "#primaryImage", function() {
 	if (primaryImage != "") {
-		$("#primaryImage").attr("src", primaryImage);
+//		$("#primaryImage").attr("src", primaryImage);
+		$("#primaryImage").children("figure").children("img").attr("src", primaryImage);
 	}
 });
 
 // 다른 이미지를 클릭하면 대표이미지 자리에 표시 
 $(document).on("click", ".infoImage", function() {
-	$("#primaryImage").attr("src", $(this).attr("src"));	
+//	$("#primaryImage").attr("src", $(this).attr("src"));
+	$("#primaryImage").children("figure").children("img").attr("src", $(this).attr("src"));
 });
 
 
