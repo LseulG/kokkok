@@ -31,7 +31,6 @@
 								<i style="font-size: 25px; font-weight: bold;">제목 : ${article.subject}</i>
 								<i class="icon-person" style="font-size: 12px; float: right; padding-top: 10px;">작성자 id : ${article.userid}<br>
 									<i class="icon-pencil" style="font-size: 12px;">작성일 : ${article.logtime}</i>
-									글번호:${article.seq}
 								</i>
 							</span>
 							<br>
@@ -102,8 +101,8 @@
 					            </div>
 											
 						<div class="form-group" style="margin-top: 320px;">
-	        	<a href="${root}/tips/list.jsp">
-					<input type="button" value="글목록" class="btn btn-primary py-2 px-4 mvpage">
+	        	<a href="${root}/tips/list.kok">
+					<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
 				</a>
 				<a href="${root}/WEB-INF/views/tips/modify.jsp">
 					<input type="button" value="수정" class="btn btn-primary py-2 px-4 modifyBtn" style="float: right;" >

@@ -61,9 +61,9 @@
 
 	var fullHeight3 = function() {
 		
-		$('.js-fullheight3').css('height', $(window).height()*(0.6));
+		$('.js-fullheight3').css('height', $(window).height()/3);
 		$(window).resize(function(){
-			$('.js-fullheight3').css('height', $(window).height()*(0.6));
+			$('.js-fullheight3').css('height', $(window).height()/3);
 		});
 		
 	};
