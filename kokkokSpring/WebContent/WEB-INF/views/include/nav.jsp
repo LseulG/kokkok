@@ -44,13 +44,13 @@
 				<li><a href="${root}/member/mywishreview.kok" class="dropdown-item">내가 찜한 리뷰</a></li>
 
 		<c:if test="${userInfo.admincode != 0}">
-			    <li><a href="${root}/members?act=mvmemberslist&bcode=0&pg=1&key=&word=" class="dropdown-item">회원관리</a></li>              
+			    <li><a href="${root}/admin/memberlist.kok" class="dropdown-item">회원관리</a></li>              
 		</c:if> 
 		        </ul>
           </li>&nbsp;&nbsp;
           <li class="nav-item cta"><a href="${root}/logout.kok" class="nav-link"><span>로그아웃</span></a></li>
 
-</c:if>
+		</c:if>
 	
            
         </ul>

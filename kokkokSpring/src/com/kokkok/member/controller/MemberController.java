@@ -199,15 +199,6 @@ public class MemberController {
 	}
 	
 	
-
-	@RequestMapping(value="/admin/memberlist.kok",method=RequestMethod.GET)
-	public String memberList() {
-		return "admin/members/list";
-	}
-	
-	
-
-	
 	
 	@RequestMapping(value="/member/mywishschedule.kok",method=RequestMethod.GET)
 	public String myScheduleWish() {
@@ -259,4 +250,10 @@ public class MemberController {
 	
 	
 
+	
+	@RequestMapping(value="/admin/memberlist.kok",method=RequestMethod.GET)
+	public String memberList() {
+		return "admin/members/list";
+	}
+	
 }
