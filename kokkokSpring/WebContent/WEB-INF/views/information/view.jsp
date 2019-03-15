@@ -54,9 +54,9 @@
 			</div>				
 			<div class="row d-md-flex">
 				<div class="col-md-6 ftco-animate img">
-					<div class="imageColumns">					
+					<div id="primaryImage" class="imageColumns">					
 					<figure>
-						<img src="" id="primaryImage" class="">
+						<img src="" class="">
 					</figure>
 					</div>
 					<div id="daumMap" class="imageColumns" style="width:100%;height:350px;">

@@ -76,9 +76,10 @@ function makeDetailCommonHtml(xml){
         	// 이미지 유무에 따른 처리
         	if ($(xml).find("firstimage").text() != null && $(xml).find("firstimage").text() != "") {
         		primaryImage = $(xml).find("firstimage").text();
-        		$("#primaryImage").attr("src", primaryImage);
+        		$("#primaryImage").children("figure").children("img").attr("src", primaryImage);
         	} else {
-        		$("#primaryImage").attr("src", contextPath + "/resources/images/noimg.gif");
+        		$("#primaryImage").children("figure").remove();
+//        		$("#primaryImage").children("figure").children("img").attr("src", contextPath + "/resources/images/noimg.gif");
         	}
         	
         	// 좌표가 있다면 맵에 표시

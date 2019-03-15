@@ -101,10 +101,10 @@
 								</div>
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" id="mapX" class="form-control" value="126.981106" readonly="readonly" placeholder="Map X">
+								<input type="text" id="mapX" class="form-control" value="126.981106" readonly="readonly">
 							</div>
 							<div class="form-group infoitems infoLocation">
-								<input type="text" id="mapY" class="form-control" value="37.568477" readonly="readonly" placeholder="Map Y">
+								<input type="text" id="mapY" class="form-control" value="37.568477" readonly="readonly">
 							</div>
 							<div class="form-group infoitems infoLocation">
 								<input type="button" value="지 도" class="btn btn-secondary py-3 px-5" data-toggle="modal" data-target="#infoMapModal">
@@ -186,7 +186,7 @@
 			
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary py-3 px-5" data-dismiss="modal">닫 기</button>
+				<button type="button" id="mapCloseBtn" class="btn btn-primary py-3 px-5" data-dismiss="modal">닫 기</button>
 			</div>
 			      
 			</div>

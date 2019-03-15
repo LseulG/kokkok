@@ -17,6 +17,10 @@ var navigation_size = 10;
 var infoListNumOfRows = 12;
 // 현재 관광 정보
 var infoTypeId = "infoArea";
+// 지도의 위경도
+var mapXCoord;
+var mapYCoord;
+var mapCCoord;
 
 $(document).ready(function() {	
 	
@@ -621,9 +625,11 @@ function initPageByHash() {
 
 // 지도에 관한 함수
 function getMapAndExecution() {
-	var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div 
-	mapOption = { 
-	    center: new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()), // 지도의 중심좌표
+	var mapContainer = document.getElementById('daumMap'), // 지도를 표시할 div
+	mapXCoord = $("#mapX").val();
+	mapYCoord = $("#mapY").val();
+	mapOption = {
+	    center: new daum.maps.LatLng(mapYCoord, mapXCoord), // 지도의 중심좌표
 //	    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 	    level: 3 // 지도의 확대 레벨
 	};
@@ -636,7 +642,7 @@ function getMapAndExecution() {
 
 	//마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	markerPosition = new daum.maps.LatLng($("#mapY").val(), $("#mapX").val()); // 마커가 표시될 위치입니다
+	markerPosition = new daum.maps.LatLng(mapYCoord, mapXCoord); // 마커가 표시될 위치입니다
 
 	//지도를 클릭한 위치에 표출할 마커입니다
 	var marker = new daum.maps.Marker({ 
@@ -660,11 +666,12 @@ function getMapAndExecution() {
 	var lon = latlng.getLng();
 	var lat = latlng.getLat();				
 	
-	$("#mapX").val(parseFloat(lon).toFixed(6));
-	$("#mapY").val(parseFloat(lat).toFixed(6));		
+	mapXCoord = parseFloat(lon).toFixed(6);
+	mapYCoord = parseFloat(lat).toFixed(6);
+	mapCCoord = mapXCoord;
 
-	var message = '위도: ' + parseFloat(lat).toFixed(6) + '  ';
-	message += '경도: ' + parseFloat(lon).toFixed(6) + '';
+	var message = '위도: ' + mapYCoord + '  ';
+	message += '경도: ' + mapXCoord + '';
 
 	var resultDiv = document.getElementById('clickLatlng'); 
 	resultDiv.innerHTML = message;
@@ -672,7 +679,10 @@ function getMapAndExecution() {
 	});
 }
 
-
+$(document).on("click", "#mapCloseBtn", function() {
+	$("#mapX").val(mapCCoord);
+	$("#mapY").val(mapYCoord);
+});
 
 
 
