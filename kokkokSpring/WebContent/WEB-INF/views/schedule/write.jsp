@@ -21,7 +21,6 @@ $(document).ready(function() {
 		} else {
 			var result = confirm("등록 하시겠습니까?");
 			if(result){
-				alert("리뷰개수:"+totalReview);
 				$('#ssubject').val($("#scheduleTitle").val());
 				$('#scontent').val($("#scheduleMsg").val());
 				$("#scheduleWriteForm").attr("action", "${root}/schedule/write.kok").submit();

@@ -33,7 +33,12 @@
 .commBtnDiv {
 	width: 10%;
 }
-.commBtn {
+.commMDBtn {
+	cursor:pointer;
+	color: red;
+	margin-right: 8px;
+	margin-top: 5px;
+	font-size: 13px;
 }
 
 .comment-list .slchild {
@@ -42,13 +47,14 @@
     float: left;
     width: 100%; }
 }
+
 /* ----^댓글^-----*/
 .viewWrap .cnt { display: inline-block; }
 .viewWrap .cnt div{
 	display: inline-block;	
-	margin-right: 25px;
+	margin-right: 10px;
 }
-.viewWrap .cnt .scheduleJJim,.scheduleRecomm{
+.viewWrap .cnt #scheduleJJim,#scheduleRecomm{
 	cursor:pointer;
 }
 .viewWrap .tagcloud a {

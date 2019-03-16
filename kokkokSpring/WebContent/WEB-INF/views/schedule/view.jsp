@@ -12,6 +12,12 @@
 <script src="${root}/resources/js/schedule_view.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {	
+	// 찜, 추천, 댓글 가져오기
+	getWishView();
+	getRecommendView();
+	getCommentsList();	
+	
+	
 	var jjimCnt = 0;
 	var recommCnt = 0;
 	$(".scheduleJJim").click(function(){
@@ -33,6 +39,195 @@ $(document).ready(function() {
 		}		
 	});
 });
+
+// 찜하기
+function getWishView(){
+	
+	 var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	  $.ajax({
+		  url: "${root}/checkWish.kok",
+		  type: "POST",
+		  dataType: "json",
+		  contentType : 'application/json;charset=UTF-8',		  
+		  data: getWishData,
+		  success: function(response){
+			 var wishCheck = response.wishCheck;
+			 var wishCount = response.wishCount;				  
+			 makeWishView(wishCheck,wishCount);			  
+		  }
+	  });
+}
+$(document).on("click", "#scheduleJJim", function() {
+	var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	  $.ajax({
+		  url: "${root}/registerWish.kok",
+		  type: "POST",
+		  dataType: "json",
+		  contentType : 'application/json;charset=UTF-8',		  
+		  data: getWishData,
+		  success: function(response){				
+			  var wishCheck = response.wishCheck;
+			  var wishCount = response.wishCount;				
+			  makeWishView(wishCheck,wishCount);
+		  }
+	  });
+});
+
+function makeWishView(wishCheck,wishCount){
+	  $("#wishDiv").children("div").remove();
+	  var makeWish = "";
+	  if(wishCheck > 0){
+		  makeWish += '<div id="scheduleJJim"><h3 class="heading mb-4"><i class="icon-heart"></i> 찜 '+ wishCount +'</h3></div>';
+	  }else{
+		  makeWish += '<div id="scheduleJJim"><h3 class="heading mb-4"><i class="icon-heart-o"></i> 찜 '+ wishCount +'</h3></div>';
+	  }
+	  $("#wishDiv").append(makeWish);
+}
+
+// 추천
+function getRecommendView(){
+	 var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	  $.ajax({
+		  url: "${root}/checkRecommend.kok",
+		  type: "POST",
+		  dataType: "json",
+		  contentType : 'application/json;charset=UTF-8',		  
+		  data: getRecommendData,
+		  success: function(response){
+			 var recommendCheck = response.recommendCheck;
+			 var recommendCount = response.recommendCount;				  
+			 makeRecommendView(recommendCheck,recommendCount);			  
+		  }
+	  });
+}
+$(document).on("click", "#scheduleRecomm", function() {	
+	var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	  $.ajax({
+		  url: "${root}/registerRecommend.kok",
+		  type: "POST",
+		  dataType: "json",
+		  contentType : 'application/json;charset=UTF-8',		  
+		  data: getRecommendData,
+		  success: function(response){				
+			 var recommendCheck = response.recommendCheck;
+			 var recommendCount = response.recommendCount;				  
+			 makeRecommendView(recommendCheck,recommendCount);	
+		  }
+	  });	  
+});
+function makeRecommendView(recommendCheck,recommendCount){
+	$("#recommDiv").children("div").remove();
+	var makeRecommend = "";
+	if(recommendCheck > 0){
+		makeRecommend += '<div id="scheduleRecomm"><h3 class="heading mb-4"><i class="icon-thumbs-up"></i> 추천 '+ recommendCount +'</h3></div>';
+	}else{
+		makeRecommend += '<div id="scheduleRecomm"><h3 class="heading mb-4"><i class="icon-thumbs-o-up"></i> 추천 '+ recommendCount +'</h3></div>';
+	}
+	$("#recommDiv").append(makeRecommend);
+}
+
+// 댓글
+// -쓰기
+$(document).on("click", "#commentsBtn", function() { //댓글 등록 버튼 클릭시
+	var seq = '${scheduleArticle.seq}';
+ 	var ccontent = $("#ccontent").val(); //댓글 내용 가져오기
+	$("#ccontent").val('');	//댓글 내용 비우기
+	var commentsData = JSON.stringify({'seq' : seq, 'ccontent' : ccontent});   //댓글 내용 넘기기
+	if(ccontent.trim().length != 0) {		
+		$.ajax({
+			url : '${root}/commentsWrite.kok',
+			type : 'POST',
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			data : commentsData,
+			success : function(response) {
+				makeCommentsList(response);
+			}
+		});
+	}else{
+		alert("내용을 입력해 주세요");
+	}
+});
+
+//-수정
+var cseq = "";
+$(document).on("click", ".moveCommentsUpdate", function() {
+	cseq = $(this).attr("commentCseq");
+});
+
+$(document).on("click", "#commentsUpdateBtn", function() {
+	var seq = '${scheduleArticle.seq}';	
+ 	var ccontentUpdate = $("#ccontentUpdate").val();
+	$("#ccontent").val('');
+	$("#ccontentUpdate").val('');
+	var commentsData = JSON.stringify({'cseq' : cseq, 'seq' : seq, 'ccontent' : ccontentUpdate});
+	if(ccontentUpdate.trim().length != 0) {	
+	$.ajax({
+			url : '${root}/commentsUpdate.kok',
+			type : 'POST',
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			data : commentsData,
+			success : function(response) {
+				makeCommentsList(response);
+			}
+		});
+	}else{
+		alert("내용을 입력해 주세요");
+	}
+});
+
+// -삭제
+$(document).on("click", ".commentsDeleteBtn", function() {
+	var seq = '${scheduleArticle.seq}';	
+	var cseq = $(this).attr("commentCseq");
+	$("#ccontent").val('');
+	var commentsData = JSON.stringify({'cseq' : cseq, 'seq' : seq});
+		$.ajax({
+			url : '${root}/commentsDelete.kok',
+			type : 'POST',
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			data : commentsData,
+			success : function(response) {
+				makeCommentsList(response);
+			}
+		});
+});
+
+function makeCommentsList(response){
+	$('#commentsList').empty(); //댓글 리스트 목록 비우기
+	var commentsList = response.commentsList; //댓글 리스트 가져오기
+	var commentsListView = "";	
+	for(var i=0;i<commentsList.length;i++){
+		commentsListView +='<li class="comment">';
+		commentsListView +='<div class="comment-body">';
+		commentsListView +='<div class="row d-flex">';
+		commentsListView +='<div class="row"> <h3><i class="icon-person"></i> '+commentsList[i].userid+'</h3><div class="meta">'+ commentsList[i].clogtime+'</div></div>';
+		commentsListView +='<label class="commMDBtn moveCommentsUpdate" data-toggle="modal" data-target="#viewRecommModal" commentCseq ="'+commentsList[i].cseq+'">수정</label>';
+		commentsListView +='<label class="commMDBtn commentsDeleteBtn" commentCseq ="'+commentsList[i].cseq+'">삭제</label>';
+		commentsListView +='</div>';
+		commentsListView +='<p>'+commentsList[i].ccontent+'</p>';
+		commentsListView +='</div>';
+		commentsListView +='</li>';		
+	}	
+	$('#commentsList').append(commentsListView);
+}
+
+function getCommentsList(){
+	var commentsData = JSON.stringify({'seq' : '${scheduleArticle.seq}'});
+	$.ajax({
+		url : '${root}/commentsList.kok',
+		type : 'POST',
+		contentType : 'application/json;charset=UTF-8',
+		dataType : 'json',
+		data : commentsData,
+		success : function(response) {
+			makeCommentsList(response);
+		}
+	});
+}
+
 </script>
 <style>
 .icon-heart { color: #f85e5e;}
@@ -49,6 +244,7 @@ $(document).ready(function() {
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
+<%@ include file="/WEB-INF/views/schedule/viewRecommModal.jsp"%>
 
     <!-- 내용 -->
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_4.jpg');">
@@ -97,9 +293,9 @@ $(document).ready(function() {
 		
 			<div class="sidebar-wrap bg-light ftco-animate viewWrap">
 				<div class="cnt">
-					<div class="scheduleJJim"><h3 class="heading mb-4"><i class="icon-heart-o"></i> 찜 18</h3></div>
-					<div class="scheduleRecomm"><h3 class="heading mb-4"><i class="icon-thumbs-o-up"></i> 추천 18</h3></div>
-					<div class="scheduleHit"><h3 class="heading mb-4"><i class="icon-eye"></i> 조회수 18</h3></div>
+					<div id="wishDiv"></div>
+					<div id="recommDiv"></div>
+					<div id="hitDiv"><div class="scheduleHit"><h3 class="heading mb-4"><i class="icon-eye"></i> 조회수 ${scheduleArticle.hit}</h3></div></div>
 				</div>
 				<h3 class="heading"><i class="icon-tag"></i> 여행지</h3>
               	<div class="tagcloud">
@@ -178,57 +374,25 @@ $(document).ready(function() {
 			</c:forEach>
             </div> 
 						
-<!-- 댓글 목록 ***li,ul 짝 안맞는거 찾기~ -->
-            <div class="pt-5">
-              <!-- 댓글달기 -->           
-              <div class="comment-form-wrap pt-5">
-                <form action="#" class="bg-light commForm">
-                <h5 class="mb-4"><i class="icon-comment"></i> 댓글 3</h5>
-                	<div class="row commDiv">
-                    	<textarea name="" id="message" cols="30" rows="1" class="form-control commText" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
-                   		 <div class="center commBtnDiv">
-	                   		 <input type="submit" value="등록" class="btn btn-primary commBtn">
-                   		 </div>
-                 	 </div>
-                </form>
-              </div>
-            
-           	 <div class="comment-form-wrap pt-5">
-            	<ul class="comment-list">
-	            	<li class="comment">
-	                  <div class="comment-body">
-	                  	<div class="row">
-	                  		<h3><i class="icon-person"></i> 작성자 11</h3>
-	                  		<div class="meta">2018.08.18 2:21</div>
-	                  	</div>
-	                  		<p>작성내용1 댓글이다 댓글</p>
-	                  </div>
-	                </li>
-	
-	                <li class="comment">
-	                  <div class="comment-body">
-	                  	<div class="row">
-	                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-	                  		<div class="meta">2018.08.18 2:21</div>
-	                  	</div>
-	                  		<p>222222</p>
-	                  </div>
-	                </li>
-	
-	                <li class="comment">
-	                  <div class="comment-body">
-	                  	<div class="row">
-	                  		<h3><i class="icon-person"></i> 작성자 22222</h3>
-	                  		<div class="meta">2018.08.18 2:21</div>
-	                  	</div>
-	                  		<p>3333</p>
-	                  </div>
-	                </li>
-	              </ul>
-	           </div>
-	             <!-- END comment-list -->
-              
-            </div>
+            <!-- 댓글달기  -->           
+            <div class="pt-5a">
+	        	<div class="comment-form-wrap pt-5">
+	              <div class="bg-light commForm">
+	                <h5 class="mb-4"><i class="icon-comment"></i> 댓글 </h5>
+		               	<div class="row commDiv">
+		                    <textarea name="" id="ccontent" cols="30" rows="1" class="form-control commText" placeholder="내용과 무관한 댓글, 악플은 삭제될 수 있습니다."></textarea>
+		                   	<div class="center commBtnDiv">
+			                   	<input type="button" value="등록" class="btn btn-primary commBtn" id="commentsBtn">
+		                   	</div>
+		                </div>
+		          </div>
+	             </div>				            
+	           	 <div class="comment-form-wrap pt-3">
+	            	<ul class="comment-list" id="commentsList">					            	
+		            </ul>
+		         </div>
+	              <!-- END comment-list -->
+            </div>		
 
 		</div>
 <!-- 오른쪽 END -->
