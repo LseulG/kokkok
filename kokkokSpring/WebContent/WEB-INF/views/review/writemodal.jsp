@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+/////////////////  캐쉬 지우기  /////////////////////
+ response.setHeader("Pragma", "No-cache"); 
+ response.setDateHeader("Expires", 0); 
+ response.setHeader("Cache-Control", "no-Cache"); 
+ ///////////////////////////////////////////////////
+%>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
     <link rel="stylesheet" href="${root}/resources/css/schedule_write_modal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
@@ -20,15 +27,20 @@ $("body").on("hidden.bs.modal", ".modal", function () { //모달 꺼질때
 
 function reviewBtn(){	
 	if(document.getElementById("localTitle").value == ""){
+		$("#reviewWriteBtn").attr("data-dismiss","");
 		alert('장소를 지정해주세요.');
+		
 	}else if ($('#summernote').summernote('isEmpty')) {
-		  alert('내용을 입력해 주세요.');	 
+		  $("#reviewWriteBtn").attr("data-dismiss","");
+		  alert('내용을 입력해 주세요.');
 	}else {
+		$("#reviewWriteBtn").attr("data-dismiss","modal");
 		var markup = $("#summernote").summernote("code"); // 내용 가져오는거
 		$('#subject').val($('#localTitle').val());		
 		$('#content').val(markup);
 		$('#bcode').val($('#reviewType').val());
 		$("#reviewWriteForm").attr("action","${root}/review/write.kok").submit();
+
 	}
 }
 
@@ -97,8 +109,7 @@ function reviewBtn(){
 				<div id="summernote"></div>
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-<!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="reviewBtn();" data-dismiss="modal"/>
+					<input type="button" value="등록" id="reviewWriteBtn" class="btn btn-primary py-2 px-3" onclick="reviewBtn();" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">			

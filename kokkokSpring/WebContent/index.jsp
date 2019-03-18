@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>KokKok</title>
+    <title>방방콕콕</title>
   	<%@ include file="/WEB-INF/views/include/link.jsp"%>  	
   	<%@ include file="/WEB-INF/views/include/loader.jsp"%>
   	
@@ -28,7 +28,6 @@
             <!-- 검색 위치 form태그-->
               <form action="" id="formSearchKeyword" method="get" class="d-block d-flex">
               	<input type="hidden" name="searchWord" id="searchWord" value="">
-              	
                 <div class="fields d-block d-flex">
                 <!-- 검색 카테고리 -->
 	                <div class="select-wrap one-two">
@@ -125,30 +124,29 @@
 			              <div class="card shadow mb-4">
 			                <!-- Card Header - Dropdown -->
 			                <div class="card-header py-3" align="center">
-			                  <h5 class="m-0 font-weight-bold text-primary">여행 선호 날짜</h5>
-			                </div>
-			                <!-- Card Body -->
-			                <div class="card-body">
-			                  <div class="chart-pie pt-4">
-			                    <canvas id="myPieChart"></canvas>
-			                  </div>
-			                  <br>		                 
-			                </div>
-			              </div>
-			            </div>			            
-			            		           
-			            
-			            <!-- Donut Chart -->
-			            <div class="col-xl-6 col-lg-7">
-			              <div class="card shadow mb-4">
-			                <!-- Card Header - Dropdown -->
-			                <div class="card-header py-3">
 			                  <h5 class="m-0 font-weight-bold text-primary">여행 선호 지역</h5>
 			                </div>
 			                <!-- Card Body -->
 			                <div class="card-body">
 			                  <div class="chart-pie pt-4">
-			                    <canvas id="myPieChart2"></canvas>
+			                    <canvas id="locationPieChart"></canvas>
+			                  </div>
+			                  <br>		                 
+			                </div>
+			              </div>
+			            </div>	        
+			            
+			            <!-- Donut Chart -->
+			            <div class="col-xl-6 col-lg-7">
+			              <div class="card shadow mb-4">
+			                <!-- Card Header - Dropdown -->
+			                <div class="card-header py-3" align="center">
+			                  <h5 class="m-0 font-weight-bold text-primary">여행 선호 날짜</h5>
+			                </div>
+			                <!-- Card Body -->
+			                <div class="card-body">
+			                  <div class="chart-pie pt-4">
+			                    <canvas id="monthPieChart"></canvas>
 			                  </div>
 			                  <br>			   		                 
 			                </div>
@@ -158,13 +156,15 @@
 	        </div>
         </div>
     	</div>
-    </section>
-    
-
-	<%@ include file="/WEB-INF/views/include/footer.jsp"%>	
-	<%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
+    </section>    
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>	
+<%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 <script src="${root}/resources/vendor/chart.js/Chart.min.js"></script>
-<script src="${root}/resources/vendor/chart.js/chart-pie-demo.js"></script>
+<script src="${root}/resources/js/chart.js"></script>
 <script src="${root}/resources/js/kokkok_index.js"></script>
-  </body>
+<script type="text/javascript">
+
+
+</script>
+ </body>
 </html>

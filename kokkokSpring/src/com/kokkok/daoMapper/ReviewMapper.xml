@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <select id="reviewView" parameterType="String" resultType="com.kokkok.dto.ReviewDto">
-    	select * from board where seq = #{seq}
+    	select * from board where seq = #{seq} and subject != '삭제된 일정입니다.'
     </select>
             
     <select id="reviewList" parameterType="map" resultType="com.kokkok.dto.ReviewDto">

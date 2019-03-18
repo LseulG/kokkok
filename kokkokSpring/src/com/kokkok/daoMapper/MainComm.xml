@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kokkok.main.dao.MainDao">
 
+	<!-- 찜록록  -->
 	<insert id="registerWish" parameterType="java.util.Map">
 		insert into wish values(WISH_SEQ.nextval, #{seq}, #{userid})
 	</insert>
@@ -30,7 +31,7 @@
   	
   	
   	
-  	
+  	<!-- 추천  -->
   	<insert id="registerRecommend" parameterType="java.util.Map">
 		insert into recommend values(recommend_SEQ.nextval, #{seq}, #{userid})
 	</insert>
@@ -57,16 +58,18 @@
   	
   	
   	
-  	
+  	<!-- 다음 글번호  -->
   	<select id="getNextSeq" resultType="int">
     	select BOARD_SEQ.nextval from dual
     </select>
     
+    <!-- 조회수 증가  -->
     <update id="updateHit" parameterType="String">
     	update board set hit = hit + 1 where seq = #{seq}
     </update>
     
   	
+  	<!-- 댓글  -->
   	<insert id="writeComments" parameterType="com.kokkok.dto.CommentsDto">
   		insert into comments (cseq, seq, userid, ccontent, clogtime)
 		values (comments_seq.nextval, #{seq}, #{userid}, #{ccontent}, sysdate)
@@ -84,4 +87,42 @@
 		update comments set ccontent = #{ccontent} where cseq = #{cseq}
 	</update>
 	
+	
+	<!-- 회원목록  -->	
+	<select id="getSearchMemberTotalCount" parameterType="java.util.Map" resultType="int">
+		<![CDATA[select count(*) as count
+		from member
+        where userid like '%'||#{word}||'%']]>
+	</select>
+	<select id="getMemberTotalCount" parameterType="java.util.Map" resultType="int">
+		<![CDATA[select count(*) as count
+		from member
+		where admincode != 1]]>
+	</select>
+	
+	<select id="getMemberList" parameterType="java.util.Map" resultType="com.kokkok.dto.MemberListDto">
+		 <![CDATA[select b.* from  
+			      (select rownum rn, a.* from 
+			      (select * from member where userid like '%'||#{word}||'%' and admincode != 1) a 
+			      where rownum <= #{endNum}) b 
+			      where b.rn >=#{startNum} ]]>
+	</select>
+	
+	
+	<!-- 통계  -->
+	<select id="getLocationStatistics" resultType="com.kokkok.dto.StatisticsDto">
+		<![CDATA[select * from
+		 (select address as location, count(*) as locationCount from
+		  (select substr (address, 0, instr(address, ' ',1,1)) address  from location)
+		  group by address order by locationCount desc) 
+		 where rownum<=10]]>
+	</select>
+	
+	<select id="getMonthStatistics" resultType="com.kokkok.dto.StatisticsDto">
+		<![CDATA[select * from 
+		(select startdate as month, count(*) as monthCount from 
+		(select substr (startdate, 4, instr(startdate, '/',1,1)-1) startdate from schedule)
+		 group by startdate order by month)
+		 where rownum<=12]]>
+	</select>
 </mapper>

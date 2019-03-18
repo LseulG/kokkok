@@ -98,7 +98,7 @@ $("body").on("hidden.bs.modal", ".modal", function () {//모달 꺼질때
 	 document.getElementById("localTitle").value = null;
 	 $("#summernote").summernote("reset");
 	 selectedMarker = null;
-	 document.getElementById("keyword").value = "인천 맛집";
+	 document.getElementById("keyword").value = "인천 맛집";	
  });
  
 function modifyBtn(){	

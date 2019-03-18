@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>방방콕콕 - 여행 리뷰 상세</title>
 
 <%@ include file="/WEB-INF/views/include/link.jsp"%>
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>
 <link rel="stylesheet" href="${root}/resources/css/review.css">
-
+<script type="text/javascript">
+var contextPath='<%=request.getContextPath()%>';
+var articleSeq = '${article.seq}';
+var userInfoUserid = '${userInfo.userid}';
+var admincode ='${userInfo.admincode}';
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/nav.jsp"%>
@@ -27,7 +33,6 @@
 		</div>
 	</div>
 </div>
-
 	
 <section class="ftco-section ftco-degree-bg">
 	<div class="container">
@@ -58,8 +63,7 @@
 					<div class="sl-loc-cont p-3">								
 					${article.content}
 					</div>
-					</div>
-					
+					</div>					
 					<!-- END comment-list -->
 					 <div class="pt-5a">
 			              <!-- 댓글달기 -->           
@@ -82,238 +86,18 @@
 	       	<a href="${root}/review/list.kok">
 				<input type="button" value="글목록" class="btn btn-primary py-2 px-4">
 			</a>
-			<%-- <c:if test="${article.userid} eq ${userInfo.userid}"> --%>
+			 <c:if test="${article.userid eq userInfo.userid}">
 				<input type="button" value="수정" class="btn btn-primary py-2 px-4" style="float: right;" data-toggle="modal" data-target="#reviewModifyModal">
-			<%-- </c:if> --%>	
-			<%-- <c:if test="${article.userid} eq ${userInfo.userid}||${userInfo.admincode} eq 1"> --%>
+			 </c:if> 
+			<c:if test="${article.userid eq userInfo.userid || userInfo.admincode eq 1}">
 	       		<input type="button" id="reviewDeleteBtn" value="삭제" class="btn btn-primary py-2 px-4" style="float: right; margin-right: 8px;">
-	       	<%-- </c:if> --%>
+	       	</c:if>
 	    	</div>
 		</div>
 		</div>
 	</div>
 </section>
-<script type="text/javascript">
-$(document).on("click", "#reviewDeleteBtn", function() {
-	var reviewDeleteCheck = confirm("정말로 삭제하시겠습니까?");
-	if(reviewDeleteCheck){
-	$('#seq').val('${article.seq}');
-	$("#reviewModifyForm").attr("action","${root}/review/delete.kok").submit();
-	}else {return}
-});
-
-//댓글쓰기
-$(document).on("click", "#commentsBtn", function() {
-
-	
-	var seq = '${article.seq}';
- 	var ccontent = $("#ccontent").val();
-	$("#ccontent").val('');	
-	var commentsData = JSON.stringify({'seq' : seq, 'ccontent' : ccontent});
-	if(ccontent.trim().length != 0) {		
-		$.ajax({
-			url : '${root}/commentsWrite.kok',
-			type : 'POST',
-			contentType : 'application/json;charset=UTF-8',
-			dataType : 'json',
-			data : commentsData,
-			success : function(response) {
-				makeCommentsList(response);
-			}
-		});
-	}else{
-		alert("");
-	}
-	
-});
-//댓글삭제
-$(document).on("click", ".commentsDeleteBtn", function() {
-	var seq = '${article.seq}';	
-	var cseq = $(this).attr("commentCseq");
-	$("#ccontent").val('');
-	var commentsData = JSON.stringify({'cseq' : cseq, 'seq' : seq});
-		$.ajax({
-			url : '${root}/commentsDelete.kok',
-			type : 'POST',
-			contentType : 'application/json;charset=UTF-8',
-			dataType : 'json',
-			data : commentsData,
-			success : function(response) {
-				makeCommentsList(response);
-			}
-		});
-});
-
-//댓글수정
-var cseq = "";
-$(document).on("click", ".moveCommentsUpdate", function() {
-	cseq = $(this).attr("commentCseq");
-});
-
-$(document).on("click", "#commentsUpdateBtn", function() {
-	var seq = '${article.seq}';	
- 	var ccontentUpdate = $("#ccontentUpdate").val();
-	$("#ccontent").val('');
-	$("#ccontentUpdate").val('');
-	var commentsData = JSON.stringify({'cseq' : cseq, 'seq' : seq, 'ccontent' : ccontentUpdate});
-		$.ajax({
-			url : '${root}/commentsUpdate.kok',
-			type : 'POST',
-			contentType : 'application/json;charset=UTF-8',
-			dataType : 'json',
-			data : commentsData,
-			success : function(response) {
-				makeCommentsList(response);
-			}
-		});
-});
-
-
-
-function makeCommentsList(response){
-	$('#commentsList').empty();
-	var commentsList = response.commentsList;
-	var commentsListView = "";	
-	for(var i=0;i<commentsList.length;i++){
-		commentsListView +='<li class="comment">';
-		commentsListView +='<div class="comment-body">';
-		commentsListView +='<div class="row d-flex">';
-		commentsListView +='<div class="p-2 mr-auto"> <span style="font-size: 1.2rem;"><i class="icon-person"></i>'+commentsList[i].userid+'</span>&nbsp;&nbsp;&nbsp;'+ commentsList[i].clogtime+'</div>';
-		commentsListView +='<div class="p-2"><input type="button" value="수정" class="btn btn-primary commBtn moveCommentsUpdate" data-toggle="modal" data-target="#commentsUpdateModal" commentCseq ="'+commentsList[i].cseq+'"></div>';
-		commentsListView +='<div class="p-2"><input type="button" value="삭제" class="btn btn-primary commBtn commentsDeleteBtn" commentCseq ="'+commentsList[i].cseq+'"></div>';
-		commentsListView +='</div>';
-		commentsListView +='<p>'+commentsList[i].ccontent+'</p>';
-		commentsListView +='</div>';
-		commentsListView +='</li>';		
-	}	
-	$('#commentsList').append(commentsListView);
-}
-
-
-function getCommentsList(){
-	var commentsData = JSON.stringify({'seq' : '${article.seq}'});
-	$.ajax({
-		url : '${root}/commentsList.kok',
-		type : 'POST',
-		contentType : 'application/json;charset=UTF-8',
-		dataType : 'json',
-		data : commentsData,
-		success : function(response) {
-			makeCommentsList(response);
-		}
-	});
-	
-}
-
-//////찜하기
-function getWishView(){
-	
-	 var getWishData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	  $.ajax({
-		  url: "${root}/checkWish.kok",
-		  type: "POST",
-		  dataType: "json",
-		  contentType : 'application/json;charset=UTF-8',		  
-		  data: getWishData,
-		  success: function(response){
-			 var wishCheck = response.wishCheck;
-			 var wishCount = response.wishCount;				  
-			 makeWishView(wishCheck,wishCount);			  
-		  }
-	  });
-}
-
-
-$(document).on("click", "#wishIcon", function() {
-
-
-	var getWishData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	  $.ajax({
-		  url: "${root}/registerWish.kok",
-		  type: "POST",
-		  dataType: "json",
-		  contentType : 'application/json;charset=UTF-8',		  
-		  data: getWishData,
-		  success: function(response){				
-			  var wishCheck = response.wishCheck;
-			  var wishCount = response.wishCount;				
-			  makeWishView(wishCheck,wishCount);
-		  }
-	  });
-//	}
-});
-
-
-function makeWishView(wishCheck,wishCount){
-  $("#wishView").children("div").remove();
-  var makeWishView = "";
-  if(wishCheck > 0){
-	  makeWishView += '<div id="wishIcon"><h5 class="heading mb-4"><i class="icon-heart"></i> 찜 '+ wishCount +'</h5></div>';
-  }else{
-	  makeWishView += '<div id="wishIcon"><h5 class="heading mb-4"><i class="icon-heart-o"></i> 찜 '+ wishCount +'</h5></div>';
-  }
-  $("#wishView").append(makeWishView);
-}	  
-
-
-//추천하기
-function getRecommendView(){
-	 var getRecommendData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	  $.ajax({
-		  url: "${root}/checkRecommend.kok",
-		  type: "POST",
-		  dataType: "json",
-		  contentType : 'application/json;charset=UTF-8',		  
-		  data: getRecommendData,
-		  success: function(response){
-			 var recommendCheck = response.recommendCheck;
-			 var recommendCount = response.recommendCount;				  
-			 makeRecommendView(recommendCheck,recommendCount);			  
-		  }
-	  });
-}
-
-
-$(document).on("click", "#recommendIcon", function() {	
-
-
-
-		
-	var getRecommendData = JSON.stringify({"seq" : "${article.seq}", "userid" : "sangjae"});
-	  $.ajax({
-		  url: "${root}/registerRecommend.kok",
-		  type: "POST",
-		  dataType: "json",
-		  contentType : 'application/json;charset=UTF-8',		  
-		  data: getRecommendData,
-		  success: function(response){				
-			 var recommendCheck = response.recommendCheck;
-			 var recommendCount = response.recommendCount;				  
-			 makeRecommendView(recommendCheck,recommendCount);	
-		  }
-	  });	  
-});
-
-
-function makeRecommendView(recommendCheck,recommendCount){
-  $("#recommendView").children("div").remove();
-  var makeRecommendView = "";
-  if(recommendCheck > 0){
-	  makeRecommendView += '<div id="recommendIcon"><h5 class="heading mb-4"><i class="icon-thumbs-up"></i> 추천 '+ recommendCount +'</h5></div>';
-  }else{
-	  makeRecommendView += '<div id="recommendIcon"><h5 class="heading mb-4"><i class="icon-thumbs-o-up"></i> 추천 '+ recommendCount +'</h5></div>';
-  }
-  $("#recommendView").append(makeRecommendView);
-}	  
-
-
-
-$(document).ready(function() {
-	getCommentsList();	
-	getWishView();
-	getRecommendView();
-});
-</script>
+<script src="${root}/resources/js/review_view.js"></script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 </body>

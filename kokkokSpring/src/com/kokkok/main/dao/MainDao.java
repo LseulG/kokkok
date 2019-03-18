@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.kokkok.dto.CommentsDto;
+import com.kokkok.dto.MemberDto;
+import com.kokkok.dto.StatisticsDto;
 
 public interface MainDao {
 
@@ -34,4 +36,12 @@ public interface MainDao {
 	public List<CommentsDto> commentsList(String seq);
 	public int commentsDelete(String cseq);
 	public int commentsUpdate(Map<String, Object> map);
+		
+	//회원목록
+	public List<MemberDto> getMemberList(Map<String, Object> map);
+	public int getMemberTotalCount(Map<String, Object> map);
+	public int getSearchMemberTotalCount(Map<String, Object> map);
+	//통계
+	public List<StatisticsDto> getLocationStatistics();
+	public List<StatisticsDto> getMonthStatistics();
 }

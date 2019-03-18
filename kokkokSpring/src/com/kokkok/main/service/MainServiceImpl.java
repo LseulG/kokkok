@@ -1,5 +1,7 @@
 package com.kokkok.main.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +13,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kokkok.dto.CommentsDto;
+import com.kokkok.dto.MemberDto;
+import com.kokkok.dto.ScheduleListDto;
+import com.kokkok.dto.StatisticsDto;
 import com.kokkok.main.dao.MainDao;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Component
 public class MainServiceImpl implements MainService{	
@@ -120,10 +128,58 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public int commentsUpdate(Map<String, Object> map) {
 		MainDao maindao = sqlSessionTemplate.getMapper(MainDao.class);
-		System.out.println(map.get("ccontent"));
-		System.out.println(map.get("cseq"));
 		return maindao.commentsUpdate(map);
 	}
 
+	
+	//회원목록
+	@Override
+	public List<MemberDto> getMemberList(Map<String, Object> map) {
+		
+		int totalCount = sqlSessionTemplate.getMapper(MainDao.class).getMemberTotalCount(map);	
+		
+		int listNumOfRows = Integer.parseInt((String)map.get("listNumOfRows"));
+		int pg = Integer.parseInt((String)map.get("pg"));
+		
+		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
+		int endNum = listNumOfRows * pg;
+		
+		map.put("startNum", startNum + "");
+		map.put("endNum", endNum + "");
+	
+		MainDao maindao = sqlSessionTemplate.getMapper(MainDao.class);
+		return maindao.getMemberList(map);
+	}
+	@Override
+	public int getSearchMemberTotalCount(Map<String, Object> map) {
+		int totalCount = sqlSessionTemplate.getMapper(MainDao.class).getMemberTotalCount(map);
+		return totalCount;
+	}
+	@Override
+	public int getMemberTotalCount(Map<String, Object> map) {
+		int totalCount = sqlSessionTemplate.getMapper(MainDao.class).getMemberTotalCount(map);
+		return totalCount;
+	}
+
+	
+
+	
+	
+	//통계
+	@Override
+	public List<StatisticsDto> getLocationStatistics() {
+		MainDao maindao = sqlSessionTemplate.getMapper(MainDao.class);
+		return maindao.getLocationStatistics();
+	}
+
+	@Override
+	public List<StatisticsDto> getMonthStatistics() {
+		MainDao maindao = sqlSessionTemplate.getMapper(MainDao.class);
+		return maindao.getMonthStatistics();
+	}
+
+
+	
+	
 	
 }

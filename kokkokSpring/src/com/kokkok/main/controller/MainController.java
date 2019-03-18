@@ -1,25 +1,29 @@
 package com.kokkok.main.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kokkok.dto.CommentsDto;
-import com.kokkok.dto.ReviewDto;
+import com.kokkok.dto.MemberDto;
+import com.kokkok.dto.ScheduleListDto;
+import com.kokkok.dto.StatisticsDto;
 import com.kokkok.main.service.MainService;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class MainController {
@@ -74,15 +78,11 @@ public class MainController {
 	@RequestMapping(value="/commentsWrite.kok",method=RequestMethod.POST, headers= {"Content-type=application/json"})	
 	public @ResponseBody Map<String,Object> commentsWrite(@RequestBody CommentsDto commentsDto, HttpSession session) {		
 		
-		//MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-//		if(memberDto != null) {
-//			commentsDto.setUserid(memberDto.getUserid());
-//			int cnt = mainService.writeComments(commentsDto);
-//		}
-		
-		
-		commentsDto.setUserid("sangjae");
-		int cnt = mainService.writeComments(commentsDto);
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		if(memberDto != null) {
+			commentsDto.setUserid(memberDto.getUserid());
+			int cnt = mainService.writeComments(commentsDto);
+		}		
 		String seq = Integer.toString(commentsDto.getSeq());
 		List<CommentsDto> commentsList = mainService.commentsList(seq);
 		Map<String,Object> map = new HashMap<>();
@@ -120,6 +120,37 @@ public class MainController {
 		map.put("commentsList", commentsList);
 		return map;
 	}
+	
+	//회원목록
+	@RequestMapping(value="/memberList.kok",method=RequestMethod.GET)
+	public String memberList() {
+		return "admin/members/list";
+	}	
+	
+	@RequestMapping(value="/getMemberList.kok",method=RequestMethod.GET, headers= {"Content-type=application/json"})
+	public @ResponseBody Map<String,Object> getMemberList(@RequestParam Map<String, Object> map) {
+		List<MemberDto> memberList = mainService.getMemberList(map);
+		int searchTotalCount = mainService.getSearchMemberTotalCount(map);
+		int memberTotalCount = mainService.getMemberTotalCount(map);
+		map.put("memberList", memberList);		
+		map.put("searchTotalCount", searchTotalCount);
+		map.put("memberTotalCount", memberTotalCount);
+		return map;
+	}
+	
+	
+	//통계
+	@RequestMapping(value="/getStatistics.kok",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> getStatistics() {
+		Map<String,Object> map = new HashMap<>();
+		List<StatisticsDto> locationList = mainService.getLocationStatistics();
+		List<StatisticsDto> monthList = mainService.getMonthStatistics();
+		map.put("locationList", locationList);
+		map.put("monthList", monthList);
+		return map;
+	}
+	
+
 	
 	
 }

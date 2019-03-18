@@ -18,6 +18,8 @@ var infoListNumOfRows = 12;
 // 현재 관광 정보
 var infoTypeId = "infoArea";
 
+
+
 $(document).ready(function() {
 	
 	// First Information List
@@ -31,6 +33,7 @@ $(document).ready(function() {
 	$("#btnMainSearch").click(function() {
 		var mainSearchKey = $("#mainSearchKey").val();
 		var mainSearchWord = $("#mainSearchWord").val();
+		
 		if(mainSearchWord == "") {
 			alert("검색할 글자가 없습니다.");
 			return;
@@ -42,7 +45,7 @@ $(document).ready(function() {
 			} else if (mainSearchKey == 2) {				
 				$("#formSearchKeyword").attr("action", contextPath + "/schedule/searchScheduleList.kok").submit();
 			} else if (mainSearchKey == 3) {
-				
+				$("#formSearchKeyword").attr("action", contextPath + "/review/list.kok").submit();
 			} else if (mainSearchKey == 4) {
 				
 			}
@@ -288,3 +291,4 @@ function makeScheduleListHtml(json) {
 	$("#scheduleList").children("div").remove();
 	$("#scheduleList").append(contentStr);	
 }
+
