@@ -222,7 +222,7 @@ function reorder(numm) {
         $(box).find(".itemTitle"+numm).attr("id","itemTitle"+numm+"_"+(i + 1));
         $(box).find(".itemCont"+numm).attr("id","itemCont"+numm+"_"+(i + 1));
         
-        $(box).find(".step"+numm).attr("value",(i+1));
+        $(box).find(".step").attr("value",(i+1));
         
         tmp=(i + 1);
     });
