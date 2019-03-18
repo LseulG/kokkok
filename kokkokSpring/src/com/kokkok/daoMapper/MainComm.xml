@@ -115,7 +115,7 @@
 		 (select address as location, count(*) as locationCount from
 		  (select substr (address, 0, instr(address, ' ',1,1)) address  from location)
 		  group by address order by locationCount desc) 
-		 where rownum<=10]]>
+		 where rownum<=5]]>
 	</select>
 	
 	<select id="getMonthStatistics" resultType="com.kokkok.dto.StatisticsDto">
