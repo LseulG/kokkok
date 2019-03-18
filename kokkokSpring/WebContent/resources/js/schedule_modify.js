@@ -6,26 +6,10 @@ var tripPersons = null;
 var tripThema = null;
 var tripDays = 0;
 var preTripDays = 0;
-var totalReview = 0;
 var selectCont ="", selectBcode=0;
 $(document).ready(function() {	
 	$("#setSchedule").click(function(){
 		setScheduleInfo();
-	});
-	
-	$("#scheduleTitle").click(function(){
-		if (setCnt != 0){
-			this.readOnly = false;
-		} else {
-			alert('좌측에서 일정을 만들어주세요.!');
-		}
-	});
-	$("#scheduleMsg").click(function(){
-		if (setCnt != 0){
-			this.readOnly = false;
-		} else {
-			alert('좌측에서 일정을 만들어주세요.');
-		}
 	});
 });
 
@@ -114,22 +98,9 @@ function selectChange(){
 
 /*-------- 여행일수 변경 --------*/
 function addTag(num){
-	var dateVal = tripStart.split("/");
-	var tripday = new Date(dateVal[0],dateVal[1]-1,dateVal[2]);
-
-	
-	var contents = 
-		//"<fmt:parseDate value='"+tripStart+"' var='myday' pattern='yyyy/MM/dd'/>" +
-		"<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
+	var contents = "<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
 		"<div class='sl-day' id='sl_day_"+num+"'>" +
-		"<label class='seul1' onclick='dayTogg("+num+")'>"+num+"일차<span>"+
-		
-		//"<jsp:useBean id='myday' class='java.util.Date'/>"+
-		//"<fmt:formatDate value='${myday}' pattern='yyyy/MM/dd'/>"+
-		//"<jsp:setProperty property='time' name='myday' value='${myday.time + 86400000}'/>"+
-		tripday+
-		
-		"</span></label>" +
+		"<label class='seul1' onclick='dayTogg("+num+")'>"+num+"일차<span>2018.08.0"+num+"</span></label>" +
 		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleWriteModal' onclick='modalSetDay("+num+");'/>" +
 		"<hr>" +
 		"</div>" +
@@ -189,13 +160,17 @@ function modalWrite(){
 	$("#itemTitle"+modalDay+"_"+tmp).html("<i class='flaticon-"+icon+"'></i> "+title);
 	$("#itemCont"+modalDay+"_"+tmp).html(cont);	
 	$("div > p > img").css('widht','100%');
-	totalReview = totalReview + 1;
-	//alert("modalWrite():" + selectLoc +  "," +selectLat);
-	//position_day[step] = selectLat,selectLng;
-	//createPosition(selectLat,selectLng);
 }
 
 /*-------- 여행지 추가삭제 --------*/
+/** 아이템을 등록한다. */
+function submitItem() {
+    if(!validateItem()) {
+    	return;
+    }
+    alert("등록");
+}
+
 /** 아이템 체크 */
 function sortCall(numm){
 	$("#itemBoxWrap_"+numm).sortable({
@@ -218,15 +193,15 @@ function reorder(numm) {
         $(box).find(".itemNum"+numm).html(i + 1);
         $(box).find(".itemTitle"+numm).attr("id","itemTitle"+numm+"_"+(i + 1));
         $(box).find(".itemCont"+numm).attr("id","itemCont"+numm+"_"+(i + 1));
-        
-        $(box).find(".step"+numm).attr("value",(i+1));
+        $(box).find(".step").attr("value",(i+1));
         
         tmp=(i + 1);
     });
 }
 
-function listReorder(numm){
+function listReorder(){
 	$(".sl-loc").each(function(i, box){
+		$(box).find(".seq").attr("id","list["+i+"].seq").attr("name","list["+i+"].seq");
 		$(box).find(".bcode").attr("id","list["+i+"].bcode").attr("name","list["+i+"].bcode");
 		$(box).find(".subject").attr("id","list["+i+"].subject").attr("name","list["+i+"].subject");
 		$(box).find(".content").attr("id","list["+i+"].content").attr("name","list["+i+"].content");
@@ -264,6 +239,7 @@ function createItem(numm){
 			"</div>")
 			
 	 // subject, content, //location, lat, lng, address, simpleaddr // tripday, step
+	.append("<input type='hidden' class='seq' value='0'>")
 	.append("<input type='hidden' class='bcode' value='"+selectBcode+"'>")
 	.append("<input type='hidden' class='subject' value='"+selectLoc+"'>")
 	.append("<input type='hidden' class='content' value='"+selectCont+"'>")
@@ -274,13 +250,14 @@ function createItem(numm){
 	.append("<input type='hidden' class='simpleaddr' value='"+selectAddr+"'>")
 	.append("<input type='hidden' class='tripday' value='"+numm+"'>")
 	.append("<input type='hidden' class='step' value=''>")
+	
 			
 	.find(".deleteBox").click(function() {		// 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
 		var delCheck = confirm('삭제하시겠습니까?');
 		if (delCheck == true){
+			var seq = $(this).siblings(".seq").val();
 			$(this).parent().remove();
 	        reorder(numm);
-	        totalReview = totalReview - 1;
 		}
 	});
 // 숫자를 다시 붙인다.

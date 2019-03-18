@@ -17,4 +17,12 @@ public interface ScheduleService {
 	public String selectSseq();
 	public ScheduleViewDto scheduleView(String sseq);
 	public List<ScheduleReviewDto> scheduleReviewView(String sseq);
+	
+	//삭제
+	public int scheduleReviewDelete(String sseq);
+	public int scheduleDelete(String seq);
+	
+	//수정
+	public int scheduleUpdate(Map<String, Object> map);
+	public int scheduleReviewUpdate(Map<String, Object> map);
 }

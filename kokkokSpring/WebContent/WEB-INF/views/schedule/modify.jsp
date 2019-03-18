@@ -1,133 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>방방콕콕 - 여행 일정 쓰기</title>
+    <title>방방콕콕 - 여행 일정 수정</title>
   	<%@ include file="/WEB-INF/views/include/link.jsp"%>
   	<%@ include file="/WEB-INF/views/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
  	
 <script type="text/javascript">
-var setCnt = 0;
-var tripStart = null;
-var tripEnd = null;
-var tripType = null;
-var tripPersons = null;
-var tripThema = null;
-var tripDays = 0;
-var preTripDays = 0;
-$(document).ready(function() {	
-	$("#setSchedule").click(function(){
-		setScheduleInfo();
-	});
+$(document).ready(function() {
+	var arrObject = new Object();
+	var deleteArr = new Array();
 	
-	$("#scheduleTitle").click(function(){
-		if (setCnt != 0){
-			this.readOnly = false;
-		} else {
-			alert('좌측에서 일정을 만들어주세요.!');
-		}
-	});
-	$("#scheduleMsg").click(function(){
-		if (setCnt != 0){
-			this.readOnly = false;
-		} else {
-			alert('좌측에서 일정을 만들어주세요.');
-		}
-	});
-});
+	var tripType = "";
+	if("${scheduleArticle.bcode}" == 1) {
+		tripType = "여행 계획";
+	} else if("${scheduleArticle.bcode}" == 2) {
+		tripType = "여행 후기";
+	} 
 
-function setScheduleInfo(){
-	tripType = $("#tripType").val();
-	tripStart = $("#checkin_date").val();
-	tripEnd = $("#checkout_date").val();
-	tripPersons = $("#tripPersons").val();
-	tripThema = $("#tripThema").val();
+	$("#tripType > option[value='"+tripType+"']").attr("selected", "true");
+	$("#checkin_date").val("${scheduleArticle.startdate}");
+	$("#checkout_date").val("${scheduleArticle.enddate}");
+	$("#tripPersons > option[value=${scheduleArticle.persons}]").attr("selected", "true");
+	$("#tripThema > option[value='${scheduleArticle.thema}']").attr("selected", "true");
 	
-	// 여행 일 수 계산
-	var startDay = new Date(tripStart);	
-	var endDay = new Date(tripEnd);
-	tripDays = dateDiff(startDay, endDay);
+	var setStr = "${scheduleArticle.startdate} - ${scheduleArticle.enddate} ( ${scheduleArticle.period}일)  ,  "
+		+ tripType  +"  ,  ${scheduleArticle.persons}  ,  ${scheduleArticle.thema}" ;
+	$("#scheduleSetting").text(setStr);
 	
-	if (tripStart == "" || tripEnd == "") {
-		alert("출발일과 도착일을 선택해주세요.");
-	} else if(tripDays < 1) {
-		alert("도착일은 출발일 이후 날짜만 가능합니다.\n" + "(당일치기는 출발일과 도착일을 같은 날짜로 지정해주세요.)")
-	} else if(tripPersons == "no" || tripThema == "no") {
-		alert("여행 인원과 테마를 선택해주세요.");
-	} else {
-		var setStr = null;
-		if(setCnt != 0){
-			setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)의\n" +
-					tripType +"으로 수정하시겠습니까?\n" 
-					+ "(여행일이 수정될 경우 작성된 내용이 지워질 수 있습니다.)";
-		} else {
-			setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)의\n" +
-					tripType + "을(를) 만드시겠습니까?" ;
-		}		
-		
-		var result = confirm(setStr);
-		if(result){
-			
-			if(preTripDays == 0){	// 처음 세팅
-				setDays(tripDays);
-			} else if(preTripDays < tripDays){		// 여행일수 늘어나면  3 > 5
-				addDays(preTripDays,tripDays);
-			} else if(preTripDays > tripDays){		// 여행일수 줄어들면 5 > 3
-				removeDays(preTripDays,tripDays);
-			} else {	// 여행일수 같으면 3 > 3
-				//변화 x
-			}
-			
-			setCnt = 1;
-			preTripDays = tripDays;
-						
-			var setStr = tripStart +"-"+ tripEnd +" ("+ tripDays +"일)"  
-					+"  ,  "+ tripType  +"  ,  "+ tripPersons +"  ,  "+ tripThema ;
-			$("#scheduleSetting").text(setStr);
-		} 
+	var tripDays = parseInt("${scheduleArticle.period}");
+	setDays(tripDays);
+	for(var i=1; i<tripDays+1; i++){
+		reorder(i);
+		listnumbering(i);
 	}
-}
-
-// 여행 일수 계산 함수
-function dateDiff(start, end){
-	var diff = end - start;
-	var day = 1000 * 60 * 60 * 24;	//밀리세컨초 * 초 * 분 * 시간
+	listReorder(); //list id,name 값 주기
 	
-	var days = parseInt(diff/day) + 1;
-	
-	return days;
-}
+	$(".sl-loc").hover(
+		function() {	// 오버시 배경색 바꾸고 삭제 버튼 보여줌
+            $(this).css('backgroundColor', '#ffecec');
+            $(this).find('.modifyBox').show();
+            $(this).find('.deleteBox').show();
+        },
+        function() {	// 아웃시 배경 원래대로 돌리고 삭제버튼 숨김
+            $(this).css('background', 'none');
+            $(this).find('.modifyBox').hide();
+            $(this).find('.deleteBox').hide();
+            
+        }
+	)
+	.find(".deleteBox").click(function() {		// 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
+		var delCheck = confirm('삭제하시겠습니까?');
+		if (delCheck == true){
+			alert("aa");
+			var seq = $(this).siblings(".seq").val();
+			alert(seq);
 
-function selectChange(){
-	alert("oh");
-	mapRemove();
-	mapView(positions_2);
+			deleteArr.push(seq);
+			arrObject.value = deleteArr;
+
+			$(this).parent().remove();
+	        reorder(numm);
+		}
+	});
+	
+	// 등록
+	$("#registerBtn").click(function() {
+		if($("#scheduleTitle").val() == "") {
+			alert("여행 제목을 입력해주세요");
+			return;
+		} else if($("#scheduleMsg").val() == "") {
+			alert("여행 소개를 입력해주세요");
+			return;
+		} else {
+			var result = confirm("등록 하시겠습니까?");
+			if(result){
+				// json 포맷으로 변환
+				var arrJson = JSON.stringify(arrObject);
+				$('input[id=deleteArr]').val(arrJson);
+				
+				$('#ssubject').val($("#scheduleTitle").val());
+				$('#scontent').val($("#scheduleMsg").val());
+				$("#scheduleWriteForm").attr("action", "${root}/schedule/modifyUpdate.kok").submit();
+			}
+		}
+	});
+	$("#cancelBtn").click(function() {
+		var result = confirm("등록을 취소 하시겠습니까?");
+		if(result){
+			history.back();
+		}
+	});	
+});
+var rvCnt = 0;
+function listnumbering(numm){
+	$(".itemBox"+numm).each(function(i, box) {
+		rvCnt += 1;
+	});
+	
 }
 </script>
 <style type="text/css">
 	#uploadFile{display: none;}
-	#daySelectWrap {
-		position:absolute;top:350px;left:30px;width:110px;height:45px;
-		margin:10px 0 30px 10px;padding:2px;overflow-y:auto;
-		background:#f85959; z-index: 1;font-size:12px;border-radius: 5px;
-	}
-	#daySelectWrap #mapDay {
-		width:106px; height:41px; padding-left: 10px; border-radius: 5px;
-	}
-	.sl-loc-cont p img{
-	  display: inline-block;
-	  vertical-align: middle;
-	  max-height: 100%;
-	  max-width: 100%;
-	}
+
 </style>
 </head>
 <body>
    <%@ include file="/WEB-INF/views/include/nav.jsp"%>
-   <%@ include file="/WEB-INF/views/schedule/writemodal.jsp"%>
+   <%@ include file="/WEB-INF/views/schedule/modifymodal.jsp"%>
    
 <!-- 이미지 -->
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
@@ -143,6 +128,18 @@ function selectChange(){
 
 <!-- 내용시작 -->
 	<section class="ftco-section ftco-degree-bg">
+	<form action="" id="scheduleWriteForm" method="POST">
+	
+	<input type="hidden" name="sbcode" id="sbcode" value="">
+	<input type="hidden" name="ssubject" id="ssubject" value="">
+	<input type="hidden" name="scontent" id="scontent" value="">
+	<input type="hidden" name="startdate" id="startdate" value="">
+	<input type="hidden" name="enddate" id="enddate" value="">
+	<input type="hidden" name="persons" id="persons" value="">
+	<input type="hidden" name="thema" id="thema" value=""> 
+	
+	<input type="hidden" name="deleteArr" id="deleteArr" value="">
+	
 	<div class="container">
 	<div class="row">
 <!-- 왼쪽 검색창 -->	
@@ -161,7 +158,6 @@ function selectChange(){
 		
         <div class="sidebar-wrap bg-light ftco-animate">
 			<h3 class="heading mb-4">일정 정보</h3>
-        	<form action="#">
         	<div class="fields">
         	
        			<div class="col-md-12">
@@ -226,10 +222,9 @@ function selectChange(){
        			
        			<!-- 검색 버튼 -->
 	        	<div class="form-group">
-	            	<input type="button" value="일정 만들기" id="setSchedule" class="btn btn-primary py-3 px-5">
+	            	<input type="button" value="일정 수정" id="setSchedule" class="btn btn-primary py-3 px-5">
 	        	</div>
 		    </div>
-			</form>
         </div>
 		</div>
 <!-- 왼쪽 검색창 END -->
@@ -239,16 +234,16 @@ function selectChange(){
 			<div class="text p-3">
 				
 				<div class="comment-form-wrap">
-	                <form action="#" class="p-4 bg-light">
+	                <div class="p-4 bg-light">
 	                	<div class="form-group">
-	                    	<input type="text" id="scheduleTitle" class="form-control" placeholder="여행 제목을 입력하세요" readonly="readonly"><br>
-	                    	<textarea name="scheduleMsg" id="scheduleMsg" cols="30" rows="5" class="form-control" placeholder="간단히 여행을 소개해주세요 =)" readonly="readonly"></textarea>
+	                    	<input type="text" id="scheduleTitle" class="form-control" value="${scheduleArticle.subject}"><br>
+	                    	<textarea name="scheduleMsg" id="scheduleMsg" cols="30" rows="5" class="form-control">${scheduleArticle.content}</textarea>
 	                 	 </div>
 	                 	 <hr>
 						<p class="days">
 							<span id="scheduleSetting">&nbsp;</span>
 						</p>
-	                </form>
+	                </div>
 	              </div>
 	              <br>
 				
@@ -269,7 +264,61 @@ function selectChange(){
 				<br>
             	
             	<!-- 일차별 내용 -->	
-            	<div class="daysAdd" id="daysAdd"></div>
+            <div class="daysAdd3" id="daysAdd3">
+            <c:set var="idx" value="0"/>
+            <c:set var="listNum" value="0"/>
+            <c:forEach varStatus="day" var="review" items="${reviewArticle}">
+            	<c:if test="${idx != review.tripday}">
+            		<div class="sl-oneDay" id="sl_oneDay_${review.tripday}">
+						<div class="sl-day" id="sl_day_${review.tripday}">
+							<label class="seul1" onclick="dayTogg(${review.tripday})">${review.tripday}일차
+							<span>${scheduleArticle.startdate}</span></label>
+							<input type="button" value="+일정 추가" class="btn btn-primary scheduleAdd" data-toggle="modal" data-target="#scheduleModifyModal" onclick="modalSetDay(${review.tripday});"/>
+							<hr>
+						</div>
+						<div class="seul1_Item${review.tripday}" id="itemBoxWrap_${review.tripday}">
+            		<c:set var="idx" value="${review.tripday}"/>
+            	</c:if>
+			            	<div class="itemBox${review.tripday} sl-loc loc-updown">
+			             		<span class="itemNum${review.tripday}">${review.step}</span>
+				            	<label class="seul2 itemTitle${review.tripday}" id="itemTitle${review.tripday}_${review.step}">
+				            	<c:set var="type" value="${review.bcode}"/>
+					       		<c:choose>
+					       			<c:when test="${type eq 3}"><i class="flaticon-meeting-point"></i> </c:when>
+					       			<c:when test="${type eq 4}"><i class="flaticon-hotel"></i> </c:when>
+					       			<c:when test="${type eq 5}"><i class="flaticon-fork"></i> </c:when>
+					       		</c:choose>
+				            	 ${review.subject}</label>
+				            	 <label class="modifyBox">수정</label>
+				            	 <label class="deleteBox">삭제</label>			
+								<div class="sl-loc-cont itemCont${review.tripday}">
+									${review.content}
+								</div>
+
+								<input type="hidden" name="seq" class="seq" value="${review.seq}">
+
+								<input type="hidden" class="bcode" value="${review.bcode}">
+								<input type="hidden" class="subject" value="${review.subject}">
+								<input type="hidden" class="content" value="${review.content}">
+								<input type="hidden" class="location" value="${review.location}">
+								<input type="hidden" class="lat" value="${review.lat}">
+								<input type="hidden" class="lng" value="${review.lng}">
+								<input type="hidden" class="address" value="${review.address}">
+								<input type="hidden" class="simpleaddr" value="${review.simpleaddr}">
+								<input type="hidden" class="tripday" value="${review.tripday}">
+								<input type="hidden" class="step" value="${review.step}">
+								
+								<c:set var="listNum" value="${listNum+1}"/>
+							</div>
+            	<c:if test="${day.index < reviewArticle.size()-1}">
+            		<c:if test="${reviewArticle.get(day.index+1).tripday != idx}">
+            			</div>
+            		</div>
+            		</c:if>            	
+            	</c:if>
+        
+			</c:forEach>
+            </div> 
             
 			</div>
 		</div>
@@ -277,21 +326,19 @@ function selectChange(){
 	</div>
 	
 		<div class="writeEnd" align="center">		
-					<input type="button" value="+일정추가" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#scheduleWriteModal">
-					
-					<a href="${root}/schedule/view.jsp">
-						<input type="button" value="등록하기" class="btn btn-primary py-3 px-5" onclick="submitItem();">
-					</a>
+			<input type="button" value="등록" class="btn btn-primary py-3 px-5" id="registerBtn">
+			<input type="button" value="취소" class="btn btn-primary py-3 px-5" id="cancelBtn">
 	  	</div>
 	
 	</div>
+	</form>
 	</section>
 <!-- 내용끝 -->
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%> 
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>
 <script src="${root}/resources/js/schedule_map.js"></script>
-<script src="${root}/resources/js/schedule_write.js"></script>
+<script src="${root}/resources/js/schedule_modify.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
 </body>

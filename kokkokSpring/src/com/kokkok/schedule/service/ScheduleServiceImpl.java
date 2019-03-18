@@ -63,7 +63,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		List<ScheduleBoardDto> list = sqlSessionTemplate.getMapper(ScheduleDao.class).selectReview(sseq);
 		
 		List<ScheduleReviewDto> reviewList = new ArrayList<>();
-		for (int i=0; i<list.size(); i++) {
+		for(int i=0; i<list.size(); i++) {
 			String seq = Integer.toString(list.get(i).getSeq());		
 			reviewList.add(sqlSessionTemplate.getMapper(ScheduleDao.class).scheduleReviewView(seq));
 		}
@@ -71,4 +71,44 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return reviewList;
 	}
 	
+	@Override
+	public int scheduleReviewDelete(String sseq) {
+		int resultCnt = 0;
+		List<ScheduleBoardDto> list = sqlSessionTemplate.getMapper(ScheduleDao.class).selectReview(sseq);
+		
+		
+		for(int i=0; i<list.size(); i++) {
+			String seq = Integer.toString(list.get(i).getSeq());	
+			resultCnt += sqlSessionTemplate.getMapper(ScheduleDao.class).scheduleReviewDelete(seq);
+		}
+		
+		return resultCnt;
+	}
+
+	@Override
+	public int scheduleDelete(String seq) {
+		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+		return scheduleDao.scheduleDelete(seq);
+	}
+
+	@Override
+	public int scheduleUpdate(Map<String, Object> map) {
+		//int seq = sqlSessionTemplate.getMapper(MainDao.class).getNextSeq();		
+		//map.put("seq", seq);		
+		
+		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+		return scheduleDao.scheduleUpdate(map);
+	}
+
+	@Override
+	public int scheduleReviewUpdate(Map<String, Object> map) {
+		int seq = sqlSessionTemplate.getMapper(MainDao.class).getNextSeq();		
+		map.put("seq", seq);
+		int sseq = sqlSessionTemplate.getMapper(ScheduleDao.class).getNextSseq();
+		map.put("sseq", sseq);
+		
+		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+		return scheduleDao.scheduleReviewUpdate(map);
+	}
+
 }

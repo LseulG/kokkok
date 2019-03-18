@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -17,28 +18,13 @@ $(document).ready(function() {
 	getRecommendView();
 	getCommentsList();	
 	
-	
-	var jjimCnt = 0;
-	var recommCnt = 0;
-	$(".scheduleJJim").click(function(){
-		if (jjimCnt != 0){
-			$(".icon-heart").attr("class","icon-heart-o");
-			jjimCnt = 0;			
-		} else {
-			$(".icon-heart-o").attr("class","icon-heart");
-			jjimCnt = 1;
-		}
-	});
-	$(".scheduleRecomm").click(function(){
-		if (recommCnt != 0){
-			$(".icon-thumbs-up").attr("class","icon-thumbs-o-up");
-			recommCnt = 0;
-		} else {
-			$(".icon-thumbs-o-up").attr("class","icon-thumbs-up");
-			recommCnt = 1;
-		}		
-	});
 });
+function scheduleDeleteBtn(){
+	var result = confirm("삭제하시겠습니까?");
+	if(result) {
+		document.location.href = "${root}/schedule/delete.kok?sseq=${scheduleArticle.sseq}&seq=${scheduleArticle.seq}";
+	}
+}
 
 // 찜하기
 function getWishView(){
@@ -273,11 +259,16 @@ function getCommentsList(){
 					<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid">
 				</div>
 				<div class="col-md-8">
+						<c:choose>
+							<c:when test="${scheduleArticle.bcode eq '1'}"><span class="ml-auto">여행 계획</span></c:when>
+							<c:when test="${scheduleArticle.bcode eq '2'}"><span class="ml-auto">여행 후기</span></c:when>
+						</c:choose>
 						<h3 class="mb-3">${scheduleArticle.subject}</h3>
 						${scheduleArticle.content}
 						<hr>
 						<p class="days">
 							<span>
+								#${scheduleArticle.persons} #${scheduleArticle.thema}<br>
 								<i class="icon-person"></i> ${scheduleArticle.userid} &nbsp;|&nbsp; 
 								<i class="icon-today"></i> 여행기간 : ${scheduleArticle.startdate} - ${scheduleArticle.enddate} (${scheduleArticle.period}일)<br>
 								<i class="icon-pencil"></i> 게시일 : ${scheduleArticle.logtime} &nbsp;|&nbsp; <i class="icon-pencil"></i> 최종 수정일 : ${scheduleArticle.updatetime}<br>
@@ -304,6 +295,11 @@ function getCommentsList(){
 	                <a href="#" class="tag-cloud-link">순천</a>
 	                <a href="#" class="tag-cloud-link">광양</a>
               	</div>
+              	<hr>
+              	<div align="center">
+              		<a href="${root}/schedule/modify.kok?sseq=${scheduleArticle.sseq}&seq=${scheduleArticle.seq}"><input type="button" value="일정 수정" class="btn btn-secondary modiDelBtn"></a>
+              		<input type="button" value="일정 삭제" class="btn btn-secondary modiDelBtn" onclick="scheduleDeleteBtn();">
+              	</div>
             </div>
 
 <!-- 왼쪽 지도 -->		
@@ -326,8 +322,6 @@ function getCommentsList(){
 				</div>
             </div>
         
-        	
-
 		</div>
 <!-- 왼쪽 End -->
       
@@ -337,12 +331,17 @@ function getCommentsList(){
 			<!-- 일차별 내용 -->	
             <div class="daysAdd3" id="daysAdd3">
             <c:set var="idx" value="0"/>
+            <fmt:parseDate value="${scheduleArticle.startdate}" var="myday" pattern="yyyy/MM/dd"/>
             <c:forEach varStatus="day" var="review" items="${reviewArticle}">
             	<c:if test="${idx != review.tripday}">
             		<div class="sl-oneDay">
 						<div class="sl-day">
-							<label class="seul1" onclick="dayTogg(${review.tripday})">${review.tripday}일차<span>
-							${scheduleArticle.startdate}
+							<label class="seul1" onclick="dayTogg(${review.tripday})">${review.tripday}일차
+							<span>
+								<jsp:useBean id="myday" class="java.util.Date"/>
+								<fmt:formatDate value="${myday}" pattern="yyyy/MM/dd"/>
+								<jsp:setProperty property="time" name="myday" value="${myday.time + 86400000}"/>
+
 							</span></label>
 							<hr>
 						</div>

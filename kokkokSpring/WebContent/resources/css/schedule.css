@@ -193,7 +193,12 @@
 	 }
 .seul1,.seul2{
 	cursor:pointer;
-}      
+}  
+
+.modiDelBtn{
+	margin: 0px 10px;
+	border-radius: 0px;
+}    
       
 /* drag */
  	.itemBoxHighlight {
