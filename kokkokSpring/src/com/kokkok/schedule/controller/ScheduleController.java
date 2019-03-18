@@ -51,7 +51,7 @@ public class ScheduleController {
  
 		// review insert
 		for (int i = 0; i < list.getList().size(); i++) {
-			System.out.println(i);
+//			System.out.println(i);
 			Map<String, Object> reviewMap = new HashMap<>();
 
 			reviewMap.put("userid", "sseul"); // id setting!!!!!!!!!!!!!!!!!!!!!!!
@@ -85,14 +85,16 @@ public class ScheduleController {
 				scheduleViewDto.setLogtime(scheduleViewDto.getLogtime().substring(0, 11).replaceAll("-", "/"));
 				scheduleViewDto.setUpdatetime(scheduleViewDto.getUpdatetime().substring(0, 11).replaceAll("-", "/"));
 			}
-			System.out.println("과연!");
+//			System.out.println("과연!");
 			//mav.addObject("scheduleArticle", scheduleViewDto);
 			//mav.addObject("reviewArticle", scheduleReviewDtoList);
 
 			//mav.setViewName("schedule/view");// 성공
 			
 			redirect.addAttribute("sseq",sseq);
-			//redirect.addAttribute("seq",scheduleViewDto.getSeq());
+			redirect.addAttribute("seq",scheduleViewDto.getSeq());
+			path = "redirect:/schedule/view.kok";
+
 		} else {
 			System.out.println("일정 쓰기 실패");
 			//mav.setViewName("schedule/list");// 실패
@@ -105,6 +107,7 @@ public class ScheduleController {
 
 	@RequestMapping(value = "/schedule/view.kok", method = RequestMethod.GET)
 	public ModelAndView scheduleView(@RequestParam String sseq, String seq) {
+		System.out.println(seq);
 		mainService.updateHit(seq);
 
 		ScheduleViewDto scheduleViewDto = scheduleService.scheduleView(sseq);

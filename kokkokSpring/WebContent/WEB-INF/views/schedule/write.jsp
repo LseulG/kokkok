@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>방방콕콕 - 여행 일정 쓰기</title>
+    <title>방방콕콕 - 여행 일정 쓰기123</title>
   	<%@ include file="/WEB-INF/views/include/link.jsp"%>
   	<%@ include file="/WEB-INF/views/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
- 	
- 	
+  
+  
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#registerBtn").click(function() {
