@@ -157,7 +157,7 @@ function makeCommentListHtml(json) {
 	for (var i = 0; i < listCnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
-		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
 		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
@@ -165,7 +165,7 @@ function makeCommentListHtml(json) {
 		contentStr += "</a>";		
 		contentStr += "<div class='text p-3'>";		
 		contentStr += "<div class='d-flex'>";		
-		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
+		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq= "+schedule.seq+"'>" + schedule.subject + "</a></h3>";		
 		contentStr += "</div>";
 		contentStr += "<p>";
 //		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
@@ -249,7 +249,7 @@ function makeScheduleListHtml(json) {
 	for (var i = 0; i < listCnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
-		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq +"&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
 		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
@@ -257,7 +257,7 @@ function makeScheduleListHtml(json) {
 		contentStr += "</a>";		
 		contentStr += "<div class='text p-3'>";		
 		contentStr += "<div class='d-flex'>";		
-		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
+		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq +"&seq= "+schedule.seq+"'>" + schedule.subject + "</a></h3>";		
 		contentStr += "</div>";
 		contentStr += "<p>";
 //		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
