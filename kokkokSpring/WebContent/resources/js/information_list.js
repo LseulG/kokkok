@@ -21,6 +21,14 @@ var infoTypeId = "infoArea";
 var mapXCoord;
 var mapYCoord;
 var mapCCoord;
+// 뒤로가기 hash를 위해 추가
+var contentTypeId = "";
+var mapX = 126.981106;
+var mapY = 37.568477;
+var radius = 1;
+var keyword = "";
+var sDate = "";
+var eDate = "";
 
 $(document).ready(function() {	
 	
@@ -294,7 +302,7 @@ function makeListToHtml(xml){
 
 // 검색 조건에 맞는 결과를 출력
 function getInfoAreaList(pageNum) {
-	var contentTypeId = $("#contentTypeIdList").val();
+	contentTypeId = $("#contentTypeIdList").val();
 	if ($("#areaCodeList").val() != null) {
 		areaCode = $("#areaCodeList").val();
 	}
@@ -327,17 +335,17 @@ function getInfoAreaList(pageNum) {
 
 //검색 조건에 맞는 결과를 출력
 function getInfoLocationList(pageNum) {
-	var contentTypeId = $("#contentTypeIdList").val();
-	var mapX = $("#mapX").val();
-	var mapY = $("#mapY").val();
-	var radius = $("#location_number").val() * 1000;
+	contentTypeId = $("#contentTypeIdList").val();
+	mapX = $("#mapX").val();
+	mapY = $("#mapY").val();
+	radius = $("#location_number").val();
 	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/locationBasedList?" +
 				"ServiceKey=" + serviceKey +
 				"&contentTypeId=" + contentTypeId +
 				"&mapX=" + mapX +
 				"&mapY=" + mapY +
-				"&radius=" + radius +
+				"&radius=" + (radius  * 1000) +
 				"&listYN=Y&MobileOS=ETC&MobileApp=KokKok" +
 				"&arrange=" + infoListArrange + 
 				"&numOfRows=" + infoListNumOfRows + 
@@ -362,7 +370,7 @@ function getInfoKeywordList(pageNum) {
 	if ($("#sigunguCodeList").val() != null) {
 		sigunguCode = $("#sigunguCodeList").val();
 	}
-	var keyword = $("#keyword").val();
+	keyword = $("#keyword").val();
 	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?" +
 					"ServiceKey=" + serviceKey +
@@ -394,8 +402,8 @@ function getInfoFestivalList(pageNum) {
 	if ($("#sigunguCodeList").val() != null) {
 		sigunguCode = $("#sigunguCodeList").val();
 	}
-	var eventStartDate = $("#eventStartDate").val();
-	var eventEndDate = $("#eventEndDate").val();	
+	sDate = $("#eventStartDate").val();
+	eDate = $("#eventEndDate").val();	
 	
 	if (eventStartDate > eventEndDate) {
 		alert("시작날짜가 끝날짜보다 큽니다.\n" + "다시 입력해주세요.");
@@ -404,8 +412,8 @@ function getInfoFestivalList(pageNum) {
 	infoListArrange = $("#orderType").val();
 	var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?" +
 					"ServiceKey=" + serviceKey +
-					"&eventStartDate=" + eventStartDate +
-					"&eventEndDate=" + eventEndDate +
+					"&eventStartDate=" + sDate +
+					"&eventEndDate=" + eDate +
 					"&areaCode=" + areaCode +
 					"&sigunguCode=" + sigunguCode +
 					"&cat1=&cat2=&cat3=&listYN=Y&MobileOS=ETC&MobileApp=KokKok" +
@@ -595,6 +603,13 @@ function createListHash() {
 	str_hash += areaCode + "^";
 	str_hash += sigunguCode + "^";
 	str_hash += infoListCurrPageNum + "^";
+	str_hash += contentTypeId + "^";
+	str_hash += mapX + "^";
+	str_hash += mapY + "^";
+	str_hash += radius + "^";
+	str_hash += keyword + "^";
+	str_hash += sDate + "^";
+	str_hash += eDate + "^";
    
     document.location.hash = "#" + str_hash;
     
@@ -604,13 +619,21 @@ function createListHash() {
 function initPageByHash() {
 	var str_hash;
 	var arr_value;
-	str_hash = document.location.hash;
+	str_hash = decodeURI(document.location.hash);
 	str_hash = str_hash.replace("#", "");
 	arr_value = str_hash.split("^");
 	infoTypeId = arr_value[0];
 	areaCode = arr_value[1];
 	sigunguCode = arr_value[2];
-	infoListCurrPageNum = arr_value[3];	
+	infoListCurrPageNum = arr_value[3];
+	$("#contentTypeIdList").val(arr_value[4]);
+	$("#mapX").val(arr_value[5]);
+	$("#mapY").val(arr_value[6]);
+	$("#location_range").val(arr_value[7]);
+	$("#location_number").val(arr_value[7]);
+	$("#keyword").val(arr_value[8]);
+	$("#eventStartDate").val(arr_value[9]);
+	$("#eventEndDate").val(arr_value[10]);
 	
 	// Initialize Information Buttons
 	setInformationButtons();
@@ -679,7 +702,7 @@ function getMapAndExecution() {
 	});
 }
 
-$(document).on("click", "#mapCloseBtn", function() {
+$(document).on("click", "#mapApplyBtn", function() {
 	$("#mapX").val(mapCCoord);
 	$("#mapY").val(mapYCoord);
 });

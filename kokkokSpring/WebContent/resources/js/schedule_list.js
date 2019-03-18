@@ -8,11 +8,24 @@ var listTotalCount = 0;
 var navigation_size = 10;
 // 관광 목록 한 페이지의 결과 수
 var listNumOfRows = 12;
+//일정 타입(0=모든 일정, 1=여행 계획, 2=여행 일정)
+var listType;
+//페이지의 정렬(1=인기순, 2=최신순)
+var listArrange;
+//테마
+var thema;
+var themaValue = 0;
+//여행기간
+var minTerm;
+var maxTerm;
+//검색어
+var searchWord;
 
 $(document).ready(function() {
 	
 	//해쉬가 있다면 그에 맞춰 값을 얻어오고 그렇지 않다면 초기화
 	if (document.location.hash) {
+		initPageByHash();
 		
 	} else {
 		if (urlParam("searchWord") != null && urlParam("searchWord") != "") {
@@ -23,7 +36,8 @@ $(document).ready(function() {
 		// 처음은 1페이지
 		currPageNum = 1;
 		// 처음은 최신순
-		$("#listSort").val(2);
+		$("#listSort").val(2);		
+		
 		// First Schedule List
 		getScheduleList();	
 	}
@@ -77,71 +91,24 @@ function urlParam(name){
 	}	
 }
 
-function getAreaCdoeList() {
-	$.ajax({
-	    url : "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?" + 
-	    		"ServiceKey=" + serviceKey +
-	    		"&MobileOS=ETC&MobileApp=KokKok&numOfRows=20",
-	    type : "GET",
-	    async: false,
-	    success : function(xml){		    	
-	    	var xmlData = $(xml).find("item");
-	        var listLength = xmlData.length;		        
-	        var contentStr = "<option value='' class='areaCode'>지역선택</option>";
-	        if (listLength) {			        
-		    	$(xmlData).each(function(){
-		    		contentStr += "<option value='"+ $(this).find("code").text() +"' class='areaCode'>" + $(this).find("name").text() + "</option>";				        
-		    	});
-	        }
-	        $(".areaCode").remove();
-	        $("#areaCodeList").append(contentStr);
-	    }
-	});
-}
-
-function getSigunguCodeList() {
-	var areaCode = $("#areaCodeList").val();		
-	
-	$.ajax({
-	    url : "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?" +
-	    		"ServiceKey=" + serviceKey +
-	    		"&areaCode=" + areaCode + 
-	    		"&numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=KokKok",
-	    type : "GET",
-	    async: false,
-	    success : function(xml){
-	    	var contentStr = "<option value='' class='sigunguCode'>시군구선택</option>";	    	
-	    	if (areaCode != "") {
-		    	var xmlData = $(xml).find("item");
-		        var listLength = xmlData.length;
-		        if (listLength) {
-			    	$(xmlData).each(function(){
-			    		contentStr += "<option value='"+ $(this).find("code").text() +"' class='sigunguCode'>" + $(this).find("name").text() + "</option>";				        
-			    	});
-		        }
-	    	}
-	        $(".sigunguCode").remove();
-	        $("#sigunguCodeList").append(contentStr);
-	    	
-	    }
-	});
-}
-
 function getScheduleList() {
+	
 	var urlStr = contextPath + '/schedule/getlist.kok';
 	// 일정 타입(0=모든 일정, 1=여행 계획, 2=여행 일정)
-	var listType = $("#searchSchedule").val();
+	listType = $("#searchSchedule").val();
 //	listType = 1;
 	// 페이지의 정렬(1=인기순, 2=최신순)
-	var listArrange = $("#listSort").val();
+	listArrange = $("#listSort").val();
 	// 테마
-	var thema = $("#searchThema").val();
+	thema = $("#searchThema option:selected").text();
+	themaValue = $("#searchThema").val();
+//	alert(thema);
 //	thema = "나홀로 여행";
 	// 여행기간
-	var minTerm = $("#term1_number").val();
-	var maxTerm = $("#term2_number").val();
+	minTerm = $("#term1_number").val();
+	maxTerm = $("#term2_number").val();
 	// 검색어
-	var searchWord = $("#searchWord").val();
+	searchWord = $("#searchWord").val();
 //	searchWord = "서울";
 	
 	var param = {"pg": currPageNum, "order": listArrange, "listNumOfRows": listNumOfRows, "listType": listType,
@@ -172,7 +139,7 @@ function makeListHtml(json) {
 	for (var i = 0; i < listcnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-4 ftco-animate  fadeInUp ftco-animated destination'>";		
-		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq="+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
 		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
@@ -284,7 +251,7 @@ function makeNavigator() {
     $("#navigator").append(contentStr);
     
     // 웹브라우저의 뒤로가기 버튼을 위한 해쉬태그를 만듬
-//    createListHash();
+    createListHash();
     
 }
 
@@ -350,3 +317,39 @@ $(document).on("click", ".naviNum", function() {
 	getScheduleList();
 	makeNavigator();	
 });
+
+//웹브라우저 뒤로가기를 위해 hash tag를 작성
+function createListHash() {	
+	// 값은 현재 페이지 + ^ + ..............    
+	var str_hash = "";
+	str_hash += currPageNum + "^";
+	str_hash += listType + "^";
+	str_hash += listArrange + "^";
+	str_hash += themaValue + "^";
+	str_hash += minTerm + "^";
+	str_hash += maxTerm + "^";
+	str_hash += searchWord + "^";
+	
+    document.location.hash = "#" + str_hash;
+    
+//    alert("document.location.hash");
+}
+
+function initPageByHash() {
+	var str_hash;
+	var arr_value;
+	str_hash = decodeURI(document.location.hash);
+	str_hash = str_hash.replace("#", "");
+	arr_value = str_hash.split("^");
+	currPageNum = arr_value[0];
+	$("#searchSchedule").val(arr_value[1]);
+	$("#listSort").val(arr_value[2]);
+	$("#searchThema").val(arr_value[3]);
+	$("#term1_number").val(arr_value[4]);
+	$("#term2_number").val(arr_value[5]);
+	$("#term1_range").val(arr_value[4]);
+	$("#term2_range").val(arr_value[5]);
+	$("#searchWord").val(arr_value[6]);
+	
+	getScheduleList();
+}

@@ -112,13 +112,13 @@
 			                <div class="select-wrap one-third">
 			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
 			                    <select name="" id="searchThema" class="form-control">
-			                    	<option value="테마 전체">테마 전체</option>
-			                    	<option value="나홀로 여행">나홀로 여행</option>
-			                    	<option value="친구와 함께">친구와 함께</option>
-			                      	<option value="커플 여행">커플 여행</option>
-			                    	<option value="가족 여행">가족 여행</option>
-			                      	<option value="단체 여행">단체 여행</option>
-			                      	<option value="패키지 여행">패키지 여행</option>
+			                    	<option value="0">테마 전체</option>
+			                    	<option value="1">나홀로 여행</option>
+			                    	<option value="2">친구와 함께</option>
+			                      	<option value="3">커플 여행</option>
+			                    	<option value="4">가족 여행</option>
+			                      	<option value="5">단체 여행</option>
+			                      	<option value="6">패키지 여행</option>
 			                    </select>
 		                  	</div>
 			            </div>

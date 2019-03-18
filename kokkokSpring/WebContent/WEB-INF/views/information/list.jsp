@@ -186,7 +186,10 @@
 			
 			<!-- Modal footer -->
 			<div class="modal-footer">
-				<button type="button" id="mapCloseBtn" class="btn btn-primary py-3 px-5" data-dismiss="modal">닫 기</button>
+				<div class="row">
+					<button type="button" id="mapApplyBtn" class="btn btn-primary py-2 px-3 mr-3" data-dismiss="modal">적 용</button>
+					<button type="button" id="mapCancelBtn" class="btn btn-secandary py-2 px-3" data-dismiss="modal">취 소</button>
+				</div>
 			</div>
 			      
 			</div>
