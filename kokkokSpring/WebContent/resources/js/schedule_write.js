@@ -111,30 +111,33 @@ function selectChange(){
 	mapView(positions_2);
 }
 
+function getFormatDate(date){
+	var year = date.getFullYear();                   //yyyy
+	var month = (1 + date.getMonth());              //M
+	month = month >= 10 ? month : '0' + month;     // month 두자리로 저장
+	var day = date.getDate();                       //d
+	day = day >= 10 ? day : '0' + day;             //day 두자리로 저장
+	return  year + '/' + month + '/' + day;
+	
+}
+
 
 /*-------- 여행일수 변경 --------*/
 function addTag(num){
-	var dateVal = tripStart.split("/");
-	var tripday = new Date(dateVal[0],dateVal[1]-1,dateVal[2]);
-
+	tripStart = new Date(tripStart);
 	
 	var contents = 
-		//"<fmt:parseDate value='"+tripStart+"' var='myday' pattern='yyyy/MM/dd'/>" +
 		"<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
 		"<div class='sl-day' id='sl_day_"+num+"'>" +
 		"<label class='seul1' onclick='dayTogg("+num+")'>"+num+"일차<span>"+
-		
-		//"<jsp:useBean id='myday' class='java.util.Date'/>"+
-		//"<fmt:formatDate value='${myday}' pattern='yyyy/MM/dd'/>"+
-		//"<jsp:setProperty property='time' name='myday' value='${myday.time + 86400000}'/>"+
-		tripday+
-		
+		getFormatDate(tripStart)+
 		"</span></label>" +
 		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleWriteModal' onclick='modalSetDay("+num+");'/>" +
 		"<hr>" +
 		"</div>" +
 		"<div class='seul1_Item"+num+"' id='itemBoxWrap_"+num+"'></div>" +
 		"</div>" ;
+		tripStart.setDate(tripStart.getDate()+1);
 	return contents;
 }
 
