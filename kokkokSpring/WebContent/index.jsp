@@ -16,10 +16,10 @@
   <body>
   <%@ include file="/WEB-INF/views/include/nav.jsp"%>
     <!-- 대문 -->
-    <div class="hero-wrap js-fullheight2" style="background-image: url('${root}/resources/images/bg_1.jpg')">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_1.jpg')">
       <div class="overlay"></div>
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight2 align-items-center justify-content-start" data-scrollax-parent="true">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }"> 
           <!-- 대문 내용 -->        
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong><br></strong>전국 방방곡곡 여행지를 콕콕!</h1>
