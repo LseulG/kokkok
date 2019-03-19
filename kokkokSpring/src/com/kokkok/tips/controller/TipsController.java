@@ -3,6 +3,8 @@ package com.kokkok.tips.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +34,19 @@ public class TipsController {
 	private MainService mainService;
 	
 	@RequestMapping(value="/tips/list.kok", method=RequestMethod.GET)
-	public String tipsList () {
+	public String tipsList() {
 		return "tips/list";
 	}
 	
 	@RequestMapping(value="/tips/setList.kok",method=RequestMethod.POST ,headers= {"Content-type=application/json"})	
-	public @ResponseBody Map<String,Object> tipsList(@RequestBody Map<String,Object> map) {		
-		/*System.out.println("aaaaaaaaaaaaaa");*/
-		
+	public @ResponseBody Map<String,Object> tipsList(@RequestBody Map<String,Object> map) {	
+
 		List<TipsDto> tipsDtoList = tipsService.tipsList(map);
-		/*System.out.println(tipsDtoList.size() + "리스트 가져옵니까");*/
 		map.put("tipsList", tipsDtoList);
-				
+		
+		int getTipsListTotalCount = tipsService.getTipsListTotalCount(map);
+		map.put("totCount", getTipsListTotalCount);
+//				System.out.println(getTipsListTotalCount);
 		return map; 
 		
 	}
@@ -79,6 +82,8 @@ public class TipsController {
 	
 	@RequestMapping(value="/tips/view.kok",method=RequestMethod.GET)
 	public ModelAndView tipsView(@RequestParam String seq) {
+		mainService.updateHit(seq);
+		
 		/*System.out.println("tipsView : " + seq);*/
 		TipsDto tipsDto = tipsService.tipsView(seq);
 		/*System.out.println("글번호찍히나" + tipsDto.getSeq());*/
@@ -88,9 +93,20 @@ public class TipsController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/tips/modify.kok", method=RequestMethod.GET)
+	public ModelAndView tipsModify(@RequestParam String seq) {
+		/* System.out.println("tipsModify : " + seq); */
+		TipsDto tipsDto = tipsService.tipsView(seq);
+		/* System.out.println("글번호찍히나" + tipsDto.getSeq()); */
+		ModelAndView mav = new ModelAndView();			
+		mav.addObject("article",tipsDto);
+		mav.setViewName("tips/modify");
+		return mav;
+	}
+	
 	@RequestMapping(value="/tips/update.kok",method=RequestMethod.POST)
 	public ModelAndView tipsUpdate(@RequestParam Map<String, Object> map) {
-		
+		/* System.out.println("tipsUpdate : " + seq); */
 		int cnt = tipsService.tipsUpdate(map);	
 		String seq = (String)map.get("seq");		
 		String path = "tips/list";
@@ -104,7 +120,7 @@ public class TipsController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/tips/delete.kok",method=RequestMethod.POST)
+	@RequestMapping(value="/tips/delete.kok",method=RequestMethod.GET)
 	public ModelAndView tipsDelete(@RequestParam Map<String, Object> map) {
 		
 		int cnt = tipsService.tipsDelete(map);

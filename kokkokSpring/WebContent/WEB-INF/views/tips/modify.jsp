@@ -27,21 +27,29 @@
 	</div>
 </div>
 
-<section class="ftco-section ftco-degree-bg" style="padding-top: 20px;">
-		<div class="container" style="margin-left: 160px;">
+<section class="ftco-section ftco-degree-bg" style="padding-top: 20px; margin-left: 150px;">
+		<div class="container">
 			<div class="row">
 				<div>
-					<h3 style="text-align: center;">글수정</h3>            
+				
+					<h3 style="text-align: center;">글수정</h3>          
+					
+					<form name ="tipsModifyForm" id="tipsModifyForm" method="post" action="">				
+						<input type="hidden" name="bcode" id="bcode" value="">
+						<input type="hidden" name="subject" id="subject" value="">		
+						<input type="hidden" name="content" id="content" value="">
+						<input type="hidden" name="seq" id="seq" value="">  
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="이전제목이 여기적어집니다. 수정.">
+						<input type="text" id="localTitle" class="form-control" value="">
 					</div>
 			       	<div id="summernote"></div>
 			        <div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
-						<input type="button" value="등록" class="btn btn-primary py-3 px-5">
+						<input type="button" value="수정" class="btn btn-primary py-3 px-5" onclick="modifyBtn();">
 					</div>
 					<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
 						<input type="button" value="취소" class="btn btn-primary py-3 px-5">
 					</div>
+					</form>
 					
 				</div>
 			</div>
@@ -49,14 +57,43 @@
 	</section>
 	<!-- .section -->
 	
-<script>
-$('#summernote').summernote({
-  placeholder: '이전내용이 여기적어집니다. 수정.',
-  tabsize: 2,
-  height: 370,
-  width: 950
+<script type="text/javascript">
+
+$(document).ready(function() {
+	/* alert('${article.seq}'); */
+	$("#localTitle").val('${article.subject}');	
+	var setArticleContent = '${article.content}';
+	$('#summernote').summernote('code', setArticleContent);
 });
+
+ 
+function modifyBtn(){	
+	if(document.getElementById("localTitle").value == ""){
+		alert('장소를 지정해주세요.');
+	}else if ($('#summernote').summernote('isEmpty')) {
+		  alert('내용을 입력해 주세요.');	 
+	}else {
+		var markup = $("#summernote").summernote("code"); // 내용 가져오는거
+		$('#subject').val($('#localTitle').val());		
+		$('#content').val(markup);
+		$('#seq').val('${article.seq}');
+		$("#tipsModifyForm").attr("action","${root}/tips/update.kok").submit();
+	}
+}
+
 </script>
+	
+<script>
+$(document).ready(function() {
+    $('#summernote').summernote({
+    	dialogsInBody: true,
+    	tabsize: 2,
+    	height: 370,
+        width: 950,
+        placeholder: '내용을 입력해주세요...'
+    });
+});
+</script>	
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>

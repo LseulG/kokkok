@@ -15,10 +15,10 @@
     </select>
     
     <select id="tipsList" parameterType="map" resultType="com.kokkok.dto.TipsDto">
-	<!-- select b.* 
+	select b.* 
 	from (
          select rownum rn, a.* 
-	          from ( -->
+	          from ( 
 	                select bcode, seq, subject, userid, hit, recommcount, content, updatetime, 
                     case  
 	                    when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
@@ -27,49 +27,46 @@
 	                end logtime 
 	               		
 		       from board
-	           where bcode = 6 
-	        
-	        <if test="word != null and word != ''">
-	        	<choose>
-	        		<when test="key == 'subject'">
-	        		and b.subject like '%'||#{word}||'%'
+	           where bcode = 6
+	        	          	
+	    	<if test="searchKey != null and searchKey !=''">
+				<choose>
+	        		<when test="searchKey == 'subject'">
+	        		and b.subject like '%'||#{searchKey}||'%'
+	        		</when>
+	        		<when test="searchKey == 'name'">
+	        		and b.userid like '%'||#{searchKey}||'%'
+	        		</when>
+	        		<when test="searchKey == 'content'">
+	        		and b.content like '%'||#{searchKey}||'%'
 	        		</when>
 	        		<otherwise>
-	        		and b.${key} = #{word}
+	        		and b.${searchKey} = #{searchKey}
 	        		</otherwise>
 	        	</choose>
-	        </if>
+	    	</if>
+	    	
+	    	<if test="searchWord != null and searchWord != ''">
+	    	and (a.subject like '%'||#{searchWord}||'%')    	
+	    	</if>    
 	        
 	        order by seq desc 
-	  <!--       ) a 
-	    where rownum &lt;= #{end} 
-	    ) b 
-	where b.rn &gt; #{start}  -->
+	         ) a 
+	   where <![CDATA[ rownum <= #{endNum} ]]>) b
+	where b.rn >= #{startNum}
 	</select>
+	
+	<select id="getTipsListTotalCount" parameterType="java.util.Map" resultType="int">
+    	select count(*)
+		from board
+		where bcode = 6
+    </select>
     
-    
-    
-            
-    <!-- <select id="tipsList" parameterType="map" resultType="com.kokkok.dto.TipsDto">
-    	select a.seq, a.bcode, a.userid, a.subject, a.content, a.updatetime, a.recommcount, a.wishcount, a.hit, b.ccode,
-    		case when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
-                  then to_char(logtime, 'hh24:mi:ss') 
-                  else to_char(logtime, 'yy/mm/dd') 
-             end logtime 
-    	from board a, board_list b 
-    	where a.bcode = b.bcode and b.ccode = #{ccode}
-    	<if test="bcode != null and bcode !=''">
-		and a.bcode = #{bcode}
-    	</if>
-    	<if test="word != null and word != ''">
-    	and (a.subject like '%'||#{word}||'%' or a.content like '%'||#{word}||'%')    	
-    	</if>    	
-    	order by a.seq desc
-    </select> -->
+  
     
     <update id="tipsUpdate" parameterType="map">
     	update board
-		set bcode = #{bcode}, subject = #{subject}, content = #{content}, updatetime = sysdate
+		set subject = #{subject}, content = #{content}, updatetime = sysdate
 		where seq = #{seq}
     </update>
     
@@ -78,7 +75,6 @@
 	     declare 
 	     begin 	      
 	      delete from recommend where seq = #{seq}; 
-	      delete from wish where seq = #{seq}; 
 	      delete from board where seq = #{seq}; 
 	     end 
 	    }

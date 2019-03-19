@@ -16,18 +16,6 @@
 
 <script type="text/javascript">
 
-function searchClick(){
-	searchMap();
-}
-
-/* $("body").on("hidden.bs.modal", ".modal", function () { //모달 꺼질때
-	//tipsType 세팅
-    document.getElementById("localTitle").value = null;
-	$("#summernote").summernote("reset");
-    selectedMarker = null;
-    document.getElementById("keyword").value = "인천 맛집";
- });
- */
 function tipsBtn(){	
 	if($("#title").val().trim().length == 0){
 		alert('제목을 입력해 주세요.');
@@ -66,8 +54,8 @@ function tipsBtn(){
 
 					
 
-	<section class="ftco-section ftco-degree-bg" style="padding-top: 20px;">
-		<div class="container" style="margin-left: 160px;">
+	<section class="ftco-section ftco-degree-bg" style="padding-top: 20px; margin-left: 100px;">
+		<div class="container">
 			<div class="row">
 				<div>
 					<h3 style="text-align: center;">글작성</h3> 

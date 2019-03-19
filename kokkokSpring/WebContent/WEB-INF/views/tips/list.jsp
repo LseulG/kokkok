@@ -5,94 +5,17 @@
 <head>
 <%@ include file="/WEB-INF/views/include/link.jsp"%> 
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>   
+<script type="text/javascript">
+var contextPath='<%=request.getContextPath()%>';
+</script>
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/table.css">  
 <link rel="stylesheet" href="${root}/resources/css/community.css">
-
-<script type="text/javascript">
-/* 더보기 */
-var i=0, maxnum=4 , reviewnum=0; //페이징처리 변수
-var tipsBcode = "";
-var tipsWord = "";
-var tipsKey = "";
-var tipsAjaxData ="";
-
-//검색
-function tipsSearch(){
-	i=0;
-	maxnum=4;
-	tipsWord = $("#tipsSearchKeyword").val();
-	$('#makeTipsList').empty();
-	tipsAjaxData = JSON.stringify({'bcode' : '6', 'pg' : '1', 'key' : tipsKey, 'word' : tipsWord});
-	alert(tipsAjaxData);
-    $.ajax({
-        url: "${root}/tips/setList.kok",
-        type: "POST",
-        contentType : 'application/json;charset=UTF-8',
-        dataType: "json",
-		 	data: tipsAjaxData,
-        success: function(response) {
-        	$('#makeTipsList').empty();
-        	makeTipsList(response);
-        }
-    });
-}
-
-
-//view화면 이동
-$(document).on("click", ".tipsListSeq", function() {
-	/* alert($(this).attr("tipsListSeq")); */
-	$('#seq').val($(this).attr("tipsListSeq"));
-	/* alert($('#seq').val()); */
-	$("#tipsListForm").attr("action","${root}/tips/view.kok").submit();
-});
- 
-/* var key="";
-var word =""; */
- 
-function getTipsList(){ //pg, bcode, key, word 
-	tipsAjaxData = JSON.stringify({'bcode' : tipsBcode, 'pg' : '1', 'key' : tipsKey, 'word' : tipsWord});
-	$.ajax({
-		  url: "${root}/tips/setList.kok",
-		  type: "POST",
-		  contentType : 'application/json;charset=UTF-8',
-		  dataType: "json",
-		  data: tipsAjaxData,
-		  success: function(response){			  
-			  makeTipsList(response);			  
-		  }
-	}); 
-	
-}
-
-
-function makeTipsList(response){
-	
-	var tipsList = response.tipsList;
-	var tipsViewlist = "";
-	  for(var i=0;i<tipsList.length;i++) { 
-		  
-		  	
-			
-			tipsViewlist += '<tr>';
-			tipsViewlist += '<td align="center" class="column1a">'+tipsList[i].seq+'</td>';
-			tipsViewlist += '<td style="word-break: break-all;" class="column2a tipsListSeq" tipsListSeq="'+tipsList[i].seq+'">'+tipsList[i].subject+'</td>';
-			tipsViewlist += '<td style="word-break: break-all;" class="column3a">'+tipsList[i].userid+'</td>';
-			tipsViewlist += '<td align="center" class="column4a">'+tipsList[i].logtime+'</td>';
-			tipsViewlist += '<td align="center" class="column5a">'+tipsList[i].hit+'</td>';
-			tipsViewlist += '<td align="center" class="column6a">'+tipsList[i].recommcount+'</td>';
-			tipsViewlist += '</tr>';
-			
-			
-	
- 	} 
-	$('#makeTipsList').append(tipsViewlist);
-}
-
-$(document).ready(function() {
-	getTipsList();
-});
-
-</script>
+<script src="${root}/resources/js/tips_list.js"></script> 
+ <style>
+	#lastPage,#firstPage,#nextPageGroup,#prevPageGroup,.naviNum {
+		cursor: Pointer;
+	}	
+	</style>
 
 </head>
 
@@ -109,12 +32,12 @@ $(document).ready(function() {
 	</div>
 </div>
   
-<section class="ftco-section bg-light">    
+<section class="ftco-section bg-light" style="padding-top: 10px;">    
 	<div class="row">
 		
 	
 			<div class="container-table100">
-				<div class="wrap-table100">
+				<div class="wrap-table100" style="height: 1000px;">
 				<form action="" id="tipsListForm" name="tipsListForm" method="get">
 				<input type="hidden" name="seq" id="seq" value=""/>
 					<table>
@@ -130,28 +53,52 @@ $(document).ready(function() {
 						</thead>
 						
 						<tbody id="makeTipsList">
+					
+						</tbody>
+					</table>
 				
-					</tbody>
-				</table>
-				
-					  </form>
+				</form>
 					  
-					  
-					  <div class="row mt-5">
-						<div class="col text-center">
-							<div class="block-27">
-								<ul id="navigator">
-									<li><span>&lt;</span></li>
-									<li><span>1</span></li>
-									<li><span>2</span></li>
-									<li><span>3</span></li>
-									<li><span>4</span></li>
-									<li><span>5</span></li>									
-									<li class='naviNum' style="bgcolor: black;"><span>&gt;</span></li>									
-								</ul>
+					 	<div class="row mt-5">
+							<div class="col text-center">
+								<div class="block-27">
+									<ul id="navigator">
+								
+								
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
+						
+						
+						
+								<div class="row" style="text-align: center; margin-top: 20px;">
+								   <div style="width: 80px; margin-right:10px; margin-left: 425px;">
+							        
+										<select name="searchKey" id="searchKey" style="height: 54px; width: 70px;">
+											<option value="subject">글제목
+											<option value="name">글쓴이
+											<option value="content">글내용
+										</select>
+										
+									</div>
+								
+									<input type="text" id="searchWord" class="form-control" placeholder="검색어를 입력하세요" style="width: 180px;"> &nbsp;&nbsp;
+								
+									<input type="button" id="getTipsList" value="검색" class="btn btn-primary py-2 px-4">
+									
+									
+									
+									
+								</div>
+								<div align="right">
+							 		<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4" onclick="location.href='${root}/tips/write.kok'">
+	            				</div>
+				
+						
+						
+						
+				
 				</div>
 		    </div>
 	
@@ -159,28 +106,11 @@ $(document).ready(function() {
     </div>
     
 					
-				<div align="right">
-							<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4" onclick="location.href='${root}/tips/write.kok'">
-				</div>
-					
-				   
-			          
-	               <div style="width: 180px; float: left; margin-right:10px; margin-left: 380px; margin-top: 20px;">
-		              <select name="key" id="skey" class="inp">
-						<option value="subject">글제목
-						<option value="name">글쓴이
-						<option value="seq">글번호
-					  </select> 
-					<br>
-					   <span id="sear1"><input type="text" name="word" id="sword" size="22"
-						class="inp" placeholder="검색어 입력"></span> 
-	              	    </div>		
+				
+				
+	              		
 				 
-				  
-				   <div style="float: left; margin-top: 26px;">
-					  <input id="searchBtn" type="button" value="검색" class="btn btn-primary py-2 px-4">	
-				   </div> 
-				  
+				   
 	
 
 </section>
