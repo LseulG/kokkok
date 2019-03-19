@@ -5,7 +5,7 @@ var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
 var navigation_size = 10;
 // 관광 목록 한 페이지의 결과 수
-var listNumOfRows = 5;
+var listNumOfRows = 10;
 
 var i=0, maxnum=4 , reviewnum=0; //페이징처리 변수
 
