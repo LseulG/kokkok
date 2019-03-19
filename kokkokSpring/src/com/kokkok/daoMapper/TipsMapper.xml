@@ -28,28 +28,19 @@
 	               		
 		       from board
 	           where bcode = 6
-	        	          	
-	    	<if test="searchKey != null and searchKey !=''">
+	       <if test="searchWord != null and searchWord != ''"> 	          	
 				<choose>
 	        		<when test="searchKey == 'subject'">
-	        		and b.subject like '%'||#{searchKey}||'%'
-	        		</when>
-	        		<when test="searchKey == 'name'">
-	        		and b.userid like '%'||#{searchKey}||'%'
-	        		</when>
+	        		and subject like '%'||#{searchWord}||'%'
+	        		</when>	        		
 	        		<when test="searchKey == 'content'">
-	        		and b.content like '%'||#{searchKey}||'%'
+	        		and content like '%'||#{searchWord}||'%'
 	        		</when>
 	        		<otherwise>
-	        		and b.${searchKey} = #{searchKey}
+	        		and ${searchKey} = #{searchWord}
 	        		</otherwise>
 	        	</choose>
 	    	</if>
-	    	
-	    	<if test="searchWord != null and searchWord != ''">
-	    	and (a.subject like '%'||#{searchWord}||'%')    	
-	    	</if>    
-	        
 	        order by seq desc 
 	         ) a 
 	   where <![CDATA[ rownum <= #{endNum} ]]>) b

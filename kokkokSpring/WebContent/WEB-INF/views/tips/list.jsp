@@ -68,10 +68,12 @@ var contextPath='<%=request.getContextPath()%>';
 									</ul>
 								</div>
 							</div>
+							
+							
 						</div>
 						
 						
-						
+							
 								<div class="row" style="text-align: center; margin-top: 20px;">
 								   <div style="width: 80px; margin-right:10px; margin-left: 425px;">
 							        
@@ -89,13 +91,19 @@ var contextPath='<%=request.getContextPath()%>';
 									
 									
 									
+	            				
 									
 								</div>
-								<div align="right">
-							 		<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4" onclick="location.href='${root}/tips/write.kok'">
-	            				</div>
-				
-						
+								<div style="text-align: right;">
+									<c:if test="${userInfo == null}">
+										<input id="impossibleAlert" type="button" value="글쓰기" class="btn btn-primary py-2 px-4">
+									</c:if>
+									
+									<c:if test="${userInfo != null}">
+										<input type="button" value="글쓰기" class="btn btn-primary py-2 px-4" onclick="location.href='${root}/tips/write.kok'">
+									</c:if>
+							 		</div>
+								
 						
 						
 				

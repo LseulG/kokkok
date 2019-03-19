@@ -44,16 +44,17 @@ public class TipsServiceImpl implements TipsService {
 	public List<TipsDto> tipsList(Map<String, Object> map) {
 		TipsDao tipsDao = sqlSessionTemplate.getMapper(TipsDao.class);	
 
-		
 		String listNumOfRowsStr = map.get("listNumOfRows")+"";
 		int listNumOfRows = Integer.parseInt(listNumOfRowsStr);
 		
 		String pgStr = map.get("pg")+"";
 		int pg =  Integer.parseInt(pgStr);
-	
+		
+		/*System.out.println("listNumOfRowsStr =" + listNumOfRowsStr);
+		System.out.println("pgStr =" + pgStr);*/
 		int startNum = listNumOfRows * pg - (listNumOfRows - 1);
 		int endNum = listNumOfRows * pg;
-		
+			
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		

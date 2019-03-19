@@ -77,7 +77,9 @@ function tipsBtn(){
 					
 					</div>
 					<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
+						<a href="javascript:history.back()">
 						<input name="cencel" type="button" value="취소" class="btn btn-primary py-3 px-5">
+						</a>
 					</div>
 					
 					</form>

@@ -9,7 +9,7 @@
 <%@ include file="/WEB-INF/views/include/loader.jsp"%>   
 <link rel="stylesheet" href="${root}/resources/css/community.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
 </head>
 
 <body>
@@ -47,7 +47,9 @@
 						<input type="button" value="수정" class="btn btn-primary py-3 px-5" onclick="modifyBtn();">
 					</div>
 					<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">
+						<a href="javascript:history.back()">
 						<input type="button" value="취소" class="btn btn-primary py-3 px-5">
+						</a>
 					</div>
 					</form>
 					

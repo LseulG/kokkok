@@ -5,7 +5,7 @@ var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
 var navigation_size = 10;
 // 관광 목록 한 페이지의 결과 수
-var listNumOfRows = 5;
+var listNumOfRows = 10;
 
 var i=0, maxnum=4 , reviewnum=0; //페이징처리 변수
 
@@ -18,8 +18,6 @@ var searchKey = "";
 var tipsAjaxData ="";
 
 var username = "";
-
-var seq = "";
 
 //일정 타입(0=모든 일정, 1=여행 계획, 2=여행 일정)
 
@@ -45,7 +43,7 @@ function tipsSearch(){
 	searchKey = $("#searchKey").val();
 	searchWord = $("#searchWord").val();
 	$('#makeTipsList').empty();
-	reviewAjaxData = JSON.stringify({'username' : 'username', 'seq' : 'seq', 'bcode' : '6', 'pg' : currPageNum, 'searchKey' : searchKey, "searchWord": searchWord, "listNumOfRows": listNumOfRows});
+	reviewAjaxData = JSON.stringify({'username' : 'username', 'bcode' : '6', 'pg' : currPageNum, 'searchKey' : searchKey, "searchWord": searchWord, "listNumOfRows": listNumOfRows});
     $.ajax({
         url: contextPath+"/tips/setList.kok",
         type: "POST",
@@ -128,12 +126,18 @@ $(document).ready(function() {
 	
 	// Search Button Click Event
 	$("#getTipsList").click(function() {
-		currPageNum = 1;
-		getTipsList();
+		
 		tipsSearch()
 	});
 	
 });
+
+
+//비 로그인시 리뷰등록 클릭
+$(document).on("click", "#impossibleAlert", function() {
+	alert("로그인 후 이용 가능합니다.");
+});
+
 
 //jquery를 이용해서 request parameter를 가져오기 위한 함수 코드
 function urlParam(name){
@@ -274,7 +278,7 @@ $(document).on("click", "#prevPageGroup", function() {
 });
 
 $(document).on("click", ".naviNum", function() {	
-	currPageNum = $(this).text().trim();	
+	currPageNum = $(this).text().trim();
 	getTipsList();
 	makeNavigator();	
 });
