@@ -23,6 +23,7 @@ public interface ScheduleService {
 	public int scheduleDelete(String seq);
 	
 	//수정
+	public int scheduleReviewModiDelete(String seq);
 	public int scheduleUpdate(Map<String, Object> map);
 	public int scheduleReviewUpdate(Map<String, Object> map);
 }

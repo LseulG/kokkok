@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="${root}/resources/css/schedule.css">
 <script src="${root}/resources/js/schedule_view.js"></script>
 <script type="text/javascript">
+// 지도
+
+//////////////////////////////
+
+
 $(document).ready(function() {	
 	// 찜, 추천, 댓글 가져오기
 	getWishView();
@@ -253,10 +258,7 @@ function getCommentsList(){
 		<div class="col-md-12 ftco-animate destination">
 			<div class="text p-3 row">			
 				<div class="col-md-4 ftco-animate destination">
-		    		<!-- 
-		    		 <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');"></a>
-		    		 -->
-					<img src="${root}/resources/images/destination-1.jpg" alt="" class="img-fluid">
+					<img src="${root}/resources/images/${scheduleArticle.savefolder}/${scheduleArticle.savepicture}" alt="" class="img-fluid">
 				</div>
 				<div class="col-md-8">
 						<c:choose>

@@ -10,9 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(sseq, seq, startdate, enddate, originpicture, savefolder,
 			savepicture, persons, thema)
 			values (schedule_seq.nextval, #{seq},
-			#{startdate}, #{enddate},
-			'image_8.jpg', 'resources/images',
-			'image_8.jpg', #{persons},
+			to_date(#{startdate},'YYYY-MM-DD'), to_date(#{enddate},'YYYY-MM-DD'),
+			#{originpicture}, #{savefolder},
+			#{savepicture}, #{persons},
 			#{thema})
 		into board 
 			(seq, bcode, userid,
@@ -26,6 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getNextSseq" resultType="int">
 		select max(sseq) from schedule
+	</select>
+	<select id="countReview" parameterType="String" resultType="int">
+		<![CDATA[select count(*) from board where seq = #{seq}]]>
 	</select>
 
 	<insert id="scheduleReviewWrite" parameterType="java.util.Map">
@@ -83,13 +86,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		declare
 		begin
 		delete from comments where seq = #{seq};
-		delete from recommend
-		where seq = #{seq};
+		delete from recommend where seq = #{seq};
 		delete from wish where seq = #{seq};
-		delete from
-		location where seq = #{seq};
-		delete from schedule_board where seq =
-		#{seq};
+		delete from location where seq = #{seq};
+		delete from schedule_board where seq = #{seq};
 		delete from board where seq = #{seq};
 		end
 		}
@@ -100,42 +100,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		declare
 		begin
 		delete from comments where seq = #{seq};
-		delete from recommend where
-		seq = #{seq};
+		delete from recommend where seq = #{seq};
 		delete from wish where seq = #{seq};
-		delete from
-		schedule_board where seq = #{seq};
-		delete from schedule where seq =
-		#{seq};
+		delete from schedule_board where seq = #{seq};
+		delete from schedule where seq = #{seq};
 		delete from board where seq = #{seq};
 		end
 		}
 	</delete>
 
 	<update id="scheduleUpdate" parameterType="java.util.Map">
+		{call
+		declare
+		begin
 		update schedule
-		set startdate=#{startdate}, enddate=#{enddate}, 
+		 set startdate=#{startdate}, enddate=#{enddate}, 
 			originpicture='image_8.jpg', savefolder='resources/images', savepicture='image_8.jpg', 
 			persons=#{persons}, thema=#{thema}
-		where sseq = #{sseq} or seq=#{seq}
-		
+		 where seq=#{hseq};
 		update board
-		set subject=#{subject}, content=#{content}, updatetime=sysdate
-		where sseq = #{sseq} or seq=#{seq}
+		 set bcode=#{sbcode}, subject=#{ssubject}, content=#{scontent}, updatetime=sysdate
+		 where seq=#{hseq};
+		end
+		}
 	</update>
 
 	<update id="scheduleReviewUpdate" parameterType="java.util.Map">
+		{call
+		declare
+		begin
 		update board 
-		set subject=#{subject}, content=#{content}, updatetime=sysdate
-		where seq=#{seq}
-		
+		 set subject=#{subject}, content=#{content}, updatetime=sysdate
+		 where seq=#{seq};
 		update location 
-		set location=#{location}, lat=#{lat}, lng=#{lng}, address=#{address}, simpleaddr=#{simpleaddr}
-		where seq=#{seq}
-		
+		 set location=#{location}, lat=#{lat}, lng=#{lng}, address=#{address}, simpleaddr=#{simpleaddr}
+		 where seq=#{seq};
 		update schedule_board 
-		set tripday=#{tripday}, step=#{step}
-		where seq=#{seq}
+		 set tripday=#{tripday}, step=#{step}
+		 where seq=#{seq};
+		end
+		}
 	</update>
 </mapper>
 

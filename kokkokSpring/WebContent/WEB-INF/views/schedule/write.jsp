@@ -5,14 +5,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>방방콕콕 - 여행 일정 쓰기123</title>
+    <title>방방콕콕 - 여행 일정 쓰기</title>
   	<%@ include file="/WEB-INF/views/include/link.jsp"%>
   	<%@ include file="/WEB-INF/views/include/loader.jsp"%> 
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-  
-  
+ 	
 <script type="text/javascript">
+var setSubject = "";
+var setContent = "";
+var clickParentClass="", clickSubject = "", clickContent ="", clickLat = "",
+clickLng = "", clickAddress ="";
+
 $(document).ready(function() {
 	$("#registerBtn").click(function() {
 		if($("#scheduleTitle").val() == "") {
@@ -37,6 +41,22 @@ $(document).ready(function() {
 		}
 	});
 });
+
+$(document).on("click", ".modifyBox", function() {
+	var seq = $(this).siblings(".seq").val();
+	setSubject = $(this).siblings(".subject").val();
+	setContent = $(this).siblings(".content").val();	
+	var tempClass= $(this).parent().attr("class");
+	var tempClassArr = tempClass.split(" ");
+	clickParentClass = tempClassArr[0];
+	clickSubject = "";
+	clickContent ="";
+	clickLat = "";
+	clickLng = "";
+	clickAddress ="";	
+	
+});
+
 </script>
 <style type="text/css">
 	#uploadFile{display: none;}
@@ -46,6 +66,7 @@ $(document).ready(function() {
 <body>
    <%@ include file="/WEB-INF/views/include/nav.jsp"%>
    <%@ include file="/WEB-INF/views/schedule/writemodal.jsp"%>
+   <%@ include file="/WEB-INF/views/schedule/writeReviewmodal.jsp"%>
    
 <!-- 이미지 -->
     <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
@@ -61,7 +82,7 @@ $(document).ready(function() {
 
 <!-- 내용시작 -->
 	<section class="ftco-section ftco-degree-bg">
-	<form action="" id="scheduleWriteForm" method="POST">
+	<form action="" id="scheduleWriteForm" method="POST" enctype="multipart/form-data">
 	
 	<input type="hidden" name="sbcode" id="sbcode" value="">
 	<input type="hidden" name="ssubject" id="ssubject" value="">
