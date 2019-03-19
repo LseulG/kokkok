@@ -7,13 +7,25 @@ var tripThema = null;
 var tripDays = 0;
 var preTripDays = 0;
 var selectCont ="", selectBcode=0;
+
+
+
 $(document).ready(function() {	
 	$("#setSchedule").click(function(){
 		setScheduleInfo();
 	});
 });
 
+//function  premodalSetDay(){}
+
+function setPreDays(tripDays){
+	preTripDays = tripDays;
+	for(var i=1; i<tripDays+1; i++){
+		$('#mapDay').append("<option value='day_"+i+"'>"+i+"일차</option>");
+	}
+}
 function setScheduleInfo(){
+	alert("preTripDays:"+preTripDays);/////////////
 	tripType = $("#tripType").val();
 	tripStart = $("#checkin_date").val();
 	tripEnd = $("#checkout_date").val();
@@ -24,6 +36,7 @@ function setScheduleInfo(){
 	var startDay = new Date(tripStart);	
 	var endDay = new Date(tripEnd);
 	tripDays = dateDiff(startDay, endDay);
+	alert("tripDays:" + tripDays);///////////////////
 	
 	if (tripStart == "" || tripEnd == "") {
 		alert("출발일과 도착일을 선택해주세요.");
@@ -46,10 +59,13 @@ function setScheduleInfo(){
 		if(result){
 			
 			if(preTripDays == 0){	// 처음 세팅
+				alert("setDays");///////////////////
 				setDays(tripDays);
 			} else if(preTripDays < tripDays){		// 여행일수 늘어나면  3 > 5
+				alert("addDays");///////////////////
 				addDays(preTripDays,tripDays);
 			} else if(preTripDays > tripDays){		// 여행일수 줄어들면 5 > 3
+				alert("removeDays");///////////////////
 				removeDays(preTripDays,tripDays);
 			} else {	// 여행일수 같으면 3 > 3
 				//변화 x
@@ -90,7 +106,7 @@ function dateDiff(start, end){
 }
 
 function selectChange(){
-	alert("oh");
+	alert("selectChange");
 	mapRemove();
 	mapView(positions_2);
 }
@@ -101,7 +117,7 @@ function addTag(num){
 	var contents = "<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
 		"<div class='sl-day' id='sl_day_"+num+"'>" +
 		"<label class='seul1' onclick='dayTogg("+num+")'>"+num+"일차<span>2018.08.0"+num+"</span></label>" +
-		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleWriteModal' onclick='modalSetDay("+num+");'/>" +
+		"<input type='button' id='' value='+일정 추가' class='btn btn-primary scheduleAdd' data-toggle='modal' data-target='#scheduleModifyModal' onclick='modalSetDay("+num+");'/>" +
 		"<hr>" +
 		"</div>" +
 		"<div class='seul1_Item"+num+"' id='itemBoxWrap_"+num+"'></div>" +
@@ -110,6 +126,7 @@ function addTag(num){
 }
 
 function setDays(tripDays){
+	preTripDays = tripDays;
 	for(var i=1; i<tripDays+1; i++){
 		$(addTag(i)).appendTo("#daysAdd");
 		sortCall(i);
@@ -258,6 +275,7 @@ function createItem(numm){
 			var seq = $(this).siblings(".seq").val();
 			$(this).parent().remove();
 	        reorder(numm);
+	        listReorder();
 		}
 	});
 // 숫자를 다시 붙인다.

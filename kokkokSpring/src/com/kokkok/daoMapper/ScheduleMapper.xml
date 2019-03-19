@@ -11,9 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			savepicture, persons, thema)
 			values (schedule_seq.nextval, #{seq},
 			#{startdate}, #{enddate},
-			'image_8.jpg', 'resources/images',
-			'image_8.jpg', #{persons},
-			#{thema})
+			#{originpicture}, #{savefolder}, #{savepicture}, 
+			#{persons}, #{thema})
 		into board 
 			(seq, bcode, userid,
 			subject, content, logtime, updatetime,

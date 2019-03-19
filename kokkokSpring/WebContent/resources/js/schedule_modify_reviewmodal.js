@@ -1,27 +1,30 @@
 
-
-$("#scheduleWriteModal").on("shown.bs.modal", function(){
-	searchMap();
+$("#scheduleReviewModifyModal").on("shown.bs.modal", function(){//모달 켜질때	
+	$("#MRlocalTitle").val(setSubject);	
+    $('#MRsummernote').summernote('code', setContent);  
+    msearchMap();
 });
 
-var selectLoc = "", selectLat = "", selectLng = "", selectAddr = "";
+
+
+var mselectLoc = "", selectLat = "", selectLng = "", selectAddr = "";
 
 //+) 선택 마커와 이미지 세팅
-var selectedMarker = null;
-var clickImage = new daum.maps.MarkerImage(
+var mselectedMarker = null;
+var mclickImage = new daum.maps.MarkerImage(
 	    'https://phinf.pstatic.net/memo/20190225_65/sseul878_1551068626698VMnPU_PNG/marker_red2.png?type=w740',
 	    new daum.maps.Size(40, 42), new daum.maps.Point(13, 37));
-var normalImage = new daum.maps.MarkerImage(
+var mnormalImage = new daum.maps.MarkerImage(
 		'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png	',
 		new daum.maps.Size(24, 35), new daum.maps.Point(13, 37));
-var originImage = null;
-var searchCnt = 0;
+var moriginImage = null;
+var msearchCnt = 0;
 	
-function searchMap(){
+function msearchMap(){
 	// 마커를 담을 배열입니다
 	var markers = [];
 	
-	var smapContainer = document.getElementById('searchMap'), // 지도를 표시할 div 
+	var smapContainer = document.getElementById('MRmodifyMap'), // 지도를 표시할 div 
 	smapOption = {
 	    center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	    level: 3 // 지도의 확대 레벨
@@ -41,7 +44,7 @@ function searchMap(){
 	
 	// 키워드 검색을 요청하는 함수입니다
 	function searchPlaces() {
-	    var keyword = document.getElementById('keyword').value;
+	    var keyword = document.getElementById('MRkeyword').value;
 	    if (!keyword.replace(/^\s+|\s+$/g, '')) {
 	        alert('키워드를 입력해주세요!');
 	        return false;
@@ -56,7 +59,7 @@ function searchMap(){
 	        // 정상적으로 검색이 완료됐으면
 	        // 검색 목록과 마커를 표출합니다
 	        displayPlaces(data);
-	        searchCnt = 1;
+	        msearchCnt = 1;
 	
 	        // 페이지 번호를 표출합니다
 	        displayPagination(pagination);
@@ -74,8 +77,8 @@ function searchMap(){
 	
 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 	function displayPlaces(places) {
-	    var listEl = document.getElementById('splacesList'), 
-	    menuEl = document.getElementById('menu_wrap'),
+	    var listEl = document.getElementById('MRsplacesList'), 
+	    menuEl = document.getElementById('MRmenu_wrap'),
 	    fragment = document.createDocumentFragment(), 
 	    bounds = new daum.maps.LatLngBounds(), 
 	    listStr = '';
@@ -121,48 +124,48 @@ function searchMap(){
 	            itemEl.onmousedown = function () {
 	            	var result = confirm('해당 지점을 선택?');
 	            	if (result) {
-	            		if(selectedMarker != null){
-	            			if (searchCnt != 0){
-	            				selectedMarker.setMap(null);	
+	            		if(mselectedMarker != null){
+	            			if (msearchCnt != 0){
+	            				mselectedMarker.setMap(null);	
 	            			} else {
-	            				selectedMarker.setImage(originImage);            			
+	            				mselectedMarker.setImage(moriginImage);            			
 	            			}
 	            		}
-	            		selectedMarker = smarker;
-	            		originImage = smarker.getImage();
-	            		smarker.setImage(clickImage);
+	            		mselectedMarker = smarker;
+	            		moriginImage = smarker.getImage();
+	            		smarker.setImage(mclickImage);
 	            		
-	            		selectLoc = title;
+	            		mselectLoc = title;
 	            		selectLat = smarker.getPosition().getLat();
 	            		selectLng = smarker.getPosition().getLng();	            			
-	            		selectAddr = document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML;
+	            		selectAddr = document.getElementById("MRjibunAddress"+(smarker.getZIndex()+1)).innerHTML;
 	            		
-	            		document.getElementById("localTitle").value = title;
-	            		searchCnt = 0;
+	            		document.getElementById("MRlocalTitle").value = title;
+	            		msearchCnt = 0;
 	            	}		
 	           	};
 	            
 	            daum.maps.event.addListener(smarker, 'click', function() {
 	            	var result = confirm('해당 지점을 선택하시겠습니까?');
 	            	if (result) {
-	            		if(selectedMarker != null){
-	            			if (searchCnt != 0){
-	            				selectedMarker.setMap(null);	
+	            		if(mselectedMarker != null){
+	            			if (msearchCnt != 0){
+	            				mselectedMarker.setMap(null);	
 	            			} else {
-	            				selectedMarker.setImage(originImage);            			
+	            				mselectedMarker.setImage(moriginImage);            			
 	            			}
 	            		} 
-	            		selectedMarker = smarker;
-	            		originImage = smarker.getImage();
-	            		smarker.setImage(clickImage);
+	            		mselectedMarker = smarker;
+	            		moriginImage = smarker.getImage();
+	            		smarker.setImage(mclickImage);
 	            		
-	            		selectLoc = title;
+	            		mselectLoc = title;
 	            		selectLat = smarker.getPosition().getLat();
 	            		selectLng = smarker.getPosition().getLng();	            			
-	            		selectAddr = document.getElementById("jibunAddress"+(smarker.getZIndex()+1)).innerHTML;
+	            		selectAddr = document.getElementById("MRjibunAddress"+(smarker.getZIndex()+1)).innerHTML;
 	            		
-	            		document.getElementById("localTitle").value = title;  
-	            		searchCnt = 0;
+	            		document.getElementById("MRlocalTitle").value = title;  
+	            		msearchCnt = 0;
 	            	} 
 	            });
 	        })(smarker, places[i].place_name);
@@ -186,10 +189,10 @@ function searchMap(){
 	                '   <h5>' + places.place_name + '</h5>';
 	
 	     if (places.road_address_name) {
-	         itemStr += '    <span id="roadAddress'+(index+1)+'">' + places.road_address_name + '</span>' +
-	                     '   <span class="jibun gray" id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>';
+	         itemStr += '    <span id="MRroadAddress'+(index+1)+'">' + places.road_address_name + '</span>' +
+	                     '   <span class="jibun gray" id="MRjibunAddress'+(index+1)+'">' +  places.address_name  + '</span>';
 	     } else {
-	         itemStr += '    <span id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>'; 
+	         itemStr += '    <span id="MRjibunAddress'+(index+1)+'">' +  places.address_name  + '</span>'; 
 	     }
 	                 
 	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
@@ -219,9 +222,9 @@ function searchMap(){
 	    smarker.setMap(smap); // 지도 위에 마커를 표출합니다
 	    markers.push(smarker);  // 배열에 생성된 마커를 추가합니다
 	    
-	    if(selectedMarker != null){
-	    	selectedMarker.setZIndex(888);
-		    selectedMarker.setMap(smap);	
+	    if(mselectedMarker != null){
+	    	mselectedMarker.setZIndex(888);
+		    mselectedMarker.setMap(smap);	
 	    }
 	    return smarker;
 	}
@@ -236,7 +239,7 @@ function searchMap(){
 	
 	// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 	function displayPagination(pagination) {
-	    var paginationEl = document.getElementById('pagination'),
+	    var paginationEl = document.getElementById('MRpagination'),
 	        fragment = document.createDocumentFragment(),
 	        i; 
 	

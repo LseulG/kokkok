@@ -5,10 +5,10 @@ var tripType = null;
 var tripPersons = null;
 var tripThema = null;
 var tripDays = 0;
+var myTripStart = null;
 var preTripDays = 0;
 var totalReview = 0;
 var selectCont ="", selectBcode=0;
-var myTripStart = null;
 $(document).ready(function() {	
 	$("#setSchedule").click(function(){
 		setScheduleInfo();
@@ -91,6 +91,7 @@ function setScheduleInfo(){
 			$('#enddate').val(tripEnd);
 			$('#persons').val(tripPersons);
 			$('#thema').val(tripThema);
+			
 		} 
 	}
 }
@@ -105,12 +106,6 @@ function dateDiff(start, end){
 	return days;
 }
 
-function selectChange(){
-	alert("oh");
-	mapRemove();
-	mapView(positions_2);
-}
-
 function getFormatDate(date){
 	var year = date.getFullYear();                   //yyyy
 	var month = (1 + date.getMonth());              //M
@@ -121,12 +116,17 @@ function getFormatDate(date){
 	
 }
 
-
+function selectChange(){
+	alert("oh");
+	mapRemove();
+	mapView(positions_2);
+}
 
 
 /*-------- 여행일수 변경 --------*/
 function addTag(num){
 	myTripStart = new Date(myTripStart);
+	
 	var contents = 
 		"<div class='sl-oneDay' id='sl_oneDay_"+num+"'>" + 
 		"<div class='sl-day' id='sl_day_"+num+"'>" +
@@ -138,7 +138,8 @@ function addTag(num){
 		"</div>" +
 		"<div class='seul1_Item"+num+"' id='itemBoxWrap_"+num+"'></div>" +
 		"</div>" ;
-		myTripStart = myTripStart.setDate(myTripStart.getDate()+1);
+	
+	myTripStart = myTripStart.setDate(myTripStart.getDate()+1);
 	return contents;
 }
 
@@ -259,10 +260,9 @@ function createItem(numm){
             $(this).css('background', 'none');
             $(this).find('.modifyBox').hide();
             $(this).find('.deleteBox').hide();
-            
         }
     )
-	.append("<label class='modifyBox'>수정</label>")		// 아이템에 삭제 버튼 추가
+	.append("<label class='modifyBox' data-toggle='modal' data-target='#scheduleReviewWriteModifyModal' onclick=''>수정</label>")		// 아이템에 삭제 버튼 추가
 	.append("<label class='deleteBox'>삭제</label>")		// 아이템에 삭제 버튼 추가
 	.append("<div class='sl-loc-cont itemCont"+numm+"'>" +
 			"<p><u>신기하다 신기해</u></p>" +

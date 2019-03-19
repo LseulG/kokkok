@@ -1,6 +1,6 @@
 
 
-$("#scheduleWriteModal").on("shown.bs.modal", function(){
+$("#scheduleModifyModal").on("shown.bs.modal", function(){
 	searchMap();
 });
 
@@ -21,7 +21,7 @@ function searchMap(){
 	// 마커를 담을 배열입니다
 	var markers = [];
 	
-	var smapContainer = document.getElementById('searchMap'), // 지도를 표시할 div 
+	var smapContainer = document.getElementById('modifyMap'), // 지도를 표시할 div 
 	smapOption = {
 	    center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 	    level: 3 // 지도의 확대 레벨
@@ -189,7 +189,7 @@ function searchMap(){
 	         itemStr += '    <span id="roadAddress'+(index+1)+'">' + places.road_address_name + '</span>' +
 	                     '   <span class="jibun gray" id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>';
 	     } else {
-	         itemStr += '    <span id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>'; 
+	         itemStr += '    <span>' +  places.address_name  + '</span>'; 
 	     }
 	                 
 	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +

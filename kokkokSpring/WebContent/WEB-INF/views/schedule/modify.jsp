@@ -12,36 +12,48 @@
   	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
  	
 <script type="text/javascript">
+/*
+ * 리뷰 수정 클릭하고 등록시 내용 세팅 안됨... 뭘 가져가서 어떻게 세팅해야하지..
+ */
+var setSubject = "";
+var setContent = "";
+var clickParentClass="", clickSubject = "", clickContent ="", clickLat = "",
+clickLng = "", clickAddress ="";
+
+
 $(document).ready(function() {
 	var arrObject = new Object();
 	var deleteArr = new Array();
-	
 	var tripType = "";
 	if("${scheduleArticle.bcode}" == 1) {
 		tripType = "여행 계획";
 	} else if("${scheduleArticle.bcode}" == 2) {
 		tripType = "여행 후기";
 	} 
+	
 
 	$("#tripType > option[value='"+tripType+"']").attr("selected", "true");
 	$("#checkin_date").val("${scheduleArticle.startdate}");
-	$("#checkout_date").val("${scheduleArticle.enddate}");
-	$("#tripPersons > option[value=${scheduleArticle.persons}]").attr("selected", "true");
+	$("#checkout_date").val("${scheduleArticle.enddate}");		
+	$("#tripPersons > option[value='${scheduleArticle.persons}']").attr("selected", "true");
 	$("#tripThema > option[value='${scheduleArticle.thema}']").attr("selected", "true");
 	
 	var setStr = "${scheduleArticle.startdate} - ${scheduleArticle.enddate} ( ${scheduleArticle.period}일)  ,  "
 		+ tripType  +"  ,  ${scheduleArticle.persons}  ,  ${scheduleArticle.thema}" ;
 	$("#scheduleSetting").text(setStr);
 	
+			
 	var tripDays = parseInt("${scheduleArticle.period}");
-	setDays(tripDays);
+	setPreDays(tripDays);
+	
+	
 	for(var i=1; i<tripDays+1; i++){
 		reorder(i);
 		listnumbering(i);
 	}
 	listReorder(); //list id,name 값 주기
 	
-	$(".sl-loc").hover(
+	$(".loc-updown").hover(
 		function() {	// 오버시 배경색 바꾸고 삭제 버튼 보여줌
             $(this).css('backgroundColor', '#ffecec');
             $(this).find('.modifyBox').show();
@@ -57,7 +69,6 @@ $(document).ready(function() {
 	.find(".deleteBox").click(function() {		// 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
 		var delCheck = confirm('삭제하시겠습니까?');
 		if (delCheck == true){
-			alert("aa");
 			var seq = $(this).siblings(".seq").val();
 			alert(seq);
 
@@ -65,9 +76,13 @@ $(document).ready(function() {
 			arrObject.value = deleteArr;
 
 			$(this).parent().remove();
-	        reorder(numm);
+			for(var i=1; i<tripDays+1; i++){
+				reorder(i);
+				listnumbering(i);
+			}
 		}
 	});
+
 	
 	// 등록
 	$("#registerBtn").click(function() {
@@ -104,6 +119,22 @@ function listnumbering(numm){
 	});
 	
 }
+
+$(document).on("click", ".modifyBox", function() {
+	var seq = $(this).siblings(".seq").val();
+	setSubject = $(this).siblings(".subject").val();
+	setContent = $(this).siblings(".content").val();	
+	var tempClass= $(this).parent().attr("class");
+	var tempClassArr = tempClass.split(" ");
+	clickParentClass = tempClassArr[0];
+	clickSubject = "";
+	clickContent ="";
+	clickLat = "";
+	clickLng = "";
+	clickAddress ="";	
+	
+});
+
 </script>
 <style type="text/css">
 	#uploadFile{display: none;}
@@ -113,9 +144,10 @@ function listnumbering(numm){
 <body>
    <%@ include file="/WEB-INF/views/include/nav.jsp"%>
    <%@ include file="/WEB-INF/views/schedule/modifymodal.jsp"%>
+   <%@ include file="/WEB-INF/views/schedule/modifyReviewmodal.jsp"%>
    
 <!-- 이미지 -->
-    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_5.jpg');">
+    <div class="hero-wrap js-fullheight" style="background-image: url('${root}/resources/images/bg_3.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -125,18 +157,20 @@ function listnumbering(numm){
         </div>
       </div>
     </div>
-
-<!-- 내용시작 -->
+    
+	<!-- 내용시작 -->
 	<section class="ftco-section ftco-degree-bg">
 	<form action="" id="scheduleWriteForm" method="POST">
 	
-	<input type="hidden" name="sbcode" id="sbcode" value="">
-	<input type="hidden" name="ssubject" id="ssubject" value="">
-	<input type="hidden" name="scontent" id="scontent" value="">
-	<input type="hidden" name="startdate" id="startdate" value="">
-	<input type="hidden" name="enddate" id="enddate" value="">
-	<input type="hidden" name="persons" id="persons" value="">
-	<input type="hidden" name="thema" id="thema" value=""> 
+	<input type="hidden" name="sseq" id="sseq" value="${scheduleArticle.sseq}"">
+	<input type="hidden" name="hseq" id="hseq" value="${scheduleArticle.seq}"">
+	<input type="hidden" name="sbcode" id="sbcode" value="${scheduleArticle.bcode}">
+	<input type="hidden" name="ssubject" id="ssubject" value="${scheduleArticle.subject}">
+	<input type="hidden" name="scontent" id="scontent" value="${scheduleArticle.content}">
+	<input type="hidden" name="startdate" id="startdate" value="${scheduleArticle.startdate}">
+	<input type="hidden" name="enddate" id="enddate" value="${scheduleArticle.enddate}">
+	<input type="hidden" name="persons" id="persons" value="${scheduleArticle.persons}">
+	<input type="hidden" name="thema" id="thema" value="${scheduleArticle.thema}"> 
 	
 	<input type="hidden" name="deleteArr" id="deleteArr" value="">
 	
@@ -264,7 +298,7 @@ function listnumbering(numm){
 				<br>
             	
             	<!-- 일차별 내용 -->	
-            <div class="daysAdd3" id="daysAdd3">
+            <div class="daysAdd" id="daysAdd">
             <c:set var="idx" value="0"/>
             <c:set var="listNum" value="0"/>
             <c:forEach varStatus="day" var="review" items="${reviewArticle}">
@@ -284,14 +318,14 @@ function listnumbering(numm){
 				            	<label class="seul2 itemTitle${review.tripday}" id="itemTitle${review.tripday}_${review.step}">
 				            	<c:set var="type" value="${review.bcode}"/>
 					       		<c:choose>
-					       			<c:when test="${type eq 3}"><i class="flaticon-meeting-point"></i> </c:when>
-					       			<c:when test="${type eq 4}"><i class="flaticon-hotel"></i> </c:when>
-					       			<c:when test="${type eq 5}"><i class="flaticon-fork"></i> </c:when>
+					       			<c:when test="${type eq 3}"><i class="flaticon-meeting-point reviewType" reviewType=meeting></i> </c:when>
+					       			<c:when test="${type eq 4}"><i class="flaticon-hotel reviewType" reviewType="hotel"></i> </c:when>
+					       			<c:when test="${type eq 5}"><i class="flaticon-fork reviewType" reviewType="fork"></i> </c:when>
 					       		</c:choose>
 				            	 ${review.subject}</label>
-				            	 <label class="modifyBox">수정</label>
+				            	 <label class="modifyBox" data-toggle="modal" data-target="#scheduleReviewModifyModal" onclick="premodalSetDay(${review.tripday})">수정</label>
 				            	 <label class="deleteBox">삭제</label>			
-								<div class="sl-loc-cont itemCont${review.tripday}">
+								<div class="sl-loc-cont itemCont${review.tripday}" reviewContent="reviewContent">
 									${review.content}
 								</div>
 

@@ -27,7 +27,7 @@ function reviewBtn(){
 }
 </script>
 
-<div class="modal fade" id="#scheduleModifyModal" role="dialog" data-backdrop="static">
+<div class="modal fade" id="scheduleModifyModal" role="dialog" data-backdrop="static">
 	<div class="modal-dialog" style="max-width: 1200px; width: 1000px;">
 	
 
@@ -40,7 +40,7 @@ function reviewBtn(){
 				<hr>
 				
 				<div class="smap_wrap">
-				    <div id="searchMap" style="width:100%;height:300px;position:relative;overflow:hidden;"></div>
+				    <div id="modifyMap" style="width:100%;height:300px;position:relative;overflow:hidden;"></div>
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				            <div>
@@ -56,7 +56,7 @@ function reviewBtn(){
 				    </div>
 				</div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca50421e20fdf6befdf1ab193f76de7e&libraries=services"></script>
-				<script src="${root}/resources/js/schedule_write_modal.js"></script>
+				<script src="${root}/resources/js/schedule_modify_modal.js"></script>
 				
 				 <div class="form-group">
 				 	<div class="row col-md-12">

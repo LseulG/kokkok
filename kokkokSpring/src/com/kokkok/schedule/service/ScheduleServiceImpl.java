@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,7 @@ import com.kokkok.dto.ScheduleBoardDto;
 import com.kokkok.dto.ScheduleReviewDto;
 import com.kokkok.dto.ScheduleViewDto;
 import com.kokkok.main.dao.MainDao;
+import com.kokkok.main.service.MainService;
 import com.kokkok.schedule.dao.ScheduleDao;
 
 @Component
@@ -92,23 +95,37 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
+	public int scheduleReviewModiDelete(String seq) {
+		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+		return scheduleDao.scheduleReviewDelete(seq);
+	}
+	
+	@Override
 	public int scheduleUpdate(Map<String, Object> map) {
-		//int seq = sqlSessionTemplate.getMapper(MainDao.class).getNextSeq();		
-		//map.put("seq", seq);		
-		
 		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
 		return scheduleDao.scheduleUpdate(map);
 	}
 
 	@Override
 	public int scheduleReviewUpdate(Map<String, Object> map) {
-		int seq = sqlSessionTemplate.getMapper(MainDao.class).getNextSeq();		
-		map.put("seq", seq);
-		int sseq = sqlSessionTemplate.getMapper(ScheduleDao.class).getNextSseq();
-		map.put("sseq", sseq);
+		String seq = Integer.toString((int) map.get("seq"));
+		int result = 0;
+		result = sqlSessionTemplate.getMapper(ScheduleDao.class).countReview(seq);
+		System.out.println(result);
 		
-		ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
-		return scheduleDao.scheduleReviewUpdate(map);
+		if (result != 0) {
+			// update
+			System.out.println("update중..");
+			ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+			return scheduleDao.scheduleReviewUpdate(map);
+		} else {
+			// insert
+			System.out.println("insert중..");
+			int newSeq = sqlSessionTemplate.getMapper(MainDao.class).getNextSeq();		
+			map.put("seq", newSeq);		
+			
+			ScheduleDao scheduleDao = sqlSessionTemplate.getMapper(ScheduleDao.class);
+			return scheduleDao.scheduleReviewWrite(map);
+		}
 	}
-
 }

@@ -12,6 +12,8 @@ public interface ScheduleDao {
 	public int getNextSseq();
 	public int scheduleReviewWrite(Map<String, Object> map);
 	
+	public int countReview(String seq);
+	
 	public ScheduleViewDto scheduleView(String sseq);
 	public List<ScheduleBoardDto> selectReview(String sseq);
 	public ScheduleReviewDto scheduleReviewView(String seq);
