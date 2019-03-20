@@ -191,8 +191,8 @@ function makeDetailIntroHtml(xml){
     			contentStr += getDetailIntroHtml32(xml);
     		} else if (contentTypeId == 38) { // 쇼핑
     			contentStr += getDetailIntroHtml38(xml);
-    		} else if (contentTypeId == 82) { // 음식점
-    			contentStr += getDetailIntroHtml82(xml);
+    		} else if (contentTypeId == 39) { // 음식점
+    			contentStr += getDetailIntroHtml39(xml);
     		} else if (contentTypeId == 77) { // 교통
     			contentStr += getDetailIntroHtml77(xml);
     		}    		
