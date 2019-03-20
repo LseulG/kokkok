@@ -105,33 +105,20 @@ function makeTipsList(response){
 
 
 $(document).ready(function() {
-	//해쉬가 있다면 그에 맞춰 값을 얻어오고 그렇지 않다면 초기화
-	if (document.location.hash) {
-		
-	} else {
-		if (urlParam("searchWord") != null && urlParam("searchWord") != "") {
-//			alert(urlParam("searchWord"));			
-			$("#searchWord").val(urlParam("searchWord"));
-		}
-		
-		// 처음은 1페이지
-		currPageNum = 1;
-		// 처음은 최신순
-		$("#listSort").val(2);
-		// First Schedule List
-		getTipsList();
-		
-	}
-	
+	if (urlParam("searchWord") != null && urlParam("searchWord") != "") {		
+		$("#searchWord").val(urlParam("searchWord"));		
+		tipsSearch();	
+	}	
+	getTipsList();
 	
 	// Search Button Click Event
 	$("#getTipsList").click(function() {
+			
+			tipsSearch()
+		});
 		
-		tipsSearch()
-	});
-	
 });
-
+	
 
 //비 로그인시 리뷰등록 클릭
 $(document).on("click", "#impossibleAlert", function() {
