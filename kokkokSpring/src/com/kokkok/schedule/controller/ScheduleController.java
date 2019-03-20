@@ -109,7 +109,7 @@ public class ScheduleController {
 			Map<String, Object> reviewMap = new HashMap<>();
 			System.out.println("cont : " + list.getList().get(i).getContent());///////////
 
-			reviewMap.put("userid", "sseul"); // id setting!!!!!!!!!!!!!!!!!!!!!!!
+			reviewMap.put("userid", memberDto.getUserid()); // id setting!!!!!!!!!!!!!!!!!!!!!!!
 
 			reviewMap.put("bcode", list.getList().get(i).getBcode());
 			reviewMap.put("subject", list.getList().get(i).getSubject());
@@ -157,8 +157,7 @@ public class ScheduleController {
 	}
 
 	@RequestMapping(value = "/schedule/view.kok", method = RequestMethod.GET)
-	public ModelAndView scheduleView(@RequestParam String sseq, String seq,HttpServletRequest request,HttpServletResponse response) {
-		
+	public ModelAndView scheduleView(@RequestParam String sseq, String seq,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
 		
 		  	if(request.getCookies() == null) {
 		  		System.out.println("쿠키 없음");
@@ -243,7 +242,8 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedule/modifyUpdate.kok", method = RequestMethod.POST)
 	public ModelAndView scheduleModifyUpdate(@RequestParam Map<String, Object> map, HttpSession session,
 			ScheduleReviewDtoList list, @RequestParam("uploadFile")MultipartFile multipartFile) {
-		map.put("userid", "sseul");
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		map.put("userid", memberDto.getUserid());
 		
 		// file upload
 		if (multipartFile != null && !multipartFile.isEmpty()) {
@@ -314,7 +314,7 @@ public class ScheduleController {
 			for (int i = 0; i < list.getList().size(); i++) {
 				Map<String, Object> reviewMap = new HashMap<>();
 				
-				reviewMap.put("userid", "sseul"); // id setting!!!!!!!!!!!!!!!!!!!!!!!
+				reviewMap.put("userid", memberDto.getUserid()); // id setting!!!!!!!!!!!!!!!!!!!!!!!
 				
 				reviewMap.put("sseq", map.get("sseq"));
 				reviewMap.put("seq", list.getList().get(i).getSeq());
