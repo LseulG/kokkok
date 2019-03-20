@@ -121,7 +121,7 @@
 	<select id="getMonthStatistics" resultType="com.kokkok.dto.StatisticsDto">
 		<![CDATA[select * from 
 		(select startdate as month, count(*) as monthCount from 
-		(select substr (startdate, 4, instr(startdate, '/',1,1)-1) startdate from schedule)
+		(select substr (to_char(startdate, 'yyyy-mm'), 6, instr(to_char(startdate, 'yyyy-mm'), '-',1,1)-1) startdate from schedule)
 		 group by startdate order by month)
 		 where rownum<=12]]>
 	</select>
