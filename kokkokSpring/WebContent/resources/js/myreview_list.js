@@ -64,7 +64,7 @@ function makeReviewList(json) {
 			reviewName = "맛집 리뷰";
 			locationImg = "fork"
 		}
-		contentStr += "<div class='col-md-4 ftco-animate  fadeInUp ftco-animated destination'>";
+		contentStr += "<div class='col-md-4 ftco-animate fadeInUp ftco-animated destination'>";
 //		contentStr += "<a href='" + contextPath + "/review/view.kok?seq=" + review.seq + "' class='img img-2 d-flex justify-content-center align-items-center'>";		
 //		contentStr += "style='background-image: url(" + contextPath + "/" + reviewList[i].savefolder + "/" + reviewList[i].savepicture + ");'>";		
 //		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
@@ -81,7 +81,7 @@ function makeReviewList(json) {
 		contentStr += "</div>";
 		contentStr += "<hr>";
 		contentStr += "<div class='myreviewdiv' onclick=\"location.href =\'"+ contextPath +"/review/view.kok?seq="+ review.seq + "\'\" style='cursor:pointer;'   ";		
-		contentStr += "<p>"+ review.content +"</p>";			
+		contentStr += review.content;			
 		contentStr += "</div>";
 
 		contentStr += "<br>";
