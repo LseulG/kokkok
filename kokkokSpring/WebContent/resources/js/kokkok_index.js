@@ -192,7 +192,7 @@ function makeCommentListHtml(json) {
 		contentStr += "<span><i class='icon-person'></i>" + schedule.userid + "</span>";
 		contentStr += "<span class='list-cnt'>";
 		contentStr += "<i class='icon-thumbs-o-up'></i> " + schedule.recommcount + " &nbsp;";
-		contentStr += "<i class='icon-eye'></i> " + schedule.wishcount ;
+		contentStr += "<i class='icon-heart-o'></i> " + schedule.wishcount ;
 		contentStr += "</span>";
 		contentStr += "</p>";
 		contentStr += "</div>";		
@@ -285,7 +285,7 @@ function makeScheduleListHtml(json) {
 		contentStr += "<span><i class='icon-person'></i>" + schedule.userid + "</span>";
 		contentStr += "<span class='list-cnt'>";
 		contentStr += "<i class='icon-thumbs-o-up'></i> " + schedule.recommcount + " &nbsp;";
-		contentStr += "<i class='icon-eye'></i> " + schedule.wishcount ;
+		contentStr += "<i class='icon-heart-o'></i> " + schedule.wishcount ;
 		contentStr += "</span>";
 		contentStr += "</p>";
 		contentStr += "</div>";		
