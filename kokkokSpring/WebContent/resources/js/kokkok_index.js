@@ -29,6 +29,8 @@ $(document).ready(function() {
 	
 	getScheduleList();
 	
+	getTipsList();
+	
 	// Search Button Click Event
 	$("#btnMainSearch").click(function() {
 		var mainSearchKey = $("#mainSearchKey").val();
@@ -47,7 +49,7 @@ $(document).ready(function() {
 			} else if (mainSearchKey == 3) {
 				$("#formSearchKeyword").attr("action", contextPath + "/review/list.kok").submit();
 			} else if (mainSearchKey == 4) {
-				
+				$("#formSearchKeyword").attr("action", contextPath + "/tips/list.kok").submit();
 			}
 		}		
 		
@@ -292,3 +294,59 @@ function makeScheduleListHtml(json) {
 	$("#scheduleList").append(contentStr);	
 }
 
+
+function getTipsList(){ 
+	
+	var currPageNum = 1;
+	
+	var listTotalCount = 0;
+	
+	var navigation_size = 10;
+	
+	var listNumOfRows = 10;
+
+	var i=0, maxnum=4 , reviewnum=0; 
+
+	var tipsBcode = "";
+
+	var searchKey = subject;
+	var searchWord = "";
+
+	var tipsAjaxData ="";
+
+	var username = "";
+	
+	tipsAjaxData = JSON.stringify({'bcode' : '6', 'pg' : currPageNum, 'searchKey' : searchKey, "searchWord": searchWord, "listNumOfRows": listNumOfRows});
+    $.ajax({
+        url: contextPath+"/tips/setList.kok",
+        type: "POST",
+        contentType : 'application/json;charset=UTF-8',
+        dataType: "json",
+		 	data: tipsAjaxData,
+        success: function(response) {
+        	makeTipsList(response);
+        }
+    });
+}
+
+
+function makeTipsList(response){
+	
+	var tipsList = response.tipsList;
+	var tipsViewlist = "";
+	  for(var i=0;i<tipsList.length;i++) { 
+		  
+			tipsViewlist += '<tr>';
+			tipsViewlist += '<td align="center" class="column1a">'+tipsList[i].seq+'</td>';
+			tipsViewlist += '<td style="word-break: break-all;" class="column2a tipsListSeq" tipsListSeq="'+tipsList[i].seq+'">'+tipsList[i].subject+'</td>';
+			tipsViewlist += '<td style="word-break: break-all;" class="column3a">'+tipsList[i].userid+'</td>';
+			tipsViewlist += '<td align="center" class="column4a">'+tipsList[i].logtime+'</td>';
+			tipsViewlist += '<td align="center" class="column5a">'+tipsList[i].hit+'</td>';
+			tipsViewlist += '<td align="center" class="column6a">'+tipsList[i].recommcount+'</td>';
+			tipsViewlist += '</tr>';
+			
+	} 
+	$("#makeTipsList").children("tr").remove()
+	$('#makeTipsList').append(tipsViewlist);
+
+}
