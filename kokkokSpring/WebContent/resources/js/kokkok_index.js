@@ -29,7 +29,6 @@ $(document).ready(function() {
 	
 	getScheduleList();
 	
-	getTipsList();
 	
 	// Search Button Click Event
 	$("#btnMainSearch").click(function() {
@@ -153,7 +152,7 @@ function makeCommentListHtml(json) {
 //	alert("makeCommentListHtml(json) start");
 	var listCnt = json.schedulelist.length;
 	var contentStr = "";
-	var btypeNm = ["일정", "후기"];
+	var btypeNm = ["계획", "후기"];
 	// listCnt가 4개 보다 적다면 그 수를 출력하고 더 많아도 4개만 출력
 	if (listCnt > 4) listCnt = 4;
 	for (var i = 0; i < listCnt; i++) {
@@ -246,7 +245,7 @@ function makeScheduleListHtml(json) {
 //	alert("makeCommentListHtml(json) start");
 	var listCnt = json.schedulelist.length;
 	var contentStr = "";
-	var btypeNm = ["일정", "후기"];
+	var btypeNm = ["계획", "후기"];
 	// listCnt가 4개 보다 적다면 그 수를 출력하고 더 많아도 4개만 출력
 	if (listCnt > 4) listCnt = 4;
 	for (var i = 0; i < listCnt; i++) {
