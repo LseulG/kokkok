@@ -1,5 +1,4 @@
 function selectChange(){
-	alert("ohyaya");
 	mapRemove();
 	
 	//alert("${reviewArticle[3]}"); //왜 값은 안들어가고.... 미치것네

@@ -127,7 +127,7 @@ function makeReviewList(response){
 		reviewViewlist += '<h5 align="center"><a href="javascript:void(0);" class="reviewListSeq" reviewListSeq="'+reviewList[i].seq+'">상세보기</a></h5>';
 		reviewViewlist += '<hr>';
 		reviewViewlist += '<p class="bottom-area d-flex">';
-		reviewViewlist += '<span><i class="icon-thumbs-up"></i> 추천 : '+reviewList[i].recommcount+' &nbsp;|&nbsp; <i class="icon-heart"></i> 찜 : '+reviewList[i].wishcount+'</span>';
+		reviewViewlist += '<span><i class="icon-thumbs-o-up"></i> 추천 : '+reviewList[i].recommcount+' &nbsp;|&nbsp; <i class="icon-heart-o"></i> 찜 : '+reviewList[i].wishcount+'</span>';
 		reviewViewlist += '</div>';
 		reviewViewlist += '</div>';
 		reviewViewlist += '</div>';

@@ -1,10 +1,10 @@
 package com.kokkok.schedule.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
+import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import com.kokkok.dto.ScheduleBoardDto;
 import com.kokkok.dto.ScheduleReviewDto;
 import com.kokkok.dto.ScheduleViewDto;
 import com.kokkok.main.dao.MainDao;
-import com.kokkok.main.service.MainService;
 import com.kokkok.schedule.dao.ScheduleDao;
 
 @Component
@@ -75,6 +74,19 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	
 	@Override
+	public Set<String> scheduleReviewLoc(String sseq) {
+		List<ScheduleBoardDto> list = sqlSessionTemplate.getMapper(ScheduleDao.class).selectReview(sseq);
+		
+		Set<String> reviewLocList = new HashSet<>();
+		
+		for(int i=0; i<list.size(); i++) {
+			String seq = Integer.toString(list.get(i).getSeq());		
+			reviewLocList.add(sqlSessionTemplate.getMapper(ScheduleDao.class).scheduleReviewLoc(seq));
+		}
+		return reviewLocList;
+	}
+	
+	@Override
 	public int scheduleReviewDelete(String sseq) {
 		int resultCnt = 0;
 		List<ScheduleBoardDto> list = sqlSessionTemplate.getMapper(ScheduleDao.class).selectReview(sseq);
@@ -128,4 +140,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 			return scheduleDao.scheduleReviewWrite(map);
 		}
 	}
+
+
 }

@@ -9,6 +9,7 @@
   	<link rel="stylesheet" href="${root}/resources/css/schedule.css">
   	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
+	var rootPt = '${root}';
 	</script>
 	<style>
 	#lastPage,#firstPage,#nextPageGroup,#prevPageGroup,.naviNum {
@@ -39,9 +40,16 @@
 		<div class="col-lg-3 sidebar">
         <div class="sidebar-wrap bg-light ftco-animate">
         	<div class="form-group">
-	        	<a href="${root}/schedule/write.kok">
-					<input type="button" value="일정 만들기" id="writeScheduleBtn" class="btn btn-primary py-3 px-5">
-				</a>
+        		<c:if test="${userInfo != null}">
+		        	<a href="${root}/schedule/write.kok">
+						<input type="button" value="일정 만들기" id="writeScheduleBtn" class="btn btn-primary py-3 px-5">
+					</a>
+				</c:if>
+				<c:if test="${userInfo == null}">
+					<a href="javascript:void(0)" onclick="alert('로그인 후 이용 가능합니다.')">
+						<input type="button" value="일정 만들기" id="writeScheduleBtn" class="btn btn-primary py-3 px-5">
+					</a>
+				</c:if>
 		    </div>
 		    <br>
         	

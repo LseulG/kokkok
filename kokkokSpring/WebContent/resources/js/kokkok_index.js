@@ -160,7 +160,8 @@ function makeCommentListHtml(json) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
 		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
-		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+		//contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";	// sseul 주석
+		contentStr += "style='background-image: url("+rootPt+"/resources/"+schedule.savefolder+"/"+ schedule.savepicture +");'>";	// sseul 추가
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
 		contentStr += "</div>";		
@@ -252,7 +253,8 @@ function makeScheduleListHtml(json) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-3 ftco-animate  fadeInUp ftco-animated destination'>";		
 		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq +"&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
-		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+		//contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";	// sseul 주석
+		contentStr += "style='background-image: url("+rootPt+"/resources/"+schedule.savefolder+"/"+ schedule.savepicture +");'>";	// sseul 추가
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
 		contentStr += "</div>";		

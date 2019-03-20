@@ -2,6 +2,7 @@ package com.kokkok.schedule.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,7 @@ public interface ScheduleService {
 	public String selectSseq();
 	public ScheduleViewDto scheduleView(String sseq);
 	public List<ScheduleReviewDto> scheduleReviewView(String sseq);
+	public Set<String> scheduleReviewLoc(String sseq);
 	
 	//삭제
 	public int scheduleReviewDelete(String sseq);

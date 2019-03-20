@@ -135,12 +135,15 @@ function makeListHtml(json) {
 //	alert("makeListHtml(json) start");
 	var listcnt = json.schedulelist.length;
 	var contentStr = "";
-	var btypeNm = ["일정", "후기"];
+	var btypeNm = ["계획", "후기"];
 	for (var i = 0; i < listcnt; i++) {
 		var schedule = json.schedulelist[i];
 		contentStr += "<div class='col-md-4 ftco-animate  fadeInUp ftco-animated destination'>";		
 		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
-		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+		//contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
+
+		contentStr += "style='background-image: url("+rootPt+"/resources/"+schedule.savefolder+"/"+ schedule.savepicture +");'>";		
+		
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
 		contentStr += "</div>";		
@@ -171,7 +174,7 @@ function makeListHtml(json) {
 		contentStr += "<span><i class='icon-person'></i>" + schedule.userid + "</span>";
 		contentStr += "<span class='list-cnt'>";
 		contentStr += "<i class='icon-thumbs-o-up'></i> " + schedule.recommcount + " &nbsp;";
-		contentStr += "<i class='icon-eye'></i> " + schedule.wishcount ;
+		contentStr += "<i class='icon-heart-o'></i> " + schedule.wishcount ;
 		contentStr += "</span>";
 		contentStr += "</p>";
 		contentStr += "</div>";		

@@ -8,9 +8,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -26,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kokkok.dto.MemberDto;
 import com.kokkok.dto.ScheduleReviewDto;
 import com.kokkok.dto.ScheduleReviewDtoList;
 import com.kokkok.dto.ScheduleViewDto;
@@ -36,7 +41,7 @@ import com.kokkok.schedule.service.ScheduleService;
 
 @Controller
 public class ScheduleController {
-
+ 
 	@Autowired
 	private ScheduleService scheduleService;
 	@Autowired
@@ -57,20 +62,21 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedule/write.kok", method = RequestMethod.POST)
 	public String scheduleWrite(@RequestParam Map<String, Object> map, HttpSession session, RedirectAttributes redirect,
 			ScheduleReviewDtoList list, @RequestParam("uploadFile")MultipartFile multipartFile) {
-		// MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		// map.put("userid", memberDto.getUserid());
-		map.put("userid", "sseul");
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		map.put("userid", memberDto.getUserid());
+		//map.put("userid", "sseul");
 		
 		// file upload
 		if (multipartFile != null && !multipartFile.isEmpty()) {
 			String originalPicture = multipartFile.getOriginalFilename();
-			String realPath = servletContext.getRealPath("/resources/images");
+			String realPath = servletContext.getRealPath("/resources/");
 			
 			DateFormat df = new SimpleDateFormat("yyMMdd");
-			String saveFolder = df.format(new Date()); // 180818
-			String realSaveFolder = realPath + File.separator + saveFolder;
+			String saveFolder = "images/" + df.format(new Date()); // 180818
+			String realSaveFolder = realPath + saveFolder;
+			System.out.println(realPath);
 			System.out.println(realSaveFolder);
-			File dir = new File(realSaveFolder);
+			File dir = new File(realPath + "images" + File.separator + df.format(new Date()));
 			if(!dir.exists()) {
 				dir.mkdirs();
 			}
@@ -88,6 +94,10 @@ public class ScheduleController {
 			map.put("originpicture", originalPicture);
 			map.put("savefolder", saveFolder);
 			map.put("savepicture", savePicture);
+		} else {
+			map.put("originpicture", "image_8.jpg");
+			map.put("savefolder", "images");
+			map.put("savepicture", "image_8.jpg");
 		}
 		
 		// schedule insert
@@ -118,7 +128,7 @@ public class ScheduleController {
 			reviewMap.put("step", list.getList().get(i).getStep());
 
 			reviewCnt = scheduleService.scheduleReviewWrite(reviewMap);
-		}
+		} 
 		
 		String path="";
 		if (scheduleCnt != 0 && reviewCnt != 0) {
@@ -147,11 +157,49 @@ public class ScheduleController {
 	}
 
 	@RequestMapping(value = "/schedule/view.kok", method = RequestMethod.GET)
-	public ModelAndView scheduleView(@RequestParam String sseq, String seq) {
-		mainService.updateHit(seq);
-
+	public ModelAndView scheduleView(@RequestParam String sseq, String seq,HttpServletRequest request,HttpServletResponse response) {
+		
+		
+		  	if(request.getCookies() == null) {
+		  		System.out.println("쿠키 없음");
+		  	} else {
+		  		System.out.println("쿠키 있음");
+		  	}
+			Cookie[] cookies = request.getCookies();        
+	        // 비교하기 위해 새로운 쿠키
+			System.out.println(cookies + "쿠키 주소값");
+	        Cookie viewCookie = null; 
+	        // 쿠키가 있을 경우 
+	        if (cookies != null && cookies.length > 0){
+	        	System.out.println(cookies + "쿠키 널 아니며 쿠키 값이 0 이상");
+	            for (int i = 0; i < cookies.length; i++){
+	                // Cookie의 name이 cookie + seq와 일치하는 쿠키를 viewCookie에 넣어줌	
+	            	System.out.println(cookies[i].getName() + "쿠키 겟네임");
+	                if (cookies[i].getName().equals("cookie"+sseq)) {                 
+	                    viewCookie = cookies[i];
+	                    System.out.println("cookies");
+	                }
+	            }
+	        }
+	        // 만일 viewCookie가 null일 경우 쿠키를 생성해서 조회수 증가 로직을 처리함.
+	        if (viewCookie == null) { 
+	            // 쿠키 생성(이름, 값)
+	            Cookie newCookie = new Cookie("cookie"+sseq, "|" + sseq + "|");                                
+	            // 쿠키 추가
+	            response.addCookie(newCookie); 
+	            // 쿠키를 추가 시키고 조회수 증가시킴
+	            int result = mainService.updateHit(seq);                
+	            System.out.println(result + "  result");
+	        }  // viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.  
+	        System.out.println(cookies + "  cookies");
+	        System.out.println(viewCookie+  "  viewcookies");
+	        
 		ScheduleViewDto scheduleViewDto = scheduleService.scheduleView(sseq);
 		List<ScheduleReviewDto> scheduleReviewDtoList = scheduleService.scheduleReviewView(sseq);
+		 
+		//여기에 리뷰들의 simpleaddr을 중복제거하여 arr/map에 담아와서 addObject 해서 가져와보자!!
+		Set<String> reviewLocList = scheduleService.scheduleReviewLoc(sseq);
+		System.out.println("reviewLocList : "+ reviewLocList); // reviewLocList : [인천 연수구, 인천 부평구, 인천 계양구, 인천 부평구]
 
 		if (scheduleViewDto != null) {
 			scheduleViewDto.setContent(scheduleViewDto.getContent().replaceAll("\n", "<br>"));
@@ -164,6 +212,9 @@ public class ScheduleController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("scheduleArticle", scheduleViewDto);
 		mav.addObject("reviewArticle", scheduleReviewDtoList);
+		
+		mav.addObject("locationArticle", reviewLocList); // loc 추가
+		
 		mav.setViewName("schedule/view");
 		return mav;
 	}
@@ -191,11 +242,45 @@ public class ScheduleController {
 
 	@RequestMapping(value = "/schedule/modifyUpdate.kok", method = RequestMethod.POST)
 	public ModelAndView scheduleModifyUpdate(@RequestParam Map<String, Object> map, HttpSession session,
-			ScheduleReviewDtoList list) {
+			ScheduleReviewDtoList list, @RequestParam("uploadFile")MultipartFile multipartFile) {
 		map.put("userid", "sseul");
 		
+		// file upload
+		if (multipartFile != null && !multipartFile.isEmpty()) {
+			String originalPicture = multipartFile.getOriginalFilename();
+			String realPath = servletContext.getRealPath("/resources/");
+			
+			DateFormat df = new SimpleDateFormat("yyMMdd");
+			String saveFolder = "images/" + df.format(new Date()); // 180818
+			String realSaveFolder = realPath + saveFolder;
+			System.out.println(realPath);
+			System.out.println(realSaveFolder);
+			File dir = new File(realPath + "images" + File.separator + df.format(new Date()));
+			if(!dir.exists()) {
+				dir.mkdirs();
+			}
+			String savePicture = UUID.randomUUID().toString() + originalPicture.substring(originalPicture.lastIndexOf('.'));
+			
+			File file = new File(realSaveFolder, savePicture);
+			try {
+				multipartFile.transferTo(file);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			map.put("originpicture", originalPicture);
+			map.put("savefolder", saveFolder);
+			map.put("savepicture", savePicture);
+		} else {
+			map.put("originpicture", "image_8.jpg");
+			map.put("savefolder", "images");
+			map.put("savepicture", "image_8.jpg");
+		}
+				
+				
 		// 일정 수정 
-		// +) file upload
 		System.out.println(map.get("hseq"));////////
 		int scheduleCnt = scheduleService.scheduleUpdate(map);
 		System.out.println("scheduleCnt : " + scheduleCnt);///////

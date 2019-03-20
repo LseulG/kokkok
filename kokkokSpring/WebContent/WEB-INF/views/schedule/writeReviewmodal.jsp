@@ -16,15 +16,17 @@ $("body").on("hidden.bs.modal", ".modal", function () {
     document.getElementById("MRkeyword").value = "인천 맛집";
  });
 
-$(document).on("click", ".reviewModifyBtn", function() {// 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
+function writeReviewMBtn(){ // 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
 	// 제목 선택 안한거 예외처리 추가하기
 	if(document.getElementById("MRlocalTitle").value == ""){
+		$("#writeReviewMBtn").attr("data-dismiss","");
 		alert('장소를 지정해주세요.');
 	} else if ($('#MRsummernote').summernote('isEmpty')) {
+		$("#writeReviewMBtn").attr("data-dismiss","");
 		  alert('내용을 입력해 주세요.');	 
 	} else {
+		$("#writeReviewMBtn").attr("data-dismiss","modal");
 		if(mselectedMarker != null){
-			alert("선택마커 있음");
 			var tempSubject = document.getElementById("MRlocalTitle").value;
 			var tempContent = $("#MRsummernote").summernote("code");
 			$("."+clickParentClass).children(".subject").val(document.getElementById("MRlocalTitle").value); 
@@ -51,7 +53,6 @@ $(document).on("click", ".reviewModifyBtn", function() {// 삭제 버튼을 클�
 			$("."+clickParentClass).children(".sl-loc-cont").html(tempContent);
 			
 		} else {
-			alert("선택마커 없음");
 			var tempContent = $("#MRsummernote").summernote("code");
 			$("."+clickParentClass).children(".content").val($("#MRsummernote").summernote("code"));
 			$("."+clickParentClass).children(".sl-loc-cont").html(tempContent);
@@ -59,7 +60,7 @@ $(document).on("click", ".reviewModifyBtn", function() {// 삭제 버튼을 클�
 		
 		//modalWrite();
 	}
-});
+};
 
 //리뷰 수정버튼 클릭시 가져와야할 것들
 var premodalDay = 0;
@@ -89,10 +90,10 @@ function premodalSetDay(clickday){
 				    <div id="MRmenu_wrap" class="bg_white">
 				        <div class="option">
 				            <div>
-				                <form onclick="searchPlaces(); return false;">
+				                <div onclick="searchPlaces(); return false;">
 				                    키워드 : <input type="text" value="인천 맛집" id="MRkeyword" size="15"> 
 				                    <button type="button" id="MRsearchBtn" onclick="javascript:searchClick();">검색하기</button> 
-				                </form>
+				                </div>
 				            </div>
 				        </div>
 				        <hr>
@@ -122,7 +123,7 @@ function premodalSetDay(clickday){
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
 <!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3 reviewModifyBtn" data-dismiss="modal"/>
+					<input type="button" value="등록" class="btn btn-primary py-2 px-3" id="writeReviewMBtn" onclick="javascript:writeReviewMBtn()" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">

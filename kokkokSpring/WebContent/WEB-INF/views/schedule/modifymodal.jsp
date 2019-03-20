@@ -18,10 +18,13 @@ $("body").on("hidden.bs.modal", ".modal", function () {
 function reviewBtn(){
 	// 제목 선택 안한거 예외처리 추가하기
 	if(document.getElementById("localTitle").value == ""){
+		$("#modifyBtn").attr("data-dismiss","");
 		alert('장소를 지정해주세요.');
 	} else if ($('#summernote').summernote('isEmpty')) {
+		$("#modifyBtn").attr("data-dismiss","");
 		  alert('내용을 입력해 주세요.');	 
 	} else {
+		$("#modifyBtn").attr("data-dismiss","modal");
 		modalWrite();
 	}
 }
@@ -44,10 +47,10 @@ function reviewBtn(){
 				    <div id="menu_wrap" class="bg_white">
 				        <div class="option">
 				            <div>
-				                <form onclick="searchPlaces(); return false;">
+				                <div onclick="searchPlaces(); return false;">
 				                    키워드 : <input type="text" value="인천 맛집" id="keyword" size="15"> 
 				                    <button type="button" id="searchBtn" onclick="javascript:searchClick();">검색하기</button> 
-				                </form>
+				                </div>
 				            </div>
 				        </div>
 				        <hr>
@@ -77,7 +80,7 @@ function reviewBtn(){
 				
 				<div class="form-group" align="right" style="float: left; width: 50%; padding:10px;">
 <!-- 					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="save()"/>	-->
-					<input type="button" value="등록" class="btn btn-primary py-2 px-3" onclick="reviewBtn();" data-dismiss="modal"/>
+					<input type="button" value="등록" class="btn btn-primary py-2 px-3" id="modifyBtn" onclick="reviewBtn();" data-dismiss="modal"/>
 				</div>
 				
 				<div class="form-group" align="left" style="float: left; width: 50%; padding:10px;">

@@ -34,7 +34,7 @@ function scheduleDeleteBtn(){
 // 찜하기
 function getWishView(){
 	
-	 var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	 var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "${userInfo.userid}"});
 	  $.ajax({
 		  url: "${root}/checkWish.kok",
 		  type: "POST",
@@ -49,7 +49,8 @@ function getWishView(){
 	  });
 }
 $(document).on("click", "#scheduleJJim", function() {
-	var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	if("${userInfo.userid}" !=""){
+	var getWishData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "${userInfo.userid}"});
 	  $.ajax({
 		  url: "${root}/registerWish.kok",
 		  type: "POST",
@@ -62,6 +63,9 @@ $(document).on("click", "#scheduleJJim", function() {
 			  makeWishView(wishCheck,wishCount);
 		  }
 	  });
+	}else{
+		alert("로그인 후 이용 가능합니다.");
+	}
 });
 
 function makeWishView(wishCheck,wishCount){
@@ -77,7 +81,7 @@ function makeWishView(wishCheck,wishCount){
 
 // 추천
 function getRecommendView(){
-	 var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+	 var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "${userInfo.userid}"});
 	  $.ajax({
 		  url: "${root}/checkRecommend.kok",
 		  type: "POST",
@@ -91,8 +95,9 @@ function getRecommendView(){
 		  }
 	  });
 }
-$(document).on("click", "#scheduleRecomm", function() {	
-	var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "sseul"});
+$(document).on("click", "#scheduleRecomm", function() {
+	if( "${userInfo.userid}" !=""){
+	var getRecommendData = JSON.stringify({"seq" : "${scheduleArticle.seq}", "userid" : "${userInfo.userid}"});
 	  $.ajax({
 		  url: "${root}/registerRecommend.kok",
 		  type: "POST",
@@ -104,7 +109,10 @@ $(document).on("click", "#scheduleRecomm", function() {
 			 var recommendCount = response.recommendCount;				  
 			 makeRecommendView(recommendCheck,recommendCount);	
 		  }
-	  });	  
+	  });	
+	}else{
+		alert("로그인 후 이용 가능합니다.");
+	}
 });
 function makeRecommendView(recommendCheck,recommendCount){
 	$("#recommDiv").children("div").remove();
@@ -119,7 +127,8 @@ function makeRecommendView(recommendCheck,recommendCount){
 
 // 댓글
 // -쓰기
-$(document).on("click", "#commentsBtn", function() { //댓글 등록 버튼 클릭시
+$(document).on("click", "#commentsBtn", function() { //댓글 등록 버튼 클릭시	
+	if("${userInfo.userid}" !=""){	
 	var seq = '${scheduleArticle.seq}';
  	var ccontent = $("#ccontent").val(); //댓글 내용 가져오기
 	$("#ccontent").val('');	//댓글 내용 비우기
@@ -137,6 +146,9 @@ $(document).on("click", "#commentsBtn", function() { //댓글 등록 버튼 클�
 		});
 	}else{
 		alert("내용을 입력해 주세요");
+	}
+	}else{
+		alert("로그인 후 이용해주세요.");
 	}
 });
 
@@ -170,6 +182,8 @@ $(document).on("click", "#commentsUpdateBtn", function() {
 
 // -삭제
 $(document).on("click", ".commentsDeleteBtn", function() {
+	var commentsDeleteCheck = confirm("정말로 삭제하시겠습니까?");
+	if(commentsDeleteCheck){
 	var seq = '${scheduleArticle.seq}';	
 	var cseq = $(this).attr("commentCseq");
 	$("#ccontent").val('');
@@ -184,6 +198,7 @@ $(document).on("click", ".commentsDeleteBtn", function() {
 				makeCommentsList(response);
 			}
 		});
+	}
 });
 
 function makeCommentsList(response){
@@ -195,8 +210,12 @@ function makeCommentsList(response){
 		commentsListView +='<div class="comment-body">';
 		commentsListView +='<div class="row d-flex">';
 		commentsListView +='<div class="row"> <h3><i class="icon-person"></i> '+commentsList[i].userid+'</h3><div class="meta">'+ commentsList[i].clogtime+'</div></div>';
+		if(commentsList[i].userid == "${userInfo.userid}"){// 댓글 작성 ID와 로그인 ID가 같은때 수정버튼
 		commentsListView +='<label class="commMDBtn moveCommentsUpdate" data-toggle="modal" data-target="#viewRecommModal" commentCseq ="'+commentsList[i].cseq+'">수정</label>';
+		}
+		if(commentsList[i].userid == "${userInfo.userid}" || "${userInfo.admincode}" == 1){// 댓글 작성 ID와 로그인 ID가 같은때 , 관리자 삭제버튼
 		commentsListView +='<label class="commMDBtn commentsDeleteBtn" commentCseq ="'+commentsList[i].cseq+'">삭제</label>';
+		}
 		commentsListView +='</div>';
 		commentsListView +='<p>'+commentsList[i].ccontent+'</p>';
 		commentsListView +='</div>';
@@ -258,7 +277,7 @@ function getCommentsList(){
 		<div class="col-md-12 ftco-animate destination">
 			<div class="text p-3 row">			
 				<div class="col-md-4 ftco-animate destination">
-					<img src="${root}/resources/images/${scheduleArticle.savefolder}/${scheduleArticle.savepicture}" alt="" class="img-fluid">
+					<img src="${root}/resources/${scheduleArticle.savefolder}/${scheduleArticle.savepicture}" alt="" class="img-fluid">
 				</div>
 				<div class="col-md-8">
 						<c:choose>
@@ -292,15 +311,19 @@ function getCommentsList(){
 				</div>
 				<h3 class="heading"><i class="icon-tag"></i> 여행지</h3>
               	<div class="tagcloud">
-	                <a href="#" class="tag-cloud-link">전라남도</a>
-	                <a href="#" class="tag-cloud-link">여수</a>
-	                <a href="#" class="tag-cloud-link">순천</a>
-	                <a href="#" class="tag-cloud-link">광양</a>
+	               <c:forEach varStatus="days" var="reviews" items="${locationArticle}">
+			    		<a href="#" class="tag-cloud-link">${reviews}</a>
+	               </c:forEach>
+	               
               	</div>
               	<hr>
               	<div align="center">
-              		<a href="${root}/schedule/modify.kok?sseq=${scheduleArticle.sseq}&seq=${scheduleArticle.seq}"><input type="button" value="일정 수정" class="btn btn-secondary modiDelBtn"></a>
-              		<input type="button" value="일정 삭제" class="btn btn-secondary modiDelBtn" onclick="scheduleDeleteBtn();">
+              		<c:if test="${scheduleArticle.userid eq userInfo.userid}">
+              			<a href="${root}/schedule/modify.kok?sseq=${scheduleArticle.sseq}&seq=${scheduleArticle.seq}"><input type="button" value="일정 수정" class="btn btn-secondary modiDelBtn"></a>
+              		</c:if>
+              		<c:if test="${scheduleArticle.userid eq userInfo.userid || userInfo.admincode eq 1}">
+              			<input type="button" value="일정 삭제" class="btn btn-secondary modiDelBtn" onclick="scheduleDeleteBtn();">
+              		</c:if>
               	</div>
             </div>
 
@@ -313,9 +336,9 @@ function getCommentsList(){
 							<div id="daySelectWrap" class="bg_white">
 					        <div class="select-wrap">
 					            <select name="mapDay" id="mapDay" class="" onchange="selectChange()">
-					            	<option value="day_1">1일차</option>
-					            	<option value="day_2">2일차</option>
-					            	<option value="day_3">3일차</option>
+					            	<c:forEach begin="1" end="${scheduleArticle.period}" var="num">
+					            		<option value="day_${num}">${num}일차</option>
+					            	</c:forEach>
 					            </select>
 							</div>
 					    </div>

@@ -89,7 +89,6 @@ var contextPath='<%=request.getContextPath()%>';
  	</div>
 </div>
 </section>
-<script src="${root}/resources/js/kokkok_index.js"></script>
 <script src="${root}/resources/js/review_list.js"></script>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 <%@ include file="/WEB-INF/views/include/arrowup.jsp"%>

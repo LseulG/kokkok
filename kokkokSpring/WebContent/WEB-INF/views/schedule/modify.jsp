@@ -70,7 +70,6 @@ $(document).ready(function() {
 		var delCheck = confirm('삭제하시겠습니까?');
 		if (delCheck == true){
 			var seq = $(this).siblings(".seq").val();
-			alert(seq);
 
 			deleteArr.push(seq);
 			arrObject.value = deleteArr;
@@ -86,11 +85,22 @@ $(document).ready(function() {
 	
 	// 등록
 	$("#registerBtn").click(function() {
+		var reviewResult = 0;
+		for(var i=1; i<tripDays+1; i++){
+			var test = $(".seul1_Item"+i).find(".itemBox"+i).attr("id");
+			if(test == null){
+				reviewResult += 1;
+ 			}
+		}
+		
 		if($("#scheduleTitle").val() == "") {
 			alert("여행 제목을 입력해주세요");
 			return;
 		} else if($("#scheduleMsg").val() == "") {
 			alert("여행 소개를 입력해주세요");
+			return;
+		} else if(reviewResult != 0) {
+			alert("일차별로 일정을 한개 이상 작성해주세요");
 			return;
 		} else {
 			var result = confirm("등록 하시겠습니까?");
@@ -160,13 +170,13 @@ $(document).on("click", ".modifyBox", function() {
     
 	<!-- 내용시작 -->
 	<section class="ftco-section ftco-degree-bg">
-	<form action="" id="scheduleWriteForm" method="POST">
+	<form action="" id="scheduleWriteForm" method="POST" enctype="multipart/form-data">
 	
-	<input type="hidden" name="sseq" id="sseq" value="${scheduleArticle.sseq}"">
-	<input type="hidden" name="hseq" id="hseq" value="${scheduleArticle.seq}"">
+	<input type="hidden" name="sseq" id="sseq" value="${scheduleArticle.sseq}">
+	<input type="hidden" name="hseq" id="hseq" value="${scheduleArticle.seq}">
 	<input type="hidden" name="sbcode" id="sbcode" value="${scheduleArticle.bcode}">
 	<input type="hidden" name="ssubject" id="ssubject" value="${scheduleArticle.subject}">
-	<input type="hidden" name="scontent" id="scontent" value="${scheduleArticle.content}">
+	<input type="hidden" name="scontent" id="scontent" value='${scheduleArticle.content}'>
 	<input type="hidden" name="startdate" id="startdate" value="${scheduleArticle.startdate}">
 	<input type="hidden" name="enddate" id="enddate" value="${scheduleArticle.enddate}">
 	<input type="hidden" name="persons" id="persons" value="${scheduleArticle.persons}">
@@ -181,7 +191,7 @@ $(document).on("click", ".modifyBox", function() {
 		<div class="sidebar-wrap bg-light ftco-animate">
 			<h3 class="heading mb-4">대표 사진</h3>
 			<div class="ftco-animate destination">
-		    		<a href="javascript:uploadFile();" id="mainImg" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/images/destination-1.jpg');">		    		
+		    		<a href="javascript:uploadFile();" id="mainImg" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url('${root}/resources/${scheduleArticle.savefolder}/${scheduleArticle.savepicture}');">		    		
 			    		<div class="icon d-flex justify-content-center align-items-center">
 	    					<span class="icon-plus"></span>
 	    					<input type="file" id="uploadFile" name="uploadFile"/>
@@ -325,15 +335,15 @@ $(document).on("click", ".modifyBox", function() {
 				            	 ${review.subject}</label>
 				            	 <label class="modifyBox" data-toggle="modal" data-target="#scheduleReviewModifyModal" onclick="premodalSetDay(${review.tripday})">수정</label>
 				            	 <label class="deleteBox">삭제</label>			
-								<div class="sl-loc-cont itemCont${review.tripday}" reviewContent="reviewContent">
-									${review.content}
+								<div class="sl-loc-cont itemCont${review.tripday}">
+									${review.content}									
 								</div>
 
 								<input type="hidden" name="seq" class="seq" value="${review.seq}">
 
 								<input type="hidden" class="bcode" value="${review.bcode}">
 								<input type="hidden" class="subject" value="${review.subject}">
-								<input type="hidden" class="content" value="${review.content}">
+								<input type="hidden" class="content" value='${review.content}'>
 								<input type="hidden" class="location" value="${review.location}">
 								<input type="hidden" class="lat" value="${review.lat}">
 								<input type="hidden" class="lng" value="${review.lng}">

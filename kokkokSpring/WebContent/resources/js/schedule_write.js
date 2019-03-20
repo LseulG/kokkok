@@ -117,7 +117,6 @@ function getFormatDate(date){
 }
 
 function selectChange(){
-	alert("oh");
 	mapRemove();
 	mapView(positions_2);
 }

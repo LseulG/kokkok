@@ -9,6 +9,7 @@
   	
   	<script type="text/javascript">
 	var contextPath='<%=request.getContextPath()%>';
+	var rootPt = '${root}'; // sseul 추가
 	</script>
 	<link rel="stylesheet" href="${root}/resources/css/index.css"> 
 	

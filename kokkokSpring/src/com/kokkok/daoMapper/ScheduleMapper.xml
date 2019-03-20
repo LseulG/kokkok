@@ -11,9 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			savepicture, persons, thema)
 			values (schedule_seq.nextval, #{seq},
 			to_date(#{startdate},'YYYY-MM-DD'), to_date(#{enddate},'YYYY-MM-DD'),
-			#{originpicture}, #{savefolder},
-			#{savepicture}, #{persons},
-			#{thema})
+			#{originpicture}, #{savefolder}, #{savepicture}, 
+			#{persons}, #{thema})
 		into board 
 			(seq, bcode, userid,
 			subject, content, logtime, updatetime,
@@ -81,6 +80,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and b.seq=#{seq}
 	</select>
 
+	<select id="scheduleReviewLoc" parameterType="String"
+		resultType="String">
+		select simpleaddr
+		from location
+		where seq=#{seq}
+	</select>
+
 	<delete id="scheduleReviewDelete" parameterType="String">
 		{call
 		declare
@@ -114,8 +120,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		declare
 		begin
 		update schedule
-		 set startdate=#{startdate}, enddate=#{enddate}, 
-			originpicture='image_8.jpg', savefolder='resources/images', savepicture='image_8.jpg', 
+		 set startdate=to_date(#{startdate},'YYYY-MM-DD'), enddate=to_date(#{enddate},'YYYY-MM-DD'), 
+			originpicture=#{originpicture}, savefolder=#{savefolder}, savepicture=#{savepicture}, 
 			persons=#{persons}, thema=#{thema}
 		 where seq=#{hseq};
 		update board

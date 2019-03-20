@@ -41,7 +41,7 @@ var positions_2 = [
 		title: '3',
 		latlng: new daum.maps.LatLng(33.45384441323185, 126.572420432074 )
 	}
-	];
+];
 
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 

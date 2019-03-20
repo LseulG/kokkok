@@ -25,7 +25,7 @@ function setPreDays(tripDays){
 	}
 }
 function setScheduleInfo(){
-	alert("preTripDays:"+preTripDays);/////////////
+	//alert("preTripDays:"+preTripDays);/////////////
 	tripType = $("#tripType").val();
 	tripStart = $("#checkin_date").val();
 	tripEnd = $("#checkout_date").val();
@@ -36,7 +36,7 @@ function setScheduleInfo(){
 	var startDay = new Date(tripStart);	
 	var endDay = new Date(tripEnd);
 	tripDays = dateDiff(startDay, endDay);
-	alert("tripDays:" + tripDays);///////////////////
+	//alert("tripDays:" + tripDays);///////////////////
 	
 	if (tripStart == "" || tripEnd == "") {
 		alert("출발일과 도착일을 선택해주세요.");
@@ -59,13 +59,13 @@ function setScheduleInfo(){
 		if(result){
 			
 			if(preTripDays == 0){	// 처음 세팅
-				alert("setDays");///////////////////
+				//alert("setDays");///////////////////
 				setDays(tripDays);
 			} else if(preTripDays < tripDays){		// 여행일수 늘어나면  3 > 5
-				alert("addDays");///////////////////
+				//alert("addDays");///////////////////
 				addDays(preTripDays,tripDays);
 			} else if(preTripDays > tripDays){		// 여행일수 줄어들면 5 > 3
-				alert("removeDays");///////////////////
+				//alert("removeDays");///////////////////
 				removeDays(preTripDays,tripDays);
 			} else {	// 여행일수 같으면 3 > 3
 				//변화 x
@@ -106,7 +106,7 @@ function dateDiff(start, end){
 }
 
 function selectChange(){
-	alert("selectChange");
+	//alert("selectChange");
 	mapRemove();
 	mapView(positions_2);
 }
@@ -185,7 +185,7 @@ function submitItem() {
     if(!validateItem()) {
     	return;
     }
-    alert("등록");
+   // alert("등록");
 }
 
 /** 아이템 체크 */

@@ -17,6 +17,7 @@ public interface ScheduleDao {
 	public ScheduleViewDto scheduleView(String sseq);
 	public List<ScheduleBoardDto> selectReview(String sseq);
 	public ScheduleReviewDto scheduleReviewView(String seq);
+	public String scheduleReviewLoc(String seq);
 	
 	public int scheduleReviewDelete(String seq);
 	public int scheduleDelete(String seq);

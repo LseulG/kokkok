@@ -19,11 +19,25 @@ clickLng = "", clickAddress ="";
 
 $(document).ready(function() {
 	$("#registerBtn").click(function() {
+		var reviewResult = 0;
+		for(var i=1; i<tripDays+1; i++){
+			var test = $(".seul1_Item"+i).find(".itemBox"+i).attr("id");
+			if(test == null){
+				reviewResult += 1;
+ 			}
+		}
+		
 		if($("#scheduleTitle").val() == "") {
 			alert("여행 제목을 입력해주세요");
 			return;
 		} else if($("#scheduleMsg").val() == "") {
 			alert("여행 소개를 입력해주세요");
+			return;
+		} else if(totalReview == 0) {
+			alert("일정을 등록해주세요");
+			return;
+		} else if(reviewResult != 0) {
+			alert("일차별로 일정을 한개 이상 작성해주세요");
 			return;
 		} else {
 			var result = confirm("등록 하시겠습니까?");
