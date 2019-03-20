@@ -6,7 +6,7 @@ var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
 var navigation_size = 3;
 // 관광 목록 한 페이지의 결과 수
-var listNumOfRows = 2;
+var listNumOfRows = 6;
 // 아이디 가져오기
 var userid = $("#getuserId").val();
 

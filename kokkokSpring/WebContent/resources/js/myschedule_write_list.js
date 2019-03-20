@@ -6,7 +6,7 @@ var listTotalCount = 0;
 // 한 화면에 보여지는 네비개이션의 페이지 갯수
 var navigation_size = 3;
 // 관광 목록 한 페이지의 결과 수
-var listNumOfRows = 2;
+var listNumOfRows = 6;
 // 아이디 가져오기
 var userid = $("#getuserId").val();
 
@@ -48,12 +48,12 @@ function myScheduleWriteList() {
 function makeScheduleHtml(json) {
 	var myWriteScheduleListCnt = json.myWriteScheduleList.length;
 	var contentStr = "";
-	var btypeNm = ["일정", "후기"];
+	var btypeNm = ["계획", "후기"];
 
 	for (var i = 0; i < myWriteScheduleListCnt; i++) {
 		var schedule = json.myWriteScheduleList[i];
 		contentStr += "<div class='col-md-4 ftco-animate  fadeInUp ftco-animated destination'>";		
-		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "' class='img img-2 d-flex justify-content-center align-items-center' ";		
+		contentStr += "<a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "&seq= "+schedule.seq+"' class='img img-2 d-flex justify-content-center align-items-center' ";		
 		contentStr += "style='background-image: url(" + contextPath + "/" + schedule.savefolder + "/" + schedule.savepicture + ");'>";		
 		contentStr += "<div class='icon d-flex justify-content-center align-items-center'>";		
 		contentStr += "<span class='icon-search2'></span>";		
@@ -61,7 +61,7 @@ function makeScheduleHtml(json) {
 		contentStr += "</a>";		
 		contentStr += "<div class='text p-3'>";		
 		contentStr += "<div class='d-flex'>";		
-		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq + "'>" + schedule.subject + "</a></h3>";		
+		contentStr += "<h3><a href='" + contextPath + "/schedule/view.kok?sseq=" + schedule.sseq +"&seq= "+schedule.seq+"'>" + schedule.subject + "</a></h3>";		
 		contentStr += "</div>";
 		contentStr += "<p>";
 //		if (schedule.simpleaddr != null && schedule.simpleaddr != "") {
