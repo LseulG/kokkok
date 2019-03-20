@@ -189,7 +189,7 @@ function searchMap(){
 	         itemStr += '    <span id="roadAddress'+(index+1)+'">' + places.road_address_name + '</span>' +
 	                     '   <span class="jibun gray" id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>';
 	     } else {
-	         itemStr += '    <span>' +  places.address_name  + '</span>'; 
+	         itemStr += '    <span id="jibunAddress'+(index+1)+'">' +  places.address_name  + '</span>'; 
 	     }
 	                 
 	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +

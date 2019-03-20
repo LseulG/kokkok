@@ -249,7 +249,7 @@ function createItem(numm){
             
         }
     )
-	.append("<label class='modifyBox'>수정</label>")		// 아이템에 삭제 버튼 추가
+	.append("<label class='modifyBox' data-toggle='modal' data-target='#scheduleReviewModifyModal'>수정</label>")		// 아이템에 삭제 버튼 추가
 	.append("<label class='deleteBox'>삭제</label>")		// 아이템에 삭제 버튼 추가
 	.append("<div class='sl-loc-cont itemCont"+numm+"'>" +
 			"<p><u>신기하다 신기해</u></p>" +

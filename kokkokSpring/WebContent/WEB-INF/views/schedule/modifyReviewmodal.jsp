@@ -17,8 +17,7 @@ $("body").on("hidden.bs.modal", ".modal", function () {
     document.getElementById("MRkeyword").value = "인천 맛집";
  });
 
-function modifyReviewBtn(){ // 삭제 버튼을 클릭했을 때 동작 지정. 아이템에 포함된 입력 필드에 값이 있으면 정말 삭제할지 물어봄
-	// 제목 선택 안한거 예외처리 추가하기
+function modifyReviewBtn(){ 
 	if(document.getElementById("MRlocalTitle").value == ""){
 		$("#modifyReviewBtn").attr("data-dismiss","");
 		alert('장소를 지정해주세요.');
