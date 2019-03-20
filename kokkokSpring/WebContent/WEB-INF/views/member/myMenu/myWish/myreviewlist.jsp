@@ -19,8 +19,21 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     height: 200px;
+    min-height: 200px;	
+	max-height: 200px;
     }
+.myreviewdiv p img{
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  display: block;
+  margin: 0px auto;
+}
+
+
 </style>
+
+
 
 </head>
 <body>
