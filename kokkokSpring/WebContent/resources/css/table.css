@@ -251,22 +251,22 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Date";
+    content: "글번호";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Order ID";
+    content: "제목";
   }
   table tbody tr td:nth-child(3):before {
-    content: "Name";
+    content: "작성자";
   }
   table tbody tr td:nth-child(4):before {
-    content: "Price";
+    content: "작성일";
   }
   table tbody tr td:nth-child(5):before {
-    content: "Quantity";
+    content: "조회수";
   }
   table tbody tr td:nth-child(6):before {
-    content: "Total";
+    content: "추천수";
   }
 
   .column4,

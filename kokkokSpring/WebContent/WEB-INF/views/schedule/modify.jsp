@@ -333,7 +333,7 @@ $(document).on("click", ".modifyBox", function() {
 					       			<c:when test="${type eq 5}"><i class="flaticon-fork reviewType" reviewType="fork"></i> </c:when>
 					       		</c:choose>
 				            	 ${review.subject}</label>
-				            	 <label class="modifyBox" data-toggle="modal" data-target="#scheduleReviewModifyModal" onclick="premodalSetDay(${review.tripday})">수정</label>
+				            	 <label class="modifyBox" data-toggle="modal" data-target="#scheduleReviewModifyModal" onclick="">수정</label>
 				            	 <label class="deleteBox">삭제</label>			
 								<div class="sl-loc-cont itemCont${review.tripday}">
 									${review.content}									

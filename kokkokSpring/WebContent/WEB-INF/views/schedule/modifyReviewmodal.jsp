@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="${root}/resources/css/schedule_write_Rmodal.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
  <script type="text/javascript">
-function searchClick(){
+function msearchClick(){
 	msearchMap();
 }
 
@@ -84,7 +84,7 @@ function modifyReviewBtn(){ // 삭제 버튼을 클릭했을 때 동작 지정. 
 				            <div>
 				                <div onclick="searchPlaces(); return false;">
 				                    키워드 : <input type="text" value="인천 맛집" id="MRkeyword" size="15"> 
-				                    <button type="button" id="MRsearchBtn" onclick="javascript:searchClick();">검색하기</button> 
+				                    <button type="button" id="MRsearchBtn" onclick="javascript:msearchClick();">검색하기</button> 
 				                </div>
 				            </div>
 				        </div>

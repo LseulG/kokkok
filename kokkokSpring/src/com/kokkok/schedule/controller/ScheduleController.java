@@ -341,11 +341,15 @@ public class ScheduleController {
 			}
 		}
 		
+		//여기에 리뷰들의 simpleaddr을 중복제거하여 arr/map에 담아와서 addObject 해서 가져와보자!!
+		String sseq = (String)map.get("sseq");
+		Set<String> reviewLocList = scheduleService.scheduleReviewLoc(sseq);
+		System.out.println("reviewLocList : "+ reviewLocList); // reviewLocList : [인천 연수구, 인천 부평구, 인천 계양구, 인천 부평구]
 		// view로 이동
 		ModelAndView mav = new ModelAndView();
 		if (scheduleCnt != 0) {
 			// 글번호 가져가기 코딩해야함
-			String sseq = (String)map.get("sseq"); 
+			//String sseq = (String)map.get("sseq"); 
 			ScheduleViewDto scheduleViewDto = scheduleService.scheduleView(sseq);
 			List<ScheduleReviewDto> scheduleReviewDtoList = scheduleService.scheduleReviewView(sseq);
 
@@ -359,6 +363,8 @@ public class ScheduleController {
 
 			mav.addObject("scheduleArticle", scheduleViewDto);
 			mav.addObject("reviewArticle", scheduleReviewDtoList);
+			
+			mav.addObject("locationArticle", reviewLocList); // loc 추가
 
 			mav.setViewName("schedule/view");// 성공
 		} else {
